@@ -1,0 +1,44 @@
+{
+  "name": "ironji",
+  "version": "1.0.1",
+  "description": "Uber for food",
+  "main": "index.js",
+    "engines": {
+    "node": "8.9.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ogeniuspriority/ironji_main.git"
+  },
+  "author": "Ironji Team <alphagslrwanda@gmail.com> (http://ryenbeatty.co)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AdamBrodzinski/meteor-react-boilerplate/issues"
+  },
+  "homepage": "https://github.com/ogeniuspriority/ironji_main.git",
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "history": "^3.0.0",
+    "indexof": "0.0.1",
+    "moment": "^2.22.2",
+    "moment-timezone": "^0.5.21",
+    "password-hash": "^1.2.2",
+    "rc-time-picker": "^3.3.1",
+    "react": "^15.6.2",
+    "react-bootstrap": "^0.32.1",
+    "react-bootstrap-modal": "^4.1.1",
+    "react-datepicker": "^1.5.0",
+    "react-dom": "^15.6.2",
+    "react-geolocated": "^2.4.0",
+    "react-jsx": "^1.0.0",
+    "react-moment": "^0.7.9",
+    "react-native-local-mongodb": "^2.2.2",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
+    "react-time-picker": "^2.5.1",
+    "ultimatejs": "tracker-react@=1.0.0"
+  }
+}
