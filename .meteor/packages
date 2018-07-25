@@ -32,3 +32,4 @@ gadicc:blaze-react-component
 static-html
 react-meteor-data
 ultimatejs:tracker-react
+meteorhacks:aggregate

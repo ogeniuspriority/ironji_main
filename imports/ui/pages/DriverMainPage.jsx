@@ -308,15 +308,21 @@ window.open("/driverMainPage", "_self")
     });
   }
   
+
   
   renderTheHotDeals() {
-    return this.props.all_the_hot_deals.map((deal) => (
+   global.userna_me="";
+  
+    return this.props.all_the_hot_deals.map((deal) => (       
+            
+            
        <div style={{borderBottom:"1px solid green",width:"300px"}}>
-        <p style={{color:"blue",textDecoration:"underline"}}>Kabera</p>
-            <div>{deal.the_hot_deal_info}</div>
-            <button className="btn btn-success">Talk to them<br/><span className="minify">Muvugihe</span></button>
+        <p style={{color:"blue",textDecoration:"underline",display:"none"}}>{Users.find({_id:deal.client_id}, { sort: { text: 1 } }).fetch().forEach( function(myDoc) {   global.userna_me=myDoc.username;} ) }</p>
+                    <div style={{color:"blue",textDecoration:"underline"}}>{global.userna_me}</div>
+                    <div>{deal.the_hot_deal_info}</div>
+            <button className="btn btn-success">Talk to them<br/><span className="minify">Muvugishe</span></button>
 </div>
-    ));
+        ));
   }
 
 render() {
@@ -722,7 +728,7 @@ export default withTracker(() => {
   return {
     tasks: Users.find({}).fetch(),
     users_i_am_in: Users.find({username:sessionStorage.getItem('ironji_account_username')}, { sort: { text: 1 } }).fetch(),
-    all_the_hot_deals: Client_hot_deals.find({}, { sort: { text: 1 } }).fetch()
+    all_the_hot_deals: Client_hot_deals.find({}, { sort: { text: 1 } }).fetch(),
   };
 })(DriverMainPage);
 
