@@ -104,6 +104,8 @@ window.open("/clientRegister", "_self")
 
 frequentlyAskedQuestions(){
 window.open("/fq_asked", "_self")
+
+
         }
 
 loginIntoAccount(){
@@ -113,7 +115,35 @@ window.open("/driverMainPage", "_self")
             clearInterval(this.interval);
           }
          updateThisUserLocation(){
-             console.log("Runned");
+            global.the_id="";
+         
+          var po=Users.find({username:sessionStorage.getItem('ironji_account_username')}, { sort: { text: 1 } }).fetch();
+    for (var key in po) {
+    if (po.hasOwnProperty(key)) {
+        //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
+        
+        if(po[key].account_type=="driver"){
+             global.the_id=po[key]._id;
+        }}}
+             
+             if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position){
+            var latitute=position.coords.latitude;
+             var longitude=position.coords.longitude;
+             //console.log("Runned "+latitute+"--"+longitude);
+             Users.update({_id:global.the_id}, {
+      $set: { currentLatitude: latitute,currentLongitude: longitude }
+    },function (err, result) {
+      if (err){
+          
+      } else{
+      console.log(result);
+     }
+   });
+        });
+    } else { 
+        
+    }
          }
          componentDidMount() {
         //alert("Welcome Home Guys"+Users.find({}).fetch());
@@ -711,6 +741,7 @@ return (<div className="container">
 export default withTracker(() => {
   return {
     tasks: Users.find({}).fetch(),
+    users_i_am_in: Users.find({username:sessionStorage.getItem('ironji_account_username')}, { sort: { text: 1 } }).fetch()
   };
 })(DriverMainPage);
 

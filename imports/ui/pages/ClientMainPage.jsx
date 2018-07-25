@@ -3,6 +3,7 @@ from 'react';
 import classNames from 'classnames';
 import Modal from 'react-bootstrap-modal';
 import {Users} from '../../api/users';
+import {Client_hot_deals} from '../../api/hot_deals';
 import { withTracker } from 'meteor/react-meteor-data';
 import DatePicker from 'react-datepicker';
 import moment from 'react-moment';
@@ -51,7 +52,9 @@ super(props);
         
         this.handleChange = this.handleChange.bind(this);
         }
-
+componentWillUnmount() {
+            clearInterval(this.interval);
+          }
 handleSubmit(event) {
 event.preventDefault();
         // Find the text field via the React ref
@@ -109,9 +112,42 @@ window.open("/fq_asked", "_self")
 loginIntoAccount(){
 window.open("/driverMainPage", "_self")
         }
+        updateThisUserLocation(){
+            global.the_id="";
+         
+          var po=Users.find({username:sessionStorage.getItem('ironji_account_username')}, { sort: { text: 1 } }).fetch();
+    for (var key in po) {
+    if (po.hasOwnProperty(key)) {
+        //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
         
+        if(po[key].account_type=="client"){
+             global.the_id=po[key]._id;
+        }}}
+             
+             if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position){
+            var latitute=position.coords.latitude;
+             var longitude=position.coords.longitude;
+             //console.log("Runned "+latitute+"--"+longitude);
+             Users.update({_id:global.the_id}, {
+      $set: { currentLatitude: latitute,currentLongitude: longitude }
+    },function (err, result) {
+      if (err){
+          
+      } else{
+      console.log(result);
+     }
+   });
+        });
+    } else { 
+        
+    }
+         }
         
          componentDidMount() {
+             
+             this.interval = setInterval(() => this.updateThisUserLocation(), 1000);
+         
                   if(sessionStorage.length==0) {
               window.open("/", "_self");
           }
@@ -268,6 +304,31 @@ window.open("/driverMainPage", "_self")
     this.setState({
       startDate: date
     });
+  }
+  PublishRequest(){
+      var that=this;
+  
+      //alert("ss"+this.refs.the_deal_text.value+"--id"+global.the_id);
+      if(this.refs.the_deal_text.value=="") alert("Submitting Empty Request");
+      
+      var theText=this.refs.the_deal_text.value;
+      Client_hot_deals.insert({
+   client_id:global.the_id, 
+   the_hot_deal_info:theText,
+   createdAt: new Date(),
+   
+},function( error, result) { 
+    
+
+    if ( error ){
+        //alert("User Not Created");
+    }
+    if ( result ){
+        alert("Hot Deal Published to Community!");
+        that.refs.the_deal_text.value="";
+    }
+  });
+
   }
 
 render() {
@@ -538,16 +599,15 @@ return (<div className="container">
                 </div>
                 <div className="modal-body">
                     <div  className="container" >
-                    <textarea className="form-control" style={{height:"80px",width:"240px"}}></textarea>
-                        <button>Publish your request<br/><span className='minify'>Tanga icyifuzo</span></button>
+                    <textarea className="form-control" ref='the_deal_text' style={{height:"80px",width:"240px"}}></textarea>
+                        <button onClick={this.PublishRequest.bind(this)}>Publish your request<br/><span className='minify'>Tanga icyifuzo</span></button>
                     
                         
                     </div>
                 </div>
                 <div className="modal-footer">
                     <button type="button" className="btn btn-secondary" data-dismiss="modal">Close<br/><span className='minify'>Funga</span></button>
-                    <button type="button" className="btn btn-primary">Save<br/><span className='minify'>Byemeze</span></button>
-                </div>
+                 </div>
             </div>
         </div>
     </div>
