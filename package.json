@@ -38,7 +38,6 @@
     "react-native-local-mongodb": "^2.2.2",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
-    "react-time-picker": "^2.5.1",
-    "ultimatejs": "tracker-react"
+    "react-time-picker": "^2.5.1"
   }
 }
