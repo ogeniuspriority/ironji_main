@@ -3,6 +3,7 @@ from 'react';
 import classNames from 'classnames';
 import Modal from 'react-bootstrap-modal';
 import {Users} from '../../api/users';
+import {Client_hot_deals} from '../../api/hot_deals';
 import { withTracker } from 'meteor/react-meteor-data';
 import DatePicker from 'react-datepicker';
 import moment from 'react-moment';
@@ -741,7 +742,8 @@ return (<div className="container">
 export default withTracker(() => {
   return {
     tasks: Users.find({}).fetch(),
-    users_i_am_in: Users.find({username:sessionStorage.getItem('ironji_account_username')}, { sort: { text: 1 } }).fetch()
+    users_i_am_in: Users.find({username:sessionStorage.getItem('ironji_account_username')}, { sort: { text: 1 } }).fetch(),
+    all_the_hot_deals: Client_hot_deals.find({username:sessionStorage.getItem('ironji_account_username')}, { sort: { text: 1 } }).fetch()
   };
 })(DriverMainPage);
 
