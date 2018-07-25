@@ -307,6 +307,17 @@ window.open("/driverMainPage", "_self")
       startDate: date
     });
   }
+  
+  
+  renderTheHotDeals() {
+    return this.props.all_the_hot_deals.map((deal) => (
+       <div style={{borderBottom:"1px solid green",width:"300px"}}>
+        <p style={{color:"blue",textDecoration:"underline"}}>Kabera</p>
+            <div>{deal.the_hot_deal_info}</div>
+            <button className="btn btn-success">Talk to them<br/><span className="minify">Muvugihe</span></button>
+</div>
+    ));
+  }
 
 render() {
     
@@ -640,42 +651,10 @@ return (<div className="container">
                 </div>
                 <div className="modal-body">
                     <div  className="container" style={{overflow:"scroll",height:"350px",width:"350px"}}>
-                        <div >            
-        <div style={{borderBottom:"1px solid green",width:"300px"}}>
-        <p style={{color:"blue",textDecoration:"underline"}}>Kabera</p>
-            <div>I am at Kicukiro and I want a quick drive to Kanombe</div>
-            <button className="btn btn-success">Talk to them<br/><span className="minify">Muvugihe</span></button>
-</div>
- <div style={{borderBottom:"1px solid green",width:"230px"}}>
-          <p style={{color:"blue",textDecoration:"underline"}}>Kabera</p>
-            <div>I'm a manager at Serena Hotel Transform Africa is kicking off, we need to issue a deal of bringing eggs. To all drivers write to us and commit the number of eggs you can bring and we give you a go ahed.</div>
-            <button className="btn btn-success">Talk to them<br/><span className="minify">Muvugihe</span></button>
-</div>
-<div style={{borderBottom:"1px solid green",width:"230px"}}>
-          <p style={{color:"blue",textDecoration:"underline"}}>Kabera</p>
-            <div>Kigali to Rwamagana</div>
-            <button className="btn btn-success">Talk to them<br/><span className="minify">Muvugihe</span></button>
-</div>
-<div style={{borderBottom:"1px solid green",width:"230px"}}>
-         <p style={{color:"blue",textDecoration:"underline"}}>Kabera</p>
-            <div>Kigali to Rwamagana</div>
-            <button className="btn btn-success">Talk to them<br/><span className="minify">Muvugihe</span></button>
-</div>
-<div style={{borderBottom:"1px solid green",width:"230px"}}>
-          <p style={{color:"blue",textDecoration:"underline"}}>Kabera</p>
-            <div>Kigali to Rwamagana</div>
-            <button className="btn btn-success">Talk to them<br/><span className="minify">Muvugihe</span></button>
-</div>
-<div style={{borderBottom:"1px solid green",width:"230px"}}>
-          <p style={{color:"blue",textDecoration:"underline"}}>Kabera</p>
-            <div>Kigali to Rwamagana</div>
-            <button className="btn btn-success">Talk to them<br/><span className="minify">Muvugihe</span></button>
-</div>
-<div style={{borderBottom:"1px solid green",width:"230px"}}>
-          <p style={{color:"blue",textDecoration:"underline"}}>Kabera</p>
-            <div>Kigali to Rwamagana</div>
-            <button className="btn btn-success">Talk to them<br/><span className="minify">Muvugihe</span></button>
-</div>
+                        <div>
+                        {this.renderTheHotDeals()}
+  
+
                  </div>
                     </div>
                 </div>
@@ -743,7 +722,7 @@ export default withTracker(() => {
   return {
     tasks: Users.find({}).fetch(),
     users_i_am_in: Users.find({username:sessionStorage.getItem('ironji_account_username')}, { sort: { text: 1 } }).fetch(),
-    all_the_hot_deals: Client_hot_deals.find({username:sessionStorage.getItem('ironji_account_username')}, { sort: { text: 1 } }).fetch()
+    all_the_hot_deals: Client_hot_deals.find({}, { sort: { text: 1 } }).fetch()
   };
 })(DriverMainPage);
 
