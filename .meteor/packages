@@ -31,4 +31,4 @@ accounts-password
 gadicc:blaze-react-component
 static-html
 react-meteor-data
-ultimatejs:tracker-react@0.0.6
+ultimatejs:tracker-react
