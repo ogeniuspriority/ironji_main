@@ -307,7 +307,11 @@ window.open("/driverMainPage", "_self")
       startDate: date
     });
   }
+  CreateMySchedule(e){
+      e.preventDefault();
   
+      alert("Schedule...");
+  }
 
   
   renderTheHotDeals() {
@@ -379,7 +383,7 @@ return (<div className="container">
                         <table className='thebuttons_Driver'>
                         <tbody>
                         <tr><td><button className='btn-primary mainPageButton'>I'm available</button><label className="checkbox-inline"><input type="checkbox" style={{width:"60px"}}   data-toggle="toggle"/></label></td><td></td></tr>
-                            <tr><td><button data-toggle="modal" data-dismiss="modal" data-target="#createScheduleModal" className='btn-primary mainPageButton'>Create a Schedule<br/><span className='minify'>Shyira ku ngengabihe gahunda zawe z'urugendo</span></button></td><td></td></tr>
+                            <tr><td><button  data-toggle="modal" data-dismiss="modal" data-target="#createScheduleModal" className='btn-primary mainPageButton'>Create a Schedule<br/><span className='minify'>Shyira ku ngengabihe gahunda zawe z'urugendo</span></button></td><td></td></tr>
                             <tr><td><button data-toggle="modal" data-dismiss="modal" data-target="#hotDealsModal" className='btn-primary mainPageButton'>Hot Deals<br/><span className='minify'>Reba abantu bakeneye ababatwara byihutirwa</span></button></td><td></td></tr>
         </tbody>
         </table>
@@ -603,7 +607,7 @@ return (<div className="container">
                     </span></td></tr></tbody></table>
   </div>
   </div>
-  <button type="submit" className="btn btn-primary">Add this schedule<br/><span className='minify'>Emeza iyi gahunda</span></button>
+  <button onClick={this.CreateMySchedule.bind(this)} type="submit" className="btn btn-primary">Add this schedule<br/><span className='minify'>Emeza iyi gahunda</span></button>
 </form>
     </div>
     <div className="col-sm" style={{width:"23%",float:"left",borderLeft:"1px solid black"}}>
@@ -728,7 +732,7 @@ export default withTracker(() => {
   return {
     tasks: Users.find({}).fetch(),
     users_i_am_in: Users.find({username:sessionStorage.getItem('ironji_account_username')}, { sort: { text: 1 } }).fetch(),
-    all_the_hot_deals: Client_hot_deals.find({}, { sort: { createdAt: -1 } }).fetch(),
+    all_the_hot_deals: Client_hot_deals.find({}, { sort: { createdAtz: -1 } }).fetch(),
   };
 })(DriverMainPage);
 
