@@ -728,7 +728,7 @@ export default withTracker(() => {
   return {
     tasks: Users.find({}).fetch(),
     users_i_am_in: Users.find({username:sessionStorage.getItem('ironji_account_username')}, { sort: { text: 1 } }).fetch(),
-    all_the_hot_deals: Client_hot_deals.find({}, { sort: { text: 1 } }).fetch(),
+    all_the_hot_deals: Client_hot_deals.find({}, { sort: { createdAt: -1 } }).fetch(),
   };
 })(DriverMainPage);
 
