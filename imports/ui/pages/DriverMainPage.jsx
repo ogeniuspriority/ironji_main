@@ -309,8 +309,14 @@ window.open("/driverMainPage", "_self")
   }
   CreateMySchedule(e){
       e.preventDefault();
+      
+      if(this.refs.time_to.value && this.refs.time_from.value && this.refs.time_from.value && this.refs.date_of_schedule.value && this.destination.value && this.origin.value){
+          
+      }else{
+           alert("Empty fields!");
+      }
   
-      alert("Schedule...");
+     
   }
 
   
@@ -561,12 +567,12 @@ return (<div className="container">
       <form>
   <div className="form-group">
     <label >Origin:</label>
-    <input type="text" style={{width:"80%",fontSize:"14px"}} className="form-control" id="" aria-describedby="" placeholder=""/>
+    <input type="text" ref="origin" style={{width:"80%",fontSize:"14px"}} className="form-control" id="" aria-describedby="" placeholder=""/>
   
   </div>
   <div className="form-group">
     <label >Destination:</label>
-    <input type="text" style={{width:"80%",fontSize:"14px"}} className="form-control" id="" aria-describedby="" placeholder=""/>
+    <input ref="destination" type="text" style={{width:"80%",fontSize:"14px"}} className="form-control" id="" aria-describedby="" placeholder=""/>
   
   </div>
   <div className="form-group">
@@ -575,7 +581,7 @@ return (<div className="container">
  <table>
  <tbody>
  <tr><td>
-   <DatePicker className="form-control" id="scheduleDateDay"
+   <DatePicker ref="date_of_schedule"  className="form-control" id="scheduleDateDay"
         selected={this.state.startDate}
         onChange={this.handleChange}
         /></td><td>
@@ -590,7 +596,7 @@ return (<div className="container">
     <div className="form-group">
     <label >From</label>
     <table><tbody><tr><td>
-    <TimePicker style={{ width: 100 }}
+    <TimePicker ref="time_from" style={{ width: 100 }}
     showSecond={showSecond}
      />
      </td><td> <span className="input-group-addon">
@@ -600,7 +606,7 @@ return (<div className="container">
   </div>
   <div className="form-group">
     <label >To</label>
-  <table><tbody><tr><td><TimePicker style={{ width: 100 }}
+  <table><tbody><tr><td><TimePicker ref="time_to" style={{ width: 100 }}
     showSecond={showSecond}
       /></td><td> <span className="input-group-addon">
                         <span className="glyphicon glyphicon-time"></span>
