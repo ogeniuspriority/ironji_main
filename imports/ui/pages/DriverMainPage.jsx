@@ -317,6 +317,7 @@ window.open("/driverMainPage", "_self")
                 global.date_of_schedule=this.refs.date_of_schedule.value;
                  global.destination=this.refs.destination.value;
                  global.origin=this.refs.origin.value;
+                 global.user_idgg=sessionStorage.getItem('ironji_account_username');
             
             var theData={
    "time_to":global.time_to,
@@ -766,7 +767,7 @@ export default withTracker(() => {
   return {
     tasks: Users.find({}).fetch(),
     users_i_am_in: Users.find({username:sessionStorage.getItem('ironji_account_username')}, { sort: { text: 1 } }).fetch(),
-    all_the_hot_deals: Client_hot_deals.find({}, { sort: { createdAtz: -1 } }).fetch(),
+    all_the_hot_deals: Client_hot_deals.find({}, { sort: { createdAt: -1 } }).fetch(),
   };
 })(DriverMainPage);
 

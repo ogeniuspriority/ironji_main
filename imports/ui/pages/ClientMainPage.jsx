@@ -336,13 +336,18 @@ window.open("/driverMainPage", "_self")
   renderTheClientSchedules() {
    global.userna_me="";
   
-    return this.props.theSchedules.map((deal) => (       
+    return this.props.theSchedules.map((deal) => (            
+            
             
             
        <div style={{borderBottom:"1px solid green",width:"300px"}}>
         <p style={{color:"blue",textDecoration:"underline",display:"none"}}>{Users.find({_id:deal.client_id}, { sort: { text: 1 } }).fetch().forEach( function(myDoc) {   global.userna_me=myDoc.username;} ) }</p>
                     <div style={{color:"blue",textDecoration:"underline"}}>{global.userna_me}</div>
-                    <div>{deal.the_hot_deal_info}</div>
+                        <div><span>Date of schedule:</span>{deal.date_of_schedule}</div>
+                            <div><span>Origin:</span>{deal.origin}</div>
+                                    <div><span>Destination:</span>{deal.destination}</div>
+                                            <div><span>Time of departure:</span>{deal.time_to}</div>
+                                                    <div><span>Time of arrival:</span>{deal.time_from}</div>
             <button className="btn btn-success">Talk to them<br/><span className="minify">Muvugishe</span></button>
 </div>
         ));
@@ -575,29 +580,10 @@ return (<div className="container">
                     </button>
                 </div>
                 <div className="modal-body">
-                    <div className="container">
-                    <div style={{float:"left",width:"15%"}}>
-                        <div style={{border:"1px solid black"}}>Cedric</div>
-                            <div style={{border:"1px solid black"}}>Jim</div>
-                                <div style={{border:"1px solid black"}}>Honore</div>
-                                    <div style={{border:"1px solid black"}}>Patrick</div>
-                        </div>
-                        <div style={{float:"left",width:"35%",borderLeft:"1px solid black"}}>
-                            <div style={{height:"350px",overflow:"scroll",width:"250px",fontSize:"13px"}}>
-                                <div style={{float:"left",borderBottom:"1px solid black",width:"150px"}}><p> fiehfefeibf eofjefeofn efeonfefon efeof9hefi</p>
-                                    <button style={{width:"120px"}} className='btn-primary'>Rate<br/><span className='minify'>Muhe amanota</span></button>
-                                                                      </div>    
-                                                                       <div style={{float:"right",borderBottom:"1px solid black",width:"150px"}}><p> fiehfefeibf eofjefeofn efeonfefon efeof9hefi</p>
-                                    <button style={{width:"120px"}} className='btn-primary'>Rate<br/><span className='minify'>Muhe amanota</span></button>
-                                                                      </div>    
-                                                                       <div style={{float:"left",borderBottom:"1px solid black",width:"150px"}}><p> fiehfefeibf eofjefeofn efeonfefon efeof9hefi</p>
-                                    <button style={{width:"120px"}} className='btn-primary'>Rate<br/><span className='minify'>Muhe amanota</span></button>
-                                                                      </div>    
-                            </div>
-                            <div><table><tbody><tr><td><div className="form-group"> 
-                            <textarea className="form-control" id="usr" style={{padding:"4px",height:"80px"}} ></textarea>
-</div></td><td><button className='btn-primary'>Send<br/><span className='minify'>Ohereza</span></button></td></tr></tbody></table></div></div>
-                    </div>  
+                <div>
+                    {this.renderTheClientSchedules()}
+                </div>
+                   
                 </div>
                 <div className="modal-footer">
                     <button type="button" className="btn btn-secondary" data-dismiss="modal">Close<br/><span className='minify'>Funga</span></button>
