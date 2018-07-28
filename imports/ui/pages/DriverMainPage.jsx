@@ -387,6 +387,37 @@ window.open("/driverMainPage", "_self")
 </div>
         ));
   }
+  
+  renderMySchedules() {
+      
+  global.the_id_op="";
+         
+          var po=Users.find({username:sessionStorage.getItem('ironji_account_username')}, { sort: { text: 1 } }).fetch();
+    for (var key in po) {
+    if (po.hasOwnProperty(key)) {
+        //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
+        
+        if(po[key].account_type=="driver"){
+            global.the_id_op=po[key]._id;
+        }}}
+   global.userna_me="";
+   
+ 
+    return Drivers_schedules.find({}, { sort: { createdAt: -1 }}).fetch().map((deal) => ( 
+  
+<div style={{borderBottom:"1px solid green",width:"300px"}}>
+        <p style={{color:"blue",textDecoration:"underline",display:"none"}}>{Users.find({_id:deal.client_id}, { sort: { text: 1 } }).fetch().forEach( function(myDoc) {   global.userna_me=myDoc.username;} ) }</p>
+                    <div style={{color:"blue",textDecoration:"underline"}}>{global.userna_me}</div>
+                        <div style={{marginTop:"5px"}}><span >Date of schedule:</span><span className='smallANdCool'>{  new Date(parseInt(deal.date_of_schedule)).getFullYear().toString()+"/"+new Date(parseInt(deal.date_of_schedule)).getMonth().toString()+"/"+new Date(parseInt(deal.date_of_schedule)).getDay().toString()}</span></div>
+                        <div  style={{marginTop:"5px"}}><span>Origin:</span><span className='smallANdCool'>{deal.origin}</span></div>
+                        <div  style={{marginTop:"5px"}}><span>Destination:</span><span className='smallANdCool'>{deal.destination}</span></div>
+                        <div  style={{marginTop:"5px"}}><span >Time of departure:</span><span className='smallANdCool'>{new Date(parseInt(deal.time_from)).getHours().toString()+":"+new Date(parseInt(deal.time_to)).getMinutes().toString()}</span></div>
+                        <div  style={{marginTop:"5px"}}><span>Time of arrival:</span><span className='smallANdCool'>{new Date(parseInt(deal.time_to)).getHours().toString()+":"+new Date(parseInt(deal.time_from)).getMinutes().toString()}</span></div>
+            <button className="btn btn-success">Delete This<br/><span className="minify">Siba Iyi ngiyi</span></button>
+</div>
+        ));
+  }
+  
 
 render() {
     
@@ -671,32 +702,9 @@ return (<div className="container">
     </div>
     <div className="col-sm" style={{width:"23%",float:"left",borderLeft:"1px solid black"}}>
         <h4>My Schedules<br/><span className="minify">Gahunda zanjye</span></h4>
-        <div style={{overflowY:"scroll",height:"350px"}}>            
-        <div style={{borderBottom:"1px solid green"}}>
-        <p>Tuesday, 7:30AM to 11:AM</p>
-            <div>Kigali to Rwamagana</div>
-            <button className="btn btn-warning">Delete Schedule<br/><span className="minify">Iyi gahunda yikureho</span></button>
-</div>
- <div style={{borderBottom:"1px solid green"}}>
-        <p>Tuesday, 7:30AM to 11:AM</p>
-            <div>Kigali to Rwamagana</div>
-            <button className="btn btn-warning">Delete Schedule<br/><span className="minify">Iyi gahunda yikureho</span></button>
-</div>
- <div style={{borderBottom:"1px solid green"}}>
-        <p>Tuesday, 7:30AM to 11:AM</p>
-            <div>Kigali to Rwamagana</div>
-            <button className="btn btn-warning">Delete Schedule<br/><span className="minify">Iyi gahunda yikureho</span></button>
-</div>
- <div style={{borderBottom:"1px solid green"}}>
-        <p>Tuesday, 7:30AM to 11:AM</p>
-            <div>Kigali to Rwamagana</div>
-            <button className="btn btn-warning">Delete Schedule<br/><span className="minify">Iyi gahunda yikureho</span></button>
-</div>
- <div style={{borderBottom:"1px solid green"}}>
-        <p>Tuesday, 7:30AM to 11:AM</p>
-            <div>Kigali to Rwamagana</div>
-            <button className="btn btn-warning">Delete Schedule<br/><span className="minify">Iyi gahunda yikureho</span></button>
-</div>
+        <div style={{overflowY:"scroll",height:"350px"}}>  
+            {this.renderMySchedules()}
+        
                  </div>
     </div>
   </div>
@@ -791,7 +799,8 @@ export default withTracker(() => {
   return {
     tasks: Users.find({}).fetch(),
     users_i_am_in: Users.find({username:sessionStorage.getItem('ironji_account_username')}, { sort: { text: 1 } }).fetch(),
-    all_the_hot_deals: Client_hot_deals.find({}, { sort: { createdAt: -1 } }).fetch(),
+    all_the_hot_deals: Client_hot_deals.find({}, { sort: { createdAt: -1 } }).fetch(),    
+    MySchedules:Drivers_schedules.find({client_id:global.the_id_op}, { sort: { createdAt: -1 }}).fetch(),
   };
 })(DriverMainPage);
 
