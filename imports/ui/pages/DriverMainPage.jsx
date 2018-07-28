@@ -3,6 +3,7 @@ from 'react';
 import classNames from 'classnames';
 import Modal from 'react-bootstrap-modal';
 import {Users} from '../../api/users';
+import {Drivers_schedules} from '../../api/drivers_schedules';
 import {Client_hot_deals} from '../../api/hot_deals';
 import { withTracker } from 'meteor/react-meteor-data';
 import DatePicker from 'react-datepicker';
@@ -310,8 +311,35 @@ window.open("/driverMainPage", "_self")
   CreateMySchedule(e){
       e.preventDefault();
       
-      if(this.refs.time_to.value && this.refs.time_from.value && this.refs.time_from.value && this.refs.date_of_schedule.value && this.destination.value && this.origin.value){
-          
+      if(this.refs.time_to.value && this.refs.time_from.value  && this.refs.date_of_schedule.value && this.refs.destination.value && this.refs.origin.value){
+            global.time_to=this.refs.time_to.value;
+                 global.time_from=this.refs.time_from.value;
+                global.date_of_schedule=this.refs.date_of_schedule.value;
+                 global.destination=this.refs.destination.value;
+                 global.origin=this.refs.origin.value;
+            
+            var theData={
+   "time_to":global.time_to,
+   "createdAt": new Date(),
+   "time_from":global.time_from,
+   "date_of_schedule":global.date_of_schedule,
+   "destination":global.destination,
+   "origin":global.origin,
+};
+
+    Drivers_schedules.insert(theData,function( error, result) { 
+    if ( error ){
+        alert("User Not Created");
+    }
+    if ( result ){
+        alert("Hot deal saved!");
+    
+           window.open("/driverMainPage","_self");
+    }
+  });
+
+
+
       }else{
            alert("Empty fields!");
       }
