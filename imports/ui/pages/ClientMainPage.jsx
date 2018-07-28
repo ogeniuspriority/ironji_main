@@ -327,6 +327,7 @@ window.open("/driverMainPage", "_self")
     if ( result ){
         alert("Hot Deal Published to Community!");
         that.refs.the_deal_text.value="";
+        window.open("/clientMainPage","_self");
     }
   });
 
