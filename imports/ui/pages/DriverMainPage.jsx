@@ -317,8 +317,19 @@ window.open("/driverMainPage", "_self")
                 global.date_of_schedule=this.refs.date_of_schedule.value;
                  global.destination=this.refs.destination.value;
                  global.origin=this.refs.origin.value;
-                 global.user_idgg=sessionStorage.getItem('ironji_account_username');
-            
+                 
+                  global.the_id="";
+         
+          var po=Users.find({username:sessionStorage.getItem('ironji_account_username')}, { sort: { text: 1 } }).fetch();
+    for (var key in po) {
+    if (po.hasOwnProperty(key)) {
+        //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
+        
+        if(po[key].account_type=="driver"){
+             global.the_id=po[key]._id;
+        }}}
+                 
+            //alert(global.the_id);
             var theData={
    "time_to":global.time_to,
    "createdAt": new Date(),
@@ -326,6 +337,7 @@ window.open("/driverMainPage", "_self")
    "date_of_schedule":global.date_of_schedule,
    "destination":global.destination,
    "origin":global.origin,
+   "client_id":global.the_id,
 };
 
     Drivers_schedules.insert(theData,function( error, result) { 
