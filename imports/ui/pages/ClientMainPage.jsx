@@ -343,11 +343,11 @@ window.open("/driverMainPage", "_self")
        <div style={{borderBottom:"1px solid green",width:"300px"}}>
         <p style={{color:"blue",textDecoration:"underline",display:"none"}}>{Users.find({_id:deal.client_id}, { sort: { text: 1 } }).fetch().forEach( function(myDoc) {   global.userna_me=myDoc.username;} ) }</p>
                     <div style={{color:"blue",textDecoration:"underline"}}>{global.userna_me}</div>
-                        <div style={{marginTop:"5px"}}><span >Date of schedule:</span><span className='smallANdCool'>{new Date(parseInt(deal.date_of_schedule)).toString()}</span></div>
+                        <div style={{marginTop:"5px"}}><span >Date of schedule:</span><span className='smallANdCool'>{  new Date(parseInt(deal.date_of_schedule)).toString()}</span></div>
                         <div  style={{marginTop:"5px"}}><span>Origin:</span><span className='smallANdCool'>{deal.origin}</span></div>
                         <div  style={{marginTop:"5px"}}><span>Destination:</span><span className='smallANdCool'>{deal.destination}</span></div>
-                        <div  style={{marginTop:"5px"}}><span >Time of departure:</span><span className='smallANdCool'>{new Date(parseInt(deal.time_to)).toString()}</span></div>
-                        <div  style={{marginTop:"5px"}}><span>Time of arrival:</span><span className='smallANdCool'>{new Date(parseInt(deal.time_from)).toString()}</span></div>
+                        <div  style={{marginTop:"5px"}}><span >Time of departure:</span><span className='smallANdCool'>{new Date(parseInt(deal.time_to)).getHours().toString()+":"+new Date(parseInt(deal.time_to)).getMinutes().toString()}</span></div>
+                        <div  style={{marginTop:"5px"}}><span>Time of arrival:</span><span className='smallANdCool'>{new Date(parseInt(deal.time_from)).getHours().toString()+":"+new Date(parseInt(deal.time_from)).getMinutes().toString()}</span></div>
             <button className="btn btn-success">Talk to them<br/><span className="minify">Muvugishe</span></button>
 </div>
         ));
