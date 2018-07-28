@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6f836312-5c41-4b86-bc49-269e0b44b626}</ProjectGuid>
+    <ProjectHome />
+    <ProjectView>ShowAllFiles</ProjectView>
+    <StartupFile />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">14.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <LastActiveSolutionConfig>Debug|Any CPU</LastActiveSolutionConfig>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <ItemGroup>
+    <Content Include="package-lock.json" />
+    <Content Include="package.json" />
+    <Content Include="README.md" />
+    <Content Include="client\main.html" />
+    <Content Include="client\main.css" />
+    <Compile Include="client\main.js" />
+    <Content Include="nbproject\project.xml" />
+    <Compile Include="server\main.js" />
+    <Compile Include="imports\api\api.js" />
+    <Compile Include="imports\api\drivers_schedules.js" />
+    <Compile Include="imports\api\hot_deals.js" />
+    <Compile Include="imports\api\User.js" />
+    <Compile Include="imports\api\users.js" />
+    <Compile Include="imports\startup\client\main.js" />
+    <Compile Include="imports\startup\server\main.js" />
+    <Content Include="nbproject\private\private.xml" />
+    <Content Include="public\images\facebook.png" />
+    <Content Include="public\images\instagram.png" />
+    <Content Include="public\images\ironji.png" />
+    <Content Include="public\images\linkedin.png" />
+    <Content Include="public\images\locate_me.png" />
+    <Content Include="public\images\message.png" />
+    <Content Include="public\images\pickMeUp.png" />
+    <Content Include="public\images\profile.png" />
+    <Content Include="public\images\question.png" />
+    <Content Include="public\images\rideWithMe.png" />
+    <Content Include="public\images\snapchat.png" />
+    <Content Include="public\images\twitter.png" />
+    <Content Include="public\images\banana.jpg" />
+    <Content Include="public\images\capati.jpg" />
+    <Content Include="public\images\chicken.jpg" />
+    <Content Include="public\images\fish.jpg" />
+    <Content Include="public\images\meat.jpg" />
+    <Content Include="public\images\pineapple.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="client" />
+    <Folder Include="FromExistingCode1" />
+    <Folder Include="FromExistingCode1\FromExistingCode1" />
+    <Folder Include="imports" />
+    <Folder Include="imports\api" />
+    <Folder Include="imports\startup" />
+    <Folder Include="imports\startup\client" />
+    <Folder Include="imports\startup\server" />
+    <Folder Include="imports\ui" />
+    <Folder Include="imports\ui\components" />
+    <Folder Include="imports\ui\containers" />
+    <Folder Include="imports\ui\pages" />
+    <Folder Include="nbproject" />
+    <Folder Include="nbproject\private" />
+    <Folder Include="public" />
+    <Folder Include="public\images" />
+    <Folder Include="server" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <!--Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them.-->
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />
+  <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:48022/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost:1337</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
