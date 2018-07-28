@@ -331,7 +331,8 @@ body{
 .smallANdCool{
     font-size:13px;
     color:chocolate;
-    background: skyblue;
+    border-left:1px solid skyblue;
+    border-right:1px solid skyblue;
     border-radius:3px;
     padding:4px;
 }
