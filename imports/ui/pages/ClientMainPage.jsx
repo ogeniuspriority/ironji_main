@@ -671,7 +671,7 @@ return (<div className="container">
 export default withTracker(() => {
   return {
     tasks: Users.find({}).fetch(),
-    theSchedules:Drivers_schedules.find({}).fetch(),
+    theSchedules:Drivers_schedules.find({}, { sort: { createdAt: -1 }}).fetch(),
   };
 })(ClientMainPage);
 

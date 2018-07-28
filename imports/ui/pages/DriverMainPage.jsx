@@ -310,7 +310,7 @@ window.open("/driverMainPage", "_self")
   }
   CreateMySchedule(e){
       e.preventDefault();
-      
+      alert(this.refs.date_of_schedule.value);
       if(this.refs.time_to.value !="" && this.refs.time_from.value !=""  && this.refs.date_of_schedule.value !="" && this.refs.destination.value !="" && this.refs.origin.value !=""){
             global.time_to=this.refs.time_to.value;
                  global.time_from=this.refs.time_from.value;
