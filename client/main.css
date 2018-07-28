@@ -328,3 +328,10 @@ body{
 .checkbox-inline{
     width:50px;
 }
+.smallANdCool{
+    font-size:13px;
+    color:chocolate;
+    background: skyblue;
+    border-radius:3px;
+    padding:4px;
+}

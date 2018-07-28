@@ -52,6 +52,8 @@ super(props);
         };
         
         this.handleChange = this.handleChange.bind(this);
+         this.handleChangeFrom = this.handleChangeFrom.bind(this);
+          this.handleChangeTo = this.handleChangeTo.bind(this);
         }
 
 handleSubmit(event) {
@@ -308,13 +310,23 @@ window.open("/driverMainPage", "_self")
       startDate: date
     });
   }
+  handleChangeFrom(date){
+      this.setState({
+      startDateFrom: date
+    });
+  }
+  handleChangeTo(date){
+      this.setState({
+      startDateTo: date
+    });
+  }
   CreateMySchedule(e){
       e.preventDefault();
-      alert(this.refs.date_of_schedule.value);
+      //alert(this.state.startDate+"-"+this.state.startDateFrom+"--"+this.state.startDateTo);
       if(this.refs.time_to.value !="" && this.refs.time_from.value !=""  && this.refs.date_of_schedule.value !="" && this.refs.destination.value !="" && this.refs.origin.value !=""){
-            global.time_to=this.refs.time_to.value;
-                 global.time_from=this.refs.time_from.value;
-                global.date_of_schedule=this.refs.date_of_schedule.value;
+            global.time_to=""+this.state.startDateTo;
+                 global.time_from=""+this.state.startDateFrom;
+                global.date_of_schedule=""+this.state.startDate;
                  global.destination=this.refs.destination.value;
                  global.origin=this.refs.origin.value;
                  
@@ -637,7 +649,7 @@ return (<div className="container">
     <div className="form-group">
     <label >From</label>
     <table><tbody><tr><td>
-    <TimePicker ref="time_from" style={{ width: 100 }}
+    <TimePicker onChange={this.handleChangeFrom} ref="time_from" style={{ width: 100 }}
     showSecond={showSecond}
      />
      </td><td> <span className="input-group-addon">
@@ -647,7 +659,7 @@ return (<div className="container">
   </div>
   <div className="form-group">
     <label >To</label>
-  <table><tbody><tr><td><TimePicker ref="time_to" style={{ width: 100 }}
+  <table><tbody><tr><td><TimePicker onChange={this.handleChangeTo} ref="time_to" style={{ width: 100 }}
     showSecond={showSecond}
       /></td><td> <span className="input-group-addon">
                         <span className="glyphicon glyphicon-time"></span>

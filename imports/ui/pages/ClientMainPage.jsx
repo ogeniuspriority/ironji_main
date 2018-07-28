@@ -343,11 +343,11 @@ window.open("/driverMainPage", "_self")
        <div style={{borderBottom:"1px solid green",width:"300px"}}>
         <p style={{color:"blue",textDecoration:"underline",display:"none"}}>{Users.find({_id:deal.client_id}, { sort: { text: 1 } }).fetch().forEach( function(myDoc) {   global.userna_me=myDoc.username;} ) }</p>
                     <div style={{color:"blue",textDecoration:"underline"}}>{global.userna_me}</div>
-                        <div><span>Date of schedule:</span>{deal.date_of_schedule}</div>
-                            <div><span>Origin:</span>{deal.origin}</div>
-                                    <div><span>Destination:</span>{deal.destination}</div>
-                                            <div><span>Time of departure:</span>{deal.time_to}</div>
-                                                    <div><span>Time of arrival:</span>{deal.time_from}</div>
+                        <div><span >Date of schedule:</span><span className='smallANdCool'>{new Date(parseInt(deal.date_of_schedule)).toString()}</span></div>
+                        <div><span>Origin:</span><span className='smallANdCool'>{deal.origin}</span></div>
+                        <div><span>Destination:</span><span className='smallANdCool'>{deal.destination}</span></div>
+                        <div><span >Time of departure:</span><span className='smallANdCool'>{new Date(parseInt(deal.time_to)).toString()}</span></div>
+                        <div><span>Time of arrival:</span><span className='smallANdCool'>{new Date(parseInt(deal.time_from)).toString()}</span></div>
             <button className="btn btn-success">Talk to them<br/><span className="minify">Muvugishe</span></button>
 </div>
         ));
