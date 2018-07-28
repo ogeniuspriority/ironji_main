@@ -117,7 +117,7 @@ window.open("/driverMainPage", "_self")
             clearInterval(this.interval);
           }
          updateThisUserLocation(){
-            global.the_id="";
+            global.the_;
          
           var po=Users.find({username:sessionStorage.getItem('ironji_account_username')}, { sort: { text: 1 } }).fetch();
     for (var key in po) {
@@ -311,7 +311,7 @@ window.open("/driverMainPage", "_self")
   CreateMySchedule(e){
       e.preventDefault();
       
-      if(this.refs.time_to.value && this.refs.time_from.value  && this.refs.date_of_schedule.value && this.refs.destination.value && this.refs.origin.value){
+      if(this.refs.time_to.value !="" && this.refs.time_from.value !=""  && this.refs.date_of_schedule.value !="" && this.refs.destination.value !="" && this.refs.origin.value !=""){
             global.time_to=this.refs.time_to.value;
                  global.time_from=this.refs.time_from.value;
                 global.date_of_schedule=this.refs.date_of_schedule.value;
@@ -332,7 +332,7 @@ window.open("/driverMainPage", "_self")
         alert("User Not Created");
     }
     if ( result ){
-        alert("Hot deal saved!");
+        alert("Driver Scheduled Saved!");
     
            window.open("/driverMainPage","_self");
     }
@@ -595,12 +595,12 @@ return (<div className="container">
       <form>
   <div className="form-group">
     <label >Origin:</label>
-    <input type="text" ref="origin" style={{width:"80%",fontSize:"14px"}} className="form-control" id="" aria-describedby="" placeholder=""/>
+    <input type="text" ref="origin" style={{width:"80%",fontSize:"14px"}} className="form-control"  aria-describedby="" placeholder=""/>
   
   </div>
   <div className="form-group">
     <label >Destination:</label>
-    <input ref="destination" type="text" style={{width:"80%",fontSize:"14px"}} className="form-control" id="" aria-describedby="" placeholder=""/>
+    <input ref="destination" type="text" style={{width:"80%",fontSize:"14px"}} className="form-control"  aria-describedby="" placeholder=""/>
   
   </div>
   <div className="form-group">

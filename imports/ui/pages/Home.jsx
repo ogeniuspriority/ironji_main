@@ -63,6 +63,11 @@ loginIntoAccount(){
     //alert(this.props.users_i_am_in+"--"+ global.username);
     sessionStorage.clear();
     var po=Users.find({username:global.username,password: global.password}, { sort: { text: 1 } }).fetch();
+    
+    if(po.length==0){
+        alert("Wrong Username  Or Password");
+        
+    }else {
     for (var key in po) {
     if (po.hasOwnProperty(key)) {
         console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
@@ -89,6 +94,7 @@ loginIntoAccount(){
     }
          
 }
+    }
  
 }
 

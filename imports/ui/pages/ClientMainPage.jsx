@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import Modal from 'react-bootstrap-modal';
 import {Users} from '../../api/users';
 import {Client_hot_deals} from '../../api/hot_deals';
+import {Drivers_schedules} from '../../api/drivers_schedules';
 import { withTracker } from 'meteor/react-meteor-data';
 import DatePicker from 'react-datepicker';
 import moment from 'react-moment';
@@ -330,6 +331,22 @@ window.open("/driverMainPage", "_self")
   });
 
   }
+
+  renderTheClientSchedules() {
+   global.userna_me="";
+  
+    return this.props.theSchedules.map((deal) => (       
+            
+            
+       <div style={{borderBottom:"1px solid green",width:"300px"}}>
+        <p style={{color:"blue",textDecoration:"underline",display:"none"}}>{Users.find({_id:deal.client_id}, { sort: { text: 1 } }).fetch().forEach( function(myDoc) {   global.userna_me=myDoc.username;} ) }</p>
+                    <div style={{color:"blue",textDecoration:"underline"}}>{global.userna_me}</div>
+                    <div>{deal.the_hot_deal_info}</div>
+            <button className="btn btn-success">Talk to them<br/><span className="minify">Muvugishe</span></button>
+</div>
+        ));
+  }
+
 
 render() {
     
@@ -667,6 +684,7 @@ return (<div className="container">
 export default withTracker(() => {
   return {
     tasks: Users.find({}).fetch(),
+    theSchedules:Drivers_schedules.find({}).fetch(),
   };
 })(ClientMainPage);
 
