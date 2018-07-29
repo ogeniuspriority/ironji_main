@@ -482,7 +482,7 @@ return (<div className="container">
         <p>Some text in the modal.</p>
         <h4>Places to find it:</h4>
         <div className="theProds  testimonial-group">
-        <div className="row text-center">
+        <div className="row text-center myTraders_0">
         <div className="theProds_content col-xs-4">
         <h4>Trader Name: </h4>
         <h4>Location: </h4>

@@ -264,6 +264,27 @@ body{
     width:90%;;
     overflow-x: hidden;
 }
+.myTraders_0{
+    
+}
+.myTraders_0::-webkit-scrollbar {
+
+  width: 8px;                 /*-The Width of the total scrollbar-*/
+}
+
+.myTraders_0::-webkit-scrollbar-thumb {   /*-Thum means the slider-*/
+
+  border-radius: 10px;
+  background-color: rgb(255,69,0);  /*-Change slider color here-*/
+  box-shadow: inset 0 0 6px rgba(0, 0, .1);
+}
+
+.myTraders_0::-webkit-scrollbar-track {     /*-The background or track of slider/thumb -*/
+
+  border-radius: 10px;
+  background-color: #fff;        /*-Change scrollbar background color here-*/
+  box-shadow: 0 0 6px rgba(0, 0, .3);
+}
 .theProds_content{
     width:200px;
     float:left;
