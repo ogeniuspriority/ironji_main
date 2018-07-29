@@ -223,7 +223,7 @@ return (<div className="container">
 
     </div>
     <div className="container">
-        <div className="row theTgg">
+        <div className="row theTgg" style={{display:"none"}}>
             <div className="col-sm alreadyAccount">Already have an account?<br/><span className="minify">Usanzwe ufite konti</span></div>
             <div className="col-sm LoginPOP" data-toggle="modal" data-target="#exampleModal">Login<br/><span className="minify">Injira</span></div>
 
