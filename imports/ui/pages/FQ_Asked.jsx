@@ -1,57 +1,41 @@
 import React from 'react';
-import classNames from 'classnames';
+        import classNames from 'classnames';
+        function Home() {
+        return (
+<div className={classNames('Home', 'foo', 'bar')} >
+    <div>
+        <h2>Dynamic Tabs</h2>
+        <p>To make the tabs toggleable, add the data-toggle="tab" attribute to each link. Then add a .tab-pane class with a unique ID for every tab and wrap them inside a div element with class .tab-content.</p>
 
-function Home() {
-  return (
-    <div className={classNames('Home', 'foo', 'bar')} >
-      <h1>Welcome to Meteor!</h1>
+        <ul className="nav nav-tabs">
+            <li className="active"><a data-toggle="tab" href="#home">Home</a></li>
+            <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
+            <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
+            <li><a data-toggle="tab" href="#menu3">Menu 3</a></li>
+        </ul>
 
-      <p>
-        See <a href="https://github.com/meteor/react-packages/blob/master/docs/client-npm.md">
-        this guide</a> to learn how to import NPM modules/components via browserify in Meteor.
-      </p>
-
-      <p>
-        For an in-depth example of how to use Meteor with React see <a href="https://github.com/AdamBrodzinski/react-ive-meteor">Reactive Meteor</a>. For flux support see the <a href="https://github.com/AdamBrodzinski/meteor-flux-leaderboard">Flux Leaderboard</a> example app.
-      </p>
-
-      <h4>Packages</h4>
-
-      <ul>
-        <li>React (MDG preview)</li>
-        <li>Flow Router</li>
-        <li>React Layout</li>
-        <li>Accounts Password</li>
-        <li>Accounts UI (with React wrapper)</li>
-        <li>meteorhacks:npm</li>
-        <li>cosmos:browserify</li>
-        <li><b>Removes insecure</b></li>
-        <li><b>Removes autopublish</b></li>
-      </ul>
-
-      <h4>Components</h4>
-      <ul>
-        <li>Header</li>
-        <li>LoginButtons</li>
-        <li>
-          <a href="https://github.com/JedWatson/classnames">Classnames (NPM Component)</a>
-        </li>
-      </ul>
-
-      <h4>Models</h4>
-      <ul>
-        <li>User</li>
-        <li>See more a complex <a href="https://github.com/AdamBrodzinski/react-ive-meteor/blob/master/both/models/post.js">example</a></li>
-      </ul>
-
-      <h4>Pages/Routes</h4>
-      <ul>
-        <li>Home, About</li>
-        <li>Not Found</li>
-        <li>Main Layout</li>
-      </ul>
+        <div className="tab-content">
+            <div id="home" class="tab-pane fade in active">
+                <h3>HOME</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+            <div id="menu1" className="tab-pane fade">
+                <h3>Menu 1</h3>
+                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+            <div id="menu2" className="tab-pane fade">
+                <h3>Menu 2</h3>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+            </div>
+            <div id="menu3" className="tab-pane fade">
+                <h3>Menu 3</h3>
+                <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+            </div>
+        </div>
     </div>
-  );
-}
+
+</div>
+                );
+                }
 
 export default Home;
