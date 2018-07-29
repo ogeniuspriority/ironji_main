@@ -214,27 +214,27 @@ body{
 
 .middleFeature_left_in::-webkit-scrollbar {
 
-  width: 8px;                 /*-The Width of the total scrollbar-*/
+    width: 8px;                 /*-The Width of the total scrollbar-*/
 }
 
 .middleFeature_left_in::-webkit-scrollbar-thumb {   /*-Thum means the slider-*/
 
-  border-radius: 10px;
-  background-color: rgb(255,69,0);  /*-Change slider color here-*/
-  box-shadow: inset 0 0 6px rgba(0, 0, .1);
+    border-radius: 10px;
+    background-color: orange;  /*-Change slider color here-*/
+    box-shadow: inset 0 0 6px rgba(0, 0, .1);
 }
 
 .middleFeature_left_in::-webkit-scrollbar-track {     /*-The background or track of slider/thumb -*/
 
-  border-radius: 10px;
-  background-color: #fff;        /*-Change scrollbar background color here-*/
-  box-shadow: 0 0 6px rgba(0, 0, .3);
+    border-radius: 10px;
+    background-color: #fff;        /*-Change scrollbar background color here-*/
+    box-shadow: 0 0 6px rgba(0, 0, .3);
 }
 
 
 .middleFeature_left_in img{
     cursor:hand;
-    
+
 }
 .middleFeature_middle{
     width:90%;
@@ -253,7 +253,7 @@ body{
     margin:5px;
     box-shadow: 2px 2px 1px 2px #333333;
     border-radius: 5px;
-    
+
 
 }
 .foodNames{
@@ -265,25 +265,25 @@ body{
     overflow-x: hidden;
 }
 .myTraders_0{
-    
+
 }
 .myTraders_0::-webkit-scrollbar {
 
-  width: 8px;                 /*-The Width of the total scrollbar-*/
+    width:2px;                 /*-The Width of the total scrollbar-*/
 }
 
 .myTraders_0::-webkit-scrollbar-thumb {   /*-Thum means the slider-*/
 
-  border-radius: 10px;
-  background-color: rgb(255,69,0);  /*-Change slider color here-*/
-  box-shadow: inset 0 0 6px rgba(0, 0, .1);
+    border-radius: 5px;
+    background-color: orange;  /*-Change slider color here-*/
+    box-shadow: inset 0 0 3px rgba(0, 0, .1);
 }
 
 .myTraders_0::-webkit-scrollbar-track {     /*-The background or track of slider/thumb -*/
 
-  border-radius: 10px;
-  background-color: #fff;        /*-Change scrollbar background color here-*/
-  box-shadow: 0 0 6px rgba(0, 0, .3);
+    border-radius: 5px;
+    background-color: #fff;        /*-Change scrollbar background color here-*/
+    box-shadow: 0 0 3px rgba(0, 0, .3);
 }
 .theProds_content{
     width:200px;
@@ -316,12 +316,12 @@ body{
 }
 
 .testimonial-group > .row {
-  overflow-x: auto;
-  white-space: nowrap;
+    overflow-x: auto;
+    white-space: nowrap;
 }
 .testimonial-group > .row > .col-xs-4 {
-  display: inline-block;
-  float: none;
+    display: inline-block;
+    float: none;
 }
 
 .col-xs-4 { color: #fff; font-size: 48px; padding-bottom: 20px; padding-top: 18px; }
@@ -329,7 +329,7 @@ body{
 .col-xs-4:nth-child(3n+2) { background: #9c6; }
 .col-xs-4:nth-child(3n+3) { background: #69c; }
 .theTopMenus .theConainer{
-   flloat:left;
+    flloat:left;
 }
 .theConainer{
     float:left;
@@ -357,12 +357,12 @@ body{
     border:1px solid black;
     width:160px;
     border-radius: 5px;
-    
-    
+
+
 }
 .mainPageButton:hover{    
     border:1px solid orange;  
-    
+
 }
 .makeSmall{
     width:50px
