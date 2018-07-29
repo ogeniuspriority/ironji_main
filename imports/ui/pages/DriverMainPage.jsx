@@ -12,6 +12,9 @@ import 'moment-timezone';
 import 'react-datepicker/dist/react-datepicker.css';
 import TimePicker from 'rc-time-picker';
 import 'rc-time-picker/assets/index.css';
+import {render} from 'react-dom';
+import Switch from 'react-toggle-switch';
+import "react-toggle-switch/dist/css/switch.min.css" ;
 
 //import {TrackerReact} from 'ultimatejs:tracker-react';
 const ARC_DE_TRIOMPHE_POSITION = {
@@ -48,12 +51,14 @@ super(props);
         conversationPop:false,
         conversationPopX: "0px",
          conversationPopY: "0px",
+          switched: false
          
         };
         
         this.handleChange = this.handleChange.bind(this);
          this.handleChangeFrom = this.handleChangeFrom.bind(this);
           this.handleChangeTo = this.handleChangeTo.bind(this);
+          this.toggleSwitch=this.toggleSwitch.bind(this);
         }
 
 handleSubmit(event) {
@@ -418,6 +423,13 @@ window.open("/driverMainPage", "_self")
         ));
   }
   
+  
+  
+   toggleSwitch()  {
+    this.setState( {
+        switched: !this.state.switched  
+    });
+  }
 
 render() {
     
@@ -472,7 +484,7 @@ return (<div className="container">
                         <div>
                         <table className='thebuttons_Driver'>
                         <tbody>
-                        <tr><td><button className='btn-primary mainPageButton'>I'm available</button><label className="checkbox-inline"><input type="checkbox" style={{width:"60px"}}   data-toggle="toggle"/></label></td><td></td></tr>
+                        <tr><td><button className='btn-primary mainPageButton'>I'm available</button><label className="checkbox-inline"><Switch onClick={this.toggleSwitch} on={this.state.switched}/></label></td><td></td></tr>
                             <tr><td><button  data-toggle="modal" data-dismiss="modal" data-target="#createScheduleModal" className='btn-primary mainPageButton'>Create a Schedule<br/><span className='minify'>Shyira ku ngengabihe gahunda zawe z'urugendo</span></button></td><td></td></tr>
                             <tr><td><button data-toggle="modal" data-dismiss="modal" data-target="#hotDealsModal" className='btn-primary mainPageButton'>Hot Deals<br/><span className='minify'>Reba abantu bakeneye ababatwara byihutirwa</span></button></td><td></td></tr>
         </tbody>

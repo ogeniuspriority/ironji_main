@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "description": "Uber for food",
   "main": "index.js",
-    "engines": {
+  "engines": {
     "node": "8.9.4"
   },
   "scripts": {
@@ -38,6 +38,7 @@
     "react-native-local-mongodb": "^2.2.2",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
-    "react-time-picker": "^2.5.1"
+    "react-time-picker": "^2.5.1",
+    "react-toggle-switch": "^3.0.4"
   }
 }

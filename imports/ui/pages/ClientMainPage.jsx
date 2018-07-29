@@ -12,6 +12,9 @@ import 'moment-timezone';
 import 'react-datepicker/dist/react-datepicker.css';
 import TimePicker from 'rc-time-picker';
 import 'rc-time-picker/assets/index.css';
+import {render} from 'react-dom';
+import Switch from 'react-toggle-switch';
+import "react-toggle-switch/dist/css/switch.min.css" ;
 
 //import {TrackerReact} from 'ultimatejs:tracker-react';
 const ARC_DE_TRIOMPHE_POSITION = {
@@ -52,10 +55,17 @@ super(props);
         };
         
         this.handleChange = this.handleChange.bind(this);
+          this.toggleSwitch=this.toggleSwitch.bind(this);
         }
 componentWillUnmount() {
             clearInterval(this.interval);
           }
+          
+             toggleSwitch()  {
+    this.setState( {
+        switched: !this.state.switched  
+    });
+  }
 handleSubmit(event) {
 event.preventDefault();
         // Find the text field via the React ref
