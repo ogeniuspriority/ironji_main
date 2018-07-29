@@ -80,8 +80,20 @@ event.preventDefault();
         
         showThisProductInfo(e){
             //$("#productModal").modal("show");
-            var x__=""+e.pageX+"px";
-            var Y__=""+e.pageY+"px";
+            var doc = document.documentElement;
+var left = (window.pageXOffset || doc.scrollLeft) - (doc.clientLeft || 0);
+var top = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
+
+//var clientHeight = document.getElementById('myDiv').clientHeight;
+top=top+50;
+
+var Hor=e.pageX+20;
+
+
+                       
+            var x__=""+Hor+"px";
+            var Y__=""+top+"px";
+            
             
             this.setState({productPop:true,productPopX:x__,productPopY:Y__});
         }
