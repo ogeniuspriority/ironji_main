@@ -11,7 +11,20 @@ class Home extends Component {
 
 
     componentDidMount() {
+        var acc = document.getElementsByClassName("accordion");
+        var i;
 
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                } else {
+                    panel.style.display = "block";
+                }
+            });
+        }
     }
 
     render() {
@@ -309,7 +322,42 @@ class Home extends Component {
                     </div>
                     <div id="menu3" style={{ background: "white" }} className="tab-pane fade">
                         <h3>Forum</h3>
-                        <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                        <div>
+                            <div style={{ borderLeft: "1px solid black" }} className="pull-left">
+                                <h2>Frequently Asked Questions</h2>
+
+                                <button className="accordion" style={{ width: "60%" }}>What do you offer?</button>
+                                <div className="panel" style={{ width: "60%" }}>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                </div>
+
+                                <button className="accordion" style={{ width: "60%" }}>Where are your offices?</button>
+                                <div className="panel" style={{ width: "60%" }}>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                </div>
+
+                                <button className="accordion" style={{ width: "60%" }}>Can i be featured on your platform as a trader?</button>
+                                <div className="panel" style={{ width: "60%" }}>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                </div>
+                            </div>
+                            <div className="pull-left" style={{ width: "330px", paddingLeft: "10%" }}>
+                                <h3>CONTACT US</h3>
+                                <form >
+                                    <div className="form-group" >
+                                        <label >Email address:</label>
+                                        <input type="email" style={{ width: "300px" }} className="form-control" id="email" />
+                                    </div>
+                                    <div className="form-group">
+                                        <label>Yous Query To Ironji Team:</label><br />
+                                        <textarea style={{ height: "80px", width: "300px" }} class="form-control" ></textarea>
+
+                                    </div>
+                                    <button type="button" className="btn btn-default">Submit</button>
+                                </form>
+                            </div>
+                            <div style={{ clear: "both" }}></div>
+                        </div>
                     </div>
                 </div>
 
