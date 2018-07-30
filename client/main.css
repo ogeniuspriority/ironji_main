@@ -3,120 +3,137 @@ Header a.active {
     font-weight: bold;
     text-decoration: underline;
 }
+
 Header a, #login-buttons a {
     text-decoration: none;
     margin-right: 10px;
-    color:inherit;
+    color: inherit;
 }
-nav{
-    background:orange;
-    height:100px;
+
+nav {
+    background: orange;
+    height: 100px;
 }
-footer{
-    background:orange;
-    height:100px;
+
+footer {
+    background: orange;
+    height: 100px;
 }
-body{
-    padding:10px;
+
+body {
+    padding: 10px;
     font-size: 17px;
 }
-.logoHome{
+
+.logoHome {
     padding: 30px;
     text-align: center;
 }
-.logoHome img{
-    max-width: 80px;
-    max-height: 80px;
-}
-.logoHome_For_DRiver{
+
+    .logoHome img {
+        max-width: 80px;
+        max-height: 80px;
+    }
+
+.logoHome_For_DRiver {
     padding: 30px;
 }
-.logoHome_For_DRiver img{
-    max-width: 80px;
-    max-height: 80px;
-}
-.TrademarkAndName{
-    padding-top:20px;
-    color:orange;
+
+    .logoHome_For_DRiver img {
+        max-width: 80px;
+        max-height: 80px;
+    }
+
+.TrademarkAndName {
+    padding-top: 20px;
+    color: orange;
     font-weight: bolder;
-
-
 }
-.minify{
-    font-size:9px;
 
+.minify {
+    font-size: 9px;
 }
-.ABoutOurProduct{
-    font-weight:bold;
-    color:#05A427;
 
+.ABoutOurProduct {
+    font-weight: bold;
+    color: #05A427;
 }
-.theHomeBtns{
+
+.theHomeBtns {
     box-shadow: 2px 2px 1px 2px #333333;
     background: transparent;
-    color:black;
+    color: black;
     border-radius: 2px;
-    margin-top:15px;
-    margin:auto;
+    margin-top: 15px;
+    margin: auto;
     width: 150px;
-
 }
-.alreadyAccount{
-    color:#3D56E1;
+
+.alreadyAccount {
+    color: #3D56E1;
     font-weight: bold;
 }
-.LoginPOP{
-    color:#E1493D;
+
+.LoginPOP {
+    color: #E1493D;
     text-decoration: underline;
     font-style: italic;
     cursor: pointer;
 }
-.padMe{
-    margin-top:50px;
 
+.padMe {
+    margin-top: 50px;
 }
-.theTgg div{
-    margin-top:20px;
-    float:left;
-    width:30%;
+
+.theTgg div {
+    margin-top: 20px;
+    float: left;
+    width: 30%;
     cursor: hand;
 }
-.theTgg div button{
-    margin:auto;
-    font-size:18px;
-    min-width: 140px;
-}
-.MyButtonsHome{
-    margin-left: 40%;
 
+    .theTgg div button {
+        margin: auto;
+        font-size: 18px;
+        min-width: 140px;
+    }
+
+.MyButtonsHome {
+    margin-left: 40%;
 }
-.FAQ_{
-    font-style:italic;
+
+.FAQ_ {
+    font-style: italic;
     text-decoration: underline;
     font-size: 12px;
     font-weight: bold;
     cursor: pointer;
 }
-.faqAbbrev{
-    font-style:italic;
+
+.faqAbbrev {
+    font-style: italic;
     text-decoration: underline;
-    color:#05A427;
+    color: #05A427;
     cursor: pointer;
     font-weight: bolder;
 }
-.ForumLink{
-    width:auto;
+
+.ForumLink {
+    width: auto;
     float: right;
     margin-left: 10px;
 }
-.clearBoth{
+
+.clearBoth {
     clear: both;
 }
-.padMe button:hover{
+
+.padMe button:hover {
     background: #C6F594;
 }
-.widthLogInput{
-    width:280px;
+
+.widthLogInput {
+    width: 280px;
     font-size: 16px;
     padding: 12px 20px;
     margin: 8px 0;
@@ -124,278 +141,321 @@ body{
     margin-left: 10px;
     border-radius: 5px;
 }
-.rembe_mer{
+
+.rembe_mer {
     font-size: 14px;
 }
-.thth{
-    margin:10px;
+
+.thth {
+    margin: 10px;
 }
-.thetransparent{
+
+.thetransparent {
     margin-left: 20px;
     background: navy;
     color: white;
     text-decoration: underline;
 }
-.thetransparent:hover{
-    color:navy;
-    background: white;
-    border:1px solid red;
 
-}
-.btn{
+    .thetransparent:hover {
+        color: navy;
+        background: white;
+        border: 1px solid red;
+    }
+
+.btn {
     min-width: 130px;
 }
-.pull-center{
-    margin-left:15%;
+
+.pull-center {
+    margin-left: 15%;
 }
-.followLinks{
+
+.followLinks {
     width: 35px;
     height: 35px;
 }
-.theLinkdss div{
+
+.theLinkdss div {
     float: left;
-    margin:10px;
+    margin: 10px;
 }
-.theTextDown{
-    font-size:12px;
-    color:#F33E16;
+
+.theTextDown {
+    font-size: 12px;
+    color: #F33E16;
 }
-.theLinkdss{
+
+.theLinkdss {
     font-weight: bolder;
     float: right;
 }
-.theLinkdss_DriverMain{
+
+.theLinkdss_DriverMain {
     font-weight: bolder;
     float: right;
 }
-.signUpTxt{
-    color:#F5350B;
+
+.signUpTxt {
+    color: #F5350B;
     font-size: 17px;
     font-weight: bolder;
     text-decoration: underline;
 }
-.signUpTxt_push{
-    margin-left:100px;
-    color:#F5350B;
+
+.signUpTxt_push {
+    margin-left: 100px;
+    color: #F5350B;
     font-size: 17px;
     font-weight: bold;
 }
-.badge{
-    width:120px;
+
+.badge {
+    width: 120px;
 }
-.jkly{
-    color:#F33E16;
+
+.jkly {
+    color: #F33E16;
     font-style: italic;
-
-}
-.jkly div{
-    color:#F33E16;
-    font-style: italic;
-    float: right;
-}
-.TheMapGuru{
-    width:100%;
-    height:500px;
 }
 
-.middleFeature div{
+    .jkly div {
+        color: #F33E16;
+        font-style: italic;
+        float: right;
+    }
 
+.TheMapGuru {
+    width: 100%;
+    height: 500px;
 }
-.middleFeature_left{   
-    width:10%;
+
+.middleFeature div {
+}
+
+.middleFeature_left {
+    width: 10%;
     float: left;
 }
-.middleFeature_left_in{
+
+.middleFeature_left_in {
     border: 1px solid black;
-    border-radius:2px;
+    border-radius: 2px;
     overflow-y: scroll;
-    height:700px;
+    height: 700px;
 }
 
-.middleFeature_left_in::-webkit-scrollbar {
+    .middleFeature_left_in::-webkit-scrollbar {
+        width: 8px; /*-The Width of the total scrollbar-*/
+    }
 
-    width: 8px;                 /*-The Width of the total scrollbar-*/
-}
+    .middleFeature_left_in::-webkit-scrollbar-thumb { /*-Thum means the slider-*/
+        border-radius: 10px;
+        background-color: orange; /*-Change slider color here-*/
+        box-shadow: inset 0 0 6px rgba(0, 0, .1);
+    }
 
-.middleFeature_left_in::-webkit-scrollbar-thumb {   /*-Thum means the slider-*/
-
-    border-radius: 10px;
-    background-color: orange;  /*-Change slider color here-*/
-    box-shadow: inset 0 0 6px rgba(0, 0, .1);
-}
-
-.middleFeature_left_in::-webkit-scrollbar-track {     /*-The background or track of slider/thumb -*/
-
-    border-radius: 10px;
-    background-color: #fff;        /*-Change scrollbar background color here-*/
-    box-shadow: 0 0 6px rgba(0, 0, .3);
-}
+    .middleFeature_left_in::-webkit-scrollbar-track { /*-The background or track of slider/thumb -*/
+        border-radius: 10px;
+        background-color: #fff; /*-Change scrollbar background color here-*/
+        box-shadow: 0 0 6px rgba(0, 0, .3);
+    }
 
 
-.middleFeature_left_in img{
-    cursor:hand;
+    .middleFeature_left_in img {
+        cursor: hand;
+    }
 
-}
-.middleFeature_middle{
-    width:90%;
+.middleFeature_middle {
+    width: 90%;
     float: left;
 }
-.middleFeature_right{
-    width:0%;
+
+.middleFeature_right {
+    width: 0%;
     float: left;
 }
-.mapInText{
-    margin-left:5%;
+
+.mapInText {
+    margin-left: 5%;
 }
-.theseImgsFood{
-    width:80px;
-    max-height:80px;
-    margin:5px;
+
+.theseImgsFood {
+    width: 80px;
+    max-height: 80px;
+    margin: 5px;
     box-shadow: 2px 2px 1px 2px #333333;
     border-radius: 5px;
-
-
 }
-.foodNames{
+
+.foodNames {
     text-align: center;
     font-weight: bolder;
 }
-.theProds{
-    width:90%;;
+
+.theProds {
+    width: 90%;
+    ;
     overflow-x: hidden;
 }
-.myTraders_0{
 
-}
-.myTraders_0::-webkit-scrollbar {
-
-    width:2px;                 /*-The Width of the total scrollbar-*/
+.myTraders_0 {
 }
 
-.myTraders_0::-webkit-scrollbar-thumb {   /*-Thum means the slider-*/
+    .myTraders_0::-webkit-scrollbar {
+        width: 2px; /*-The Width of the total scrollbar-*/
+    }
 
-    border-radius: 5px;
-    background-color: orange;  /*-Change slider color here-*/
-    box-shadow: inset 0 0 3px rgba(0, 0, .1);
-}
+    .myTraders_0::-webkit-scrollbar-thumb { /*-Thum means the slider-*/
+        border-radius: 5px;
+        background-color: orange; /*-Change slider color here-*/
+        box-shadow: inset 0 0 3px rgba(0, 0, .1);
+    }
 
-.myTraders_0::-webkit-scrollbar-track {     /*-The background or track of slider/thumb -*/
+    .myTraders_0::-webkit-scrollbar-track { /*-The background or track of slider/thumb -*/
+        border-radius: 5px;
+        background-color: #fff; /*-Change scrollbar background color here-*/
+        box-shadow: 0 0 3px rgba(0, 0, .3);
+    }
 
-    border-radius: 5px;
-    background-color: #fff;        /*-Change scrollbar background color here-*/
-    box-shadow: 0 0 3px rgba(0, 0, .3);
-}
-.theProds_content{
-    width:200px;
-    float:left;
-    font-size:13px;
-    border:1px solid green;
+.theProds_content {
+    width: 200px;
+    float: left;
+    font-size: 13px;
+    border: 1px solid green;
     padding: 5px;
 }
-.productModalVisible{
+
+.productModalVisible {
     display: block;
-    z-index:400;
+    z-index: 400;
     position: absolute;
 }
-.productModal_INVisible{
+
+.productModal_INVisible {
     display: none;
 }
-#productModal{
+
+#productModal {
     position: fixed;
 }
-.btn-default{
-    width:100px;
+
+.btn-default {
+    width: 100px;
     font-size: 14px;
-    background:transparent;
-    border:1px solid red;
+    background: transparent;
+    border: 1px solid red;
     border-radius: 4px;
 }
-.btn-default:hover{
-    border:1px solid black;
-    border-radius: 4px;
-}
+
+    .btn-default:hover {
+        border: 1px solid black;
+        border-radius: 4px;
+    }
 
 .testimonial-group > .row {
     overflow-x: auto;
     white-space: nowrap;
 }
-.testimonial-group > .row > .col-xs-4 {
-    display: inline-block;
-    float: none;
+
+    .testimonial-group > .row > .col-xs-4 {
+        display: inline-block;
+        float: none;
+    }
+
+.col-xs-4 {
+    color: #fff;
+    font-size: 48px;
+    padding-bottom: 20px;
+    padding-top: 18px;
 }
 
-.col-xs-4 { color: #fff; font-size: 48px; padding-bottom: 20px; padding-top: 18px; }
-.col-xs-4:nth-child(3n+1) { background: #c69; }
-.col-xs-4:nth-child(3n+2) { background: #9c6; }
-.col-xs-4:nth-child(3n+3) { background: #69c; }
-.theTopMenus .theConainer{
-    flloat:left;
+    .col-xs-4:nth-child(3n+1) {
+        background: #c69;
+    }
+
+    .col-xs-4:nth-child(3n+2) {
+        background: #9c6;
+    }
+
+    .col-xs-4:nth-child(3n+3) {
+        background: #69c;
+    }
+
+.theTopMenus .theConainer {
+    flloat: left;
 }
-.theConainer{
-    float:left;
-    width:33%;
+
+.theConainer {
+    float: left;
+    width: 33%;
 }
-.theRightSide{
+
+.theRightSide {
     border: 1px solid transparent;
 }
-.table_ghh img{
-    width:60px;
-    height:60px;
+
+.table_ghh img {
+    width: 60px;
+    height: 60px;
 }
-.headerLinks{
-    text-decoration:underline;
-    color:#0B2BF5;
-    padding:10px;
+
+.headerLinks {
+    text-decoration: underline;
+    color: #0B2BF5;
+    padding: 10px;
 }
-.thebuttons_Driver{
-    margin-left:40%;
+
+.thebuttons_Driver {
+    margin-left: 40%;
 }
-.mainPageButton{
+
+.mainPageButton {
     margin: 10px;
-    color:#0B2BF5;
+    color: #0B2BF5;
     border-radius: 5px;
-    border:1px solid black;
-    width:160px;
+    border: 1px solid black;
+    width: 160px;
     border-radius: 5px;
+}
 
+    .mainPageButton:hover {
+        border: 1px solid orange;
+    }
 
+.makeSmall {
+    width: 50px
 }
-.mainPageButton:hover{    
-    border:1px solid orange;  
 
+.checkbox-inline {
+    width: 50px;
 }
-.makeSmall{
-    width:50px
+
+.smallANdCool {
+    font-size: 13px;
+    color: chocolate;
+    border-left: 1px solid skyblue;
+    border-right: 1px solid skyblue;
+    border-radius: 3px;
+    padding: 4px;
 }
-.checkbox-inline{
-    width:50px;
-}
-.smallANdCool{
-    font-size:13px;
-    color:chocolate;
-    border-left:1px solid skyblue;
-    border-right:1px solid skyblue;
-    border-radius:3px;
-    padding:4px;
-}
+
 ::-webkit-scrollbar {
-
-  width: 8px;                 /*-The Width of the total scrollbar-*/
+    width: 8px; /*-The Width of the total scrollbar-*/
 }
 
-::-webkit-scrollbar-thumb {   /*-Thum means the slider-*/
-
-  border-radius: 10px;
-  background-color: orange;  /*-Change slider color here-*/
-  box-shadow: inset 0 0 6px rgba(0, 0, .1);
+::-webkit-scrollbar-thumb { /*-Thum means the slider-*/
+    border-radius: 10px;
+    background-color: orange; /*-Change slider color here-*/
+    box-shadow: inset 0 0 6px rgba(0, 0, .1);
 }
 
-::-webkit-scrollbar-track {     /*-The background or track of slider/thumb -*/
-
-  border-radius: 10px;
-  background-color: #fff;        /*-Change scrollbar background color here-*/
-  box-shadow: 0 0 6px rgba(0, 0, .3);
+::-webkit-scrollbar-track { /*-The background or track of slider/thumb -*/
+    border-radius: 10px;
+    background-color: #fff; /*-Change scrollbar background color here-*/
+    box-shadow: 0 0 6px rgba(0, 0, .3);
 }
+
 .accordion {
     background-color: #eee;
     color: #444;
@@ -409,13 +469,18 @@ body{
     transition: 0.4s;
 }
 
-.active, .accordion:hover {
-    background-color: #ccc; 
-}
+    .active, .accordion:hover {
+        background-color: #ccc;
+    }
 
 .panel {
     padding: 0 18px;
     display: none;
     background-color: white;
     overflow: hidden;
+}
+.tradersDashboard:hover {
+    border-left: 2px solid green;
+    border-right: 2px solid green;
+    border-radius:5px;
 }
