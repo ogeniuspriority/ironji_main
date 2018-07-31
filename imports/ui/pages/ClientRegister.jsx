@@ -59,8 +59,6 @@ registerDriver(e){
                  alert("Empty Last Name");
              }else if(this.refs.email.value==""){
                  alert("Empty Email");
-             }else if(this.refs.plate_number.value==""){
-                 alert("Empty Plate Number");
              }else if(this.refs.occupation.value==""){
                  alert("Empty Occupation");
              }else if(this.refs.phonenumber.value==""){
@@ -169,12 +167,12 @@ return (<div className="container">
                         <div className="col-sm">Email:</div>
                         <div className="col-sm"><input type="email" ref="email" className="form-control" name="last_name" placeholder="" required="required"/></div>
                     </div>  
-                    <div className="row">
+                <div className="row" style={{display:"none"}}>
                         <div className="col-sm">Plate number:</div>
                         <div className="col-sm"><input type="text" ref="plate_number" className="form-control" name="last_name" placeholder="" required="required"/></div>
                     </div>  
                     <div className="row">
-                        <div className="col-sm">Occupation:</div>
+                        <div className="col-sm">Where do you work the most:</div>
                         <div className="col-sm"><input type="text" ref="occupation" className="form-control" name="last_name" placeholder="" required="required"/></div>
                     </div>  
                     <div className="row">
