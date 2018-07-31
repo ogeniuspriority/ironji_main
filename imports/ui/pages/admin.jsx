@@ -329,32 +329,59 @@ class Home extends Component {
                                 <button className="accordion" style={{ width: "60%" }}>What do you offer?</button>
                                 <div className="panel" style={{ width: "60%" }}>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                    <h3>RESPOND TO THIS</h3>
+                                    <form >
+                                        <div className="form-group" >
+                                            <label >Respnse title:</label>
+                                            <input type="text" style={{ width: "300px" }} className="form-control" id="email" />
+                                        </div>
+                                        <div className="form-group">
+                                            <label>Your response:</label><br />
+                                            <textarea style={{ height: "80px", width: "300px" }} class="form-control" ></textarea>
+
+                                        </div>
+                                        <button type="button" className="btn btn-default">Submit</button>
+                                    </form>
                                 </div>
 
                                 <button className="accordion" style={{ width: "60%" }}>Where are your offices?</button>
                                 <div className="panel" style={{ width: "60%" }}>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                    <h3>RESPOND TO THIS</h3>
+                                    <form >
+                                        <div className="form-group" >
+                                            <label >Respnse title:</label>
+                                            <input type="text" style={{ width: "300px" }} className="form-control" id="email" />
+                                        </div>
+                                        <div className="form-group">
+                                            <label>Your response:</label><br />
+                                            <textarea style={{ height: "80px", width: "300px" }} class="form-control" ></textarea>
+
+                                        </div>
+                                        <button type="button" className="btn btn-default">Submit</button>
+                                    </form>
                                 </div>
 
                                 <button className="accordion" style={{ width: "60%" }}>Can i be featured on your platform as a trader?</button>
                                 <div className="panel" style={{ width: "60%" }}>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                    <h3>RESPOND TO THIS</h3>
+                                    <form >
+                                        <div className="form-group" >
+                                            <label >Respnse title:</label>
+                                            <input type="text" style={{ width: "300px" }} className="form-control" id="email" />
+                                        </div>
+                                        <div className="form-group">
+                                            <label>Your response:</label><br />
+                                            <textarea style={{ height: "80px", width: "300px" }} class="form-control" ></textarea>
+
+                                        </div>
+                                        <button type="button" className="btn btn-default">Submit</button>
+                                    </form>
                                 </div>
                             </div>
                             <div className="pull-left" style={{ width: "330px", paddingLeft: "10%" }}>
-                                <h3>CONTACT US</h3>
-                                <form >
-                                    <div className="form-group" >
-                                        <label >Email address:</label>
-                                        <input type="email" style={{ width: "300px" }} className="form-control" id="email" />
-                                    </div>
-                                    <div className="form-group">
-                                        <label>Yous Query To Ironji Team:</label><br />
-                                        <textarea style={{ height: "80px", width: "300px" }} class="form-control" ></textarea>
-
-                                    </div>
-                                    <button type="button" className="btn btn-default">Submit</button>
-                                </form>
+                                
                             </div>
                             <div style={{ clear: "both" }}></div>
                         </div>

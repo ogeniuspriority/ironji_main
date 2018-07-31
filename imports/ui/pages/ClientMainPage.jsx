@@ -561,28 +561,28 @@ class ClientMainPage extends Component {
                         <div className="modal-body">
                             <div className="container" style={{ height: "300px", overflow: "scroll", width: "400px" }}>
                                 <div style={{ border: "1px solid chocolate", margin: "5px" }}>
-                                    <h4>Names : dijsh8dbishdis9fi</h4>
-                                    <p>Location in Teext sfbusfsf sfibsuvf snifbus jfnisbuvf </p>
+                                    <h4>Names : Bizimana Eric</h4>
+                                    <p>Nyabugogo, near Modern office</p>
                                     <button className='btn-primary'>Talk To Them</button>
                                 </div>
                                 <div style={{ border: "1px solid chocolate", margin: "5px" }}>
-                                    <h4>Names : dijsh8dbishdis9fi</h4>
-                                    <p>Location in Teext sfbusfsf sfibsuvf snifbus jfnisbuvf </p>
+                                    <h4>Names : Kanakuze Dative</h4>
+                                    <p>Near Kimironko market </p>
                                     <button className='btn-primary'>Talk To Them</button>
                                 </div>
                                 <div style={{ border: "1px solid chocolate", margin: "5px" }}>
-                                    <h4>Names : dijsh8dbishdis9fi</h4>
-                                    <p>Location in Teext sfbusfsf sfibsuvf snifbus jfnisbuvf </p>
+                                    <h4>Names : Maman Kelia</h4>
+                                    <p>Nyamirambo, Cosmos </p>
                                     <button className='btn-primary'>Talk To Them</button>
                                 </div>
                                 <div style={{ border: "1px solid chocolate", margin: "5px" }}>
-                                    <h4>Names : dijsh8dbishdis9fi</h4>
-                                    <p>Location in Teext sfbusfsf sfibsuvf snifbus jfnisbuvf </p>
+                                    <h4>Names : Muhirwa Emma</h4>
+                                    <p> Kinyinya, Gasharu market </p>
                                     <button className='btn-primary'>Talk To Them</button>
                                 </div>
                                 <div style={{ border: "1px solid chocolate", margin: "5px" }}>
-                                    <h4>Names : dijsh8dbishdis9fi</h4>
-                                    <p>Location in Teext sfbusfsf sfibsuvf snifbus jfnisbuvf </p>
+                                    <h4>Names : Jose</h4>
+                                    <p>Kwa mutangana </p>
                                     <button className='btn-primary'>Talk To Them</button>
                                 </div>
                             </div>
@@ -595,14 +595,14 @@ class ClientMainPage extends Component {
             </div>
             <div className="modal fade" id="createScheduleModal" role="dialog" aria-labelledby="ecreateScheduleModalLabel" aria-hidden="true">
                 <div className="modal-dialog" role="document">
-                    <div className="modal-content">
+                    <div className="modal-content" >
                         <div className="modal-header">
                             <h5 className="modal-title" id="exampleModalLabel">Driver's schedules<br /><span className="minify">Gahunda z'abashoferi </span></h5>
                             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div className="modal-body">
+                        <div className="modal-body" style={{ height: "340px", overflow: "scroll" }}>
                             <div>
                                 {this.renderTheClientSchedules()}
                             </div>

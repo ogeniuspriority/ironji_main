@@ -76,8 +76,29 @@ class Home extends Component {
                         </div>
                         <div id="menu2" className="tab-pane fade">
                             <h3>FORUM</h3>
-                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-                        </div>
+                            <div style={{ height: "400px", overflow: "scroll" }}>
+                                <div>
+                                    <h4>Poster Name</h4>
+                                    <div>sf9shs fsnofbvs fs bf s9hfsbs fs9hfgbs sh9f s9fhbs fsh9
+                                        dovjbd vdnbd vdnovivd vu</div>
+                                </div>
+                                <div style={{ height: "300px", width: "70%", overflow: "scroll" }}>
+                                    <div className="pull-left" style={{width:"60%",borderBottom:"1px solid black"}}>
+                                        <h4>Poster Name</h4>
+                                        <div>sf9shs fsnofbvs fs bf s9hfsbs fs9hfgbs sh9f s9fhbs fsh9
+                                        dovjbd vdnbd vdnovivd vu</div>
+                                    </div>
+                                    <div className="pull-right" style={{ width: "60%", borderBottom: "1px solid black" }}>
+                                        <h4>Poster Name</h4>
+                                        <div>sf9shs fsnofbvs fs bf s9hfsbs fs9hfgbs sh9f s9fhbs fsh9
+                                        dovjbd vdnbd vdnovivd vu</div>
+                                    </div>
+                                    
+
+                                </div>
+
+                            </div>
+                         </div>
 
                     </div>
                 </div>

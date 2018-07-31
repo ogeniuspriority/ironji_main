@@ -632,28 +632,28 @@ class DriverMainPage extends Component {
                         <div className="modal-body">
                             <div className="container" style={{ height: "300px", overflow: "scroll", width: "400px" }}>
                                 <div style={{ border: "1px solid chocolate", margin: "5px" }}>
-                                    <h4>Names : dijsh8dbishdis9fi</h4>
-                                    <p>Location in Teext sfbusfsf sfibsuvf snifbus jfnisbuvf </p>
+                                    <h4>Names : Bizimana Eric</h4>
+                                    <p>Nyabugogo, near Modern office</p>
                                     <button className='btn-primary'>Talk To Them</button>
                                 </div>
                                 <div style={{ border: "1px solid chocolate", margin: "5px" }}>
-                                    <h4>Names : dijsh8dbishdis9fi</h4>
-                                    <p>Location in Teext sfbusfsf sfibsuvf snifbus jfnisbuvf </p>
+                                    <h4>Names : Kanakuze Dative</h4>
+                                    <p>Near Kimironko market </p>
                                     <button className='btn-primary'>Talk To Them</button>
                                 </div>
                                 <div style={{ border: "1px solid chocolate", margin: "5px" }}>
-                                    <h4>Names : dijsh8dbishdis9fi</h4>
-                                    <p>Location in Teext sfbusfsf sfibsuvf snifbus jfnisbuvf </p>
+                                    <h4>Names : Maman Kelia</h4>
+                                    <p>Nyamirambo, Cosmos </p>
                                     <button className='btn-primary'>Talk To Them</button>
                                 </div>
                                 <div style={{ border: "1px solid chocolate", margin: "5px" }}>
-                                    <h4>Names : dijsh8dbishdis9fi</h4>
-                                    <p>Location in Teext sfbusfsf sfibsuvf snifbus jfnisbuvf </p>
+                                    <h4>Names : Muhirwa Emma</h4>
+                                    <p> Kinyinya, Gasharu market </p>
                                     <button className='btn-primary'>Talk To Them</button>
                                 </div>
                                 <div style={{ border: "1px solid chocolate", margin: "5px" }}>
-                                    <h4>Names : dijsh8dbishdis9fi</h4>
-                                    <p>Location in Teext sfbusfsf sfibsuvf snifbus jfnisbuvf </p>
+                                    <h4>Names : Jose</h4>
+                                    <p>Kwa mutangana </p>
                                     <button className='btn-primary'>Talk To Them</button>
                                 </div>
                             </div>
