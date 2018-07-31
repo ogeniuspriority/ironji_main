@@ -497,6 +497,19 @@ class DriverMainPage extends Component {
                 <div className="middleFeature_middle">
                     <button data-toggle="modal" data-target="#mapInTextModal" data-dismiss="modal" className="btn mapInText" style={{ float: "right", color: "red", background: "transparent", border: "1px solid red", borderTopLeftRadius: "5px" }}>Map In Text</button>
                     <button className="btn btn-info" onClick={this.panToArcDeTriomphe.bind(this)}>Locate Yourself<br /><span className="minify">Reba aho uri</span></button>
+                    <div><h4>Analyse your route</h4>
+                        <form>
+                            <div className="form-group" style={{ width: "60%" }}>
+                                <label>Origin:</label>
+                                <input type="text" style={{ width: "250px" }} className="form-control" id="usr" />
+                            </div>
+                            <div className="form-group" style={{ width: "60%" }}>
+                                <label>Destination:</label>
+                                <input type="text" style={{ width: "250px" }} className="form-control" id="pwd" />
+                            </div>
+                            <input type="button" className="btn-success" value="Show Potential Clients on the path" />
+                        </form>
+                    </div>
                     <div ref="map" className="TheMapGuru map" id="map" ref="map">I should be a map!</div>
                     <div>
                         <table className='thebuttons_Driver'>
