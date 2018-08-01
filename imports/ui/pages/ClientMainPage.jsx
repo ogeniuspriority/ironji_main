@@ -533,36 +533,40 @@ class ClientMainPage extends Component {
                     <div className="modal-content">
                         <div className="modal-header">
                             <button type="button" onClick={this.hideThisProductInfo.bind(this)} className="close" data-dismiss="modal">&times;</button>
-                            <h4 className="modal-title">Product name</h4>
+                            <h4 className="modal-title">Orange<br /><span className="minify">Ironji</span></h4>
                         </div>
                         <div className="modal-body">
 
-                            <p>Some text in the modal.</p>
+                            <h4>Places to find it:<br /><span className="minify">Aho wabikura</span></h4>
                             <h4>Places to find it:</h4>
                             <div className="theProds  testimonial-group">
                                 <div className="row text-center myTraders_0">
-                                    <div className="theProds_content col-xs-4">
-                                        <h4>Trader Name: </h4>
-                                        <h4>Location: </h4>
-                                        <h4>Contacts: </h4>
-                                        <button className="btn-default">See on Map</button>
-                                    </div> <div className="theProds_content col-xs-4">
-                                        <h4>Trader Name: </h4>
-                                        <h4>Location: </h4>
-                                        <h4>Contacts: </h4>
-                                        <button className="btn-default">See on Map</button>
+                                    <div style={{ fontSize: "13px" }} className="theProds_content col-xs-4">
+                                        <h4>Nshizirungu <br /> Shadrack </h4>
+                                        <h4>Nyabugogo market <br />stand number 3<br />
+                                            <span className="minify">Isoko rya Nyabugogo<br /> igitanda cya gatatu!</span> </h4>
+                                        <h4>Tel: 0783890990</h4>
+                                        <button className="btn-default">See on Map<br /><span className="minify">Murebe ku ikarita</span></button>
+                                    </div> <div style={{ fontSize: "13px" }} className="theProds_content col-xs-4">
+                                        <h4>Umurerwa Josepha: </h4>
+                                        <h4>Nyabugogo market<br /> stand number 11<br />
+                                            <span className="minify">Isoko rya Nyabugogo<br /> igitanda cya cumi na rimwe!</span> </h4>
+                                        <h4>Tel:0787374567 </h4>
+                                        <button className="btn-default">See on Map<br /><span className="minify">Murebe ku ikarita</span></button>
                                     </div>
-                                    <div className="theProds_content col-xs-4">
-                                        <h4>Trader Name: </h4>
-                                        <h4>Location: </h4>
-                                        <h4>Contacts: </h4>
-                                        <button className="btn-default">See on Map</button>
+                                    <div style={{ fontSize: "13px" }} className="theProds_content col-xs-4">
+                                        <h4>Maman Bethi</h4>
+                                        <h4>Nyabugogo market<br /> stand number 15 <br />
+                                            <span className="minify">Isoko rya Nyabugogo<br /> igitanda cya cumi na gatanu!</span></h4>
+                                        <h4>Tel:0787890855 </h4>
+                                        <button className="btn-default">See on Map<br /><span className="minify">Murebe ku ikarita</span></button>
                                     </div>
-                                    <div className="theProds_content col-xs-4">
-                                        <h4>Trader Name: </h4>
-                                        <h4>Location: </h4>
-                                        <h4>Contacts: </h4>
-                                        <button className="btn-default">See on Map</button>
+                                    <div style={{ fontSize: "13px" }} className="theProds_content col-xs-4">
+                                        <h4 style={{ fontSize: "13px" }}>Maman bebe: </h4>
+                                        <h4 >Kimironko Market<br /> stand 2<br />
+                                            <span className="minify">Isoko rya Kimironko<br /> igitanda cya kabiri!</span> </h4>
+                                        <h4>Tel:073345678 </h4>
+                                        <button className="btn-default">See on Map<br /><span className="minify">Murebe ku ikarita</span></button>
                                     </div>
 
 
@@ -580,11 +584,11 @@ class ClientMainPage extends Component {
                     <div className="modal-content">
                         <div className="modal-header">
                             <button type="button" onClick={this.hideThisConversationPanel.bind(this)} className="close" data-dismiss="modal">&times;</button>
-                            <h4 className="modal-title">Their Names</h4>
+                            <h4 className="modal-title">Emmanuel</h4>
                         </div>
                         <div className="modal-body">
 
-                            <p>Some text in the modal.</p>
+                            <p>Drives mainly in Kimironko<br/><span className="minify">Akunda gukorera kimironko</span></p>
                             <button className="btn-default btn-primary">Talk To Them</button>
                         </div>
                         <div className="modal-footer">
