@@ -1,12 +1,38 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
+import axios, { post } from 'axios';
+
 
 
 class Home extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            file: null
+        };
+        this.fileSelectedHandler = this.fileSelectedHandler.bind(this);
     }
+
+    fileSelectedHandler (event) {
+        console.log(event.target.files[0]);
+        this.setState({ file: event.target.files[0] });
+       
+        
+    }
+    fileUpload() {
+        const fd = new FormData();
+        fd.append("image", this.state.file, this.state.file.name);
+        axios.post("url", fd).then(res => {
+            console.log(res);
+        });
+    }
+
+    fileUploadHandler() {
+
+    }
+
+    
 
 
 
@@ -302,7 +328,7 @@ class Home extends Component {
 
                                             </td><td></td></tr>
                                         <tr><td><label>Product Avatar</label>
-                                            <input type="file" className="form-control" id="exampleFormControlInput1" /></td><td><img src="" style={{ width: "100px", height: "100px" }} /></td><td></td></tr>
+                                            <input type="file" onChange={this.fileSelectedHandler} className="form-control" id="exampleFormControlInput1" /></td><td><img src="" style={{ width: "100px", height: "100px" }} /></td><td></td></tr>
                                         <tr>
                                             <td>
                                                 <label>Latitude:</label>
@@ -337,7 +363,7 @@ class Home extends Component {
                                         </div>
                                         <div className="form-group">
                                             <label>Your response:</label><br />
-                                            <textarea style={{ height: "80px", width: "300px" }} class="form-control" ></textarea>
+                                            <textarea style={{ height: "80px", width: "300px" }} className="form-control" ></textarea>
 
                                         </div>
                                         <button type="button" className="btn btn-default">Submit</button>
@@ -355,7 +381,7 @@ class Home extends Component {
                                         </div>
                                         <div className="form-group">
                                             <label>Your response:</label><br />
-                                            <textarea style={{ height: "80px", width: "300px" }} class="form-control" ></textarea>
+                                            <textarea style={{ height: "80px", width: "300px" }} className="form-control" ></textarea>
 
                                         </div>
                                         <button type="button" className="btn btn-default">Submit</button>
@@ -373,7 +399,7 @@ class Home extends Component {
                                         </div>
                                         <div className="form-group">
                                             <label>Your response:</label><br />
-                                            <textarea style={{ height: "80px", width: "300px" }} class="form-control" ></textarea>
+                                            <textarea style={{ height: "80px", width: "300px" }} className="form-control" ></textarea>
 
                                         </div>
                                         <button type="button" className="btn btn-default">Submit</button>

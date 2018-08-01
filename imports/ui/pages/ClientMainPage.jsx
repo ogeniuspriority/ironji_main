@@ -57,6 +57,38 @@ class ClientMainPage extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.toggleSwitch = this.toggleSwitch.bind(this);
     }
+    showPolyLinePath() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 16,
+            center: { lat: -1.935892, lng: 30.077986 },
+            mapTypeId: 'terrain'
+        });
+
+        var locations = [
+            ['Restaurent Cocobin', -1.950079, 30.091251, 4],
+            ['Klab Rwanda', -1.944676, 30.089745, 5],
+            ['Kigali Convention Center', -1.954588, 30.093912, 3],
+            ['KBC Business Center', -1.952403, 30.091481, 2],
+            ['People Club', -1.947762, 30.092957, 1]
+        ];
+
+        var flightPlanCoordinates = [
+            { lat: -1.944676, lng: 30.089745 },
+            { lat: -1.935892, lng: 30.077986 },
+            { lat: -1.932632, lng: 30.063652 },
+            { lat: -1.942583, lng: 30.043825 },
+            { lat: -1.94084, lng: 30.044485 }
+        ];
+        var flightPath = new google.maps.Polyline({
+            path: flightPlanCoordinates,
+            geodesic: true,
+            strokeColor: '#FF0000',
+            strokeOpacity: 1.0,
+            strokeWeight: 2
+        });
+
+        flightPath.setMap(map);
+    }
     componentWillUnmount() {
         clearInterval(this.interval);
     }
@@ -430,13 +462,13 @@ class ClientMainPage extends Component {
                         <form>
                             <div className="form-group" style={{width:"60%"}}>
                                 <label>Origin of shipment:</label>
-                                <input type="text" style={{ width: "250px" }} className="form-control" id="usr"/>
+                                <input type="text" style={{ width: "250px" }} className="form-control" id="origin"/>
     </div>
                                 <div className="form-group" style={{ width: "60%" }}>
                                     <label>Destination of shipment:</label>
-                                <input type="text" style={{ width: "250px" }} className="form-control" id="pwd"/>
+                                <input type="text" style={{ width: "250px" }} className="form-control" id="destination"/>
                             </div>
-                            <input type="button" className="btn-success" value="Show Potential Drivers" />
+                            <input type="button" onClick={this.showPolyLinePath.bind(this)} className="btn-success" value="Show Potential Drivers" />
   </form>
                     </div>
                     <div ref="map" className="TheMapGuru map" id="map" ref="map">I should be a map!</div>

@@ -412,7 +412,7 @@ class DriverMainPage extends Component {
 
         global.the_id_op = "";
 
-        var po = Users.find({ username: sessionStorage.getItem('ironji_account_username') }, { sort: { text: 1 } }).fetch();
+        var po = Users.find({ username: ""+sessionStorage.getItem('ironji_account_username') }, { sort: { text: 1 } }).fetch();
         for (var key in po) {
             if (po.hasOwnProperty(key)) {
                 //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
