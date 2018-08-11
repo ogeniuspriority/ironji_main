@@ -466,6 +466,9 @@ class DriverMainPage extends Component {
                             <img src="images/ironji.png" />
                             <div className="TrademarkAndName">Ironji<sup>TM</sup></div>
                         </div>
+                        <div><a className="link" href="http://map.ogeniuspriority.com" style={{fontSize:"15px"}}>Search a Place</a>  </div>
+                            <div><a className="link" href="http://map.ogeniuspriority.com/markers.php" style={{fontSize:"15px"}}>Show Users Locations From Database</a>  </div>
+                                <div><a className="link" href="http://map.ogeniuspriority.com/directions.php" style={{fontSize:"15px"}}>Show Users Locations From Database</a>  </div>
                         <div className="theConainer theRightSide">
 
                         </div>
