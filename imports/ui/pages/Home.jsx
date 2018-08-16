@@ -104,7 +104,7 @@ class Home extends Component {
                 <img src="images/ironji.png" />
                 <div className="TrademarkAndName">Ironji<sup>TM</sup></div>
             </div>
-            <div className="ABoutOurProduct" style={{width:"500px",marginLeft:"200px"}}>Ironji is a platform that acts as a bridge to connect drivers and people who need transportation of goods using existing routes, mostly traders.
+            <div className="ABoutOurProduct" style={{width:"500px",marginLeft:"300px"}}>Ironji is a platform that acts as a bridge to connect drivers and people who need transportation of goods using existing routes, mostly traders.
                 This app helps in linking these two parties and also help to regulate and even reduce scarcity and surplus of goods in different areas.
         <br /><span className="minify">Ironji ni urubuga ruje guhuza abashoferi hamwe n' abantu bakeneye gutwazwa ibintu cyane cyane ibiryo hakoreshejwe inzira zisanzwe zikoreshwa mu kujya mu duce tumwe na tumwe cg abashoferi basanzwe bajyayo, cyane mu gufasha abacuruzi.
             Mu guhuza izi mpande zombi bigafasha kuringanziza ukubura kw'ibintu mu gace kamwe no kuba byaba byinshi mu kandi gace.</span>
