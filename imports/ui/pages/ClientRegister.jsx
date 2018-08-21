@@ -149,69 +149,69 @@ return (<div className="container">
             <form  method="post" onSubmit={this.registerDriver.bind(this)}>
              <div className="row">
                         <div className="col-sm">ID Number:</div>
-                        <div className="col-sm"><input type="number" ref="id_number" className="form-control" name="last_name" placeholder="" required="required"/></div>
+                        <div className="col-sm"><input type="number" ref="id_number" className="form-control" placeholder="" required="required"/></div>
                     </div>  
                 <div className="form-group">
                     <div className="row">
                         <div className="col-sm"><div className="row">
                         <div className="col-sm">Surname:</div>
-                        <div className="col-sm"><input type="text" ref="surname" className="form-control" name="last_name" placeholder="" required="required"/></div>
+                        <div className="col-sm"><input type="text" ref="surname" className="form-control" placeholder="" required="required"/></div>
                     </div>   </div>
                         <div className="col-sm"><div className="row">
                         <div className="col-sm">Lastname</div>
-                        <div className="col-sm"><input type="text" ref="lastname" className="form-control" name="last_name" placeholder="" required="required"/></div>
+                        <div className="col-sm"><input type="text" ref="lastname" className="form-control" placeholder="" required="required"/></div>
                     </div>   </div>
                     </div>        	
                 </div>
                 <div className="row">
                         <div className="col-sm">Email:</div>
-                        <div className="col-sm"><input type="email" ref="email" className="form-control" name="last_name" placeholder="" required="required"/></div>
+                        <div className="col-sm"><input type="email" ref="email" className="form-control" placeholder="" required="required"/></div>
                     </div>  
                 <div className="row" style={{display:"none"}}>
                         <div className="col-sm">Plate number:</div>
-                        <div className="col-sm"><input type="text" ref="plate_number" className="form-control" name="last_name" placeholder="" required="required"/></div>
+                        <div className="col-sm"><input type="text" ref="plate_number" className="form-control" placeholder="" required="required"/></div>
                     </div>  
                     <div className="row">
                         <div className="col-sm">Where do you work the most:</div>
-                        <div className="col-sm"><input type="text" ref="occupation" className="form-control" name="last_name" placeholder="" required="required"/></div>
+                        <div className="col-sm"><input type="text" ref="occupation" className="form-control" placeholder="" required="required"/></div>
                     </div>  
                     <div className="row">
                         <div className="col-sm">Phone number:</div>
-                        <div className="col-sm"><input type="text" ref="phonenumber" className="form-control" name="last_name" placeholder="" required="required"/></div>
+                        <div className="col-sm"><input type="text" ref="phonenumber" className="form-control" placeholder="" required="required"/></div>
                     </div>  
                     <div className="form-group">
                     <div className="row">
                         <div className="col-sm"><div className="row">
                         <div className="col-sm">Province:</div>
-                        <div className="col-sm"><input ref="province" type="text" className="form-control" name="last_name" placeholder="Last Name" required="required"/></div>
+                        <div className="col-sm"><input ref="province" type="text" className="form-control" placeholder="Last Name" required="required"/></div>
                     </div>   </div>
                         <div className="col-sm"><div className="row">
                         <div className="col-sm">District:</div>
-                        <div className="col-sm"><input ref="district" type="text" className="form-control" name="last_name" placeholder="Last Name" required="required"/></div>
+                        <div className="col-sm"><input ref="district" type="text" className="form-control" placeholder="Last Name" required="required"/></div>
                     </div>   </div>
                     <div className="col-sm"><div className="row">
                         <div className="col-sm">Sector:</div>
-                        <div className="col-sm"><input type="text" ref="sector" className="form-control" name="last_name" placeholder="Last Name" required="required"/></div>
+                        <div className="col-sm"><input type="text" ref="sector" className="form-control" placeholder="Last Name" required="required"/></div>
                     </div>   </div>
                     </div>        	
                 </div>
              
                 <div className="row">
                         <div className="col-sm">Username:</div>
-                        <div className="col-sm"><input type="text" ref="username" className="form-control" name="last_name" placeholder="" required="required"/></div>
+                        <div className="col-sm"><input type="text" ref="username" className="form-control" placeholder="" required="required"/></div>
                     </div>  
                     <div className="row">
                         <div className="col-sm">Password:</div>
-                        <div className="col-sm"><input type="passsword" ref="password" className="form-control" name="last_name" placeholder="" required="required"/></div>
+                        <div className="col-sm"><input type="passsword" ref="password" className="form-control" placeholder="" required="required"/></div>
                     </div>  
                      <div className="row">
                         <div className="col-sm">Confirm Password:</div>
-                        <div className="col-sm"><input type="passsword" ref="password_retype" className="form-control" name="last_name" placeholder="" required="required"/></div>
+                        <div className="col-sm"><input type="passsword" ref="password_retype" className="form-control" placeholder="" required="required"/></div>
                     </div>   
                     <div className="row">
                     <div className="col pull-right jkly"></div>
                         <div className="col"></div>
-                        <div className="col jkly"><input type="checkbox" ref="checkInfo"  className="checkbox" name="last_name" placeholder="" required="required"/><span >I certify that the information provided are true</span></div>
+                        <div className="col jkly"><input type="checkbox" ref="checkInfo"  className="checkbox" placeholder="" required="required"/><span >I certify that the information provided are true</span></div>
                     </div>  
                 <div className="form-group">
                     <button type="submit" className="btn btn-success pull-right">Sign Up</button>
