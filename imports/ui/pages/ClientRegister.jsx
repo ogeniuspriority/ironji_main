@@ -202,11 +202,11 @@ return (<div className="container">
                     </div>  
                     <div className="row">
                         <div className="col-sm">Password:</div>
-                        <div className="col-sm"><input type="passsword" ref="password" className="form-control" placeholder="" required="required"/></div>
+                        <div className="col-sm"><input type="password" ref="password" className="form-control" placeholder="" required="required"/></div>
                     </div>  
                      <div className="row">
                         <div className="col-sm">Confirm Password:</div>
-                        <div className="col-sm"><input type="passsword" ref="password_retype" className="form-control" placeholder="" required="required"/></div>
+                        <div className="col-sm"><input type="password" ref="password_retype" className="form-control" placeholder="" required="required"/></div>
                     </div>   
                     <div className="row">
                     <div className="col pull-right jkly"></div>
