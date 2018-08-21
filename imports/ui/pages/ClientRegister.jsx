@@ -283,14 +283,14 @@ return (<div className="container">
                         </div><div className="form-group">
 
                             <label ><b>Password</b><br/><span className='minify'>Ijambo ry' ibanga</span></label>
-                            <input type="password" className="widthLogInput" placeholder="Enter Password" name="psw" required/>
+                            <input type="password" className="widthLogInput" placeholder="Enter Password"  required/>
                         </div>
                         <div className="form-group">
                             <button className="btn btn-success" type="button">Login<br/><span className='minify'>Injira</span></button>
                             <button data-toggle="modal" data-dismiss="modal" data-target="#ForgotPasswordModal" className="btn  thetransparent" type="button">Forgot Password<br/><span className='minify'>Wibagiwe Ijambo ry'ibanga.</span></button>
                         </div>                
                         <label className="thth">
-                            <input type="checkbox"   name="remember"/> Remember me
+                            <input type="checkbox"  /> Remember me
                             <br/><span className='minify'>Uzanyibuke Ningaruka</span>
                         </label>
                     </div>
