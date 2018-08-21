@@ -169,7 +169,7 @@ return (<div className="container">
                     </div>  
                 <div className="row" style={{display:"none"}}>
                         <div className="col-sm">Plate number:</div>
-                        <div className="col-sm"><input type="text" ref="plate_number" className="form-control" placeholder="" required="required"/></div>
+                        <div className="col-sm"><input type="text" ref="plate_number" className="form-control" placeholder="" /></div>
                     </div>  
                     <div className="row">
                         <div className="col-sm">Where do you work the most:</div>
