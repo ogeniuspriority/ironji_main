@@ -85,7 +85,7 @@ registerDriver(e){
                  global.surname=this.refs.surname.value;
                 global.lastname=this.refs.lastname.value;
                  global.email=this.refs.email.value;
-                 global.plate_number=this.refs.plate_number.value;
+                 global.plate_number="90";
                  global.occupation=this.refs.occupation.value;
                  global.phonenumber=this.refs.phonenumber.value;
                   global.province=this.refs.province.value;
