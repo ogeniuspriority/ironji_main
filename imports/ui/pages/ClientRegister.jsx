@@ -245,14 +245,14 @@ return (<div className="container">
                     <div className="container">
                         <div className="form-group">
                             <label ><b>Telephone Or Email</b><br/><span className='minify'>Telefoni cg Email</span></label>
-                            <input className="widthLogInput" type="text" placeholder="" name="uname" required/>
+                            <input className="widthLogInput" type="text" placeholder=""  required/>
                         </div>
                         <div className="form-group">
                             <button className="btn btn-success pull-center" type="button">Get Code<br/><span className='minify'>Aka Code</span></button>
                         </div>
                         <div className="form-group">
                             <label ><b>Put Received Code</b><br/><span className='minify'>Shyiramo CodeWahawel</span></label>
-                            <input className="widthLogInput" type="text" placeholder="" name="uname" required/>
+                            <input className="widthLogInput" type="text" placeholder=""  required/>
                         </div>     
                         <div className="form-group">
                             <button className="btn btn-success pull-center" type="button">Verify<br/><span className='minify'>Emeza</span></button>
@@ -279,7 +279,7 @@ return (<div className="container">
                     <div className="container">
                         <div className="form-group">
                             <label ><b>Username</b><br/><span className='minify'>Izina ryo kwinjira</span></label>
-                            <input className="widthLogInput" type="text" placeholder="Enter Username" name="uname" required/>
+                            <input className="widthLogInput" type="text" placeholder="Enter Username"  required/>
                         </div><div className="form-group">
 
                             <label ><b>Password</b><br/><span className='minify'>Ijambo ry' ibanga</span></label>
