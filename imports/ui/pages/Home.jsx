@@ -81,21 +81,21 @@ class Home extends Component {
                         sessionStorage.setItem('ironji_id', po[key]._id);
                         sessionStorage.setItem('ironji_account_type', po[key].account_type);
                         sessionStorage.setItem('ironji_account_username', po[key].username);
-                        window.open("/clientMainPage", "_self");
+                        window.open("/TraderDashboard", "_self");
                         break;
                     } else if (po[key].account_type == "driver") {
                         //alert("Driver");
                         sessionStorage.setItem('ironji_id', po[key]._id);
                         sessionStorage.setItem('ironji_account_type', po[key].account_type);
                         sessionStorage.setItem('ironji_account_username', po[key].username);
-                        window.open("/driverMainPage", "_self");
+                        window.open("/DriverDashboard", "_self");
                         break;
                     }else if (po[key].account_type == "buyer") {
                         //alert("Driver");
                         sessionStorage.setItem('ironji_id', po[key]._id);
                         sessionStorage.setItem('ironji_account_type', po[key].account_type);
                         sessionStorage.setItem('ironji_account_username', po[key].username);
-                        window.open("/buyerMainPage", "_self");
+                        window.open("/BuyerDashboard", "_self");
                         break;
                     }
 
