@@ -42,17 +42,49 @@ class Home extends Component {
                             <div style={{ borderLeft: "1px solid black" }} className="pull-left">
                                 <h2>Frequently Asked Questions</h2>
 
-                                <button className="accordion" style={{ width: "60%" }}>What do you offer?</button>
+                                <button className="accordion" style={{ width: "60%" }}>What does Ironji do?</button>
                                 <div className="panel" style={{ width: "60%" }}>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                                 </div>
 
-                                <button className="accordion" style={{ width: "60%" }}>Where are your offices?</button>
+                                <button className="accordion" style={{ width: "60%" }}>Why Ironji?</button>
                                 <div className="panel" style={{ width: "60%" }}>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                                 </div>
 
-                                <button className="accordion" style={{ width: "60%" }}>Can i be featured on your platform as a trader?</button>
+                                <button className="accordion" style={{ width: "60%" }}>How much is the price per transaction?</button>
+                                <div className="panel" style={{ width: "60%" }}>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                </div>
+                                <button className="accordion" style={{ width: "60%" }}>Is this business legal?</button>
+                                <div className="panel" style={{ width: "60%" }}>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                </div>
+                                <button className="accordion" style={{ width: "60%" }}>How can i get onto this platform?</button>
+                                <div className="panel" style={{ width: "60%" }}>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                </div>
+                                <button className="accordion" style={{ width: "60%" }}>Does ironji rent someone's car?</button>
+                                <div className="panel" style={{ width: "60%" }}>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                </div>
+                                <button className="accordion" style={{ width: "60%" }}>Can i trust someone i haven't seen before?</button>
+                                <div className="panel" style={{ width: "60%" }}>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                </div>
+                                <button className="accordion" style={{ width: "60%" }}>What's Ironji wallet?</button>
+                                <div className="panel" style={{ width: "60%" }}>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                </div>
+                                <button className="accordion" style={{ width: "60%" }}>How does one find products on Ironji?</button>
+                                <div className="panel" style={{ width: "60%" }}>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                </div>
+                                <button className="accordion" style={{ width: "60%" }}>What's hot deals and hot products?</button>
+                                <div className="panel" style={{ width: "60%" }}>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                </div>
+                                 <button className="accordion" style={{ width: "60%" }}>How long does it take to get my shipments?</button>
                                 <div className="panel" style={{ width: "60%" }}>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                                 </div>
