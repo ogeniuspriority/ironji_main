@@ -97,7 +97,7 @@ registerDriver(e){
                      var theData={
    "text":"Lucky John",
    "createdAt": new Date(),
-   "account_type":"client",
+   "account_type":"buyer",
    "currentLatitude":"-1.9443547",
    "currentLongitude":"30.089413699999998",
    "accountConfirmed":"1",
@@ -122,7 +122,7 @@ registerDriver(e){
     if ( result ){
           sessionStorage.setItem('ironji_account_type', "client");
           sessionStorage.setItem('ironji_account_username', username);
-           window.open("/clientMainPage","_self");
+           window.open("/buyerMainPage","_self");
     }
   });
 
@@ -144,7 +144,7 @@ return (<div className="container">
     </div>
     <div className="container">
         <h4 className="signUpTxt">Sign Up:</h4>
-        <h4 className="signUpTxt_push">TRADER<br/><span className="minify">Umucuruzi</span></h4>
+        <h4 className="signUpTxt_push">BUYER<br/><span className="minify">Umuguzi</span></h4>
         <div>
             <form  method="post" onSubmit={this.registerDriver.bind(this)}>
              <div className="row">
