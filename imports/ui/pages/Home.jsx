@@ -90,6 +90,13 @@ class Home extends Component {
                         sessionStorage.setItem('ironji_account_username', po[key].username);
                         window.open("/driverMainPage", "_self");
                         break;
+                    }else if (po[key].account_type == "buyer") {
+                        //alert("Driver");
+                        sessionStorage.setItem('ironji_id', po[key]._id);
+                        sessionStorage.setItem('ironji_account_type', po[key].account_type);
+                        sessionStorage.setItem('ironji_account_username', po[key].username);
+                        window.open("/buyerMainPage", "_self");
+                        break;
                     }
 
                 } else {
@@ -191,9 +198,7 @@ class Home extends Component {
                                     <label ><b>Password</b><br /><span className='minify'>Ijambo ry' ibanga</span></label>
                                     <input type="password" ref="password" className="widthLogInput" placeholder="Enter Password" name="psw" required />
                                 </div>
-                                <div className="form-group">
-                                    <button data-toggle="modal" data-dismiss="modal" data-target="#ForgotPasswordModal" className="btn  thetransparent" type="button">Forgot Password<br /><span className='minify'>Wibagiwe Ijambo ry'ibanga.</span></button>
-                                </div>
+                               
                                 <label className="thth">
                                     <input type="checkbox" name="remember" /> Remember me
                             <br /><span className='minify'>Uzanyibuke Ningaruka</span>
@@ -204,6 +209,9 @@ class Home extends Component {
                             <button type="button" className="btn btn-secondary" data-dismiss="modal">Close<br /><span className='minify'>Funga</span></button>
                             <button type="button" onClick={this.loginIntoAccount.bind(this)} className="btn btn-primary">Login<br /><span className='minify'>Injira</span></button>
                         </div>
+                         <div className="form-group">
+                                    <button data-toggle="modal" data-dismiss="modal" data-target="#ForgotPasswordModal" className="btn  thetransparent" type="button">Forgot Password<br /><span className='minify'>Wibagiwe Ijambo ry'ibanga.</span></button>
+                                </div>
                     </div>
                 </div>
             </div>
