@@ -43,6 +43,7 @@ export default class MainLayout extends React.Component {
               <Route path = '/admin' component={admin} />
               <Route path = '/buyerMainPage' component={BuyerMainPage} />
               <Route path = '/BuyerDashboard' component={BuyerDashboard} />
+              <Route path = '/TraderDashboard' component={TraderDashboard} />
               <Route path = '/messages' component={Messages} />
               <Route path = '/buyerRegister' component={BuyerRegister} />
                  <Route path = '/profile' component={Profile} />
