@@ -65,7 +65,7 @@ class BuyerDashboard extends Component {
                 <div >
                     <div style={{float: "left", width: "250px", height: "100px"}}>
                         <h4>MainPage</h4>
-                        <img src={"images/home.png"} style={{width: "100px", height: "100px"}} />
+                        <a href={"/buyerMainPage"}> <img src={"images/home.png"} style={{width: "100px", height: "100px"}} /></a>
                     </div>
                     <div style={{float: "left", width: "250px", height: "100px"}}>
                         <h4>Ironji Wallet</h4>
