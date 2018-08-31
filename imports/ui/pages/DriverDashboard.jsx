@@ -81,7 +81,7 @@ class DriverDashboard extends Component {
                     </div>
                     <div style={{float: "left", width: "250px", height: "100px"}}>
                         <h4>FAQs</h4>
-                        <img src={"images/faq.png"} style={{width: "100px", height: "100px"}} />
+                        <a href={ '/fq_asked'}><img src={"images/faq.png"} style={{width: "100px", height: "100px"}} /></a>
                     </div>
                     <div style={{clear: "both"}}></div>
         
