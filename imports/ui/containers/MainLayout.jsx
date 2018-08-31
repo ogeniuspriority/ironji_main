@@ -10,6 +10,7 @@ import ClientMainPage from '../pages/ClientMainPage.jsx';
 import ClientRegister from '../pages/ClientRegister.jsx';
 import DriverMainPage from '../pages/DriverMainPage.jsx';
 import DriverRegister from '../pages/DriverRegister.jsx';
+import BuyerRegister from '../pages/BuyerRegister.jsx';
 import FQ_Asked from '../pages/FQ_Asked.jsx';
 import admin from '../pages/admin.jsx';
 
@@ -36,6 +37,7 @@ export default class MainLayout extends React.Component {
               <Route path = '/fq_asked' component={FQ_Asked} />
               <Route path = '/admin' component={admin} />
               <Route path = '/messages' component={Messages} />
+              <Route path = '/buyerRegister' component={BuyerRegister} />
                  <Route path = '/profile' component={Profile} />
               <Route component={NotFound} />
             </Switch>

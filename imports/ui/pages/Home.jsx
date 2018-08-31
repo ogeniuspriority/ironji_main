@@ -45,7 +45,11 @@ class Home extends Component {
     }
 
     RegisterAsClient() {
-        window.open("/clientRegister", "_self")
+        window.open("/clientRegister", "_self");
+    }
+    
+    RegisterAsBuyer(){
+        window.open("/buyerRegister", "_self");
     }
 
     frequentlyAskedQuestions() {
@@ -109,24 +113,27 @@ class Home extends Component {
         <br /><span className="minify">Ironji ni urubuga ruje guhuza abashoferi hamwe n' abantu bakeneye gutwazwa ibintu cyane cyane ibiryo hakoreshejwe inzira zisanzwe zikoreshwa mu kujya mu duce tumwe na tumwe cg abashoferi basanzwe bajyayo, cyane mu gufasha abacuruzi.
             Mu guhuza izi mpande zombi bigafasha kuringanziza ukubura kw'ibintu mu gace kamwe no kuba byaba byinshi mu kandi gace.</span>
             </div>
-            <div className="MyButtonsHome">
-                <div className="padMe">
+            <div className="MyButtonsHome" >
+                <div className="padMe" style={{float:"left"}}>
                     <button className='btn  theHomeBtns' onClick={this.RegisterAsDriver.bind(this)} >I'm a driver<br /><span className='minify'>Ndi umushoferi</span></button>
                 </div>
-                <div className="padMe">
-                    <button className='btn  theHomeBtns' onClick={this.RegisterAsClient.bind(this)} >I need a driver<br /><span className='minify'>Nkeneye umushoferi</span></button>
+                <div className="padMe" style={{float:"left",marginLeft:"10%"}}>
+                    <button className='btn  theHomeBtns' onClick={this.RegisterAsClient.bind(this)} >I am a trader<br /><span className='minify'>Ndi umucuruzi</span></button>
                 </div>
+                <div className="padMe" style={{float:"left",marginLeft:"10%"}}>
+                    <button className='btn  theHomeBtns' onClick={this.RegisterAsBuyer.bind(this)} >I'm a buyer<br /><span className='minify'>Ndi umuguzi</span></button>
+                </div>
+                <div style={{clear:"both"}}></div>
             </div>
             <div className="container">
-                <div className="row theTgg">
-                    <div className="col-sm alreadyAccount">Already have an account?<br /><span className="minify">Usanzwe ufite konti</span></div>
-                    <div className="col-sm LoginPOP" data-toggle="modal" data-target="#exampleModal">Login<br /><span className="minify">Injira</span></div>
+                <div className="">                    
+                    <div className="btn-primary d-flex justify-content-center" style={{width:"200px",padding:"15px",textALign:"center",borderRadius:"10px"}} data-toggle="modal" data-target="#exampleModal"><div >Already have an account?<br /><span className="minify">Usanzwe ufite konti</span></div><br/>Login<br /><span className="minify">Injira</span></div>
 
                 </div>
             </div>
 
 
-            <div className="ForumLink pull-right">
+            <div className="ForumLink pull-right btn-primary" style={{padding:"5px"}}>
                 <span className="FAQ_" onClick={this.frequentlyAskedQuestions.bind(this)} >Frequently Asked Questions</span><br />
                 <span className="faqAbbrev" onClick={this.frequentlyAskedQuestions.bind(this)} >FAQ</span>
             </div>
