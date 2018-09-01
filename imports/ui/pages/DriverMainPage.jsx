@@ -15,6 +15,7 @@ import 'rc-time-picker/assets/index.css';
 import { render } from 'react-dom';
 import Switch from 'react-toggle-switch';
 import "react-toggle-switch/dist/css/switch.min.css";
+import { Button, Popover, PopoverHeader, PopoverBody } from 'reactstrap';
 
 //import {TrackerReact} from 'ultimatejs:tracker-react';
 const ARC_DE_TRIOMPHE_POSITION = {
@@ -51,9 +52,10 @@ class DriverMainPage extends Component {
             conversationPop: false,
             conversationPopX: "0px",
             conversationPopY: "0px",
-            switched: false
+            switched: false,popoverOpen: false
 
         };
+        this.toggle = this.toggle.bind(this);
 
         this.handleChange = this.handleChange.bind(this);
         this.handleChangeFrom = this.handleChangeFrom.bind(this);
@@ -73,32 +75,32 @@ class DriverMainPage extends Component {
         this.refs.textInput.value = '';
     }
 
-    showThisProductInfo(e) {
+    showThisProductInfo(param,e) {
         //$("#productModal").modal("show");
-        var doc = document.documentElement;
-        var left = (window.pageXOffset || doc.scrollLeft) - (doc.clientLeft || 0);
-        var top = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
-
-        //var clientHeight = document.getElementById('myDiv').clientHeight;
-        top = top + 50;
-
-        var Hor = e.pageX + 20;
-
-
-
-        var x__ = "" + Hor + "px";
-        var Y__ = "" + top + "px";
-
-
-        this.setState({ productPop: true, productPopX: x__, productPopY: Y__ });
+        console.log(param);
+        var element = document.getElementById(param);
+        var hasClass = element.classList.contains('popoverWithArrow_hide_it_set');
+        if(hasClass === true)
+       {
+         // Class exists
+          element.classList.remove("popoverWithArrow_hide_it_set");
+       }else{
+           var d = document.getElementById(param);
+           d.className += " popoverWithArrow_hide_it_set";
+       }
+       
+       
     }
-    hideThisProductInfo(e) {
+    hideThisProductInfo(param,e) {
         //$("#productModal").modal("show");
-
-        var x__ = "" + e.pageX + "px";
-        var Y__ = "" + e.pageY + "px";
-        this.setState({ productPop: false, productPopX: x__, productPopY: Y__ });
+        console.log(param);
+         var d = document.getElementById(param);
+           d.className += " popoverWithArrow_hide_it_set";
+   
+       
+       
     }
+   
     showThisConversationPanel(e) {
         //$("#productModal").modal("show");
         var x__ = "" + e.pageX + "px";
@@ -175,6 +177,8 @@ class DriverMainPage extends Component {
         if (sessionStorage.length == 0) {
             window.open("/", "_self");
         }
+        //----------
+         
 
 
 
@@ -338,6 +342,12 @@ class DriverMainPage extends Component {
             startDateTo: date
         });
     }
+    
+     toggle() {
+    this.setState({
+      popoverOpen: !this.state.popoverOpen
+    });
+  }
     CreateMySchedule(e) {
         e.preventDefault();
         //alert(this.state.startDate+"-"+this.state.startDateFrom+"--"+this.state.startDateTo);
@@ -488,13 +498,90 @@ class DriverMainPage extends Component {
                 </div>
             </div>
             <div className="container middleFeature">
-                <div className="middleFeature_left"><div className="middleFeature_left_in"><div ><img onClick={this.showThisProductInfo.bind(this)} className="theseImgsFood" src="images/ironji.png" /><div className="foodNames">Orange<br /><span className="minify">Ironji</span></div></div>
-                    <div><img className="theseImgsFood" onClick={this.showThisProductInfo.bind(this)} src="images/pineapple.jpg" /><div className="foodNames">Pineapple<br /><span className="minify">Inanasi</span></div></div>
-                    <div><img className="theseImgsFood" onClick={this.showThisProductInfo.bind(this)} src="images/banana.jpg" /><div className="foodNames">Banana<br /><span className="minify">Umuneke</span></div></div>
-                    <div><img className="theseImgsFood" onClick={this.showThisProductInfo.bind(this)} src="images/meat.jpg" /><div className="foodNames">Meat<br /><span className="minify">Inyama</span></div></div>
-                    <div><img className="theseImgsFood" onClick={this.showThisProductInfo.bind(this)} src="images/fish.jpg" /><div className="foodNames">Fish<br /><span className="minify">Ifi</span></div></div>
-                    <div><img className="theseImgsFood" onClick={this.showThisProductInfo.bind(this)} src="images/capati.jpg" /><div className="foodNames">Capati<br /><span className="minify">Capati</span></div></div>
-                    <div><img className="theseImgsFood" onClick={this.showThisProductInfo.bind(this)} src="images/chicken.jpg" /><div className="foodNames">Chicken<br /><span className="minify">Inkoko</span></div></div>
+            <div className="middleFeature_left"><div className="middleFeature_left_in"><div ><img id="_productPop0" onClick={this.showThisProductInfo.bind(this,"productPop0")}  className="theseImgsFood"  src="images/ironji.png"   />
+            <div className="popoverWithArrow popoverWithArrow_hide_it_set" id="productPop0" style={{position:"absolute",borderRadius:"6px",padding:"10px",marginTop:"-100px",marginLeft:"110px",width:"350px",zIndex:"1000",background:"white",boxShadow:"2px 2px 4px 4px #333"}} >
+                <div><button style={{color:"red",float:"right",marginRight:"20px"}} onClick={this.hideThisProductInfo.bind(this,"productPop0")}>X</button></div>
+                                                                                    fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib 
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib 
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib 
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib 
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib 
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib<div style={{position:"absolute",top:"20px",left:"-9px"}} className="arrow-left"></div></div>
+                                                                                
+        <div className="foodNames">Orange<br /><span className="minify">Ironji</span></div></div>
+                    <div><img className="theseImgsFood" id="_productPop1" onClick={this.showThisProductInfo.bind(this,"productPop1")} src="images/pineapple.jpg" />
+                    <div className="popoverWithArrow popoverWithArrow_hide_it_set" id="productPop1" style={{position:"absolute",borderRadius:"6px",padding:"10px",marginTop:"-100px",marginLeft:"110px",width:"350px",zIndex:"1000",background:"white",boxShadow:"2px 2px 4px 4px #333"}} >
+                        <div><button style={{color:"red",float:"right",marginRight:"20px"}} onClick={this.hideThisProductInfo.bind(this,"productPop1")}>X</button></div>
+                                                                                                fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib 
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib 
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib 
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib 
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib 
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib<div style={{position:"absolute",top:"20px",left:"-9px"}} className="arrow-left"></div></div>
+                <div className="foodNames">Pineapple<br /><span className="minify">Inanasi</span></div></div>
+                    <div><img className="theseImgsFood" id="_productPop2" onClick={this.showThisProductInfo.bind(this,"productPop2")} src="images/banana.jpg" />
+                    <div className="popoverWithArrow popoverWithArrow_hide_it_set" id="productPop2" style={{position:"absolute",borderRadius:"6px",padding:"10px",marginTop:"-100px",marginLeft:"110px",width:"350px",zIndex:"1000",background:"white",boxShadow:"2px 2px 4px 4px #333"}} >
+                        <div><button style={{color:"red",float:"right",marginRight:"20px"}} onClick={this.hideThisProductInfo.bind(this,"productPop2")}>X</button></div>
+                                                                                                            fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib 
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib 
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib 
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib 
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib 
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib<div style={{position:"absolute",top:"20px",left:"-9px"}} className="arrow-left"></div></div>
+                                                                                                <div className="foodNames">Banana<br /><span className="minify">Umuneke</span></div></div>
+                    <div><img className="theseImgsFood" id="_productPop3" onClick={this.showThisProductInfo.bind(this,"productPop3")} src="images/meat.jpg" />
+                    <div className="popoverWithArrow popoverWithArrow_hide_it_set" id="productPop3" style={{position:"absolute",borderRadius:"6px",padding:"10px",marginTop:"-100px",marginLeft:"110px",width:"350px",zIndex:"1000",background:"white",boxShadow:"2px 2px 4px 4px #333"}} >
+                        <div><button style={{color:"red",float:"right",marginRight:"20px"}} onClick={this.hideThisProductInfo.bind(this,"productPop3")}>X</button></div>
+                                                                                                                        fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib 
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib 
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib 
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib 
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib 
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib<div style={{position:"absolute",top:"20px",left:"-9px"}} className="arrow-left"></div></div><div className="foodNames">Meat<br /><span className="minify">Inyama</span></div></div>
+                    <div><img className="theseImgsFood" id="_productPop4" onClick={this.showThisProductInfo.bind(this,"productPop4")} src="images/fish.jpg" />
+                    <div className="popoverWithArrow popoverWithArrow_hide_it_set" id="productPop4" style={{position:"absolute",borderRadius:"6px",padding:"10px",marginTop:"-100px",marginLeft:"110px",width:"350px",zIndex:"1000",background:"white",boxShadow:"2px 2px 4px 4px #333"}} >
+                        <div><button style={{color:"red",float:"right",marginRight:"20px"}} onClick={this.hideThisProductInfo.bind(this,"productPop4")}>X</button></div>
+                                                                                                                                    fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib 
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib 
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib 
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib 
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib 
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib<div style={{position:"absolute",top:"20px",left:"-9px"}} className="arrow-left"></div></div>
+                                                                                                                <div className="foodNames">Fish<br /><span className="minify">Ifi</span></div></div>
+                    <div><img className="theseImgsFood" id="_productPop5" onClick={this.showThisProductInfo.bind(this,"productPop5")} src="images/capati.jpg" />
+                    <div className="popoverWithArrow popoverWithArrow_hide_it_set" id="productPop5" style={{position:"absolute",borderRadius:"6px",padding:"10px",marginTop:"-100px",marginLeft:"110px",width:"350px",zIndex:"1000",background:"white",boxShadow:"2px 2px 4px 4px #333"}} >
+                        <div><button style={{color:"red",float:"right",marginRight:"20px"}} onClick={this.hideThisProductInfo.bind(this,"productPop5")}>X</button></div>
+                                                                                                                                                fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib 
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib 
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib 
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib 
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib 
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib<div style={{position:"absolute",top:"20px",left:"-9px"}} className="arrow-left"></div></div>
+                                                                                                                        <div className="foodNames">Capati<br /><span className="minify">Capati</span></div></div>
+                    <div><img className="theseImgsFood" id="_productPop6" onClick={this.showThisProductInfo.bind(this,"productPop6")} src="images/chicken.jpg" />
+                    <div className="popoverWithArrow popoverWithArrow_hide_it_set" id="productPop6" style={{position:"absolute",borderRadius:"6px",padding:"10px",marginTop:"-100px",marginLeft:"110px",width:"350px",zIndex:"1000",background:"white",boxShadow:"2px 2px 4px 4px #333"}} >
+                        <div><button style={{color:"red",float:"right",marginRight:"20px"}} onClick={this.hideThisProductInfo.bind(this,"productPop6")}>X</button></div>
+                                                                                                                                                            fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib 
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib 
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib 
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib 
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib 
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib
+              fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib<div style={{position:"absolute",top:"20px",left:"-9px"}} className="arrow-left"></div></div>
+                                                                                                                                <div className="foodNames">Chicken<br /><span className="minify">Inkoko</span></div></div>
                 </div>
                 </div>
                 <div className="middleFeature_middle">
