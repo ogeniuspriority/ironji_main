@@ -510,6 +510,7 @@ class DriverMainPage extends Component {
 <label >Adjust radius in  from where you are standing:</label>
   <span id="valBox">6 km</span>
   <input className="form-control" type="range" ref="myRange" onChange={this.recordValue.bind(this)} onInput={this.recordValue.bind(this)} min="1" max="41"  step="1" id="myRange" value={this.state.value}/>
+      <input className="btn-success" type="button" value="Apply changes"/>
       </div>
  <div className="form-group">
       <label >Product type:</label>
@@ -522,9 +523,12 @@ class DriverMainPage extends Component {
         <option>Restaurents</option>
         <option>Electronic devices</option>
         <option>Movies</option>
-        </select></div>
+        </select>
+         <input className="btn-success" type="button" value="Apply changes"/>
+                                                                                    </div>
             <div className="form-group">          
-            <input type="text" className="form-control" placeholder="Search a product by name"/>                                                                                
+            <input type="text" className="form-control" placeholder="Search a product by name"/> 
+             <input className="btn-success" type="button" value="Apply changes"/>
             </div></div>
                                                                                 <div className="middleFeature_left">
             
