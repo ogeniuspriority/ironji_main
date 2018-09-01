@@ -17,6 +17,7 @@ import Switch from 'react-toggle-switch';
 import "react-toggle-switch/dist/css/switch.min.css";
 import { Button, Popover, PopoverHeader, PopoverBody } from 'reactstrap';
 
+
 //import {TrackerReact} from 'ultimatejs:tracker-react';
 const ARC_DE_TRIOMPHE_POSITION = {
     lat: 48.873947,
@@ -52,7 +53,8 @@ class DriverMainPage extends Component {
             conversationPop: false,
             conversationPopX: "0px",
             conversationPopY: "0px",
-            switched: false,popoverOpen: false
+            switched: false,popoverOpen: false,
+            value:5,
 
         };
         this.toggle = this.toggle.bind(this);
@@ -327,6 +329,11 @@ class DriverMainPage extends Component {
             alert("No Geolocation on your device");
         }
     }
+    recordValue(e){
+        this.setState({value: e.target.value});
+        //console.log("Changed");
+        document.getElementById("valBox").innerHTML=this.state.value+" km";
+    }
     handleChange(date) {
         this.setState({
             startDate: date
@@ -498,7 +505,31 @@ class DriverMainPage extends Component {
                 </div>
             </div>
             <div className="container middleFeature">
-            <div className="middleFeature_left"><div className="middleFeature_left_in"><div ><img id="_productPop0" onClick={this.showThisProductInfo.bind(this,"productPop0")}  className="theseImgsFood"  src="images/ironji.png"   />
+            <div style={{width:"40%"}}>
+<div className="form-group">
+<label >Adjust radius in  from where you are standing:</label>
+  <span id="valBox">6 km</span>
+  <input className="form-control" type="range" ref="myRange" onChange={this.recordValue.bind(this)} onInput={this.recordValue.bind(this)} min="1" max="41"  step="1" id="myRange" value={this.state.value}/>
+      </div>
+ <div className="form-group">
+      <label >Product type:</label>
+      <select className="form-control" id="sel1">
+        <option>Food</option>
+        <option>Music instruments</option>
+        <option>Clothes</option>
+        <option>Artifacts</option>
+        <option>Dry Cleaners</option>
+        <option>Restaurents</option>
+        <option>Electronic devices</option>
+        <option>Movies</option>
+        </select></div>
+            <div className="form-group">          
+            <input type="text" className="form-control" placeholder="Search a product by name"/>                                                                                
+            </div></div>
+                                                                                <div className="middleFeature_left">
+            
+                                                                                
+                                                                                <div className="middleFeature_left_in"><div ><img id="_productPop0" onClick={this.showThisProductInfo.bind(this,"productPop0")}  className="theseImgsFood"  src="images/ironji.png"   />
             <div className="popoverWithArrow popoverWithArrow_hide_it_set" id="productPop0" style={{position:"absolute",borderRadius:"6px",padding:"10px",marginTop:"-100px",marginLeft:"110px",width:"350px",zIndex:"1000",background:"white",boxShadow:"2px 2px 4px 4px #333"}} >
                 <div><button style={{color:"red",float:"right",marginRight:"20px"}} onClick={this.hideThisProductInfo.bind(this,"productPop0")}>X</button></div>
                                                                                     fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib
