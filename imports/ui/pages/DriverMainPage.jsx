@@ -22,6 +22,7 @@ import Switch from 'react-toggle-switch';
 import "react-toggle-switch/dist/css/switch.min.css";
 import { Button, Popover, PopoverHeader, PopoverBody }
 from 'reactstrap';
+import {geolocated} from 'react-geolocated';
 //import {TrackerReact} from 'ultimatejs:tracker-react';
 const ARC_DE_TRIOMPHE_POSITION = {
     lat: 48.873947,
@@ -500,16 +501,53 @@ global.userna_me = "";
 
 
             <div className="middleFeature_left_in"><div ><img id="_productPop0" onClick={this.showThisProductInfo.bind(this, "productPop0")}  className="theseImgsFood"  src="images/ironji.png"   />
-                    <div className="popoverWithArrow popoverWithArrow_hide_it_set" id="productPop0" style={{position:"absolute", borderRadius:"6px", padding:"10px", marginTop:"-100px", marginLeft:"110px", width:"350px", zIndex:"1000", background:"white", boxShadow:"2px 2px 4px 4px #333"}} >
-                        <div><button style={{color:"red", float:"right", marginRight:"20px"}} onClick={this.hideThisProductInfo.bind(this, "productPop0")}>X</button></div>
-                        fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib
-                        fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib 
-                        fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib 
-                        fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib 
-                        fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib 
-                        fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib 
-                        fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib
-                        fsih8fs fsfhsbfsfbs fsibf sibs fsfbisfsbi fsfnib<div style={{position:"absolute", top:"20px", left:"-9px"}} className="arrow-left"></div></div>
+                    <div className="popoverWithArrow popoverWithArrow_hide_it_set" id="productPop0" style={{position:"absolute", borderRadius:"6px", padding:"10px", marginTop:"-100px", marginLeft:"110px", width:"450px", zIndex:"1000", background:"white", boxShadow:"2px 2px 4px 4px #333"}} >
+                        <div></div>
+                        <div >
+                    <div className="modal-header">
+                       <button style={{color:"red", float:"right", marginRight:"20px"}} onClick={this.hideThisProductInfo.bind(this, "productPop0")}>X</button><h4 className="modal-title">Orange<br/><span className="minify">Ironji</span></h4>
+                    </div>
+                    <div className="modal-body" style={{fontSize:"14px"}}>
+
+                        <div>Oranges are available in this area you are, adjustable radius!<br/>
+                            <span className="minify">Amaronji araboneka muri kano gace urimo, mu bugari bw'ibirometero bitanu uhereye aho uhagaze nonaha!</span></div>
+                        <h4>Places to find it:<br/><span className="minify">Aho wabikura</span></h4>
+                        <div className="theProds  testimonial-group">
+                            <div className="row text-center myTraders_0">
+                                <div style={{ fontSize: "13px" }} className="theProds_content col-xs-4">
+                                    <h4>Nshizirungu <br/> Shadrack </h4>
+                                    <h4>Nyabugogo market <br/>stand number 3<br/>
+                                        <span className="minify">Isoko rya Nyabugogo<br/> igitanda cya gatatu!</span> </h4>
+                                    <h4>Tel: 0783890990</h4>
+                                    <button className="btn-default">See on Map<br/><span className="minify">Murebe ku ikarita</span></button>
+                                </div> <div style={{ fontSize: "13px" }} className="theProds_content col-xs-4">
+                                    <h4>Umurerwa Josepha: </h4>
+                                    <h4>Nyabugogo market<br/> stand number 11<br/>
+                                        <span className="minify">Isoko rya Nyabugogo<br /> igitanda cya cumi na rimwe!</span> </h4>
+                                    <h4>Tel:0787374567 </h4>
+                                    <button className="btn-default">See on Map<br/><span className="minify">Murebe ku ikarita</span></button>
+                                </div>
+                                <div style={{ fontSize: "13px" }} className="theProds_content col-xs-4">
+                                    <h4>Maman Bethi</h4>
+                                    <h4>Nyabugogo market<br/> stand number 15 <br/>
+                                        <span className="minify">Isoko rya Nyabugogo<br/> igitanda cya cumi na gatanu!</span></h4>
+                                    <h4>Tel:0787890855 </h4>
+                                    <button className="btn-default">See on Map<br/><span className="minify">Murebe ku ikarita</span></button>
+                                </div>
+                                <div style={{fontSize:"13px"}} className="theProds_content col-xs-4">
+                                    <h4 style={{ fontSize: "13px" }}>Maman bebe: </h4>
+                                    <h4 >Kimironko Market<br/> stand 2<br/>
+                                        <span className="minify">Isoko rya Kimironko<br/> igitanda cya kabiri!</span> </h4>
+                                    <h4>Tel:073345678 </h4>
+                                    <button className="btn-default">See on Map<br/><span className="minify">Murebe ku ikarita</span></button>
+                                </div>
+
+
+                            </div></div>
+                    </div>
+                    <div className="modal-footer">
+                    <button style={{color:"red", float:"right", marginRight:"20px"}} onClick={this.hideThisProductInfo.bind(this, "productPop0")}>X</button></div>
+                </div><div style={{position:"absolute", top:"20px", left:"-9px"}} className="arrow-left"></div></div>
 
                     <div className="foodNames">Orange<br /><span className="minify">Ironji</span></div></div>
                 <div><img className="theseImgsFood" id="_productPop1" onClick={this.showThisProductInfo.bind(this, "productPop1")} src="images/pineapple.jpg" />
@@ -740,6 +778,7 @@ global.userna_me = "";
                     <div className="modal-header">
                         <button type="button" onClick={this.hideThisConversationPanel.bind(this)} className="close" data-dismiss="modal">&times;</button>
                         <h4 className="modal-title">Maman Kelly</h4>
+                        <div>I have 100kg of rice to be taken from here Nyabugogo to Kinyinya at College Amis Des Enfants</div>
                     </div>
                     <div className="modal-body">
 
