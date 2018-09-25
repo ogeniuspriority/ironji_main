@@ -173,7 +173,10 @@ class DriverMainPage extends Component {
         infoWindow.open(map);
     }
     componentDidMount() {
-        //alert("Welcome Home Guys"+Users.find({}).fetch());
+        //---     
+
+
+        //---
         this.interval = setInterval(() => this.updateThisUserLocation(), 1000);
         if (sessionStorage.length == 0) {
             window.open("/", "_self");
@@ -189,7 +192,7 @@ class DriverMainPage extends Component {
                 };
 
 
-                console.log("latitude:" + pos.lat + "longitude:" + pos.lng);
+                //console.log("latitude:" + pos.lat + "longitude:" + pos.lng);
                 var that = this;
                 // Call getCurrentPosition with success and failure callbacks
                 // var myLatlng = new google.maps.LatLng(position.coords.longitude, position.coords.latitude);
@@ -205,6 +208,63 @@ class DriverMainPage extends Component {
                     anchor: new google.maps.Point(0, 0) // anchor
                 };
                 //--------------------------
+                var TheTradersData = "";
+                $.get("http://map.ogeniuspriority.com/get_all_traders_live_locations.php", function (data, status) {
+                    //alert("Data: " + data + "\nStatus: " + status);
+                    TheTradersData = JSON.parse(data);
+                    var theMarkersOfTraders = TheTradersData["theMarkersOfTraders"];
+                    //---------------loop through location---
+                    var i = 0;
+                    for (var key in theMarkersOfTraders) {
+                        if (theMarkersOfTraders.hasOwnProperty(key)) {
+                            //alert(json[key].id);
+                            //alert(json[key].msg);
+                            //-------
+                            console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
+                            //------------Display the markers--
+                            marker = new google.maps.Marker({
+                                position: new google.maps.LatLng(theMarkersOfTraders[key].markers_on_map_lat, theMarkersOfTraders[key].markers_on_map_lng),
+                                icon: icon,
+                                title: "" + theMarkersOfTraders[key].place_name,
+                                map: this.map
+                            });
+                            google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                                return function (e) {
+                                    var x__ = "" + e.pageX + "px";
+                                    var Y__ = "" + e.pageY + "px";
+                                    // alert("");
+
+
+                                    that.setState({ conversationPop: true, conversationPopX: posTI[0], conversationPopY: posTI[1] });
+                                }
+                            })(marker, i));
+                            //-------------Locate myself--
+                            if (checkOnce) {
+                                var icon_ = {
+                                    url: "images/locate_me.png", // url
+                                    scaledSize: new google.maps.Size(35, 70), // scaled size
+                                    origin: new google.maps.Point(0, 0), // origin
+                                    anchor: new google.maps.Point(0, 0) // anchor
+                                };
+                                marker = new google.maps.Marker({
+                                    position: new google.maps.LatLng(pos.lat, pos.lng),
+                                    icon: icon_,
+                                    scaledSize: new google.maps.Size(35, 35),
+                                    title: "Me! Accuracy is" + accuracy + " meters",
+                                    map: this.map
+                                });
+                                //---------
+                                checkOnce = false;
+                            }
+
+
+
+                            marker.setMap(that.map);
+                            i++;
+                        }
+                    }
+                });
+                
 
 
                 var locations = [
@@ -215,44 +275,7 @@ class DriverMainPage extends Component {
                     ['People Club', - 1.947762, 30.092957, 1]
                 ];
                 for (i = 0; i < locations.length; i++) {
-                    marker = new google.maps.Marker({
-                        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                        icon: icon,
-                        title: "" + locations[i][0],
-                        map: this.map
-                    });
-                    google.maps.event.addListener(marker, 'click', (function (marker, i) {
-                        return function (e) {
-                            var x__ = "" + e.pageX + "px";
-                            var Y__ = "" + e.pageY + "px";
-                            // alert("");
-
-
-                            that.setState({ conversationPop: true, conversationPopX: posTI[0], conversationPopY: posTI[1] });
-                        }
-                    })(marker, i));
-                    //-------------Locate myself--
-                    if (checkOnce) {
-                        var icon_ = {
-                            url: "images/locate_me.png", // url
-                            scaledSize: new google.maps.Size(35, 70), // scaled size
-                            origin: new google.maps.Point(0, 0), // origin
-                            anchor: new google.maps.Point(0, 0) // anchor
-                        };
-                        marker = new google.maps.Marker({
-                            position: new google.maps.LatLng(pos.lat, pos.lng),
-                            icon: icon_,
-                            scaledSize: new google.maps.Size(35, 35),
-                            title: "Me! Accuracy is" + accuracy+ " meters",
-                            map: this.map
-                        });
-                        //---------
-                        checkOnce = false;
-                    }
-
-
-
-                    marker.setMap(this.map);
+                    
                 }
             }, function () {
                 handleLocationError(true, infoWindow, map.getCenter());
