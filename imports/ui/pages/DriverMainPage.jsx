@@ -210,7 +210,7 @@ class DriverMainPage extends Component {
                 //--------------------------
                 var TheTradersData = "";
 
-                fetch('http://map.ogeniuspriority.com/get_all_traders_live_locations.php')
+                fetch('https://map.ogeniuspriority.com/get_all_traders_live_locations.php')
                     .then(response => response.json())
                     .then(resData => {
                         TheTradersData = JSON.parse(JSON.stringify(resData));
