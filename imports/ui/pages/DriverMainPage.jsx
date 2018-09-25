@@ -461,8 +461,8 @@ global.userna_me = "";
                         <table className="table table_ghh">
                             <tbody>
                                 <tr><td><a href={'/fq_asked'}><img className="followLinks" src="images/question.png" /><br /><span>FAQs</span></a></td>
-                                    <td><a href={'/messages'}><img className="followLinks" src="images/message.png" /><br /><span>Messages</span></a></td>
-                                    <td><a href={'/profile'}><img className="followLinks" src="images/Mugabo Shyaka Cedric.jpg" /><br /><span>Hi, {sessionStorage.getItem('ironji_account_username')}</span></a></td></tr>
+                                    <td><a href={'/Drivermessages'}><img className="followLinks" src="images/message.png" /><br /><span>Messages</span></a></td>
+                                    <td><a href={'/Driverprofile'}><img className="followLinks" src="images/Mugabo Shyaka Cedric.jpg" /><br /><span>Hi, {sessionStorage.getItem('ironji_account_username')}</span></a></td></tr>
                             </tbody>
                         </table>
                     </div>

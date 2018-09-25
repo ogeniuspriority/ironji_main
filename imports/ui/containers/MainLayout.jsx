@@ -22,7 +22,13 @@ import {Users} from '../../api/users.js';
 
 import NotFound from '../pages/NotFound.jsx';
 import Messages from '../pages/Messages.jsx';
+import BuyerMessages from '../pages/BuyerMessages.jsx';
+import ClientMessages from '../pages/ClientMessages.jsx';
+import DriverMessages from '../pages/DriverMessages.jsx';
 import Profile from '../pages/Profile.jsx';
+import ClientProfile from '../pages/ClientProfile.jsx';
+import DriverProfile from '../pages/DriverProfile.jsx';
+import BuyerProfile from '../pages/BuyerProfile.jsx';
 
 
 export default class MainLayout extends React.Component {
@@ -45,8 +51,14 @@ export default class MainLayout extends React.Component {
               <Route path = '/BuyerDashboard' component={BuyerDashboard} />
               <Route path = '/TraderDashboard' component={TraderDashboard} />
               <Route path = '/messages' component={Messages} />
+              <Route path = '/Clientmessages' component={ClientMessages} />
+              <Route path = '/Buyermessages' component={BuyerMessages} />
+              <Route path = '/DriverMessages' component={DriverMessages} />
               <Route path = '/buyerRegister' component={BuyerRegister} />
                  <Route path = '/profile' component={Profile} />
+                 <Route path = '/Clientprofile' component={ClientProfile} />
+                 <Route path = '/Driverprofile' component={DriverProfile} />
+                 <Route path = '/Buyerprofile' component={BuyerProfile} />
               <Route component={NotFound} />
             </Switch>
             <Footer />
