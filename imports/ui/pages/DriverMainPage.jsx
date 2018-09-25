@@ -215,6 +215,7 @@ class DriverMainPage extends Component {
                     var theMarkersOfTraders = TheTradersData["theMarkersOfTraders"];
                     //---------------loop through location---
                     var i = 0;
+                    var iterator = 0;
                     for (var key in theMarkersOfTraders) {
                         if (theMarkersOfTraders.hasOwnProperty(key)) {
                             //alert(json[key].id);
@@ -222,49 +223,59 @@ class DriverMainPage extends Component {
                             //-------
                             console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
                             //------------Display the markers--
-                            marker = new google.maps.Marker({
-                                position: new google.maps.LatLng(theMarkersOfTraders[key].markers_on_map_lat, theMarkersOfTraders[key].markers_on_map_lng),
-                                icon: icon,
-                                title: "" + theMarkersOfTraders[key].place_name,
-                                map: this.map
-                            });
-                            google.maps.event.addListener(marker, 'click', (function (marker, i) {
-                                return function (e) {
-                                    var x__ = "" + e.pageX + "px";
-                                    var Y__ = "" + e.pageY + "px";
-                                    // alert("");
+                            setTimeout(function () {
 
+                                var infowindow = new google.maps.InfoWindow();
 
-                                    that.setState({ conversationPop: true, conversationPopX: posTI[0], conversationPopY: posTI[1] });
-                                }
-                            })(marker, i));
-                            //-------------Locate myself--
-                            if (checkOnce) {
-                                var icon_ = {
-                                    url: "images/locate_me.png", // url
-                                    scaledSize: new google.maps.Size(35, 70), // scaled size
-                                    origin: new google.maps.Point(0, 0), // origin
-                                    anchor: new google.maps.Point(0, 0) // anchor
-                                };
+                                var idEvent = theMarkersOfTraders[iterator].markers_on_map_id;
+
                                 marker = new google.maps.Marker({
-                                    position: new google.maps.LatLng(pos.lat, pos.lng),
-                                    icon: icon_,
-                                    scaledSize: new google.maps.Size(35, 35),
-                                    title: "Me! Accuracy is" + accuracy + " meters",
+                                    position: new google.maps.LatLng(theMarkersOfTraders[iterator].markers_on_map_lat, theMarkersOfTraders[iterator].markers_on_map_lng),
+                                    icon: icon,
+                                    draggable: false,
+                                    animation: google.maps.Animation.DROP,
+                                    title: "" + theMarkersOfTraders[iterator].place_name,
                                     map: this.map
                                 });
-                                //---------
-                                checkOnce = false;
-                            }
+                                
+                                //-------------Locate myself--
+                                if (checkOnce) {
+                                    var icon_ = {
+                                        url: "images/locate_me.png", // url
+                                        scaledSize: new google.maps.Size(35, 70), // scaled size
+                                        origin: new google.maps.Point(0, 0), // origin
+                                        anchor: new google.maps.Point(0, 0) // anchor
+                                    };
+                                    markers = new google.maps.Marker({
+                                        position: new google.maps.LatLng(pos.lat, pos.lng),
+                                        icon: icon_,
+                                        scaledSize: new google.maps.Size(35, 35),
+                                        title: "Me! Accuracy is" + accuracy + " meters",
+                                        map: this.map
+                                    });
+                                    //---------
+                                    markers.setMap(that.map);
+                                    checkOnce = false;
+                                }
+                                //-------
+                                var descr = theMarkersOfTraders[iterator].place_description;
+                                google.maps.event.addListener(marker, 'click', (function (marker, descr , infowindow) {
+                                    return function () {
+                                        infowindow.setContent(descr);
+                                        infowindow.open(map, marker);
+                                    };
+                                })(marker, descr, infowindow)); 
+                               
 
 
-
-                            marker.setMap(that.map);
+                                marker.setMap(that.map);
+                                iterator++;
+                            }, (i + 1) * 300);
                             i++;
                         }
                     }
                 });
-                
+
 
 
                 var locations = [
@@ -275,14 +286,14 @@ class DriverMainPage extends Component {
                     ['People Club', - 1.947762, 30.092957, 1]
                 ];
                 for (i = 0; i < locations.length; i++) {
-                    
+
                 }
             }, function () {
-                handleLocationError(true, infoWindow, map.getCenter());
+                //handleLocationError(true, infoWindow, map.getCenter());
             }, { maximumAge: 600000, timeout: 5000, enableHighAccuracy: true });
         } else {
             // Browser doesn't support Geolocation
-            handleLocationError(false, infoWindow, map.getCenter());
+            //handleLocationError(false, infoWindow, map.getCenter());
         }
 
 
