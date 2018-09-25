@@ -115,10 +115,8 @@ class Home extends Component {
                 <img src="images/ironji.png" />
                 <div className="TrademarkAndName">Ironji<sup>TM</sup></div>
             </div>
-            <div className="ABoutOurProduct" style={{width:"500px",marginLeft:"300px"}}>Ironji is a service that acts as a bridge to connect drivers and people who need transportation of goods, mostly traders. It also highlights products as you are moving in unknown neigbourhoods and makes modern trade more efficient.
-                This service helps in linking these two parties and also help to regulate and even reduce scarcity and surplus of goods in different areas, because it leverages traffic already moving in various locations. Introducing in the buyers as the catalysts.
-        <br /><span className="minify">Ironji ni urubuga ruje guhuza abashoferi hamwe n' abantu bakeneye gutwazwa ibintu cyane cyane abacuruzi. Izajya yerekana ibicuruzwa igihe urimo guca ahantu utamenyereye.
-            Mu guhuza izi mpande zombi bigafasha kuringanziza ukubura kw'ibintu mu gace kamwe no kuba byaba byinshi mu kandi gace, kubera ko izajya ikoresha imodoka zisanzwe zijya muri buri duce. Hongeyemo abaguzi ari bo babyishutisha</span>
+            <div className="ABoutOurProduct" style={{width:"500px",marginLeft:"300px"}}>Ironji is a service that allows you to see cheap goods available near you, people selling them, where they are and any available near mode of transporation that can pick those goods. "Your modern trade assistant"
+        <br /><span className="minify">Ironji ni serivisi ije kugufasha kubona ibicuruzwa biboneka hafi y'aho uri, abantu bari kubigurisha ndetse n'uburyo bw' ubwikorezi bushobora kugufasha kubitwara. "Ukunganira mu bucuruzi bugezweho" </span>
             </div>
             <div className="MyButtonsHome" >
                 <div className="padMe" style={{float:"left"}}>
