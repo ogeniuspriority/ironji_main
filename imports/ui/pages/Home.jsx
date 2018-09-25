@@ -115,10 +115,10 @@ class Home extends Component {
                 <img src="images/ironji.png" />
                 <div className="TrademarkAndName">Ironji<sup>TM</sup></div>
             </div>
-            <div className="ABoutOurProduct" style={{width:"500px",marginLeft:"300px"}}>Ironji is a service that acts as a bridge to connect drivers and people who need transportation of goods using existing routes(Traffic already moving back and forth in various locations), mostly traders.
-                This app helps in linking these two parties and also help to regulate and even reduce scarcity and surplus of goods in different areas. Introducing in the buyers as the catalysts.
-        <br /><span className="minify">Ironji ni urubuga ruje guhuza abashoferi hamwe n' abantu bakeneye gutwazwa ibintu cyane cyane ibiryo hakoreshejwe inzira zisanzwe zikoreshwa mu kujya mu duce tumwe na tumwe cg abashoferi basanzwe bajyayo, cyane mu gufasha abacuruzi.
-            Mu guhuza izi mpande zombi bigafasha kuringanziza ukubura kw'ibintu mu gace kamwe no kuba byaba byinshi mu kandi gace. Hongeyemo abaguzi ari bo babyishutisha</span>
+            <div className="ABoutOurProduct" style={{width:"500px",marginLeft:"300px"}}>Ironji is a service that acts as a bridge to connect drivers and people who need transportation of goods, mostly traders. It also highlights products as you are moving in unknown neigbourhoods and makes modern trade more efficient.
+                This service helps in linking these two parties and also help to regulate and even reduce scarcity and surplus of goods in different areas, because it leverages traffic already moving in various locations. Introducing in the buyers as the catalysts.
+        <br /><span className="minify">Ironji ni urubuga ruje guhuza abashoferi hamwe n' abantu bakeneye gutwazwa ibintu cyane cyane abacuruzi. Izajya yerekana ibicuruzwa igihe urimo guca ahantu utamenyereye.
+            Mu guhuza izi mpande zombi bigafasha kuringanziza ukubura kw'ibintu mu gace kamwe no kuba byaba byinshi mu kandi gace, kubera ko izajya ikoresha imodoka zisanzwe zijya muri buri duce. Hongeyemo abaguzi ari bo babyishutisha</span>
             </div>
             <div className="MyButtonsHome" >
                 <div className="padMe" style={{float:"left"}}>
