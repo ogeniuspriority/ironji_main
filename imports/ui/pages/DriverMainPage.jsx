@@ -182,12 +182,13 @@ class DriverMainPage extends Component {
         var checkOnce = true;
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function (position) {
+                var accuracy = position.coords.accuracy;
                 var pos = {
                     lat: position.coords.latitude,
                     lng: position.coords.longitude
                 };
 
-                
+
                 console.log("latitude:" + pos.lat + "longitude:" + pos.lng);
                 var that = this;
                 // Call getCurrentPosition with success and failure callbacks
@@ -242,26 +243,26 @@ class DriverMainPage extends Component {
                             position: new google.maps.LatLng(pos.lat, pos.lng),
                             icon: icon_,
                             scaledSize: new google.maps.Size(35, 35),
-                            title: "Me!",
+                            title: "Me! Accuracy is" + accuracy+ " meters",
                             map: this.map
                         });
                         //---------
                         checkOnce = false;
                     }
 
-                   
+
 
                     marker.setMap(this.map);
                 }
             }, function () {
                 handleLocationError(true, infoWindow, map.getCenter());
-            });
+            }, { maximumAge: 600000, timeout: 5000, enableHighAccuracy: true });
         } else {
             // Browser doesn't support Geolocation
             handleLocationError(false, infoWindow, map.getCenter());
         }
 
-        
+
 
     }
 
