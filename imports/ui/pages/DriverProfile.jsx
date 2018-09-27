@@ -56,14 +56,19 @@ class DriverMainPage extends Component {
         } else {
             var fd = new FormData();
             fd.append("imgForm", file);
-            fetch("http://www.map.ogeniuspriority.com/upload_scripts/upload_images_avatar.php", {
+            fetch("https://map.ogeniuspriority.com/upload_scripts/upload_images_avatar.php", {
                 mode: 'cors',
                 method: "POST",
                 body: fd
             }).then(response => response.json())
                 .then(resData => {
                     var TheTradersData = JSON.parse(JSON.stringify(resData));
-                    console.log(TheTradersData);
+                    if (TheTradersData.avtar.includes("notokay")) {
+                    } else {
+                        console.log(TheTradersData);
+                        alert("Good job!");
+                    }
+                    
                 });
         }
 
