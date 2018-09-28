@@ -6,7 +6,7 @@ import LoginButtons from './LoginButtons.jsx';
 export default class Footer extends React.Component {
   render() {
     return (
-      <footer className='footer'>
+        <footer className='footer navbar navbar-expand-lg'>
       
       </footer>
     );
