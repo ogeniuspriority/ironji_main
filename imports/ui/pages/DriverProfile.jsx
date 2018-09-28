@@ -45,6 +45,7 @@ class DriverMainPage extends Component {
         if (sessionStorage.length == 0) {
             window.open("/", "_self");
         }
+        console.log(sessionStorage.getItem('ironji_account_username'));
 
 
     }
@@ -93,95 +94,98 @@ class DriverMainPage extends Component {
 
         return (<div className="container">
 
-                <div className="row" id="main">
-                    <div className="col-md-4 well" id="leftPanel">
-                        <div className="row">
-                            <div className="col-md-12">
-                                <div>
+            <div className="row" id="main">
+                <div className="col-md-4 well" id="leftPanel">
+                    <div className="row">
+                        <div className="col-md-12">
+                            <div>
                                 <img src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsLnic1bYmpSEVXQLoSe4no1QtmyLbECsG48M3fZSFTiEF-uE"} alt="Texto Alternativo" className="img-circle img-thumbnail" />
-                                    <h2>Gopinath Perumal</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        				tempor incididunt ut labore et dolore magna aliqua.</p>
-                                   
+                                <form id="imgForm">
+                                    <input onChange={this.uploadImageToRemoteServer.bind(this)} id="test-input" style={{ width: "0px" }} type="file" className="custom-file-input" />
+
+                                </form>
+                                <h2>Gopinath Perumal</h2>
+                                <div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-md-8 well" id="rightPanel">
+                    <div className="row">
+                        <div className="col-md-12">
+                            <form role="form">
+                                <h2>Edit your profile.<small>It's always easy</small></h2>
+                                <div className="colorgraph">
+                                    <div className="row">
+                                        <div className="col-xs-12 col-sm-6 col-md-6">
+                                            <div className="form-group">
+                                                <input type="text" name="first_name" id="first_name" className="form-control input-lg" placeholder="First Name" tabIndex="1" />
+                                            </div>
+                                        </div>
+                                        <div className="col-xs-12 col-sm-6 col-md-6">
+                                            <div className="form-group">
+                                                <input type="text" name="last_name" id="last_name" className="form-control input-lg" placeholder="Last Name" tabIndex="2" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="form-group">
+                                        <input type="email" name="email" id="email" className="form-control input-lg" placeholder="Email Address" tabIndex="4" />
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-xs-12 col-sm-6 col-md-6">
+                                            <div className="form-group">
+                                                <input type="password" name="password" id="password" className="form-control input-lg" placeholder="Password" tabIndex="5" />
+                                            </div>
+                                        </div>
+                                        <div className="col-xs-12 col-sm-6 col-md-6">
+                                            <div className="form-group">
+                                                <input type="password" name="password_confirmation" id="password_confirmation" className="form-control input-lg" placeholder="Confirm Password" tabIndex="6" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="colorgraph">
+                                        <div className="row">
+                                            <div className="col-xs-12 col-md-6"></div>
+                                            <div className="col-xs-12 col-md-6"><a href={"#"} className="btn btn-success btn-block btn-lg">Save</a></div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </form>
+                            <div className="modal fade" id="t_and_c_m" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div className="modal-dialog modal-lg">
+                                    <div className="modal-content">
+                                        <div className="modal-header">
+                                            <button type="button" className="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                            <h4 className="modal-title" id="myModalLabel">Terms & Conditions</h4>
+                                        </div>
+                                        <div className="modal-body">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
+                                        </div>
+                                        <div className="modal-footer">
+                                            <button type="button" className="btn btn-primary" data-dismiss="modal">I Agree</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div className="col-md-8 well" id="rightPanel">
-                        <div className="row">
-                            <div className="col-md-12">
-                                <form role="form">
-                                    <h2>Edit your profile.<small>It's always easy</small></h2>
-                                    <div className="colorgraph">
-                                        <div className="row">
-                                            <div className="col-xs-12 col-sm-6 col-md-6">
-                                                <div className="form-group">
-                                                    <input type="text" name="first_name" id="first_name" className="form-control input-lg" placeholder="First Name" tabIndex="1" />
-                                                </div>
-                                            </div>
-                                            <div className="col-xs-12 col-sm-6 col-md-6">
-                                                <div className="form-group">
-                                                    <input type="text" name="last_name" id="last_name" className="form-control input-lg" placeholder="Last Name" tabIndex="2" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="form-group">
-                                            <input type="email" name="email" id="email" className="form-control input-lg" placeholder="Email Address" tabIndex="4" />
-                                        </div>
-                                        <div className="row">
-                                            <div className="col-xs-12 col-sm-6 col-md-6">
-                                                <div className="form-group">
-                                                    <input type="password" name="password" id="password" className="form-control input-lg" placeholder="Password" tabIndex="5" />
-                                                </div>
-                                            </div>
-                                            <div className="col-xs-12 col-sm-6 col-md-6">
-                                                <div className="form-group">
-                                                    <input type="password" name="password_confirmation" id="password_confirmation" className="form-control input-lg" placeholder="Confirm Password" tabIndex="6" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="colorgraph">
-                                            <div className="row">
-                                                <div className="col-xs-12 col-md-6"></div>
-                                            <div className="col-xs-12 col-md-6"><a href={"#"} className="btn btn-success btn-block btn-lg">Save</a></div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </form>
-                                <div className="modal fade" id="t_and_c_m" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                    <div className="modal-dialog modal-lg">
-                                        <div className="modal-content">
-                                            <div className="modal-header">
-                                                <button type="button" className="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                                <h4 className="modal-title" id="myModalLabel">Terms & Conditions</h4>
-                                            </div>
-                                            <div className="modal-body">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
-                                            </div>
-                                            <div className="modal-footer">
-                                                <button type="button" className="btn btn-primary" data-dismiss="modal">I Agree</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                 </div>
-                </div>
-                
-                <div><h4>Upload image to remote server</h4></div>
-                <form id="imgForm">
-                    <input type="file" onChange={this.uploadImageToRemoteServer.bind(this)} id="test-input" />
-                </form>
-
             </div>
+
+           
+            
+
+        </div>
         );
     }
 

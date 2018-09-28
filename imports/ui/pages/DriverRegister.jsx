@@ -20,7 +20,10 @@ class DriverRegister extends Component {
         };
 
     }
+    componentDidMount() {
+        
 
+    }
     handleSubmit(event) {
         event.preventDefault();
         // Find the text field via the React ref
@@ -52,6 +55,7 @@ class DriverRegister extends Component {
 
     registerDriver(e) {
         e.preventDefault();
+        //----------Check username Availability--
 
         if (this.refs.id_number.value == "") {
             alert("Empty Id Number");
@@ -83,7 +87,7 @@ class DriverRegister extends Component {
             alert("Passwords do not math!");
         } else if (!this.refs.checkInfo.checked) {
             alert("Accept that information provided are true !");
-        } else {
+        } else {            
 
             global.id_number = this.refs.id_number.value;
             global.surname = this.refs.surname.value;
@@ -98,37 +102,55 @@ class DriverRegister extends Component {
             global.username = this.refs.username.value;
             global.password = this.refs.password.value;
             //alert(global.username.value);
-            var theData = {
-                "text": "Lucky John",
-                "createdAt": new Date(),
-                "account_type": "driver",
-                "currentLatitude": "-1.9443547",
-                "currentLongitude": "30.089413699999998",
-                "accountConfirmed": "1",
-                "id_number": global.id_number,
-                "surname": global.surname,
-                "lastname": global.lastname,
-                "email": global.email,
-                "plate_number": global.plate_number,
-                "occupation": global.occupation,
-                "phonenumber": global.phonenumber,
-                "province": global.province,
-                "district": global.district,
-                "sector": global.sector,
-                "username": global.username,
-                "password": global.password,
-            };
-            //var myJSON = JSON.stringify(theData);
-            Users.insert(theData, function (error, result) {
-                if (error) {
-                    alert("User Not Created");
+
+            //--------Check Username Availability--
+            global.taken_op = "";
+            var po = Users.find({ username: global.username }, { sort: { text: 1 } }).fetch();
+            for (var key in po) {
+                if (po.hasOwnProperty(key)) {
+                    //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
+                    global.taken_op = "Okay";
                 }
-                if (result) {
-                    sessionStorage.setItem('ironji_account_type', "driver");
-                    sessionStorage.setItem('ironji_account_username', username);
-                    window.open("/driverMainPage", "_self");
-                }
-            });
+            }
+            //---------
+            if (global.taken_op == "Okay") {
+
+                alert("Username Already Taken!");
+
+            } else {
+
+                var theData = {
+                    "text": "Lucky John",
+                    "createdAt": new Date(),
+                    "account_type": "driver",
+                    "currentLatitude": "-1.9443547",
+                    "currentLongitude": "30.089413699999998",
+                    "accountConfirmed": "1",
+                    "id_number": global.id_number,
+                    "surname": global.surname,
+                    "lastname": global.lastname,
+                    "email": global.email,
+                    "plate_number": global.plate_number,
+                    "occupation": global.occupation,
+                    "phonenumber": global.phonenumber,
+                    "province": global.province,
+                    "district": global.district,
+                    "sector": global.sector,
+                    "username": global.username,
+                    "password": global.password,
+                };
+                //var myJSON = JSON.stringify(theData);
+                Users.insert(theData, function (error, result) {
+                    if (error) {
+                        alert("User Not Created");
+                    }
+                    if (result) {
+                        sessionStorage.setItem('ironji_account_type', "driver");
+                        sessionStorage.setItem('ironji_account_username', username);
+                        window.open("/driverMainPage", "_self");
+                    }
+                });
+            }
 
 
         }

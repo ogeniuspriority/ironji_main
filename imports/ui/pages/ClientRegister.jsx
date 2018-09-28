@@ -19,6 +19,9 @@ class ClientRegister extends Component {
             hideCompleted: false
         };
     }
+    componentDidMount() {
+
+    }
 
     handleSubmit(event) {
         event.preventDefault();
@@ -115,16 +118,33 @@ class ClientRegister extends Component {
                 "password": global.password,
             };
             //var myJSON = JSON.stringify(theData);
-            Users.insert(theData, function (error, result) {
-                if (error) {
-                    alert("User Not Created");
+
+            //--------Check Username Availability--
+            global.taken_op = "";
+            var po = Users.find({ username: global.username }, { sort: { text: 1 } }).fetch();
+            for (var key in po) {
+                if (po.hasOwnProperty(key)) {
+                    //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
+                    global.taken_op = "Okay";
                 }
-                if (result) {
-                    sessionStorage.setItem('ironji_account_type', "client");
-                    sessionStorage.setItem('ironji_account_username', username);
-                    window.open("/clientMainPage", "_self");
-                }
-            });
+            }
+            //---------
+            if (global.taken_op == "Okay") {
+
+                alert("Username Already Taken!");
+
+            } else {
+                Users.insert(theData, function (error, result) {
+                    if (error) {
+                        alert("User Not Created");
+                    }
+                    if (result) {
+                        sessionStorage.setItem('ironji_account_type', "client");
+                        sessionStorage.setItem('ironji_account_username', username);
+                        window.open("/clientMainPage", "_self");
+                    }
+                });
+            }
 
 
         }
