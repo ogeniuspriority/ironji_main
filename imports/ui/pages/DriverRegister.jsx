@@ -153,65 +153,65 @@ class DriverRegister extends Component {
                 <div>
                     <form action="" onSubmit={this.registerDriver.bind(this)} method="post">
                         <div className="row">
-                            <div className="col-sm">ID Number:</div>
-                            <div className="col-sm"><input type="number" ref="id_number" className="form-control" name="last_name" placeholder="" required="required" /></div>
+                            <div className="col-sm-9">ID Number:</div>
+                            <div className="col-sm-9"><input type="number" ref="id_number" className="form-control" name="last_name" placeholder="ID number" required="required" /></div>
                         </div>
-                        <div className="form-group">
-                            <div className="row">
-                                <div className="col-sm"><div className="row">
-                                    <div className="col-sm">Surname:</div>
-                                    <div className="col-sm"><input type="text" ref="surname" className="form-control" name="last_name" placeholder="Last Name" required="required" /></div>
-                                </div>   </div>
-                                <div className="col-sm"><div className="row">
-                                    <div className="col-sm">Lastname</div>
-                                    <div className="col-sm"><input type="text" ref="lastname" className="form-control" name="last_name" placeholder="Last Name" required="required" /></div>
-                                </div>   </div>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col-sm">Email:</div>
-                            <div className="col-sm"><input type="email" ref="email" className="form-control" name="last_name" placeholder="" required="required" /></div>
-                        </div>
-                        <div className="row">
-                            <div className="col-sm">Plate number:</div>
-                            <div className="col-sm"><input type="text" ref="plate_number" className="form-control" name="last_name" placeholder="" required="required" /></div>
-                        </div>
-                        <div className="row">
-                            <div className="col-sm">Occupation:</div>
-                            <div className="col-sm"><input type="text" ref="occupation" className="form-control" name="last_name" placeholder="" required="required" /></div>
-                        </div>
-                        <div className="row">
-                            <div className="col-sm">Phone number:</div>
-                            <div className="col-sm"><input type="text" ref="phonenumber" className="form-control" name="last_name" placeholder="" required="required" /></div>
-                        </div>
-                        <div className="form-group">
-                            <div className="row">
-                                <div className="col-sm"><div className="row">
-                                    <div className="col-sm">Province:</div>
-                                    <div className="col-sm"><input ref="province" type="text" className="form-control" name="last_name" placeholder="Last Name" required="required" /></div>
-                                </div>   </div>
-                                <div className="col-sm"><div className="row">
-                                    <div className="col-sm">District:</div>
-                                    <div className="col-sm"><input ref="district" type="text" className="form-control" name="last_name" placeholder="Last Name" required="required" /></div>
-                                </div>   </div>
-                                <div className="col-sm"><div className="row">
-                                    <div className="col-sm">Sector:</div>
-                                    <div className="col-sm"><input ref="sector" type="text" className="form-control" name="last_name" placeholder="Last Name" required="required" /></div>
-                                </div>   </div>
-                            </div>
+
+                        <div className="row" style={{padding:"15px"}}>
+                            <div className="col-sm-3"><div className="row">
+                                <div className="col-sm">Surname:</div>
+                                <div className="col-sm"><input type="text" ref="surname" className="form-control" name="last_name" placeholder="Surname" required="required" /></div>
+                            </div>   </div>
+                            <div className="col-sm-3"><div className="row">
+                                <div className="col-sm">Lastname</div>
+                                <div className="col-sm"><input type="text" ref="lastname" className="form-control" name="last_name" placeholder="Last Name" required="required" /></div>
+                            </div>   </div>
                         </div>
 
                         <div className="row">
-                            <div className="col-sm">Username:</div>
-                            <div className="col-sm"><input ref="username" type="text" className="form-control" name="last_name" placeholder="" required="required" /></div>
+                            <div className="col-sm-9">Email:</div>
+                            <div className="col-sm-9"><input type="email" ref="email" className="form-control" name="last_name" placeholder="Email" required="required" /></div>
                         </div>
                         <div className="row">
-                            <div className="col-sm">Password:</div>
-                            <div className="col-sm"><input ref="password" type="password" className="form-control" name="last_name" placeholder="" required="required" /></div>
+                            <div className="col-sm-9">Plate number:</div>
+                            <div className="col-sm-9"><input type="text" ref="plate_number" className="form-control" name="last_name" placeholder="Plate number" required="required" /></div>
                         </div>
                         <div className="row">
-                            <div className="col-sm">Confirm Password:</div>
-                            <div className="col-sm"><input ref="password_retype" type="password" className="form-control" name="last_name" placeholder="" required="required" /></div>
+                            <div className="col-sm-9">Occupation:</div>
+                            <div className="col-sm-9"><input type="text" ref="occupation" className="form-control" name="last_name" placeholder="Occupation" required="required" /></div>
+                        </div>
+                        <div className="row">
+                            <div className="col-sm-9">Phone number:</div>
+                            <div className="col-sm-9"><input type="text" ref="phonenumber" className="form-control" name="last_name" placeholder="Phone number" required="required" /></div>
+                        </div>
+
+                        <div className="row" style={{ padding: "15px" }}>
+                            <div className="col-sm-3"><div className="row">
+                                <div className="col-sm">Province:</div>
+                                <div className="col-sm"><input ref="province" type="text" className="form-control" name="last_name" placeholder="Province" required="required" /></div>
+                            </div>   </div>
+                            <div className="col-sm-3"><div className="row">
+                                <div className="col-sm">District:</div>
+                                <div className="col-sm"><input ref="district" type="text" className="form-control" name="last_name" placeholder="District" required="required" /></div>
+                            </div>   </div>
+                            <div className="col-sm-3"><div className="row">
+                                <div className="col-sm">Sector:</div>
+                                <div className="col-sm"><input ref="sector" type="text" className="form-control" name="last_name" placeholder="Sector" required="required" /></div>
+                            </div>   </div>
+                        </div>
+
+
+                        <div className="row">
+                            <div className="col-sm-9">Username:</div>
+                            <div className="col-sm-9"><input ref="username" type="text" className="form-control" name="last_name" placeholder="Username" required="required" /></div>
+                        </div>
+                        <div className="row">
+                            <div className="col-sm-9">Password:</div>
+                            <div className="col-sm-9"><input ref="password" type="password" className="form-control" name="last_name" placeholder="Password" required="required" /></div>
+                        </div>
+                        <div className="row">
+                            <div className="col-sm-9">Confirm Password:</div>
+                            <div className="col-sm-9"><input ref="password_retype" type="password" className="form-control" name="last_name" placeholder="Confirm Password" required="required" /></div>
                         </div>
                         <div className="row">
                             <div className="col pull-right jkly"></div>
