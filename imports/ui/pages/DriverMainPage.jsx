@@ -525,10 +525,7 @@ class DriverMainPage extends Component {
                             <img src="images/ironji.png" />
                             <div className="TrademarkAndName">Ironji<sup>TM</sup></div>
                         </div>
-                        <div><a className="link" href="http://map.ogeniuspriority.com" style={{ fontSize: "15px" }}>Search a Place</a>  </div>
-                        <div><a className="link" href="http://map.ogeniuspriority.com/markers.php" style={{ fontSize: "15px" }}>Show Users Locations From Database</a>  </div>
-                        <div><a className="link" href="http://map.ogeniuspriority.com/directions.php" style={{ fontSize: "15px" }}>Map Routes</a>  </div>
-                        <div className="theConainer theRightSide">
+                      <div className="theConainer theRightSide">
 
                         </div>
                         <div className="theConainer theRightSide">
@@ -538,7 +535,7 @@ class DriverMainPage extends Component {
                                         <tr><td><a href={'/fq_asked'}><img className="followLinks" src="images/question.png" /><br /><span>FAQs</span></a></td>
                                             <td><a href={'/Drivermessages'}><img className="followLinks" src="images/message.png" /><br /><span>Messages</span></a></td>
                                             <td><a href={'/Driverprofile'}><img className="followLinks" src="images/Mugabo Shyaka Cedric.jpg" /><br /><span>Hi, {sessionStorage.getItem('ironji_account_username')}</span></a></td>
-                                            <td><a href={'/DriverDashboard'}><img className="followLinks" src="images/dashboard.jpg" /><br /><span>Dashboard</span></a></td></tr>
+                                        <td><a href={'/DriverDashboard'}><img className="followLinks" src="images/dashboard.jpg" /><br /><span>Dashboard</span></a></td></tr>
                                     </tbody>
                                 </table>
                             </div>

@@ -45,6 +45,7 @@ class DriverMainPage extends Component {
         if (sessionStorage.length == 0) {
             window.open("/", "_self");
         }
+        console.log(sessionStorage.getItem('ironji_account_username'));
 
 
     }
@@ -92,6 +93,41 @@ class DriverMainPage extends Component {
     render() {
 
         return (<div className="container">
+            <div className="logoHome_For_DRiver">
+                <div>
+                    <table>
+                        <tbody>
+                            <tr><td><a href="/" className="headerLinks">Homepage</a></td><td><a href="/" className="headerLinks">Logout</a></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div className="container">
+                    <div className="theTopMenus">
+                        <div className="theConainer theRightSide">
+                            <img src="images/ironji.png" />
+                            <div className="TrademarkAndName">Ironji<sup>TM</sup></div>
+                        </div>
+                        <div className="theConainer theRightSide">
+
+                        </div>
+                        <div className="theConainer theRightSide">
+                            <div className="row pull-right">
+                                <table className="table table_ghh">
+                                    <tbody>
+                                        <tr><td><a href={'/fq_asked'}><img className="followLinks" src="images/question.png" /><br /><span>FAQs</span></a></td>
+                                            <td><a href={'/Drivermessages'}><img className="followLinks" src="images/message.png" /><br /><span>Messages</span></a></td>
+                                            <td><a href={'/Driverprofile'}><img className="followLinks" src="images/Mugabo Shyaka Cedric.jpg" /><br /><span>Hi, {sessionStorage.getItem('ironji_account_username')}</span></a></td>
+                                            <td><a href={'/TraderDashboard'}><img className="followLinks" src="images/dashboard.jpg" /><br /><span>Dashboard</span></a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div className="row" id="main">
                 <div className="col-md-4 well" id="leftPanel">
@@ -99,7 +135,10 @@ class DriverMainPage extends Component {
                         <div className="col-md-12">
                             <div>
                                 <img src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsLnic1bYmpSEVXQLoSe4no1QtmyLbECsG48M3fZSFTiEF-uE"} alt="Texto Alternativo" className="img-circle img-thumbnail" />
-                                <input style={{ width: "0px" }} type="file" className="custom-file-input" />
+                                <form id="imgForm">
+                                    <input onChange={this.uploadImageToRemoteServer.bind(this)} id="test-input" style={{ width: "0px" }} type="file" className="custom-file-input" />
+
+                                </form>
                                 <h2>Gopinath Perumal</h2>
                                 <div>
 
@@ -115,10 +154,13 @@ class DriverMainPage extends Component {
                             <form role="form">
                                 <h2>Edit your profile.<small>It's always easy</small></h2>
                                 <div className="colorgraph">
+                                    <div className="form-group">
+                                        <input type="number" name="idnumber" id="idnumber" className="form-control input-lg" placeholder="ID Number" tabIndex="4" />
+                                    </div>
                                     <div className="row">
                                         <div className="col-xs-12 col-sm-6 col-md-6">
                                             <div className="form-group">
-                                                <input type="text" name="first_name" id="first_name" className="form-control input-lg" placeholder="First Name" tabIndex="1" />
+                                                <input type="text" name="surname_name" id="surname_name" className="form-control input-lg" placeholder="Surname Name" tabIndex="1" />
                                             </div>
                                         </div>
                                         <div className="col-xs-12 col-sm-6 col-md-6">
@@ -130,15 +172,41 @@ class DriverMainPage extends Component {
                                     <div className="form-group">
                                         <input type="email" name="email" id="email" className="form-control input-lg" placeholder="Email Address" tabIndex="4" />
                                     </div>
+                                    <div className="form-group">
+                                        <input type="text" name="where_y_wrk_the_most" id="where_y_wrk_the_most" className="form-control input-lg" placeholder="Where you work the most?" tabIndex="4" />
+                                    </div>
+                                    <div className="form-group">
+                                        <input type="tel" name="phone_nber" id="phone_nber" className="form-control input-lg" placeholder="Phone number" tabIndex="4" />
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-xs-9 col-sm-3 col-md-3">
+                                            <div className="form-group">
+                                                <input type="text" name="province" id="province" className="form-control input-lg" placeholder="Province" tabIndex="1" />
+                                            </div>
+                                        </div>
+                                        <div className="col-xs-9 col-sm-3 col-md-3">
+                                            <div className="form-group">
+                                                <input type="text" name="district" id="district" className="form-control input-lg" placeholder="District" tabIndex="2" />
+                                            </div>
+                                        </div>
+                                        <div className="col-xs-9 col-sm-3 col-md-3">
+                                            <div className="form-group">
+                                                <input type="text" name="sector" id="district" className="form-control input-lg" placeholder="Sector" tabIndex="2" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="form-group">
+                                        <input type="text" name="username" id="username" className="form-control input-lg" placeholder="Username" tabIndex="4" />
+                                    </div>
                                     <div className="row">
                                         <div className="col-xs-12 col-sm-6 col-md-6">
                                             <div className="form-group">
-                                                <input type="password" name="password" id="password" className="form-control input-lg" placeholder="Password" tabIndex="5" />
+                                                <input type="password" name="password" id="password" className="form-control input-lg" placeholder="New Password" tabIndex="5" />
                                             </div>
                                         </div>
                                         <div className="col-xs-12 col-sm-6 col-md-6">
                                             <div className="form-group">
-                                                <input type="password" name="password_confirmation" id="password_confirmation" className="form-control input-lg" placeholder="Confirm Password" tabIndex="6" />
+                                                <input type="password" name="password_confirmation" id="password_confirmation" className="form-control input-lg" placeholder="Confirm New Password" tabIndex="6" />
                                             </div>
                                         </div>
                                     </div>
@@ -178,10 +246,8 @@ class DriverMainPage extends Component {
                 </div>
             </div>
 
-            <div><h4>Upload image to remote server</h4></div>
-            <form id="imgForm">
-                <input type="file" onChange={this.uploadImageToRemoteServer.bind(this)} id="test-input" />
-            </form>
+
+
 
         </div>
         );
