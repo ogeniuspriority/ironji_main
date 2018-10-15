@@ -29,6 +29,7 @@ import Profile from '../pages/Profile.jsx';
 import ClientProfile from '../pages/ClientProfile.jsx';
 import DriverProfile from '../pages/DriverProfile.jsx';
 import BuyerProfile from '../pages/BuyerProfile.jsx';
+import Team from '../pages/Team.jsx';
 
 
 export default class MainLayout extends React.Component {
@@ -54,7 +55,8 @@ export default class MainLayout extends React.Component {
               <Route path = '/Clientmessages' component={ClientMessages} />
               <Route path = '/Buyermessages' component={BuyerMessages} />
               <Route path = '/DriverMessages' component={DriverMessages} />
-              <Route path = '/buyerRegister' component={BuyerRegister} />
+                    <Route path='/buyerRegister' component={BuyerRegister}/> 
+                        <Route path='/team' component={Team}/>
                  <Route path = '/profile' component={Profile} />
                  <Route path = '/Clientprofile' component={ClientProfile} />
                  <Route path = '/Driverprofile' component={DriverProfile} />

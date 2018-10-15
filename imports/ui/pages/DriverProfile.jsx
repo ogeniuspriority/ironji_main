@@ -108,7 +108,7 @@ class DriverMainPage extends Component {
                             <img src="images/ironji.png" />
                             <div className="TrademarkAndName">Ironji<sup>TM</sup></div>
                         </div>
-                       <div className="theConainer theRightSide">
+                        <div className="theConainer theRightSide">
 
                         </div>
                         <div className="theConainer theRightSide">
@@ -157,6 +157,10 @@ class DriverMainPage extends Component {
                                 <div className="colorgraph">
                                     <div className="form-group">
                                         <input type="number" name="idnumber" id="idnumber" className="form-control input-lg" placeholder="ID Number" tabIndex="4" />
+                                        <a href={"#"} className="btn btn-info btn-lg">
+                                            <span className="glyphicon glyphicon-pencil"></span> Edit</a>
+                                        <a href={"#"} className="btn btn-info btn-lg">
+                                            <span className="glyphicon glyphicon-ok"></span> Ok</a>
                                     </div>
                                     <div className="row">
                                         <div className="col-xs-12 col-sm-6 col-md-6">
@@ -247,8 +251,8 @@ class DriverMainPage extends Component {
                 </div>
             </div>
 
-           
-            
+
+
 
         </div>
         );

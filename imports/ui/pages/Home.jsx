@@ -213,6 +213,9 @@ class Home extends Component {
                     </div>
                 </div>
             </div>
+            <div className="container">
+                <a href={"/Team"} style={{color:"blue",fontSize:"17px"}} >The Team behind Ironji.</a>
+            </div>
             <div className="container pull-right">
                 <div className="row pull-right theLinkdss">
                     <div className="col theTextDown">Follow us and like us on<br /><span className="minify">Dukurikire undadukunde kuri</span></div>
