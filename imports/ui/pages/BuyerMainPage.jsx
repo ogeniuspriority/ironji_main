@@ -559,18 +559,14 @@ class BuyerMainPage extends Component {
                 </div>
                 <div className="middleFeature_middle">
                     <button data-toggle="modal" data-target="#mapInTextModal" data-dismiss="modal" className="btn mapInText" style={{ float: "right", color: "red", background: "transparent", border: "1px solid red", borderTopLeftRadius: "5px" }}>Map In Text</button>
-                    <button className="btn btn-info" onClick={this.panToArcDeTriomphe.bind(this)}>Locate Yourself<br /><span className="minify">Reba aho uri</span></button>
-                    <div><h4>Analyse your shipment</h4>
+                    <button style={{display:"none"}} className="btn btn-info" onClick={this.panToArcDeTriomphe.bind(this)}>Locate Yourself<br /><span className="minify">Reba aho uri</span></button>
+                    <div>
                         <form>
-                            <div className="form-group" style={{width:"60%"}}>
-                                <label>Origin of shipment:</label>
-                                <input type="text" style={{ width: "250px" }} className="form-control" id="origin"/>
-    </div>
-                                <div className="form-group" style={{ width: "60%" }}>
-                                    <label>Destination of shipment:</label>
-                                <input type="text" style={{ width: "250px" }} className="form-control" id="destination"/>
+                            <div className="form-group" style={{ width: "60%" }}>
+                                <input type="search" style={{ width: "80%" }} placeholder="Search place here.." className="form-control" id="origin" />
                             </div>
-                            <input type="button" onClick={this.showPolyLinePath.bind(this)} className="btn-success" value="Show Potential Drivers" />
+                                
+                            <input type="button" onClick={this.showPolyLinePath.bind(this)} className="btn-success" value="Search a place" />
   </form>
                     </div>
                     <div ref="map" className="TheMapGuru map" id="map" ref="map">I should be a map!</div>
