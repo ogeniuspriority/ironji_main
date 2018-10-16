@@ -130,17 +130,17 @@ class DriverMainPage extends Component {
                 </div>
             </div>
 
-            <div className="row" id="main">
-                <div className="col-md-4 well" id="leftPanel">
+            <div className="row" id="main" >
+                <div className="col-md-3" id="leftPanel">
                     <div className="row">
-                        <div className="col-md-12">
+                        <div >
                             <div>
                                 <img src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsLnic1bYmpSEVXQLoSe4no1QtmyLbECsG48M3fZSFTiEF-uE"} alt="Texto Alternativo" className="img-circle img-thumbnail" />
                                 <form id="imgForm">
                                     <input onChange={this.uploadImageToRemoteServer.bind(this)} id="test-input" style={{ width: "0px" }} type="file" className="custom-file-input" />
 
                                 </form>
-                                <h2>Gopinath Perumal</h2>
+                                <h5>Gopinath Perumal</h5>
                                 <div>
 
                                 </div>
@@ -153,72 +153,72 @@ class DriverMainPage extends Component {
                     <div className="row">
                         <div className="col-md-12">
                             <form role="form">
-                                <h2>Edit your profile.<small>It's always easy</small></h2>
+                                
                                 <div className="colorgraph">
                                     <div className="form-group">
-                                        <input type="number" name="idnumber" id="idnumber" className="form-control input-lg" placeholder="ID Number" tabIndex="4" />
-                                        <a href={"#"} className="btn btn-info btn-lg">
+                                        <input type="number" name="idnumber" id="idnumber" className="form-control input-sm" placeholder="ID Number" tabIndex="4" />
+                                        <a href={"#"} className="btn btn-info btn-sm">
                                             <span className="glyphicon glyphicon-pencil"></span> Edit</a>
-                                        <a href={"#"} className="btn btn-info btn-lg">
+                                        <a href={"#"} className="btn btn-info btn-sm">
                                             <span className="glyphicon glyphicon-ok"></span> Ok</a>
                                     </div>
                                     <div className="row">
                                         <div className="col-xs-12 col-sm-6 col-md-6">
                                             <div className="form-group">
-                                                <input type="text" name="surname_name" id="surname_name" className="form-control input-lg" placeholder="Surname Name" tabIndex="1" />
+                                                <input type="text" name="surname_name" id="surname_name" className="form-control input-sm" placeholder="Surname Name" tabIndex="1" />
                                             </div>
                                         </div>
                                         <div className="col-xs-12 col-sm-6 col-md-6">
                                             <div className="form-group">
-                                                <input type="text" name="last_name" id="last_name" className="form-control input-lg" placeholder="Last Name" tabIndex="2" />
+                                                <input type="text" name="last_name" id="last_name" className="form-control input-sm" placeholder="Last Name" tabIndex="2" />
                                             </div>
                                         </div>
                                     </div>
                                     <div className="form-group">
-                                        <input type="email" name="email" id="email" className="form-control input-lg" placeholder="Email Address" tabIndex="4" />
+                                        <input type="email" name="email" id="email" className="form-control input-sm" placeholder="Email Address" tabIndex="4" />
                                     </div>
                                     <div className="form-group">
-                                        <input type="text" name="where_y_wrk_the_most" id="where_y_wrk_the_most" className="form-control input-lg" placeholder="Where you work the most?" tabIndex="4" />
+                                        <input type="text" name="where_y_wrk_the_most" id="where_y_wrk_the_most" className="form-control input-sm" placeholder="Where you work the most?" tabIndex="4" />
                                     </div>
                                     <div className="form-group">
-                                        <input type="tel" name="phone_nber" id="phone_nber" className="form-control input-lg" placeholder="Phone number" tabIndex="4" />
+                                        <input type="tel" name="phone_nber" id="phone_nber" className="form-control input-sm" placeholder="Phone number" tabIndex="4" />
                                     </div>
                                     <div className="row">
                                         <div className="col-xs-9 col-sm-3 col-md-3">
                                             <div className="form-group">
-                                                <input type="text" name="province" id="province" className="form-control input-lg" placeholder="Province" tabIndex="1" />
+                                                <input type="text" name="province" id="province" className="form-control input-sm" placeholder="Province" tabIndex="1" />
                                             </div>
                                         </div>
                                         <div className="col-xs-9 col-sm-3 col-md-3">
                                             <div className="form-group">
-                                                <input type="text" name="district" id="district" className="form-control input-lg" placeholder="District" tabIndex="2" />
+                                                <input type="text" name="district" id="district" className="form-control input-sm" placeholder="District" tabIndex="2" />
                                             </div>
                                         </div>
                                         <div className="col-xs-9 col-sm-3 col-md-3">
                                             <div className="form-group">
-                                                <input type="text" name="sector" id="district" className="form-control input-lg" placeholder="Sector" tabIndex="2" />
+                                                <input type="text" name="sector" id="district" className="form-control input-sm" placeholder="Sector" tabIndex="2" />
                                             </div>
                                         </div>
                                     </div>
                                     <div className="form-group">
-                                        <input type="text" name="username" id="username" className="form-control input-lg" placeholder="Username" tabIndex="4" />
+                                        <input type="text" name="username" id="username" className="form-control input-sm" placeholder="Username" tabIndex="4" />
                                     </div>
                                     <div className="row">
                                         <div className="col-xs-12 col-sm-6 col-md-6">
                                             <div className="form-group">
-                                                <input type="password" name="password" id="password" className="form-control input-lg" placeholder="New Password" tabIndex="5" />
+                                                <input type="password" name="password" id="password" className="form-control input-sm" placeholder="New Password" tabIndex="5" />
                                             </div>
                                         </div>
                                         <div className="col-xs-12 col-sm-6 col-md-6">
                                             <div className="form-group">
-                                                <input type="password" name="password_confirmation" id="password_confirmation" className="form-control input-lg" placeholder="Confirm New Password" tabIndex="6" />
+                                                <input type="password" name="password_confirmation" id="password_confirmation" className="form-control input-sm" placeholder="Confirm New Password" tabIndex="6" />
                                             </div>
                                         </div>
                                     </div>
                                     <div className="colorgraph">
                                         <div className="row">
                                             <div className="col-xs-12 col-md-6"></div>
-                                            <div className="col-xs-12 col-md-6"><a href={"#"} className="btn btn-success btn-block btn-lg">Save</a></div>
+                                            <div className="col-xs-12 col-md-6"><a href={"#"} className="btn btn-success btn-block btn-sm">Save</a></div>
                                         </div>
 
                                     </div>
