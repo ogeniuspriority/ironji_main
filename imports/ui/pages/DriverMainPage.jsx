@@ -165,6 +165,8 @@ class DriverMainPage extends Component {
 
         }
     }
+
+
     handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
         infoWindow.setContent(browserHasGeolocation ?
