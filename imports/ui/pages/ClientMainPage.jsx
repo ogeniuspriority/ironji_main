@@ -51,8 +51,10 @@ class ClientMainPage extends Component {
             conversationPop: false,
             conversationPopX: "0px",
             conversationPopY: "0px",
-
+            value: 5,
         };
+
+
 
         this.handleChange = this.handleChange.bind(this);
         this.toggleSwitch = this.toggleSwitch.bind(this);
@@ -200,6 +202,13 @@ class ClientMainPage extends Component {
 
         }
     }
+    handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+            'Error: The Geolocation service failed.' :
+            'Error: Your browser doesn\'t support geolocation.');
+        infoWindow.open(map);
+    }
 
     componentDidMount() {
 
@@ -209,61 +218,125 @@ class ClientMainPage extends Component {
             window.open("/", "_self");
         }
 
+        //----------Find User Location--
+        var checkOnce = true;
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var accuracy = position.coords.accuracy;
+                var pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
 
 
-        //console.log(Users.find().fetch());
-        var that = this;
+                //console.log("latitude:" + pos.lat + "longitude:" + pos.lng);
+                var that = this;
+                // Call getCurrentPosition with success and failure callbacks
+                // var myLatlng = new google.maps.LatLng(position.coords.longitude, position.coords.latitude);
+                this.map = new google.maps.Map(document.getElementById("map"), {
+                    center: new google.maps.LatLng(pos.lat, pos.lng),
+                    zoom: 16,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                });
+                var icon = {
+                    url: 'images/pickMeUp.png', // url
+                    scaledSize: new google.maps.Size(35, 35), // scaled size
+                    origin: new google.maps.Point(0, 0), // origin
+                    anchor: new google.maps.Point(0, 0) // anchor
+                };
+                //--------------------------
+                var TheTradersData = "";
 
-        // Call getCurrentPosition with success and failure callbacks
-        // var myLatlng = new google.maps.LatLng(position.coords.longitude, position.coords.latitude);
-        this.map = new google.maps.Map(this.refs.map, {
-            center: KLAB,
-            zoom: 16
-        });
+                fetch('https://map.ogeniuspriority.com/get_all_traders_live_locations.php')
+                    .then(response => response.json())
+                    .then(resData => {
+                        TheTradersData = JSON.parse(JSON.stringify(resData));
+                        var theMarkersOfTraders = TheTradersData["theMarkersOfTraders"];
+                        //---------------loop through location---
+                        var i = 0;
+                        var iterator = 0;
+                        for (var key in theMarkersOfTraders) {
+                            if (theMarkersOfTraders.hasOwnProperty(key)) {
+                                //alert(json[key].id);
+                                //alert(json[key].msg);
+                                //-------
+                                console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
+                                //------------Display the markers--
+                                setTimeout(function () {
 
-        var icon = {
-            url: 'images/rideWithMe.png', // url
-            scaledSize: new google.maps.Size(35, 35), // scaled size
-            origin: new google.maps.Point(0, 0), // origin
-            anchor: new google.maps.Point(0, 0) // anchor
-        };
-        //--------------------------
+                                    var infowindow = new google.maps.InfoWindow();
 
-        //        marker = new google.maps.Marker({
-        //            position: myLatlng,
-        //            title: "Ironji Location On Map!",
-        //            icon: icon
-        //        });
+                                    var idEvent = theMarkersOfTraders[iterator].markers_on_map_id;
 
-        var locations = [
-            ['Restaurent Cocobin', -1.950079, 30.091251, 4],
-            ['Klab Rwanda', -1.944676, 30.089745, 5],
-            ['Kigali Convention Center', -1.954588, 30.093912, 3],
-            ['KBC Business Center', -1.952403, 30.091481, 2],
-            ['People Club', -1.947762, 30.092957, 1]
-        ];
+                                    marker = new google.maps.Marker({
+                                        position: new google.maps.LatLng(theMarkersOfTraders[iterator].markers_on_map_lat, theMarkersOfTraders[iterator].markers_on_map_lng),
+                                        icon: icon,
+                                        draggable: false,
+                                        animation: google.maps.Animation.DROP,
+                                        title: "" + theMarkersOfTraders[iterator].place_name,
+                                        map: this.map
+                                    });
 
-        for (i = 0; i < locations.length; i++) {
-            marker = new google.maps.Marker({
-                position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                icon: icon,
-                title: "" + locations[i][0],
-                map: this.map
-            });
+                                    //-------------Locate myself--
+                                    if (checkOnce) {
+                                        var icon_ = {
+                                            url: "images/locate_me.png", // url
+                                            scaledSize: new google.maps.Size(35, 70), // scaled size
+                                            origin: new google.maps.Point(0, 0), // origin
+                                            anchor: new google.maps.Point(0, 0) // anchor
+                                        };
+                                        markers = new google.maps.Marker({
+                                            position: new google.maps.LatLng(pos.lat, pos.lng),
+                                            icon: icon_,
+                                            scaledSize: new google.maps.Size(35, 35),
+                                            title: "Me! Accuracy is" + accuracy + " meters",
+                                            map: this.map
+                                        });
+                                        //---------
+                                        markers.setMap(that.map);
+                                        checkOnce = false;
+                                    }
+                                    //-------
+                                    var descr = theMarkersOfTraders[iterator].place_description;
+                                    google.maps.event.addListener(marker, 'click', (function (marker, descr, infowindow) {
+                                        return function () {
+                                            infowindow.setContent(descr);
+                                            infowindow.open(map, marker);
+                                        };
+                                    })(marker, descr, infowindow));
 
-            google.maps.event.addListener(marker, 'click', (function (marker, i) {
-                return function (e) {
-                    var x__ = "" + e.pageX + "px";
-                    var Y__ = "" + e.pageY + "px";
-                    // alert("");
 
 
-                    that.setState({ conversationPop: true, conversationPopX: posTI[0], conversationPopY: posTI[1] });
+                                    marker.setMap(that.map);
+                                    iterator++;
+                                }, (i + 1) * 300);
+                                i++;
+                            }
+                        }
+
+                    });
+
+
+
+                var locations = [
+                    ['Restaurent Cocobin', - 1.950079, 30.091251, 4],
+                    ['Klab Rwanda', - 1.944676, 30.089745, 5],
+                    ['Kigali Convention Center', - 1.954588, 30.093912, 3],
+                    ['KBC Business Center', - 1.952403, 30.091481, 2],
+                    ['People Club', - 1.947762, 30.092957, 1]
+                ];
+                for (i = 0; i < locations.length; i++) {
+
                 }
-            })(marker, i));
-
-            marker.setMap(this.map);
+            }, function () {
+                //handleLocationError(true, infoWindow, map.getCenter());
+            }, { maximumAge: 600000, timeout: 5000, enableHighAccuracy: true });
+        } else {
+            // Browser doesn't support Geolocation
+            //handleLocationError(false, infoWindow, map.getCenter());
         }
+
+
 
 
     }
@@ -361,6 +434,11 @@ class ClientMainPage extends Component {
             startDate: date
         });
     }
+    recordValue(e) {
+        this.setState({ value: e.target.value });
+        //console.log("Changed");
+        document.getElementById("valBox").innerHTML = this.state.value + " km";
+    }
     PublishRequest() {
         var that = this;
 
@@ -448,6 +526,31 @@ class ClientMainPage extends Component {
                 </div>
             </div>
             <div className="container middleFeature">
+                <div style={{ width: "40%" }}>
+                    <div className="form-group">
+                        <label >Adjust radius in  from where you are standing:</label>
+                        <span id="valBox">6 km</span>
+                        <input className="form-control" type="range" ref="myRange" onChange={this.recordValue.bind(this)} onInput={this.recordValue.bind(this)} min="1" max="41" step="1" id="myRange" value={this.state.value} />
+                        <input className="btn-success" type="button" value="Apply changes" />
+                    </div>
+                    <div className="form-group">
+                        <label >Product type:</label>
+                        <select className="form-control" id="sel1">
+                            <option>Food</option>
+                            <option>Music instruments</option>
+                            <option>Clothes</option>
+                            <option>Artifacts</option>
+                            <option>Dry Cleaners</option>
+                            <option>Restaurents</option>
+                            <option>Electronic devices</option>
+                            <option>Movies</option>
+                        </select>
+                        <input className="btn-success" type="button" value="Apply changes" />
+                    </div>
+                    <div className="form-group">
+                        <input type="text" className="form-control" placeholder="Search a product by name" />
+                        <input className="btn-success" type="button" value="Apply changes" />
+                    </div></div>
                 <div className="middleFeature_left"><div className="middleFeature_left_in"><div ><img onClick={this.showThisProductInfo.bind(this)} className="theseImgsFood" src="images/ironji.png" /><div className="foodNames">Orange<br /><span className="minify">Ironji</span></div></div>
                     <div><img className="theseImgsFood" onClick={this.showThisProductInfo.bind(this)} src="images/pineapple.jpg" /><div className="foodNames">Pineapple<br /><span className="minify">Inanasi</span></div></div>
                     <div><img className="theseImgsFood" onClick={this.showThisProductInfo.bind(this)} src="images/banana.jpg" /><div className="foodNames">Banana<br /><span className="minify">Umuneke</span></div></div>
@@ -459,27 +562,24 @@ class ClientMainPage extends Component {
                 </div>
                 <div className="middleFeature_middle">
                     <button data-toggle="modal" data-target="#mapInTextModal" data-dismiss="modal" className="btn mapInText" style={{ float: "right", color: "red", background: "transparent", border: "1px solid red", borderTopLeftRadius: "5px" }}>Map In Text</button>
-                    <button className="btn btn-info" onClick={this.panToArcDeTriomphe.bind(this)}>Locate Yourself<br /><span className="minify">Reba aho uri</span></button>
-                    <div><h4>Analyse your shipment</h4>
+                    <button style={{ display: "none" }} className="btn btn-info" onClick={this.panToArcDeTriomphe.bind(this)}>Locate Yourself<br /><span className="minify">Reba aho uri</span></button>
+                    <div>
                         <form>
-                            <div className="form-group" style={{width:"60%"}}>
-                                <label>Origin of shipment:</label>
-                                <input type="text" style={{ width: "250px" }} className="form-control" id="origin"/>
-    </div>
-                                <div className="form-group" style={{ width: "60%" }}>
-                                    <label>Destination of shipment:</label>
-                                <input type="text" style={{ width: "250px" }} className="form-control" id="destination"/>
+                            <div className="form-group" style={{ width: "60%" }}>
+                                <input type="text" style={{ width: "80%" }} placeholder="Search a place.." className="form-control" id="origin" />
                             </div>
-                            <input type="button" onClick={this.showPolyLinePath.bind(this)} className="btn-success" value="Show Potential Drivers" />
-  </form>
+                            <input type="button" className="btn-success" value="Search a place" />
+                        </form>
                     </div>
                     <div ref="map" className="TheMapGuru map" id="map" ref="map">I should be a map!</div>
                     <div>
                         <table className='thebuttons_Driver'>
                             <tbody>
                                 <tr><td></td><td></td></tr>
-                                <tr><td><button data-toggle="modal" data-dismiss="modal" data-target="#createScheduleModal" className='btn-primary mainPageButton'>Get a driver quickly<br /><span className='minify'>Shaka umushoferi byihuse</span></button></td><td></td></tr>
-                                <tr><td><button data-toggle="modal" data-dismiss="modal" data-target="#hotDealsModal" className='btn-primary mainPageButton'>Create a hot deal<br /><span className='minify'>Tanga gahunda yihuse ku bashoferi</span></button></td><td></td></tr>
+                                <tr><td><button data-toggle="modal" data-dismiss="modal" data-target="#createScheduleModal" className='btn-primary mainPageButton'>Near By Drivers<br /><span className='minify'>Abashoferi bakwegereye</span></button></td><td></td></tr>
+                                <tr><td><button data-toggle="modal" data-dismiss="modal" data-target="#hotDealsModal" className='btn-primary mainPageButton'>Create a hot deal<br /><span className='minify'>Tanga gahunda ishyushye</span></button></td><td></td></tr>
+                                <tr><td><button data-toggle="modal" data-dismiss="modal" data-target="#hotDealsModal" className='btn-primary mainPageButton'>Publish Hot product<br /><span className='minify'>Erekana ibicuruzwa byawe biri kuri poromosiyo</span></button></td><td></td></tr>
+                                <tr><td><button data-toggle="modal" data-dismiss="modal" data-target="#hotDealsModal" className='btn-primary mainPageButton'>Drivers' schedules<br /><span className='minify'>Gahunda z'abashoferi</span></button></td><td></td></tr>
                             </tbody>
                         </table>
 
@@ -590,7 +690,7 @@ class ClientMainPage extends Component {
                         </div>
                         <div className="modal-body">
 
-                            <p>Drives mainly in Kimironko<br/><span className="minify">Akunda gukorera kimironko</span></p>
+                            <p>Drives mainly in Kimironko<br /><span className="minify">Akunda gukorera kimironko</span></p>
                             <button className="btn-default btn-primary">Talk To Them</button>
                         </div>
                         <div className="modal-footer">
