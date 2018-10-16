@@ -701,26 +701,19 @@ class DriverMainPage extends Component {
                 </div>
                 <div className="middleFeature_middle">
                     <button data-toggle="modal" data-target="#mapInTextModal" data-dismiss="modal" className="btn mapInText" style={{ float: "right", color: "red", background: "transparent", border: "1px solid red", borderTopLeftRadius: "5px" }}>Map In Text</button>
-                    <button className="btn btn-info" onClick={this.panToArcDeTriomphe.bind(this)}>Locate Yourself<br /><span className="minify">Reba aho uri</span></button>
-                    <div style={{ float: "left" }}><div><h4>Analyse your route</h4>
+                    <button className="btn btn-info" style={{display:"none"}} onClick={this.panToArcDeTriomphe.bind(this)}>Locate Yourself<br /><span className="minify">Reba aho uri</span></button>
+                    <div ><div>
                         <form>
                             <div className="form-group" style={{ width: "60%" }}>
-                                <label>Origin:</label>
-                                <input type="text" style={{ width: "250px" }} className="form-control" id="usr" />
+                                <input type="search" style={{ width: "80%" }} placeholder="Search place here.." className="form-control" id="origin" />
                             </div>
-                            <div className="form-group" style={{ width: "60%" }}>
-                                <label>Destination:</label>
-                                <input type="text" style={{ width: "250px" }} className="form-control" />
-                            </div>
-                            <input type="button" className="btn-success" value="Show Potential Clients on the path" />
+
+                            <input type="button"  className="btn-success" value="Search a place" />
+
                         </form>
                     </div>
                         <div style={{ float: "left" }}>
-                            <div className="form-group" style={{ width: "60%" }}>
-                                <label>Locate a place on the map:</label>
-                                <input type="text" style={{ width: "250px" }} className="form-control" />
-                            </div>
-                            <input type="button" className="btn-success" value="Find a place on the map" />
+                            
                         </div><div style={{ clear: "both" }}></div></div>
                     <div ref="map" className="TheMapGuru map" id="map" ref="map">I should be a map!</div>
                     <div>
@@ -729,6 +722,7 @@ class DriverMainPage extends Component {
                                 <tr><td><button className='btn-primary mainPageButton'>I'm available</button><label className="checkbox-inline"><Switch onClick={this.toggleSwitch} on={this.state.switched} /></label></td><td></td></tr>
                                 <tr><td><button data-toggle="modal" data-dismiss="modal" data-target="#createScheduleModal" className='btn-primary mainPageButton'>Create a Schedule<br /><span className='minify'>Shyira ku ngengabihe gahunda zawe z'urugendo</span></button></td><td></td></tr>
                                 <tr><td><button data-toggle="modal" data-dismiss="modal" data-target="#hotDealsModal" className='btn-primary mainPageButton'>Hot Deals<br /><span className='minify'>Reba abantu bakeneye ababatwara byihutirwa</span></button></td><td></td></tr>
+                                <tr><td><button data-toggle="modal" data-dismiss="modal" data-target="#hotDealsModal" className='btn-primary mainPageButton'>See nearby Traders<br /><span className='minify'>Reba abacuruzi bari hafi y'aho uri.</span></button></td><td></td></tr>
                             </tbody>
                         </table>
 
