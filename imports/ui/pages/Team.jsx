@@ -33,7 +33,7 @@ function Home() {
                                         <div style={{ fontWeight: "bold" }}>Email:clet@ironji.com</div>
                                     </div>
                                     <div style={{ float: "left", margin: "8px", padding: "5px", borderRadius: "8px", background: "#ffffff", width: "40%" }}>
-                                        <div className="container col-lg-5 col-md-5 col-sm-4 col-xs-12 profile">
+                                        <div >
                                             <div className="img-box">
                                                 <img src={"/images/lucky.jpg"} style={{ maxWidth: "250px", minWidth: "200px"}} className="img-responsive" />
 
