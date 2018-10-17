@@ -165,8 +165,6 @@ class DriverMainPage extends Component {
 
         }
     }
-
-
     handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
         infoWindow.setContent(browserHasGeolocation ?
@@ -278,9 +276,9 @@ class DriverMainPage extends Component {
                                 i++;
                             }
                         }
-                    
+
                     });
-               
+
 
 
                 var locations = [
@@ -527,7 +525,10 @@ class DriverMainPage extends Component {
                             <img src="images/ironji.png" />
                             <div className="TrademarkAndName">Ironji<sup>TM</sup></div>
                         </div>
-                      <div className="theConainer theRightSide">
+                        <div><a className="link" href="http://map.ogeniuspriority.com" style={{ fontSize: "15px" }}>Search a Place</a>  </div>
+                        <div><a className="link" href="http://map.ogeniuspriority.com/markers.php" style={{ fontSize: "15px" }}>Show Users Locations From Database</a>  </div>
+                        <div><a className="link" href="http://map.ogeniuspriority.com/directions.php" style={{ fontSize: "15px" }}>Map Routes</a>  </div>
+                        <div className="theConainer theRightSide">
 
                         </div>
                         <div className="theConainer theRightSide">
@@ -536,9 +537,7 @@ class DriverMainPage extends Component {
                                     <tbody>
                                         <tr><td><a href={'/fq_asked'}><img className="followLinks" src="images/question.png" /><br /><span>FAQs</span></a></td>
                                             <td><a href={'/Drivermessages'}><img className="followLinks" src="images/message.png" /><br /><span>Messages</span></a></td>
-                                            <td><a href={'/Driverprofile'}><img className="followLinks" src="images/Mugabo Shyaka Cedric.jpg" /><br /><span>Hi, {sessionStorage.getItem('ironji_account_username')}</span></a></td>
-                                            <td><a href={'/DriverDashboard'}><img className="followLinks" src="images/dashboard.jpg" /><br /><span>Dashboard</span></a></td>
-                                            <td><a href={'/driverMainPage'}><img className="followLinks" src="images/home.png" /><br /><span>Home</span></a></td></tr>
+                                            <td><a href={'/Driverprofile'}><img className="followLinks" src="images/Mugabo Shyaka Cedric.jpg" /><br /><span>Hi, {sessionStorage.getItem('ironji_account_username')}</span></a></td></tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -701,28 +700,26 @@ class DriverMainPage extends Component {
                 </div>
                 <div className="middleFeature_middle">
                     <button data-toggle="modal" data-target="#mapInTextModal" data-dismiss="modal" className="btn mapInText" style={{ float: "right", color: "red", background: "transparent", border: "1px solid red", borderTopLeftRadius: "5px" }}>Map In Text</button>
-                    <button className="btn btn-info" style={{display:"none"}} onClick={this.panToArcDeTriomphe.bind(this)}>Locate Yourself<br /><span className="minify">Reba aho uri</span></button>
-                    <div ><div>
+                    <button style={{display:"none"}} className="btn btn-info" onClick={this.panToArcDeTriomphe.bind(this)}>Locate Yourself<br /><span className="minify">Reba aho uri</span></button>
+                    <div><div>
                         <form>
                             <div className="form-group" style={{ width: "60%" }}>
-                                <input type="search" style={{ width: "80%" }} placeholder="Search place here.." className="form-control" id="origin" />
+                                <input type="text" style={{ width: "80%" }} placeholder="Search a place.." className="form-control" id="origin" />
                             </div>
-
-                            <input type="button"  className="btn-success" value="Search a place" />
-
+                            <input type="button" className="btn-success" value="Search a place" />
                         </form>
                     </div>
                         <div style={{ float: "left" }}>
-                            
-                        </div><div style={{ clear: "both" }}></div></div>
+                          </div><div style={{ clear: "both" }}></div></div>
                     <div ref="map" className="TheMapGuru map" id="map" ref="map">I should be a map!</div>
                     <div>
                         <table className='thebuttons_Driver'>
                             <tbody>
+                                
                                 <tr><td><button className='btn-primary mainPageButton'>I'm available</button><label className="checkbox-inline"><Switch onClick={this.toggleSwitch} on={this.state.switched} /></label></td><td></td></tr>
                                 <tr><td><button data-toggle="modal" data-dismiss="modal" data-target="#createScheduleModal" className='btn-primary mainPageButton'>Create a Schedule<br /><span className='minify'>Shyira ku ngengabihe gahunda zawe z'urugendo</span></button></td><td></td></tr>
                                 <tr><td><button data-toggle="modal" data-dismiss="modal" data-target="#hotDealsModal" className='btn-primary mainPageButton'>Hot Deals<br /><span className='minify'>Reba abantu bakeneye ababatwara byihutirwa</span></button></td><td></td></tr>
-                                <tr><td><button data-toggle="modal" data-dismiss="modal" data-target="#hotDealsModal" className='btn-primary mainPageButton'>See nearby Traders<br /><span className='minify'>Reba abacuruzi bari hafi y'aho uri.</span></button></td><td></td></tr>
+                                <tr><td><button data-toggle="modal" data-dismiss="modal" data-target="#hotDealsModal" className='btn-primary mainPageButton'>See Nearby Traders <br /><span className='minify'>Reba abacuruzi bakorera hafi y'aho uri</span></button></td><td></td></tr>
                             </tbody>
                         </table>
 
