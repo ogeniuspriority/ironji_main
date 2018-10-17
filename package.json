@@ -36,7 +36,6 @@
     "react-bootstrap-modal": "^4.1.1",
     "react-datepicker": "^1.5.0",
     "react-dom": "^15.6.2",
-    "react-fetch-progressbar": "0.0.3",
     "react-geolocated": "^2.4.0",
     "react-jsx": "^1.0.0",
     "react-moment": "^0.7.9",
