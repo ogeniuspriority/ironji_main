@@ -27,6 +27,7 @@
     "form-data": "^2.3.2",
     "history": "^3.0.0",
     "indexof": "0.0.1",
+    "meteor-node-stubs": "^0.4.1",
     "moment": "^2.22.2",
     "moment-timezone": "^0.5.21",
     "password-hash": "^1.2.2",
