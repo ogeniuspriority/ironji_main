@@ -24,17 +24,7 @@ import { Button, Popover, PopoverHeader, PopoverBody }
     from 'reactstrap';
 import { geolocated } from 'react-geolocated';
 //import {TrackerReact} from 'ultimatejs:tracker-react';
-import { progressBarFetch, setOriginalFetch } from 'react-fetch-progressbar';
-import { ProgressBar } from 'react-fetch-progressbar';
 
-// Let react-fetch-progressbar know what the original fetch is.
-setOriginalFetch(window.fetch);
-
-/* 
-  Now override the fetch with progressBarFetch, so the ProgressBar
-  knows how many requests are currently active.
-*/
-window.fetch = progressBarFetch;
 
 class DriverMainPage extends Component {
     constructor(props) {
@@ -149,9 +139,7 @@ class DriverMainPage extends Component {
                                 <img src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsLnic1bYmpSEVXQLoSe4no1QtmyLbECsG48M3fZSFTiEF-uE"} alt="Texto Alternativo" className="img-circle img-thumbnail" />
                                 <form id="imgForm">
                                     <input onChange={this.uploadImageToRemoteServer.bind(this)} id="test-input" style={{ width: "0px" }} type="file" className="custom-file-input" />
-                                    <ProgressBar style={{ backgroundColor: 'red', height: '10px' }} />
-
-                                </form>
+                                 </form>
                                 <h5>Gopinath Perumal</h5>
                                 <div>
 
