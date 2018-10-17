@@ -22,6 +22,7 @@ import Switch from 'react-toggle-switch';
 import "react-toggle-switch/dist/css/switch.min.css";
 import { Button, Popover, PopoverHeader, PopoverBody }
     from 'reactstrap';
+import { geolocated } from 'react-geolocated';
 //import {TrackerReact} from 'ultimatejs:tracker-react';
 const ARC_DE_TRIOMPHE_POSITION = {
     lat: 48.873947,
@@ -699,7 +700,7 @@ class DriverMainPage extends Component {
                 </div>
                 <div className="middleFeature_middle">
                     <button data-toggle="modal" data-target="#mapInTextModal" data-dismiss="modal" className="btn mapInText" style={{ float: "right", color: "red", background: "transparent", border: "1px solid red", borderTopLeftRadius: "5px" }}>Map In Text</button>
-                    <button style={{display:"none"}} className="btn btn-info" onClick={this.panToArcDeTriomphe.bind(this)}>Locate Yourself<br /><span className="minify">Reba aho uri</span></button>
+                    <button style={{ display: "none" }} className="btn btn-info" onClick={this.panToArcDeTriomphe.bind(this)}>Locate Yourself<br /><span className="minify">Reba aho uri</span></button>
                     <div><div>
                         <form>
                             <div className="form-group" style={{ width: "60%" }}>
@@ -709,12 +710,12 @@ class DriverMainPage extends Component {
                         </form>
                     </div>
                         <div style={{ float: "left" }}>
-                          </div><div style={{ clear: "both" }}></div></div>
+                        </div><div style={{ clear: "both" }}></div></div>
                     <div ref="map" className="TheMapGuru map" id="map" ref="map">I should be a map!</div>
                     <div>
                         <table className='thebuttons_Driver'>
                             <tbody>
-                                
+
                                 <tr><td><button className='btn-primary mainPageButton'>I'm available</button><label className="checkbox-inline"><Switch onClick={this.toggleSwitch} on={this.state.switched} /></label></td><td></td></tr>
                                 <tr><td><button data-toggle="modal" data-dismiss="modal" data-target="#createScheduleModal" className='btn-primary mainPageButton'>Create a Schedule<br /><span className='minify'>Shyira ku ngengabihe gahunda zawe z'urugendo</span></button></td><td></td></tr>
                                 <tr><td><button data-toggle="modal" data-dismiss="modal" data-target="#hotDealsModal" className='btn-primary mainPageButton'>Hot Deals<br /><span className='minify'>Reba abantu bakeneye ababatwara byihutirwa</span></button></td><td></td></tr>
