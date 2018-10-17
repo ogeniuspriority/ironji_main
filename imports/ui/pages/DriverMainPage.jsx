@@ -513,10 +513,10 @@ class DriverMainPage extends Component {
                                 <table className="table table_ghh">
                                     <tbody>
                                         <tr><td><a href={'/fq_asked'}><img className="followLinks" src="images/question.png" /><br /><span>FAQs</span></a></td>
-                                            <td><a href={'/Clientmessages'}><img className="followLinks" src="images/message.png" /><br /><span>Messages</span></a></td>
-                                            <td><a href={'/Clientprofile'}><img className="followLinks" src="images/trader.jpg" /><br /><span>Hi, {sessionStorage.getItem('ironji_account_username')}</span></a></td>
-                                            <td><a href={'/TraderDashboard'}><img className="followLinks" src="images/dashboard.jpg" /><br /><span>Dashboard</span></a></td>
-                                            <td><a href={'/clientMainPage'}><img className="followLinks" src="images/home.png" /><br /><span>Home</span></a></td></tr>
+                                            <td><a href={'/DriverMessages'}><img className="followLinks" src="images/message.png" /><br /><span>Messages</span></a></td>
+                                            <td><a href={'/Driverprofile'}><img className="followLinks" src="images/trader.jpg" /><br /><span>Hi, {sessionStorage.getItem('ironji_account_username')}</span></a></td>
+                                            <td><a href={'/DriverDashboard'}><img className="followLinks" src="images/dashboard.jpg" /><br /><span>Dashboard</span></a></td>
+                                            <td><a href={'/driverMainPage'}><img className="followLinks" src="images/home.png" /><br /><span>Home</span></a></td></tr>
                                     </tbody>
                                 </table>
                             </div>
