@@ -22,7 +22,6 @@ import Switch from 'react-toggle-switch';
 import "react-toggle-switch/dist/css/switch.min.css";
 import { Button, Popover, PopoverHeader, PopoverBody }
     from 'reactstrap';
-import { geolocated } from 'react-geolocated';
 //import {TrackerReact} from 'ultimatejs:tracker-react';
 const ARC_DE_TRIOMPHE_POSITION = {
     lat: 48.873947,
