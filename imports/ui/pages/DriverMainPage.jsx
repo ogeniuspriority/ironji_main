@@ -53,12 +53,11 @@ class DriverMainPage extends Component {
             conversationPopX: "0px",
             conversationPopY: "0px",
             switched: false,
-            popoverOpen: false,
             value: 5,
         };
 
 
-        this.toggle = this.toggle.bind(this);
+   
         this.handleChange = this.handleChange.bind(this);
         this.handleChangeFrom = this.handleChangeFrom.bind(this);
         this.handleChangeTo = this.handleChangeTo.bind(this);
@@ -537,11 +536,7 @@ class DriverMainPage extends Component {
         });
     }
 
-    toggle() {
-        this.setState({
-            popoverOpen: !this.state.popoverOpen
-        });
-    }
+    
     renderMySchedules() {
 
         global.the_id_op = "";
