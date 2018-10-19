@@ -35,6 +35,7 @@ class DriverMainPage extends Component {
         };
         this.ajaxObj = this.ajaxObj.bind(this);
         this.ajaxReturn = this.ajaxReturn.bind(this);
+        this.renderThisAccountAvatar = this.renderThisAccountAvatar.bind(this);
         //-----------upload image to php remote server---
     }
 
@@ -88,6 +89,31 @@ class DriverMainPage extends Component {
             return true;
         }
     }
+    renderThisAccountAvatar() {
+
+        global.the_id_op = "";
+        global.avatar_profile = "";
+        var po = Users.find({ username: "" + sessionStorage.getItem('ironji_account_username') }, { sort: { text: 1 } }).fetch();
+        for (var key in po) {
+            if (po.hasOwnProperty(key)) {
+                //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
+
+                if (po[key].account_type == "driver") {
+                    global.the_id_op = po[key]._id;
+                    global.avatar_profile = po[key].avatar_profile;
+                }
+            }
+        }
+        var url = "";
+        if (typeof global.avatar_profile === 'undefined') {
+            // variable is undefined
+            url = "/images/profile.png";
+        } else {
+            url = "https://map.ogeniuspriority.com/upload_scripts/" + global.avatar_profile;
+        }
+        global.userna_me = "";
+        return (<img className="followLinks" src={url} />);
+    }
 
 
 
@@ -119,7 +145,7 @@ class DriverMainPage extends Component {
                                     <tbody>
                                         <tr><td><a href={'/fq_asked'}><img className="followLinks" src="images/question.png" /><br /><span>FAQs</span></a></td>
                                             <td><a href={'/Drivermessages'}><img className="followLinks" src="images/message.png" /><br /><span>Messages</span></a></td>
-                                            <td><a href={'/Driverprofile'}><img className="followLinks" src="images/Mugabo Shyaka Cedric.jpg" /><br /><span>Hi, {sessionStorage.getItem('ironji_account_username')}</span></a></td>
+                                            <td><a href={'/Driverprofile'}>{this.renderThisAccountAvatar()}<br /><span>Hi, {sessionStorage.getItem('ironji_account_username')}</span></a></td>
                                             <td><a href={'/DriverDashboard'}><img className="followLinks" src="images/dashboard.jpg" /><br /><span>Dashboard</span></a></td>
                                             <td><a href={'/driverMainPage'}><img className="followLinks" src="images/home.png" /><br /><span>Home</span></a></td>
                                         </tr>

@@ -139,7 +139,7 @@ class ClientRegister extends Component {
                         alert("User Not Created");
                     }
                     if (result) {
-                        sessionStorage.setItem('ironji_account_type', "client");
+                        sessionStorage.setItem('ironji_account_type', "trader");
                         sessionStorage.setItem('ironji_account_username', username);
                         window.open("/clientMainPage", "_self");
                     }

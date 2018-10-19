@@ -138,7 +138,7 @@ class BuyerRegister extends Component {
                         alert("User Not Created");
                     }
                     if (result) {
-                        sessionStorage.setItem('ironji_account_type', "client");
+                        sessionStorage.setItem('ironji_account_type', "buyer");
                         sessionStorage.setItem('ironji_account_username', username);
                         window.open("/buyerMainPage", "_self");
                     }
