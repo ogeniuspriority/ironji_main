@@ -50,5 +50,8 @@
     "reactstrap": "^6.4.0",
     "redux": "^4.0.1",
     "redux-form": "^7.4.2"
+  },
+  "devDependencies": {
+    "babel-plugin-add-module-exports": "^1.0.0"
   }
 }
