@@ -586,7 +586,26 @@ class ClientMainPage extends Component {
                     </div>
 
                 </div>
-                <div className="middleFeature_right"></div>
+                <div className="middleFeature_right">
+                    <h2>Hot products</h2>
+                    <div>
+                        <div style={{ boxShadow: "2px 2px 4px 4px #333" }}>
+                            <h5>Shadrack</h5>
+                            <p>Come at Nyabugogo market, plot 52 and buy passion fruit at only 50 Rwf each</p>
+                        </div>
+                        <div style={{ boxShadow: "2px 2px 4px 4px #333" }}>
+                            <h5>Cedrick</h5>
+                            <p>Brand new Samsung S7 at iphone shop on only 120000Rwf</p>
+                        </div>
+                        <div style={{ boxShadow: "2px 2px 4px 4px #333" }}>
+                            <h5>Emma</h5>
+                            <p>New jeans at kabash house from Italy at only 30000Rwf a pair</p>
+                        </div>
+
+
+                    </div>
+
+                </div>
             </div>
 
 
