@@ -597,14 +597,25 @@ class DriverMainPage extends Component {
 
     renderTheHotDeals() {
         global.userna_me = "";
-        return this.props.all_the_hot_deals.map((deal) => (
-            <div style={{ borderBottom: "1px solid green", width: "300px" }}>
-                <p style={{ color: "blue", textDecoration: "underline", display: "none" }}>{Users.find({ _id: deal.client_id }, { sort: { text: 1 } }).fetch().forEach(function (myDoc) { global.userna_me = myDoc.username; })}</p>
-                <div style={{ color: "blue", textDecoration: "underline" }}>{global.userna_me}</div>
-                <div>{deal.the_hot_deal_info}</div>
-                <button className="btn btn-success">Talk to them<br /><span className="minify">Muvugishe</span></button>
-            </div>
-        ));
+
+        if (typeof this.props.all_the_hot_deals == "undefined" || !(this.props.all_the_hot_deals instanceof Array)) {
+
+            return (<div></div>);
+
+        } else {
+            return this.props.all_the_hot_deals.map((deal) => (
+                <div style={{ borderBottom: "1px solid green", width: "300px" }}>
+                    <p style={{ color: "blue", textDecoration: "underline", display: "none" }}>{Users.find({ _id: deal.client_id }, { sort: { text: 1 } }).fetch().forEach(function (myDoc) { global.userna_me = myDoc.username; })}</p>
+                    <div style={{ color: "blue", textDecoration: "underline" }}>{global.userna_me}</div>
+                    <div>{deal.the_hot_deal_info}</div>
+                    <button className="btn btn-success">Talk to them<br /><span className="minify">Muvugishe</span></button>
+                </div>
+            ));
+
+        }
+
+
+       
     }
      
 
