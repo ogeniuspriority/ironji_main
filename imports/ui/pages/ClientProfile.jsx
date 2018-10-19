@@ -69,7 +69,18 @@ class DriverMainPage extends Component {
                     var theFinalData = TheTradersData['avtar'];
                     if (TheTradersData.avtar.includes("notokay")) {
                     } else {
-                        alert(theFinalData.toString().split("~~")[0]);
+                        //alert(theFinalData.toString().split("~~")[0]);
+                        var theUpImage = theFinalData.toString().split("~~")[0];
+                        //---------------
+                        Users.update({ _id: global.the_id_op }, {
+                            $set: { avatar_profile: "" + theUpImage }
+                        }, function (err, result) {
+                            if (err) {
+
+                            } else {
+                                console.log(result);
+                            }
+                        });
                     }
 
                 });
@@ -115,7 +126,31 @@ class DriverMainPage extends Component {
         return (<img className="followLinks" src={url} />);
     }
 
+    renderThisAccountAvatarEdit() {
 
+        global.the_id_op = "";
+        global.avatar_profile = "";
+        var po = Users.find({ username: "" + sessionStorage.getItem('ironji_account_username') }, { sort: { text: 1 } }).fetch();
+        for (var key in po) {
+            if (po.hasOwnProperty(key)) {
+                //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
+
+                if (po[key].account_type == "client") {
+                    global.the_id_op = po[key]._id;
+                    global.avatar_profile = po[key].avatar_profile;
+                }
+            }
+        }
+        var url = "";
+        if (typeof global.avatar_profile === 'undefined') {
+            // variable is undefined
+            url = "/images/profile.png";
+        } else {
+            url = "https://map.ogeniuspriority.com/upload_scripts/" + global.avatar_profile;
+        }
+        global.userna_me = "";
+        return (<img style={{ maxHeight: "250px" }} className="img-circle img-thumbnail" src={url} />);
+    }
     render() {
 
         return (<div className="container">
@@ -142,8 +177,8 @@ class DriverMainPage extends Component {
                                 <table className="table table_ghh">
                                     <tbody>
                                         <tr><td><a href={'/fq_asked'}><img className="followLinks" src="images/question.png" /><br /><span>FAQs</span></a></td>
-                                            <td><a href={'/Drivermessages'}><img className="followLinks" src="images/message.png" /><br /><span>Messages</span></a></td>
-                                            <td><a href={'/Driverprofile'}>{this.renderThisAccountAvatar()}<br /><span>Hi, {sessionStorage.getItem('ironji_account_username')}</span></a></td>
+                                            <td><a href={'/Clientmessages'}><img className="followLinks" src="images/message.png" /><br /><span>Messages</span></a></td>
+                                            <td><a href={'/Clientprofile'}>{this.renderThisAccountAvatar()}<br /><span>Hi, {sessionStorage.getItem('ironji_account_username')}</span></a></td>
                                             <td><a href={'/TraderDashboard'}><img className="followLinks" src="images/dashboard.jpg" /><br /><span>Dashboard</span></a></td>
                                             <td><a href={'/clientMainPage'}><img className="followLinks" src="images/home.png" /><br /><span>Home</span></a></td>
                                         </tr>
@@ -161,8 +196,7 @@ class DriverMainPage extends Component {
                     <div className="row">
                         <div >
                             <div>
-                                <img src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsLnic1bYmpSEVXQLoSe4no1QtmyLbECsG48M3fZSFTiEF-uE"} alt="Texto Alternativo" className="img-circle img-thumbnail" />
-                                <form id="imgForm">
+                                {this.renderThisAccountAvatarEdit()} <form id="imgForm">
                                     <input onChange={this.uploadImageToRemoteServer.bind(this)} id="test-input" style={{ width: "0px" }} type="file" className="custom-file-input" />
                                 </form>
                                 <h5>Gopinath Perumal</h5>
