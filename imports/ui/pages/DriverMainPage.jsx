@@ -602,10 +602,10 @@ class DriverMainPage  extends Component {
                         <table className='thebuttons_Driver'>
                             <tbody>
                                 <tr><td></td><td></td></tr>
-                                <tr><td><button data-toggle="modal" data-dismiss="modal" data-target="#createScheduleModal" className='btn-primary mainPageButton'>Near By Drivers<br /><span className='minify'>Abashoferi bakwegereye</span></button></td><td></td></tr>
-                                <tr><td><button data-toggle="modal" data-dismiss="modal" data-target="#hotDealsModal" className='btn-primary mainPageButton'>Create a hot deal<br /><span className='minify'>Tanga gahunda ishyushye</span></button></td><td></td></tr>
-                                <tr><td><button data-toggle="modal" data-dismiss="modal" data-target="#hotDealsModal" className='btn-primary mainPageButton'>Publish Hot product<br /><span className='minify'>Erekana ibicuruzwa byawe biri kuri poromosiyo</span></button></td><td></td></tr>
-                                <tr><td><button data-toggle="modal" data-dismiss="modal" data-target="#hotDealsModal" className='btn-primary mainPageButton'>Drivers' schedules<br /><span className='minify'>Gahunda z'abashoferi</span></button></td><td></td></tr>
+                                <tr><td><button data-toggle="modal" data-dismiss="modal"  className='btn-primary mainPageButton'>See Nearby Traders<br /><span className='minify'>Abashoferi bakwegereye</span></button></td><td></td></tr>
+                                <tr><td><button data-toggle="modal" data-dismiss="modal"  className='btn-primary mainPageButton'>I'm Available<br /><span className='minify'>Tanga gahunda ishyushye</span></button></td><td></td></tr>
+                                <tr><td><button data-toggle="modal" data-dismiss="modal"  className='btn-primary mainPageButton'>Create Schedule<br /><span className='minify'>Erekana ibicuruzwa byawe biri kuri poromosiyo</span></button></td><td></td></tr>
+                                <tr><td><button data-toggle="modal" data-dismiss="modal"  className='btn-primary mainPageButton'>Hot Deals<br /><span className='minify'>Gahunda z'abashoferi</span></button></td><td></td></tr>
                             </tbody>
                         </table>
 
