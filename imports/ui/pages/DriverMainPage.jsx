@@ -52,6 +52,7 @@ class DriverMainPage  extends Component {
             conversationPopX: "0px",
             conversationPopY: "0px",
             value: 5,
+            switched: false,
         };
 
 
@@ -60,6 +61,7 @@ class DriverMainPage  extends Component {
         this.toggleSwitch = this.toggleSwitch.bind(this);
         this.renderThisAccountAvatar = this.renderThisAccountAvatar.bind(this);
     }
+   
     showPolyLinePath() {
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 16,
@@ -603,7 +605,7 @@ class DriverMainPage  extends Component {
                             <tbody>
                                 <tr><td></td><td></td></tr>
                                 <tr><td><button data-toggle="modal" data-dismiss="modal"  className='btn-primary mainPageButton'>See Nearby Traders<br /><span className='minify'>Abashoferi bakwegereye</span></button></td><td></td></tr>
-                                <tr><td><button data-toggle="modal" data-dismiss="modal"  className='btn-primary mainPageButton'>I'm Available<br /><span className='minify'>Tanga gahunda ishyushye</span></button></td><td></td></tr>
+                                <tr><td><button data-toggle="modal" data-dismiss="modal" className='btn-primary mainPageButton'>I'm Available<Switch onClick={this.toggleSwitch} on={this.state.switched} /><br /><span className='minify'>Tanga gahunda ishyushye</span></button></td><td></td></tr>
                                 <tr><td><button data-toggle="modal" data-dismiss="modal"  className='btn-primary mainPageButton'>Create Schedule<br /><span className='minify'>Erekana ibicuruzwa byawe biri kuri poromosiyo</span></button></td><td></td></tr>
                                 <tr><td><button data-toggle="modal" data-dismiss="modal"  className='btn-primary mainPageButton'>Hot Deals<br /><span className='minify'>Gahunda z'abashoferi</span></button></td><td></td></tr>
                             </tbody>
