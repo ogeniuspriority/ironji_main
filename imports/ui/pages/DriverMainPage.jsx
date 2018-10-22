@@ -469,25 +469,7 @@ class DriverMainPage  extends Component {
 
     }
 
-    renderTheClientSchedules() {
-        global.userna_me = "";
-
-        return this.props.theSchedules.map((deal) => (
-
-
-
-            <div style={{ borderBottom: "1px solid green", width: "300px" }}>
-                <p style={{ color: "blue", textDecoration: "underline", display: "none" }}>{Users.find({ _id: deal.client_id }, { sort: { text: 1 } }).fetch().forEach(function (myDoc) { global.userna_me = myDoc.username; })}</p>
-                <div style={{ color: "blue", textDecoration: "underline" }}>{global.userna_me}</div>
-                <div style={{ marginTop: "5px" }}><span >Date of schedule:</span><span className='smallANdCool'>{new Date(parseInt(deal.date_of_schedule)).getFullYear().toString() + "/" + new Date(parseInt(deal.date_of_schedule)).getMonth().toString() + "/" + new Date(parseInt(deal.date_of_schedule)).getDay().toString()}</span></div>
-                <div style={{ marginTop: "5px" }}><span>Origin:</span><span className='smallANdCool'>{deal.origin}</span></div>
-                <div style={{ marginTop: "5px" }}><span>Destination:</span><span className='smallANdCool'>{deal.destination}</span></div>
-                <div style={{ marginTop: "5px" }}><span >Time of departure:</span><span className='smallANdCool'>{new Date(parseInt(deal.time_from)).getHours().toString() + ":" + new Date(parseInt(deal.time_to)).getMinutes().toString()}</span></div>
-                <div style={{ marginTop: "5px" }}><span>Time of arrival:</span><span className='smallANdCool'>{new Date(parseInt(deal.time_to)).getHours().toString() + ":" + new Date(parseInt(deal.time_from)).getMinutes().toString()}</span></div>
-                <button className="btn btn-success">Talk to them<br /><span className="minify">Muvugishe</span></button>
-            </div>
-        ));
-    }
+  
     renderThisAccountAvatar() {
 
         global.the_id_op = "";
@@ -791,28 +773,7 @@ class DriverMainPage  extends Component {
                     </div>
                 </div>
             </div>
-            <div className="modal fade" id="createScheduleModal" role="dialog" aria-labelledby="ecreateScheduleModalLabel" aria-hidden="true">
-                <div className="modal-dialog" role="document">
-                    <div className="modal-content" >
-                        <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">Driver's schedules<br /><span className="minify">Gahunda z'abashoferi </span></h5>
-                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div className="modal-body" style={{ height: "340px", overflow: "scroll" }}>
-                            <div>
-                                {this.renderTheClientSchedules()}
-                            </div>
-
-                        </div>
-                        <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Close<br /><span className='minify'>Funga</span></button>
-                            <button type="button" className="btn btn-primary">Save<br /><span className='minify'>Byemeze</span></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
             <div className="modal fade" id="hotDealsModal" role="dialog" aria-labelledby="hotDealsModalModalLabel" aria-hidden="true">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
@@ -892,7 +853,9 @@ class DriverMainPage  extends Component {
 export default withTracker(() => {
     return {
         tasks: Users.find({}).fetch(),
-        theSchedules: Drivers_schedules.find({}, { sort: { createdAt: -1 } }).fetch(),
+        users_i_am_in: Users.find({ username: sessionStorage.getItem('ironji_account_username') }, { sort: { text: 1 } }).fetch(),
+        all_the_hot_deals: Client_hot_deals.find({}, { sort: { createdAt: - 1 } }).fetch(),
+        MySchedules: Drivers_schedules.find({ client_id: global.the_id_op }, { sort: { createdAt: - 1 } }).fetch(),
     };
 })(DriverMainPage );
 
