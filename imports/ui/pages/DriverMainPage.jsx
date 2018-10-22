@@ -479,6 +479,80 @@ class DriverMainPage  extends Component {
             </div>
         ));
     }
+    renderMySchedules() {
+
+        global.the_id_op = "";
+        var po = Users.find({ username: "" + sessionStorage.getItem('ironji_account_username') }, { sort: { text: 1 } }).fetch();
+        for (var key in po) {
+            if (po.hasOwnProperty(key)) {
+                //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
+
+                if (po[key].account_type == "driver") {
+                    global.the_id_op = po[key]._id;
+                }
+            }
+        }
+        global.userna_me = "";
+        return Drivers_schedules.find({}, { sort: { createdAt: - 1 } }).fetch().map((deal) => (
+            <div style={{ borderBottom: "1px solid green", width: "300px" }}>
+                <p style={{ color: "blue", textDecoration: "underline", display: "none" }}>{Users.find({ _id: deal.client_id }, { sort: { text: 1 } }).fetch().forEach(function (myDoc) { global.userna_me = myDoc.username; })}</p>
+                <div style={{ color: "blue", textDecoration: "underline" }}>{global.userna_me}</div>
+                <div style={{ marginTop: "5px" }}><span >Date of schedule:</span><span className='smallANdCool'>{new Date(parseInt(deal.date_of_schedule)).getFullYear().toString() + "/" + new Date(parseInt(deal.date_of_schedule)).getMonth().toString() + "/" + new Date(parseInt(deal.date_of_schedule)).getDay().toString()}</span></div>
+                <div style={{ marginTop: "5px" }}><span>Origin:</span><span className='smallANdCool'>{deal.origin}</span></div>
+                <div style={{ marginTop: "5px" }}><span>Destination:</span><span className='smallANdCool'>{deal.destination}</span></div>
+                <div style={{ marginTop: "5px" }}><span >Time of departure:</span><span className='smallANdCool'>{new Date(parseInt(deal.time_from)).getHours().toString() + ":" + new Date(parseInt(deal.time_to)).getMinutes().toString()}</span></div>
+                <div style={{ marginTop: "5px" }}><span>Time of arrival:</span><span className='smallANdCool'>{new Date(parseInt(deal.time_to)).getHours().toString() + ":" + new Date(parseInt(deal.time_from)).getMinutes().toString()}</span></div>
+                <button className="btn btn-success">Delete This<br /><span className="minify">Siba Iyi ngiyi</span></button>
+            </div>
+        ));
+    }
+    CreateMySchedule(e) {
+        e.preventDefault();
+        //alert(this.state.startDate+"-"+this.state.startDateFrom+"--"+this.state.startDateTo);
+        if (this.refs.time_to.value != "" && this.refs.time_from.value != "" && this.refs.date_of_schedule.value != "" && this.refs.destination.value != "" && this.refs.origin.value != "") {
+            global.time_to = "" + this.state.startDateTo;
+            global.time_from = "" + this.state.startDateFrom;
+            global.date_of_schedule = "" + this.state.startDate;
+            global.destination = this.refs.destination.value;
+            global.origin = this.refs.origin.value;
+            global.the_id = "";
+            var po = Users.find({ username: sessionStorage.getItem('ironji_account_username') }, { sort: { text: 1 } }).fetch();
+            for (var key in po) {
+                if (po.hasOwnProperty(key)) {
+                    //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
+
+                    if (po[key].account_type == "driver") {
+                        global.the_id = po[key]._id;
+                    }
+                }
+            }
+
+            //alert(global.the_id);
+            var theData = {
+                "time_to": global.time_to,
+                "createdAt": new Date(),
+                "time_from": global.time_from,
+                "date_of_schedule": global.date_of_schedule,
+                "destination": global.destination,
+                "origin": global.origin,
+                "client_id": global.the_id,
+            };
+            Drivers_schedules.insert(theData, function (error, result) {
+                if (error) {
+                    alert("User Not Created");
+                }
+                if (result) {
+                    alert("Driver Scheduled Saved!");
+                    window.open("/driverMainPage", "_self");
+                }
+            });
+        } else {
+            alert("Empty fields!");
+        }
+
+
+    }
+
   
     renderThisAccountAvatar() {
 
@@ -598,7 +672,7 @@ class DriverMainPage  extends Component {
                                 <tr><td></td><td></td></tr>
                                 <tr><td><button data-toggle="modal" data-dismiss="modal"  className='btn-primary mainPageButton'>See Nearby Traders<br /><span className='minify'>Abashoferi bakwegereye</span></button></td><td></td></tr>
                                 <tr><td><button data-toggle="modal" data-dismiss="modal" className='btn-primary mainPageButton'>I'm Available<Switch onClick={this.toggleSwitch} on={this.state.switched} /><br /><span className='minify'>Tanga gahunda ishyushye</span></button></td><td></td></tr>
-                                <tr><td><button data-toggle="modal" data-dismiss="modal"  className='btn-primary mainPageButton'>Create Schedule<br /><span className='minify'>Erekana ibicuruzwa byawe biri kuri poromosiyo</span></button></td><td></td></tr>
+                                <tr><td><button data-toggle="modal" data-dismiss="modal" data-target="#createScheduleModal"  className='btn-primary mainPageButton'>Create Schedule<br /><span className='minify'>Erekana ibicuruzwa byawe biri kuri poromosiyo</span></button></td><td></td></tr>
                                 <tr><td><button data-toggle="modal" data-dismiss="modal" data-target="#hotDealsModal"  className='btn-primary mainPageButton'>Hot Deals<br /><span className='minify'>Gahunda z'abashoferi</span></button></td><td></td></tr>
                             </tbody>
                         </table>
@@ -665,6 +739,88 @@ class DriverMainPage  extends Component {
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-dismiss="modal">Close<br /><span className='minify'>Funga</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="modal fade" id="createScheduleModal" role="dialog" aria-labelledby="ecreateScheduleModalLabel" aria-hidden="true">
+                <div className="modal-dialog" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLabel">My Schedule<br /><span className="minify">Gahunda zanjye</span></h5>
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div className="modal-body">
+                            <div className="container">
+                                <div className="row">
+                                    <div className="col-sm" style={{ width: "23%", float: "left" }}>
+                                        <form>
+                                            <div className="form-group">
+                                                <label >Origin:</label>
+                                                <input type="text" ref="origin" style={{ width: "80%", fontSize: "14px" }} className="form-control" aria-describedby="" placeholder="" />
+
+                                            </div>
+                                            <div className="form-group">
+                                                <label >Destination:</label>
+                                                <input ref="destination" type="text" style={{ width: "80%", fontSize: "14px" }} className="form-control" aria-describedby="" placeholder="" />
+
+                                            </div>
+                                            <div className="form-group">
+                                                <label >Date</label>
+                                                <span className="input-group-addon">
+                                                    <table>
+                                                        <tbody>
+                                                            <tr><td>
+                                                                <DatePicker ref="date_of_schedule" className="form-control" id="scheduleDateDay"
+                                                                    selected={this.state.startDate}
+                                                                    onChange={this.handleChange}
+                                                                /></td><td>
+                                                                    <span onClick={this.state.startDate} className="glyphicon glyphicon-calendar"></span></td></tr>
+                                                        </tbody>
+                                                    </table>
+                                                </span>
+
+                                            </div>
+                                            <div className="form-group">
+                                                <label >Local Time<br /><span className="minify">Isaha yo mu gihugu</span></label>
+                                                <div className="form-group">
+                                                    <label >From</label>
+                                                    <table><tbody><tr><td>
+                                                        <TimePicker id="aada" onChange={this.handleChangeFrom} ref="time_from" style={{ width: 100 }}
+                                                            showSecond={showSecond}
+                                                        />
+                                                    </td><td> <span className="input-group-addon">
+                                                        <span className="glyphicon glyphicon-time"></span>
+                                                    </span></td></tr></tbody></table>
+
+                                                </div>
+                                                <div className="form-group">
+                                                    <label >To</label>
+                                                    <table><tbody><tr><td><TimePicker id="f88" onChange={this.handleChangeTo} ref="time_to" style={{ width: 100 }}
+                                                        showSecond={showSecond}
+                                                    /></td><td> <span className="input-group-addon">
+                                                        <span className="glyphicon glyphicon-time"></span>
+                                                    </span></td></tr></tbody></table>
+                                                </div>
+                                            </div>
+                                            <button onClick={this.CreateMySchedule.bind(this)} type="submit" className="btn btn-primary">Add this schedule<br /><span className='minify'>Emeza iyi gahunda</span></button>
+                                        </form>
+                                    </div>
+                                    <div className="col-sm" style={{ width: "23%", float: "left", borderLeft: "1px solid black" }}>
+                                        <h4>My Schedules<br /><span className="minify">Gahunda zanjye</span></h4>
+                                        <div style={{ overflowY: "scroll", height: "350px" }}>
+                                            {this.renderMySchedules()}
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Close<br /><span className='minify'>Funga</span></button>
+                            <button type="button" className="btn btn-primary">Save<br /><span className='minify'>Byemeze</span></button>
                         </div>
                     </div>
                 </div>
