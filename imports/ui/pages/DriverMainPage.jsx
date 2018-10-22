@@ -468,7 +468,17 @@ class DriverMainPage  extends Component {
         });
 
     }
-
+    renderTheHotDeals() {
+        global.userna_me = "";
+        return this.props.all_the_hot_deals.map((deal) => (
+            <div style={{ borderBottom: "1px solid green", width: "300px" }}>
+                <p style={{ color: "blue", textDecoration: "underline", display: "none" }}>{Users.find({ _id: deal.client_id }, { sort: { text: 1 } }).fetch().forEach(function (myDoc) { global.userna_me = myDoc.username; })}</p>
+                <div style={{ color: "blue", textDecoration: "underline" }}>{global.userna_me}</div>
+                <div>{deal.the_hot_deal_info}</div>
+                <button className="btn btn-success">Talk to them<br /><span className="minify">Muvugishe</span></button>
+            </div>
+        ));
+    }
   
     renderThisAccountAvatar() {
 
@@ -589,7 +599,7 @@ class DriverMainPage  extends Component {
                                 <tr><td><button data-toggle="modal" data-dismiss="modal"  className='btn-primary mainPageButton'>See Nearby Traders<br /><span className='minify'>Abashoferi bakwegereye</span></button></td><td></td></tr>
                                 <tr><td><button data-toggle="modal" data-dismiss="modal" className='btn-primary mainPageButton'>I'm Available<Switch onClick={this.toggleSwitch} on={this.state.switched} /><br /><span className='minify'>Tanga gahunda ishyushye</span></button></td><td></td></tr>
                                 <tr><td><button data-toggle="modal" data-dismiss="modal"  className='btn-primary mainPageButton'>Create Schedule<br /><span className='minify'>Erekana ibicuruzwa byawe biri kuri poromosiyo</span></button></td><td></td></tr>
-                                <tr><td><button data-toggle="modal" data-dismiss="modal"  className='btn-primary mainPageButton'>Hot Deals<br /><span className='minify'>Gahunda z'abashoferi</span></button></td><td></td></tr>
+                                <tr><td><button data-toggle="modal" data-dismiss="modal" data-target="#hotDealsModal"  className='btn-primary mainPageButton'>Hot Deals<br /><span className='minify'>Gahunda z'abashoferi</span></button></td><td></td></tr>
                             </tbody>
                         </table>
 
@@ -778,21 +788,23 @@ class DriverMainPage  extends Component {
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">Give a Hot Deal<br /><span className="minify">Tanga Gahunda</span></h5>
+                            <h5 className="modal-title" id="exampleModalLabel">Hot Deals<br /><span className="minify">Reba abakeneye ababatwara byihutirwa</span></h5>
                             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div className="modal-body">
-                            <div className="container" >
-                                <textarea className="form-control" ref='the_deal_text' style={{ height: "80px", width: "240px" }}></textarea>
-                                <button onClick={this.PublishRequest.bind(this)}>Publish your request<br /><span className='minify'>Tanga icyifuzo</span></button>
+                            <div className="container" style={{ overflow: "scroll", height: "350px", width: "350px" }}>
+                                <div>
+                                    {this.renderTheHotDeals()}
 
 
+                                </div>
                             </div>
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-dismiss="modal">Close<br /><span className='minify'>Funga</span></button>
+                            <button type="button" className="btn btn-primary">Save<br /><span className='minify'>Byemeze</span></button>
                         </div>
                     </div>
                 </div>
