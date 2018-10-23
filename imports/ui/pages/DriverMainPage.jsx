@@ -62,8 +62,24 @@ class DriverMainPage  extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.toggleSwitch = this.toggleSwitch.bind(this);
         this.renderThisAccountAvatar = this.renderThisAccountAvatar.bind(this);
+        this.handleChangeFrom = this.handleChangeFrom.bind(this);
+        this.handleChangeTo = this.handleChangeTo.bind(this);
     }
-   
+    handleChange(date) {
+        this.setState({
+            startDate: date
+        });
+    }
+    handleChangeFrom(date) {
+        this.setState({
+            startDateFrom: date
+        });
+    }
+    handleChangeTo(date) {
+        this.setState({
+            startDateTo: date
+        });
+    }
     showPolyLinePath() {
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 16,
