@@ -53,7 +53,7 @@ class DriverMainPage  extends Component {
             conversationPopY: "0px",
             value: 5,
             switched: false,
-            startDate: null,
+            startDate: "",
 
         };
 
