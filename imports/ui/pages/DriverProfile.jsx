@@ -104,6 +104,24 @@ class DriverMainPage extends Component {
 
         global.the_id_op = "";
         global.avatar_profile = "";
+
+        global.text = "";
+        global.createdAt = "";
+        global.account_type = "";
+        global.currentLatitude = "";
+        global.currentLongitude = "";
+        global.accountConfirmed = "";
+        global.id_number = "";
+        global.surname = "";
+        global.lastname = "";
+        global.email = "";
+        global.plate_number = "";
+        global.occupation = "";
+        global.phonenumber = "";
+        global.province = "";
+        global.district = "";
+        global.sector = "";
+        global.username = "";
         var po = Users.find({ username: "" + sessionStorage.getItem('ironji_account_username') }, { sort: { text: 1 } }).fetch();
         for (var key in po) {
             if (po.hasOwnProperty(key)) {
@@ -112,6 +130,23 @@ class DriverMainPage extends Component {
                 if (po[key].account_type == "driver") {
                     global.the_id_op = po[key]._id;
                     global.avatar_profile = po[key].avatar_profile;
+                    global.text = po[key].text;
+                    global.createdAt = po[key].createdAt;
+                    global.account_type = po[key].account_type;
+                    global.currentLatitude = po[key].currentLatitude;
+                    global.currentLongitude = po[key].currentLongitude;
+                    global.accountConfirmed = po[key].accountConfirmed;
+                    global.id_number = po[key].id_number;
+                    global.surname = po[key].surname;
+                    global.lastname = po[key].lastname;
+                    global.email = po[key].email;
+                    global.plate_number = po[key].plate_number;
+                    global.occupation = po[key].occupation;
+                    global.phonenumber = po[key].phonenumber;
+                    global.province = po[key].province;
+                    global.district = po[key].district;
+                    global.sector = po[key].sector;
+                    global.username = po[key].username;
                 }
             }
         }
@@ -202,7 +237,7 @@ class DriverMainPage extends Component {
                                 <form id="imgForm">
                                     <input onChange={this.uploadImageToRemoteServer.bind(this)} id="test-input" style={{ width: "0px" }} type="file" className="custom-file-input" />
                                 </form>
-                                <h5>Gopinath Perumal</h5>
+                                <h5>{global.surname} {global.lastname}<br/>{global.username}</h5>
                                 <div>
 
                                 </div>
