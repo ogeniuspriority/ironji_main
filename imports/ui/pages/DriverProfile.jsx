@@ -237,7 +237,7 @@ class DriverMainPage extends Component {
                                 <form id="imgForm">
                                     <input onChange={this.uploadImageToRemoteServer.bind(this)} id="test-input" style={{ width: "0px" }} type="file" className="custom-file-input" />
                                 </form>
-                                <h5>{global.surname} {global.lastname}<br/>{global.username}</h5>
+                                <h3>{global.surname} {global.lastname}<br/>{global.username}</h3>
                                 <div>
 
                                 </div>
