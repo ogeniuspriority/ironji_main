@@ -562,7 +562,7 @@ class DriverMainPage  extends Component {
             myDate = myDate.split("/");
             const newDate = myDate[1] + "/" + myDate[2] + "/" + myDate[0];
             global.date_of_schedule = new Date(newDate).getTime();
-            alert(global.date_of_schedule);
+            //alert(global.date_of_schedule);
             var theData = {
                 "time_to": global.time_to,
                 "createdAt": new Date(),
