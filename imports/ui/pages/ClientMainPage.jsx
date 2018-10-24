@@ -477,7 +477,7 @@ class ClientMainPage extends Component {
             <div style={{ borderBottom: "1px solid green", width: "300px" }}>
                 <p style={{ color: "blue", textDecoration: "underline", display: "none" }}>{Users.find({ _id: deal.client_id }, { sort: { text: 1 } }).fetch().forEach(function (myDoc) { global.userna_me = myDoc.username; })}</p>
                 <div style={{ color: "blue", textDecoration: "underline" }}>{global.userna_me}</div>
-                <div style={{ marginTop: "5px" }}><span >Date of schedule:</span><span className='smallANdCool'>{new Date(parseInt(deal.date_of_schedule)).getFullYear().toString() + "/" + new Date(parseInt(deal.date_of_schedule)).getMonth().toString() + "/" + new Date(parseInt(deal.date_of_schedule)).getDay().toString()}</span></div>
+                <div style={{ marginTop: "5px" }}><span >Date of schedule:</span><span className='smallANdCool'>{deal.date_of_schedule}</span></div>
                 <div style={{ marginTop: "5px" }}><span>Origin:</span><span className='smallANdCool'>{deal.origin}</span></div>
                 <div style={{ marginTop: "5px" }}><span>Destination:</span><span className='smallANdCool'>{deal.destination}</span></div>
                 <div style={{ marginTop: "5px" }}><span >Time of departure:</span><span className='smallANdCool'>{new Date(parseInt(deal.time_from)).getHours().toString() + ":" + new Date(parseInt(deal.time_to)).getMinutes().toString()}</span></div>

@@ -37,7 +37,7 @@ const KLAB = {
 var marker;
 var historicalOverlay;
 const posTI = ["300px", "300px"];
-
+const FORMAT = 'M/D/YYYY';
 
 
 
@@ -56,6 +56,7 @@ class DriverMainPage  extends Component {
             value: 5,
             switched: false,
             startDate: "",
+            selectedDay: undefined,
 
         };
 
@@ -66,6 +67,7 @@ class DriverMainPage  extends Component {
         this.renderThisAccountAvatar = this.renderThisAccountAvatar.bind(this);
         this.handleChangeFrom = this.handleChangeFrom.bind(this);
         this.handleChangeTo = this.handleChangeTo.bind(this);
+        this.handleDayClick = this.handleDayClick.bind(this);
     }
     handleChange(date) {
         this.setState({
@@ -517,12 +519,13 @@ class DriverMainPage  extends Component {
             <div style={{ borderBottom: "1px solid green", width: "300px" }}>
                 <p style={{ color: "blue", textDecoration: "underline", display: "none" }}>{Users.find({ _id: deal.client_id }, { sort: { text: 1 } }).fetch().forEach(function (myDoc) { global.userna_me = myDoc.username; })}</p>
                 <div style={{ color: "blue", textDecoration: "underline" }}>{global.userna_me}</div>
-                <div style={{ marginTop: "5px" }}><span >Date of schedule:</span><span className='smallANdCool'>{new Date(parseInt(deal.date_of_schedule)).getFullYear().toString() + "/" + new Date(parseInt(deal.date_of_schedule)).getMonth().toString() + "/" + new Date(parseInt(deal.date_of_schedule)).getDay().toString()}</span></div>
+                <div style={{ marginTop: "5px" }}><span >Date of schedule:</span><span className='smallANdCool'>{deal.date_of_schedule}</span></div>
                 <div style={{ marginTop: "5px" }}><span>Origin:</span><span className='smallANdCool'>{deal.origin}</span></div>
                 <div style={{ marginTop: "5px" }}><span>Destination:</span><span className='smallANdCool'>{deal.destination}</span></div>
                 <div style={{ marginTop: "5px" }}><span >Time of departure:</span><span className='smallANdCool'>{new Date(parseInt(deal.time_from)).getHours().toString() + ":" + new Date(parseInt(deal.time_to)).getMinutes().toString()}</span></div>
                 <div style={{ marginTop: "5px" }}><span>Time of arrival:</span><span className='smallANdCool'>{new Date(parseInt(deal.time_to)).getHours().toString() + ":" + new Date(parseInt(deal.time_from)).getMinutes().toString()}</span></div>
                 <button className="btn btn-success">Delete This<br /><span className="minify">Siba Iyi ngiyi</span></button>
+                {console.log(deal.date_of_schedule)}
             </div>
         ));
     }
@@ -532,7 +535,8 @@ class DriverMainPage  extends Component {
         if (this.refs.time_to.value != "" && this.refs.time_from.value != "" && this.refs.date_of_schedule.value != "" && this.refs.destination.value != "" && this.refs.origin.value != "") {
             global.time_to = "" + this.state.startDateTo;
             global.time_from = "" + this.state.startDateFrom;
-            global.date_of_schedule = "" + this.state.startDate;
+            //global.date_of_schedule = "" + this.state.selectedDay;
+            //alert(global.date_of_schedule);
             global.destination = this.refs.destination.value;
             global.origin = this.refs.origin.value;
             global.the_id = "";
@@ -547,12 +551,23 @@ class DriverMainPage  extends Component {
                 }
             }
 
-            //alert(global.the_id);
+            
+            const d = new Date(global.date_of_schedule);
+            const curr_date = d.getDate();
+            const curr_month = d.getMonth() + 1; //Months are zero based
+            const curr_year = d.getFullYear();
+            const the_formatted_date = curr_year + "/" + curr_month + "/" + curr_date;
+            //----------
+            let myDate = the_formatted_date;
+            myDate = myDate.split("/");
+            const newDate = myDate[1] + "/" + myDate[2] + "/" + myDate[0];
+            global.date_of_schedule = new Date(newDate).getTime();
+            alert(global.date_of_schedule);
             var theData = {
                 "time_to": global.time_to,
                 "createdAt": new Date(),
                 "time_from": global.time_from,
-                "date_of_schedule": global.date_of_schedule,
+                "date_of_schedule": the_formatted_date,
                 "destination": global.destination,
                 "origin": global.origin,
                 "client_id": global.the_id,
@@ -599,7 +614,11 @@ class DriverMainPage  extends Component {
         global.userna_me = "";
         return (<img className="followLinks" src={url} />);
     }
-
+    handleDayClick(day) {
+        this.setState({ selectedDay: day });
+        global.date_of_schedule = "" + day;
+        console.log(day);
+    }
 
     render() {
 
@@ -845,7 +864,7 @@ class DriverMainPage  extends Component {
                                                     <table>
                                                         <tbody>
                                                             <tr><td>
-                                                                <DayPickerInput className="form-control" ref="date_of_schedule" onDayChange={day => console.log(day)} />
+                                                                <DayPickerInput selectedDays={this.state.selectedDay} onDayChange={this.handleDayClick} placeholder="YYYY/MM/DD" format={FORMAT} className="form-control" ref="date_of_schedule"  />
                                                                
                                                             </td><td>
                                                                     <span className="glyphicon glyphicon-time"></span>
