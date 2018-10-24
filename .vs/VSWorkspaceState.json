@@ -1,12 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\client",
     "\\imports",
     "\\imports\\ui",
     "\\imports\\ui\\pages",
     "\\public"
   ],
-  "SelectedNode": "\\imports\\ui\\pages\\DriverMainPage.jsx",
+  "SelectedNode": "\\imports\\ui\\pages\\ClientMainPage.jsx",
   "PreviewInSolutionExplorer": false
 }

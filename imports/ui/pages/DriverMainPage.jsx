@@ -813,6 +813,81 @@ class DriverMainPage  extends Component {
 
                 </div>
             </div>
+            <div className="modal fade" id="createScheduleModal" role="dialog" aria-labelledby="ecreateScheduleModalLabel" aria-hidden="true">
+                <div className="modal-dialog" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLabel">My Schedule<br /><span className="minify">Gahunda zanjye</span></h5>
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div className="modal-body">
+                            <div className="container">
+                                <div className="row">
+                                    <div className="col-sm" style={{ width: "23%", float: "left" }}>
+                                        <form>
+                                            <div className="form-group">
+                                                <label >Origin:</label>
+                                                <input type="text" ref="origin" style={{ width: "80%", fontSize: "14px" }} className="form-control" aria-describedby="" placeholder="" />
+
+                                            </div>
+                                            <div className="form-group">
+                                                <label >Destination:</label>
+                                                <input ref="destination" type="text" style={{ width: "80%", fontSize: "14px" }} className="form-control" aria-describedby="" placeholder="" />
+
+                                            </div>
+                                            <div className="form-group">
+                                                <label >Date</label>
+                                                <span className="input-group-addon">
+                                                    <table>
+                                                        <tbody>
+                                                            <tr><td>
+                                                                </td><td>
+                                                                    </td></tr>
+                                                        </tbody>
+                                                    </table>
+                                                </span>
+
+                                            </div>
+                                            <div className="form-group">
+                                                <label >Local Time<br /><span className="minify">Isaha yo mu gihugu</span></label>
+                                                <div className="form-group">
+                                                    <label >From</label>
+                                                    <table><tbody><tr><td>
+                                                      
+                                                    </td><td> <span className="input-group-addon">
+                                                        <span className="glyphicon glyphicon-time"></span>
+                                                    </span></td></tr></tbody></table>
+
+                                                </div>
+                                                <div className="form-group">
+                                                    <label >To</label>
+                                                    <table><tbody><tr><td></td><td> <span className="input-group-addon">
+                                                        <span className="glyphicon glyphicon-time"></span>
+                                                    </span></td></tr></tbody></table>
+                                                </div>
+                                            </div>
+                                            <button onClick={this.CreateMySchedule.bind(this)} type="submit" className="btn btn-primary">Add this schedule<br /><span className='minify'>Emeza iyi gahunda</span></button>
+                                        </form>
+                                    </div>
+                                    <div className="col-sm" style={{ width: "23%", float: "left", borderLeft: "1px solid black" }}>
+                                        <h4>My Schedules<br /><span className="minify">Gahunda zanjye</span></h4>
+                                        <div style={{ overflowY: "scroll", height: "350px" }}>
+                                            {this.renderMySchedules()}
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Close<br /><span className='minify'>Funga</span></button>
+                            <button type="button" className="btn btn-primary">Save<br /><span className='minify'>Byemeze</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div id="ConversationModal" style={{ width: '150px', height: '150px', left: this.state.conversationPopX, top: this.state.conversationPopY, position: 'fixed' }} className={this.state.conversationPop ? "productModal" : "productModal_INVisible"}>
                 <div className="modal-dialog">
                     <div className="modal-content">
