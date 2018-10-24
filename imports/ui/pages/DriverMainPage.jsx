@@ -53,7 +53,7 @@ class DriverMainPage  extends Component {
             conversationPopY: "0px",
             value: 5,
             switched: false,
-            startDate:null,startDateTo:null,
+            startDate: null,
 
         };
 
@@ -843,7 +843,13 @@ class DriverMainPage  extends Component {
                                                     <table>
                                                         <tbody>
                                                             <tr><td>
-                                                                </td><td>
+                                                                <DatePicker
+                                                                    selected={this.state.startDate}
+                                                                    onChange={this.handleChange}
+                                                                />
+                                                                <input className="form-control" ref="date_of_schedule" type="text" placeholder="Date of schedule" />
+                                                            </td><td>
+                                                                    <span className="glyphicon glyphicon-time"></span>
                                                                     </td></tr>
                                                         </tbody>
                                                     </table>
@@ -855,7 +861,7 @@ class DriverMainPage  extends Component {
                                                 <div className="form-group">
                                                     <label >From</label>
                                                     <table><tbody><tr><td>
-                                                      
+                                                        <input className="form-control" ref="time_from" type="text" placeholder="Time of departure" />
                                                     </td><td> <span className="input-group-addon">
                                                         <span className="glyphicon glyphicon-time"></span>
                                                     </span></td></tr></tbody></table>
@@ -863,7 +869,9 @@ class DriverMainPage  extends Component {
                                                 </div>
                                                 <div className="form-group">
                                                     <label >To</label>
-                                                    <table><tbody><tr><td></td><td> <span className="input-group-addon">
+                                                    <table><tbody><tr><td>
+                                                        <input className="form-control" ref="time_to" type="text" placeholder="Time of arrival" />
+                                                    </td><td> <span className="input-group-addon">
                                                         <span className="glyphicon glyphicon-time"></span>
                                                     </span></td></tr></tbody></table>
                                                 </div>
