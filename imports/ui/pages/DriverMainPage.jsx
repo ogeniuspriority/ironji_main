@@ -15,6 +15,8 @@ import 'rc-time-picker/assets/index.css';
 import { render } from 'react-dom';
 import Switch from 'react-toggle-switch';
 import "react-toggle-switch/dist/css/switch.min.css";
+import DayPickerInput from 'react-day-picker/DayPickerInput';
+import 'react-day-picker/lib/style.css';
 
 //import {TrackerReact} from 'ultimatejs:tracker-react';
 const ARC_DE_TRIOMPHE_POSITION = {
@@ -843,10 +845,7 @@ class DriverMainPage  extends Component {
                                                     <table>
                                                         <tbody>
                                                             <tr><td>
-                                                                <DatePicker
-                                                                    selected={this.state.startDate}
-                                                                    onChange={this.handleChange}
-                                                                />
+                                                                <DayPickerInput onDayChange={day => console.log(day)} />
                                                                 <input className="form-control" ref="date_of_schedule" type="text" placeholder="Date of schedule" />
                                                             </td><td>
                                                                     <span className="glyphicon glyphicon-time"></span>
