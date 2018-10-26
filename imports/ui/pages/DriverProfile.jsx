@@ -31,6 +31,22 @@ class DriverMainPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            id_number_enabled: false,
+            surname_enabled: false,
+            lastname_enabled: false,
+            email_enabled: false,
+            plate_number_enabled: false,
+            occupation_enabled: false,
+            phonenumber_enabled: false,
+            occupation_enabled: false,
+            plate_number_enabled: false,
+            province_enabled: false,
+            district_enabled: false,
+            sector_enabled: false,
+            username_enabled: false,
+            password_enabled: false,
+            password_retype_enabled: false,
+
 
         };
         this.ajaxObj = this.ajaxObj.bind(this);
@@ -253,66 +269,68 @@ class DriverMainPage extends Component {
                                 
                                 <div className="colorgraph">
                                     <div className="form-group">
-                                        <input type="number" value={global.id_number} name="idnumber" id="idnumber" className="form-control input-sm" placeholder="ID Number" tabIndex="4" />
+                                        <input disabled={(this.state.id_number_enabled) ? "" : "disabled"} type="number" value={global.id_number} name="idnumber" id="idnumber" className="form-control input-sm" placeholder="ID Number" tabIndex="4" />
                                     </div>
                                     <div className="row">
                                         <div className="col-xs-12 col-sm-6 col-md-6">
                                             <div className="form-group">
-                                                <input value={global.surname} type="text" name="surname_name" id="surname_name" className="form-control input-sm" placeholder="Surname Name" tabIndex="1" />
+                                                <input disabled={(this.state.surname_enabled) ? "" : "disabled"} value={global.surname} type="text" name="surname_name" id="surname_name" className="form-control input-sm" placeholder="Surname Name" tabIndex="1" />
                                             </div>
                                         </div>
                                         <div className="col-xs-12 col-sm-6 col-md-6">
                                             <div className="form-group">
-                                                <input type="text" value={global.lastname} name="last_name" id="last_name" className="form-control input-sm" placeholder="Last Name" tabIndex="2" />
+                                                <input disabled={(this.state.lastname_enabled) ? "" : "disabled"} type="text" value={global.lastname} name="last_name" id="last_name" className="form-control input-sm" placeholder="Last Name" tabIndex="2" />
                                             </div>
                                         </div>
                                     </div>
                                     <div className="form-group">
-                                        <input value={global.email} type="email" name="email" id="email" className="form-control input-sm" placeholder="Email Address" tabIndex="4" />
+                                        <input disabled={(this.state.email_enabled) ? "" : "disabled"} value={global.email} type="email" name="email" id="email" className="form-control input-sm" placeholder="Email Address" tabIndex="4" />
                                     </div>
                                     <div className="form-group">
-                                        <input value={global.occupation} type="text" name="where_y_wrk_the_most" id="where_y_wrk_the_most" className="form-control input-sm" placeholder="Where you work the most?" tabIndex="4" />
+                                        <input disabled={(this.state.plate_number_enabled) ? "" : "disabled"} value={global.plate_number} type="text" name="email" id="email" className="form-control input-sm" placeholder="License Plate Number" tabIndex="4" />
                                     </div>
                                     <div className="form-group">
-                                        <input value={global.phonenumber} type="tel" name="phone_nber" id="phone_nber" className="form-control input-sm" placeholder="Phone number" tabIndex="4" />
+                                        <input disabled={(this.state.occupation_enabled) ? "" : "disabled"} value={global.occupation} type="text" name="where_y_wrk_the_most" id="where_y_wrk_the_most" className="form-control input-sm" placeholder="Where you work the most?" tabIndex="4" />
+                                    </div>
+                                    <div className="form-group">
+                                        <input disabled={(this.state.phonenumber_enabled) ? "" : "disabled"} value={global.phonenumber} type="tel" name="phone_nber" id="phone_nber" className="form-control input-sm" placeholder="Phone number" tabIndex="4" />
                                     </div>
                                     <div className="row">
                                         <div className="col-xs-9 col-sm-3 col-md-3">
                                             <div className="form-group">
-                                                <input value={global.province} type="text" name="province" id="province" className="form-control input-sm" placeholder="Province" tabIndex="1" />
+                                                <input disabled={(this.state.province_enabled) ? "" : "disabled"} value={global.province} type="text" name="province" id="province" className="form-control input-sm" placeholder="Province" tabIndex="1" />
                                             </div>
                                         </div>
                                         <div className="col-xs-9 col-sm-3 col-md-3">
                                             <div className="form-group">
-                                                <input value={global.district} type="text" name="district" id="district" className="form-control input-sm" placeholder="District" tabIndex="2" />
+                                                <input disabled={(this.state.district_enabled) ? "" : "disabled"} value={global.district} type="text" name="district" id="district" className="form-control input-sm" placeholder="District" tabIndex="2" />
                                             </div>
                                         </div>
                                         <div className="col-xs-9 col-sm-3 col-md-3">
                                             <div className="form-group">
-                                                <input value={global.sector} type="text" name="sector" id="district" className="form-control input-sm" placeholder="Sector" tabIndex="2" />
+                                                <input disabled={(this.state.sector_enabled) ? "" : "disabled"} value={global.sector} type="text" name="sector" id="district" className="form-control input-sm" placeholder="Sector" tabIndex="2" />
                                             </div>
                                         </div>
                                     </div>
                                     <div className="form-group">
-                                        <input value={global.username} type="text" name="username" id="username" className="form-control input-sm" placeholder="Username" tabIndex="4" />
+                                        <input disabled={(this.state.username_enabled) ? "" : "disabled"} value={global.username} type="text" name="username" id="username" className="form-control input-sm" placeholder="Username" tabIndex="4" />
                                     </div>
                                     <div className="row">
                                         <div className="col-xs-12 col-sm-6 col-md-6">
                                             <div className="form-group">
-                                                <input type="password" name="password" id="password" className="form-control input-sm" placeholder="New Password" tabIndex="5" />
+                                                <input disabled={(this.state.password_enabled) ? "" : "disabled"} type="password" name="password" id="password" className="form-control input-sm" placeholder="New Password" tabIndex="5" />
                                             </div>
                                         </div>
                                         <div className="col-xs-12 col-sm-6 col-md-6">
                                             <div className="form-group">
-                                                <input type="password" name="password_confirmation" id="password_confirmation" className="form-control input-sm" placeholder="Confirm New Password" tabIndex="6" />
+                                                <input disabled={(this.state.password_retype_enabled) ? "" : "disabled"} type="password" name="password_confirmation" id="password_confirmation" className="form-control input-sm" placeholder="Confirm New Password" tabIndex="6" />
                                             </div>
                                         </div>
                                     </div>
                                     <div className="colorgraph">
                                         <div className="row">
                                             <div className="col-xs-12 col-md-6"></div>
-                                            <div className="col-xs-12 col-md-6"><a href={"#"} className="btn btn-success btn-block btn-sm">Save</a></div>
-                                        </div>
+                                       </div>
 
                                     </div>
                                 </div>
