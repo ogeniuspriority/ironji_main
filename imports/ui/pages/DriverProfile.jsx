@@ -253,52 +253,48 @@ class DriverMainPage extends Component {
                                 
                                 <div className="colorgraph">
                                     <div className="form-group">
-                                        <input type="number" name="idnumber" id="idnumber" className="form-control input-sm" placeholder="ID Number" tabIndex="4" />
-                                        <a href={"#"} className="btn btn-info btn-sm">
-                                            <span className="glyphicon glyphicon-pencil"></span> Edit</a>
-                                        <a href={"#"} className="btn btn-info btn-sm">
-                                            <span className="glyphicon glyphicon-ok"></span> Ok</a>
+                                        <input type="number" value={global.id_number} name="idnumber" id="idnumber" className="form-control input-sm" placeholder="ID Number" tabIndex="4" />
                                     </div>
                                     <div className="row">
                                         <div className="col-xs-12 col-sm-6 col-md-6">
                                             <div className="form-group">
-                                                <input type="text" name="surname_name" id="surname_name" className="form-control input-sm" placeholder="Surname Name" tabIndex="1" />
+                                                <input value={global.surname} type="text" name="surname_name" id="surname_name" className="form-control input-sm" placeholder="Surname Name" tabIndex="1" />
                                             </div>
                                         </div>
                                         <div className="col-xs-12 col-sm-6 col-md-6">
                                             <div className="form-group">
-                                                <input type="text" name="last_name" id="last_name" className="form-control input-sm" placeholder="Last Name" tabIndex="2" />
+                                                <input type="text" value={global.lastname} name="last_name" id="last_name" className="form-control input-sm" placeholder="Last Name" tabIndex="2" />
                                             </div>
                                         </div>
                                     </div>
                                     <div className="form-group">
-                                        <input type="email" name="email" id="email" className="form-control input-sm" placeholder="Email Address" tabIndex="4" />
+                                        <input value={global.email} type="email" name="email" id="email" className="form-control input-sm" placeholder="Email Address" tabIndex="4" />
                                     </div>
                                     <div className="form-group">
-                                        <input type="text" name="where_y_wrk_the_most" id="where_y_wrk_the_most" className="form-control input-sm" placeholder="Where you work the most?" tabIndex="4" />
+                                        <input value={global.occupation} type="text" name="where_y_wrk_the_most" id="where_y_wrk_the_most" className="form-control input-sm" placeholder="Where you work the most?" tabIndex="4" />
                                     </div>
                                     <div className="form-group">
-                                        <input type="tel" name="phone_nber" id="phone_nber" className="form-control input-sm" placeholder="Phone number" tabIndex="4" />
+                                        <input value={global.phonenumber} type="tel" name="phone_nber" id="phone_nber" className="form-control input-sm" placeholder="Phone number" tabIndex="4" />
                                     </div>
                                     <div className="row">
                                         <div className="col-xs-9 col-sm-3 col-md-3">
                                             <div className="form-group">
-                                                <input type="text" name="province" id="province" className="form-control input-sm" placeholder="Province" tabIndex="1" />
+                                                <input value={global.province} type="text" name="province" id="province" className="form-control input-sm" placeholder="Province" tabIndex="1" />
                                             </div>
                                         </div>
                                         <div className="col-xs-9 col-sm-3 col-md-3">
                                             <div className="form-group">
-                                                <input type="text" name="district" id="district" className="form-control input-sm" placeholder="District" tabIndex="2" />
+                                                <input value={global.district} type="text" name="district" id="district" className="form-control input-sm" placeholder="District" tabIndex="2" />
                                             </div>
                                         </div>
                                         <div className="col-xs-9 col-sm-3 col-md-3">
                                             <div className="form-group">
-                                                <input type="text" name="sector" id="district" className="form-control input-sm" placeholder="Sector" tabIndex="2" />
+                                                <input value={global.sector} type="text" name="sector" id="district" className="form-control input-sm" placeholder="Sector" tabIndex="2" />
                                             </div>
                                         </div>
                                     </div>
                                     <div className="form-group">
-                                        <input type="text" name="username" id="username" className="form-control input-sm" placeholder="Username" tabIndex="4" />
+                                        <input value={global.username} type="text" name="username" id="username" className="form-control input-sm" placeholder="Username" tabIndex="4" />
                                     </div>
                                     <div className="row">
                                         <div className="col-xs-12 col-sm-6 col-md-6">
