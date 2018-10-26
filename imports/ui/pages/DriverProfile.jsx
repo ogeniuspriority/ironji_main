@@ -69,6 +69,12 @@ class DriverMainPage extends Component {
 
     }
 
+    editThisProfileIntel(inputAffil) {
+
+        alert(inputAffil);
+
+    }
+
     uploadImageToRemoteServer() {
         var file = document.getElementById("test-input").files[0];
         if (!file) {
@@ -268,61 +274,61 @@ class DriverMainPage extends Component {
                             <form role="form">
                                 
                                 <div className="colorgraph">
-                                    <div className="form-group">
-                                        <input disabled={(this.state.id_number_enabled) ? "" : "disabled"} type="number" value={global.id_number} name="idnumber" id="idnumber" className="form-control input-sm" placeholder="ID Number" tabIndex="4" />
+                                    <div onClick={this.editThisProfileIntel.bind(this,"idnber")} className="form-group">
+                                        <input  disabled={(this.state.id_number_enabled) ? "" : "disabled"} type="number" value={global.id_number} name="idnumber" id="idnumber" className="form-control input-sm" placeholder="ID Number" tabIndex="4" />
                                     </div>
                                     <div className="row">
                                         <div className="col-xs-12 col-sm-6 col-md-6">
-                                            <div className="form-group">
+                                            <div onClick={this.editThisProfileIntel.bind(this, "surname")} className="form-group">
                                                 <input disabled={(this.state.surname_enabled) ? "" : "disabled"} value={global.surname} type="text" name="surname_name" id="surname_name" className="form-control input-sm" placeholder="Surname Name" tabIndex="1" />
                                             </div>
                                         </div>
                                         <div className="col-xs-12 col-sm-6 col-md-6">
-                                            <div className="form-group">
+                                            <div onClick={this.editThisProfileIntel.bind(this, "lastname")} className="form-group">
                                                 <input disabled={(this.state.lastname_enabled) ? "" : "disabled"} type="text" value={global.lastname} name="last_name" id="last_name" className="form-control input-sm" placeholder="Last Name" tabIndex="2" />
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="form-group">
+                                    <div onClick={this.editThisProfileIntel.bind(this, "email")} className="form-group">
                                         <input disabled={(this.state.email_enabled) ? "" : "disabled"} value={global.email} type="email" name="email" id="email" className="form-control input-sm" placeholder="Email Address" tabIndex="4" />
                                     </div>
-                                    <div className="form-group">
+                                    <div onClick={this.editThisProfileIntel.bind(this, "plate_number")} className="form-group">
                                         <input disabled={(this.state.plate_number_enabled) ? "" : "disabled"} value={global.plate_number} type="text" name="email" id="email" className="form-control input-sm" placeholder="License Plate Number" tabIndex="4" />
                                     </div>
-                                    <div className="form-group">
+                                    <div onClick={this.editThisProfileIntel.bind(this, "occupation")} className="form-group">
                                         <input disabled={(this.state.occupation_enabled) ? "" : "disabled"} value={global.occupation} type="text" name="where_y_wrk_the_most" id="where_y_wrk_the_most" className="form-control input-sm" placeholder="Where you work the most?" tabIndex="4" />
                                     </div>
-                                    <div className="form-group">
+                                    <div onClick={this.editThisProfileIntel.bind(this, "phonenumber")} className="form-group">
                                         <input disabled={(this.state.phonenumber_enabled) ? "" : "disabled"} value={global.phonenumber} type="tel" name="phone_nber" id="phone_nber" className="form-control input-sm" placeholder="Phone number" tabIndex="4" />
                                     </div>
                                     <div className="row">
                                         <div className="col-xs-9 col-sm-3 col-md-3">
-                                            <div className="form-group">
+                                            <div onClick={this.editThisProfileIntel.bind(this, "phonenumber")} className="form-group">
                                                 <input disabled={(this.state.province_enabled) ? "" : "disabled"} value={global.province} type="text" name="province" id="province" className="form-control input-sm" placeholder="Province" tabIndex="1" />
                                             </div>
                                         </div>
-                                        <div className="col-xs-9 col-sm-3 col-md-3">
+                                        <div onClick={this.editThisProfileIntel.bind(this, "district")} className="col-xs-9 col-sm-3 col-md-3">
                                             <div className="form-group">
                                                 <input disabled={(this.state.district_enabled) ? "" : "disabled"} value={global.district} type="text" name="district" id="district" className="form-control input-sm" placeholder="District" tabIndex="2" />
                                             </div>
                                         </div>
-                                        <div className="col-xs-9 col-sm-3 col-md-3">
+                                        <div onClick={this.editThisProfileIntel.bind(this, "sector")} className="col-xs-9 col-sm-3 col-md-3">
                                             <div className="form-group">
                                                 <input disabled={(this.state.sector_enabled) ? "" : "disabled"} value={global.sector} type="text" name="sector" id="district" className="form-control input-sm" placeholder="Sector" tabIndex="2" />
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="form-group">
+                                    <div onClick={this.editThisProfileIntel.bind(this, "username")} className="form-group">
                                         <input disabled={(this.state.username_enabled) ? "" : "disabled"} value={global.username} type="text" name="username" id="username" className="form-control input-sm" placeholder="Username" tabIndex="4" />
                                     </div>
                                     <div className="row">
                                         <div className="col-xs-12 col-sm-6 col-md-6">
-                                            <div className="form-group">
+                                            <div onClick={this.editThisProfileIntel.bind(this, "password")} className="form-group">
                                                 <input disabled={(this.state.password_enabled) ? "" : "disabled"} type="password" name="password" id="password" className="form-control input-sm" placeholder="New Password" tabIndex="5" />
                                             </div>
                                         </div>
                                         <div className="col-xs-12 col-sm-6 col-md-6">
-                                            <div className="form-group">
+                                            <div onClick={this.editThisProfileIntel.bind(this, "password_retype")} className="form-group">
                                                 <input disabled={(this.state.password_retype_enabled) ? "" : "disabled"} type="password" name="password_confirmation" id="password_confirmation" className="form-control input-sm" placeholder="Confirm New Password" tabIndex="6" />
                                             </div>
                                         </div>
