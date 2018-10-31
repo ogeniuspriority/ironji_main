@@ -287,7 +287,7 @@ class DriverMainPage extends Component {
             <div className="edit_profile_inputs_skin" id="edit_this_profile_input_data" style={{ display: "none", position: "absolute", zIndex: 1200, background: "white", borderRadius: "5px" }}>
 
                 <div style={{ padding: "5px", marginTop: "20px" }}>
-                    <h4>Info About Input</h4>
+                    <div>Info About Input</div>
                     <div>
                         sfjih9fbs fmsofhbs fsj0hfbs fosjhbf
                     </div>
@@ -325,7 +325,7 @@ class DriverMainPage extends Component {
                                             <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "idnber_edit")} className="btn-danger" style={{ float: "right" }} />
                                             
                                             <div>
-                                                <h4>Edit id number</h4>
+                                                <div>Edit id number</div>
                                                 <input type="number" value={global.id_number} name="idnumber_new" id="idnumber_new" className="form-control input-sm" placeholder="ID Number" tabIndex="4" />
                                                 <input className="btn-primary" type="button" value="Update" />
                                             </div>
@@ -341,7 +341,7 @@ class DriverMainPage extends Component {
                                                 <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "surname_edit")} className="btn-danger" style={{ float: "right" }} />
                                                 
                                                 <div>
-                                                    <h4>Edit Surname</h4>
+                                                    <div>Edit Surname</div>
                                                     <input type="text" value={global.surname} name="surname_name_new" id="surname_name_new" className="form-control input-sm" placeholder="Surname Name" tabIndex="4" />
                                                     <input type="button" className="btn-primary" value="Update" />
                                                 </div>
@@ -355,7 +355,7 @@ class DriverMainPage extends Component {
                                                 <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "lastname_edit")} className="btn-danger" style={{ float: "right" }} />
                                                 
                                                 <div>
-                                                    <h4>Edit Lastname</h4>
+                                                    <div>Edit Lastname</div>
                                                     <input type="text" value={global.lastname} name="last_name_new" id="last_name_new" className="form-control input-sm" placeholder="Last Name" tabIndex="4" />
                                                     <input type="button" className="btn-primary" value="Update" />
                                                 </div>
@@ -368,7 +368,7 @@ class DriverMainPage extends Component {
                                             <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "email_edit")} className="btn-danger" style={{ float: "right" }} />
                                             
                                             <div>
-                                                <h4>Edit Email</h4>
+                                                <div>Edit Email</div>
                                                 <input  value={global.email} type="email" name="email_new" className="form-control input-sm" placeholder="Email Address" tabIndex="4" />
                                                 <input type="button" className="btn-primary" value="Update" />
                                             </div>
@@ -380,7 +380,7 @@ class DriverMainPage extends Component {
                                             <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "plate_number_edit")} className="btn-danger" style={{ float: "right" }} />
                                             
                                             <div>
-                                                <h4>Edit Plate number</h4>
+                                                <div>Edit Plate number</div>
                                                 <input  value={global.plate_number} type="text" name="email_new" id="email_new" className="form-control input-sm" placeholder="License Plate Number" tabIndex="4" />
                                                 <input type="button" className="btn-primary" value="Update" />
                                             </div>
@@ -392,7 +392,7 @@ class DriverMainPage extends Component {
                                             <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "occupation_edit")} className="btn-danger" style={{ float: "right" }} />
                                             
                                             <div>
-                                                <h4>Edit occupation</h4>
+                                                <div>Edit occupation</div>
                                                 <input  value={global.occupation} type="text" name="where_y_wrk_the_most_new" id="where_y_wrk_the_most_new" className="form-control input-sm" placeholder="Where you work the most?" tabIndex="4" />
                                                 <input type="button" className="btn-primary" value="Update" />
                                             </div>
@@ -404,7 +404,7 @@ class DriverMainPage extends Component {
                                             <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "phonenumber_edit")} className="btn-danger" style={{ float: "right" }} />
                                             
                                             <div>
-                                                <h4>Edit phone number</h4>
+                                                <div>Edit phone number</div>
                                                 <input  value={global.phonenumber} type="tel" name="phone_nber_new" id="phone_nber_new" className="form-control input-sm" placeholder="Phone number" tabIndex="4" />
                                                 <input type="button" className="btn-primary" value="Update" />
                                             </div>
@@ -419,7 +419,7 @@ class DriverMainPage extends Component {
                                                     <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "province_edit")} className="btn-danger" style={{ float: "right" }} />
                                                     
                                                     <div>
-                                                        <h4>Edit province</h4>
+                                                        <div>Edit province</div>
                                                         <input  value={global.province} type="text" name="province_new" id="province_new" className="form-control input-sm" placeholder="Province" tabIndex="1" />
                                                         <input type="button" className="btn-primary" value="Update" />
                                                     </div>
@@ -433,7 +433,7 @@ class DriverMainPage extends Component {
                                                     <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "district_edit")} className="btn-danger" style={{ float: "right" }} />
                                                     
                                                     <div>
-                                                        <h4>Edit district</h4>
+                                                        <div>Edit district</div>
                                                         <input  value={global.district} type="text" name="district_new" className="form-control input-sm" placeholder="District" tabIndex="2" />
                                                         <input type="button" className="btn-primary" value="Update" />
                                                     </div>
@@ -448,7 +448,7 @@ class DriverMainPage extends Component {
                                                     <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "sector_edit")} className="btn-danger" style={{ float: "right" }} />
                                                   
                                                     <div>
-                                                        <h4>Edit sector</h4>
+                                                        <div>Edit sector</div>
                                                         <input  value={global.sector} type="text" name="sector" id="district_new" className="form-control input-sm" placeholder="Sector" tabIndex="2" />
                                                         <input type="button" className="btn-primary" value="Update" />
                                                     </div>
@@ -462,7 +462,7 @@ class DriverMainPage extends Component {
                                             <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "username_edit")} className="btn-danger" style={{ float: "right" }} />
                                            
                                             <div>
-                                                <h4>Edit username</h4>
+                                                <div>Edit username</div>
                                                 <input  value={global.username} type="text" name="username_new" id="username_new" className="form-control input-sm" placeholder="Username" tabIndex="4" />
                                                 <input type="button" className="btn-primary" value="Update" />
                                             </div>
@@ -477,7 +477,7 @@ class DriverMainPage extends Component {
                                                     <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "password_edit")} className="btn-danger" style={{ float: "right" }} />
                                                     
                                                     <div>
-                                                        <h4>Edit password</h4>
+                                                        <div>Edit password</div>
                                                         <input  type="password" name="password" id="password_new" className="form-control input-sm" placeholder="New Password" tabIndex="5" />
                                                         <input type="button" className="btn-primary" value="Update" />
                                                     </div>
@@ -491,7 +491,7 @@ class DriverMainPage extends Component {
                                                     <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "password_retype_edit")} className="btn-danger" style={{ float: "right" }} />
                                                     
                                                     <div>
-                                                        <h4>Edit Retype password</h4>
+                                                        <div>Edit Retype password</div>
                                                         <input  type="password" name="password_confirmation" id="password_confirmation_new" className="form-control input-sm" placeholder="Confirm New Password" tabIndex="6" />
                                                         <input type="button" className="btn-primary" value="Update" />
                                                     </div>
@@ -512,7 +512,7 @@ class DriverMainPage extends Component {
                                     <div className="modal-content">
                                         <div className="modal-header">
                                             <button type="button" className="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                            <h4 className="modal-title" id="myModalLabel">Terms & Conditions</h4>
+                                            <div className="modal-title" id="myModalLabel">Terms & Conditions</div>
                                         </div>
                                         <div className="modal-body">
                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
