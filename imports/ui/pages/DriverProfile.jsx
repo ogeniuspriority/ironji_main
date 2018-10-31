@@ -323,8 +323,9 @@ class DriverMainPage extends Component {
                                         <input disabled={(this.state.id_number_enabled) ? "" : "disabled"} type="number" value={global.id_number} name="idnumber" id="idnumber" className="form-control input-sm" placeholder="ID Number" tabIndex="4" />
                                         <div className="theeditorsProfile" id="idnber_edit">
                                             <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "idnber_edit")} className="btn-danger" style={{ float: "right" }} />
-                                            <h4>Edit id number</h4>
+                                            
                                             <div>
+                                                <h4>Edit id number</h4>
                                                 <input type="number" value={global.id_number} name="idnumber_new" id="idnumber_new" className="form-control input-sm" placeholder="ID Number" tabIndex="4" />
                                                 <input className="btn-primary" type="button" value="Update" />
                                             </div>
@@ -338,8 +339,9 @@ class DriverMainPage extends Component {
                                             </div>
                                             <div className="theeditorsProfile" id="surname_edit">
                                                 <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "surname_edit")} className="btn-danger" style={{ float: "right" }} />
-                                                <h4>Edit Surname</h4>
+                                                
                                                 <div>
+                                                    <h4>Edit Surname</h4>
                                                     <input type="text" value={global.surname} name="surname_name_new" id="surname_name_new" className="form-control input-sm" placeholder="Surname Name" tabIndex="4" />
                                                     <input type="button" className="btn-primary" value="Update" />
                                                 </div>
@@ -351,8 +353,9 @@ class DriverMainPage extends Component {
                                             </div>
                                             <div className="theeditorsProfile" id="lastname_edit">
                                                 <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "lastname_edit")} className="btn-danger" style={{ float: "right" }} />
-                                                <h4>Edit Lastname</h4>
+                                                
                                                 <div>
+                                                    <h4>Edit Lastname</h4>
                                                     <input type="text" value={global.lastname} name="last_name_new" id="last_name_new" className="form-control input-sm" placeholder="Last Name" tabIndex="4" />
                                                     <input type="button" className="btn-primary" value="Update" />
                                                 </div>
@@ -363,8 +366,9 @@ class DriverMainPage extends Component {
                                         <input disabled={(this.state.email_enabled) ? "" : "disabled"} value={global.email} type="email" name="email" className="form-control input-sm" placeholder="Email Address" tabIndex="4" />
                                         <div className="theeditorsProfile" id="email_edit">
                                             <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "email_edit")} className="btn-danger" style={{ float: "right" }} />
-                                            <h4>Edit Email</h4>
+                                            
                                             <div>
+                                                <h4>Edit Email</h4>
                                                 <input  value={global.email} type="email" name="email_new" className="form-control input-sm" placeholder="Email Address" tabIndex="4" />
                                                 <input type="button" className="btn-primary" value="Update" />
                                             </div>
@@ -374,8 +378,9 @@ class DriverMainPage extends Component {
                                         <input disabled={(this.state.plate_number_enabled) ? "" : "disabled"} value={global.plate_number} type="text" name="email" id="email" className="form-control input-sm" placeholder="License Plate Number" tabIndex="4" />
                                         <div className="theeditorsProfile" id="plate_number_edit">
                                             <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "plate_number_edit")} className="btn-danger" style={{ float: "right" }} />
-                                            <h4>Edit Plate number</h4>
+                                            
                                             <div>
+                                                <h4>Edit Plate number</h4>
                                                 <input  value={global.plate_number} type="text" name="email_new" id="email_new" className="form-control input-sm" placeholder="License Plate Number" tabIndex="4" />
                                                 <input type="button" className="btn-primary" value="Update" />
                                             </div>
@@ -385,8 +390,9 @@ class DriverMainPage extends Component {
                                         <input disabled={(this.state.occupation_enabled) ? "" : "disabled"} value={global.occupation} type="text" name="where_y_wrk_the_most" id="where_y_wrk_the_most" className="form-control input-sm" placeholder="Where you work the most?" tabIndex="4" />
                                         <div className="theeditorsProfile" id="occupation_edit">
                                             <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "occupation_edit")} className="btn-danger" style={{ float: "right" }} />
-                                            <h4>Edit occupation</h4>
+                                            
                                             <div>
+                                                <h4>Edit occupation</h4>
                                                 <input  value={global.occupation} type="text" name="where_y_wrk_the_most_new" id="where_y_wrk_the_most_new" className="form-control input-sm" placeholder="Where you work the most?" tabIndex="4" />
                                                 <input type="button" className="btn-primary" value="Update" />
                                             </div>
@@ -396,8 +402,9 @@ class DriverMainPage extends Component {
                                         <input disabled={(this.state.phonenumber_enabled) ? "" : "disabled"} value={global.phonenumber} type="tel" name="phone_nber" id="phone_nber" className="form-control input-sm" placeholder="Phone number" tabIndex="4" />
                                         <div className="theeditorsProfile" id="phonenumber_edit">
                                             <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "phonenumber_edit")} className="btn-danger" style={{ float: "right" }} />
-                                            <h4>Edit phone number</h4>
+                                            
                                             <div>
+                                                <h4>Edit phone number</h4>
                                                 <input  value={global.phonenumber} type="tel" name="phone_nber_new" id="phone_nber_new" className="form-control input-sm" placeholder="Phone number" tabIndex="4" />
                                                 <input type="button" className="btn-primary" value="Update" />
                                             </div>
@@ -410,8 +417,9 @@ class DriverMainPage extends Component {
                                                 <input disabled={(this.state.province_enabled) ? "" : "disabled"} value={global.province} type="text" name="province" id="province" className="form-control input-sm" placeholder="Province" tabIndex="1" />
                                                 <div className="theeditorsProfile" id="province_edit">
                                                     <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "province_edit")} className="btn-danger" style={{ float: "right" }} />
-                                                    <h4>Edit province</h4>
+                                                    
                                                     <div>
+                                                        <h4>Edit province</h4>
                                                         <input  value={global.province} type="text" name="province_new" id="province_new" className="form-control input-sm" placeholder="Province" tabIndex="1" />
                                                         <input type="button" className="btn-primary" value="Update" />
                                                     </div>
@@ -423,8 +431,9 @@ class DriverMainPage extends Component {
                                                 <input disabled={(this.state.district_enabled) ? "" : "disabled"} value={global.district} type="text" name="district" className="form-control input-sm" placeholder="District" tabIndex="2" />
                                                 <div className="theeditorsProfile" id="district_edit">
                                                     <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "district_edit")} className="btn-danger" style={{ float: "right" }} />
-                                                    <h4>Edit district</h4>
+                                                    
                                                     <div>
+                                                        <h4>Edit district</h4>
                                                         <input  value={global.district} type="text" name="district_new" className="form-control input-sm" placeholder="District" tabIndex="2" />
                                                         <input type="button" className="btn-primary" value="Update" />
                                                     </div>
@@ -437,8 +446,9 @@ class DriverMainPage extends Component {
                                                 <input disabled={(this.state.sector_enabled) ? "" : "disabled"} value={global.sector} type="text" name="sector" id="district" className="form-control input-sm" placeholder="Sector" tabIndex="2" />
                                                 <div className="theeditorsProfile" id="sector_edit">
                                                     <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "sector_edit")} className="btn-danger" style={{ float: "right" }} />
-                                                    <h4>Edit sector</h4>
+                                                  
                                                     <div>
+                                                        <h4>Edit sector</h4>
                                                         <input  value={global.sector} type="text" name="sector" id="district_new" className="form-control input-sm" placeholder="Sector" tabIndex="2" />
                                                         <input type="button" className="btn-primary" value="Update" />
                                                     </div>
@@ -450,8 +460,9 @@ class DriverMainPage extends Component {
                                         <input disabled={(this.state.username_enabled) ? "" : "disabled"} value={global.username} type="text" name="username" id="username" className="form-control input-sm" placeholder="Username" tabIndex="4" />
                                         <div className="theeditorsProfile" id="username_edit">
                                             <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "username_edit")} className="btn-danger" style={{ float: "right" }} />
-                                            <h4>Edit username</h4>
+                                           
                                             <div>
+                                                <h4>Edit username</h4>
                                                 <input  value={global.username} type="text" name="username_new" id="username_new" className="form-control input-sm" placeholder="Username" tabIndex="4" />
                                                 <input type="button" className="btn-primary" value="Update" />
                                             </div>
@@ -464,8 +475,9 @@ class DriverMainPage extends Component {
                                                 <input disabled={(this.state.password_enabled) ? "" : "disabled"} type="password" name="password" id="password" className="form-control input-sm" placeholder="New Password" tabIndex="5" />
                                                 <div className="theeditorsProfile" id="password_edit">
                                                     <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "password_edit")} className="btn-danger" style={{ float: "right" }} />
-                                                    <h4>Edit password</h4>
+                                                    
                                                     <div>
+                                                        <h4>Edit password</h4>
                                                         <input  type="password" name="password" id="password_new" className="form-control input-sm" placeholder="New Password" tabIndex="5" />
                                                         <input type="button" className="btn-primary" value="Update" />
                                                     </div>
@@ -477,8 +489,9 @@ class DriverMainPage extends Component {
                                                 <input disabled={(this.state.password_retype_enabled) ? "" : "disabled"} type="password" name="password_confirmation" id="password_confirmation" className="form-control input-sm" placeholder="Confirm New Password" tabIndex="6" />
                                                 <div className="theeditorsProfile" id="password_retype_edit">
                                                     <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "password_retype_edit")} className="btn-danger" style={{ float: "right" }} />
-                                                    <h4>Edit Retype password</h4>
+                                                    
                                                     <div>
+                                                        <h4>Edit Retype password</h4>
                                                         <input  type="password" name="password_confirmation" id="password_confirmation_new" className="form-control input-sm" placeholder="Confirm New Password" tabIndex="6" />
                                                         <input type="button" className="btn-primary" value="Update" />
                                                     </div>
