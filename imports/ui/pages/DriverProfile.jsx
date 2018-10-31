@@ -47,6 +47,22 @@ class DriverMainPage extends Component {
             password_enabled: false,
             password_retype_enabled: false,
 
+            id_number_enabled_edit_menu_status: false,
+            surname_enabled_edit_menu_status: false,
+            lastname_enabled_edit_menu_status: false,
+            email_enabled_edit_menu_status: false,
+            plate_number_enabled_edit_menu_status: false,
+            occupation_enabled_edit_menu_status: false,
+            phonenumber_enabled_edit_menu_status: false,
+            occupation_enabled_edit_menu_status: false,
+            plate_number_enabled_edit_menu_status: false,
+            province_enabled_edit_menu_status: false,
+            district_enabled_edit_menu_status: false,
+            sector_enabled_edit_menu_status: false,
+            username_enabled_edit_menu_status: false,
+            password_enabled_edit_menu_status: false,
+            password_retype_enabled_edit_menu_status: false,
+
 
         };
         this.ajaxObj = this.ajaxObj.bind(this);
@@ -69,9 +85,28 @@ class DriverMainPage extends Component {
 
     }
 
-    editThisProfileIntel(inputAffil) {
+    hideThisEditWindow(inputAffil, event) {        
+        //--------
+        setTimeout(function () {
+            var divsToHide = document.getElementsByClassName("theeditorsProfile"); //divsToHide is an array
+            //alert(divsToHide.length);
+            for (var i = 0; i < divsToHide.length; i++) {
+                //divsToHide[i].style.visibility = "hidden"; // or
+                divsToHide[i].style.display = "none"; // depending on what you're doing
 
-        alert(inputAffil);
+            }
+
+        }, 300);
+
+
+    }
+
+    editThisProfileIntel(inputAffil, event) {        
+        document.getElementById(inputAffil).style.display = "block";
+        document.getElementById(inputAffil).style.width = "auto";
+        document.getElementById(inputAffil).style.height = "auto";
+       
+
 
     }
 
@@ -95,7 +130,7 @@ class DriverMainPage extends Component {
                         //alert(theFinalData.toString().split("~~")[0]);
                         var theUpImage = theFinalData.toString().split("~~")[0];
                         //---------------
-                        Users.update({ _id: global.the_id_op}, {
+                        Users.update({ _id: global.the_id_op }, {
                             $set: { avatar_profile: "" + theUpImage }
                         }, function (err, result) {
                             if (err) {
@@ -205,7 +240,7 @@ class DriverMainPage extends Component {
             url = "https://map.ogeniuspriority.com/upload_scripts/" + global.avatar_profile;
         }
         global.userna_me = "";
-        return (<img style={{maxHeight:"250px"}} className="img-circle img-thumbnail" src={url} />);
+        return (<img style={{ maxHeight: "250px" }} className="img-circle img-thumbnail" src={url} />);
     }
 
 
@@ -249,6 +284,16 @@ class DriverMainPage extends Component {
                     </div>
                 </div>
             </div>
+            <div className="edit_profile_inputs_skin" id="edit_this_profile_input_data" style={{ display: "none", position: "absolute", zIndex: 1200, background: "white", borderRadius: "5px" }}>
+
+                <div style={{ padding: "5px", marginTop: "20px" }}>
+                    <h4>Info About Input</h4>
+                    <div>
+                        sfjih9fbs fmsofhbs fsj0hfbs fosjhbf
+                    </div>
+
+                </div>
+            </div>
 
             <div className="row" id="main" >
                 <div className="col-md-3" id="leftPanel">
@@ -257,9 +302,9 @@ class DriverMainPage extends Component {
                             <div>
                                 {this.renderThisAccountAvatarEdit()}
                                 <form id="imgForm">
-                                    <input onChange={this.uploadImageToRemoteServer.bind(this)} id="test-input" style={{ width: "0px" }} type="file" className="custom-file-input" />
+                                    <input onChange={this.uploadImageToRemoteServer.bind(this)} id="test-input" style={{ width: "auto" }} type="file" className="custom-file-input" />
                                 </form>
-                                <h3>{global.surname} {global.lastname}<br/>{global.username}</h3>
+                                <h3>{global.surname} {global.lastname}<br />{global.username}</h3>
                                 <div>
 
                                 </div>
@@ -272,71 +317,179 @@ class DriverMainPage extends Component {
                     <div className="row">
                         <div className="col-md-12">
                             <form role="form">
-                                
+
                                 <div className="colorgraph">
-                                    <div onClick={this.editThisProfileIntel.bind(this,"idnber")} className="form-group">
-                                        <input  disabled={(this.state.id_number_enabled) ? "" : "disabled"} type="number" value={global.id_number} name="idnumber" id="idnumber" className="form-control input-sm" placeholder="ID Number" tabIndex="4" />
+                                    <div onClick={this.editThisProfileIntel.bind(this, "idnber_edit")} className="form-group">
+                                        <input disabled={(this.state.id_number_enabled) ? "" : "disabled"} type="number" value={global.id_number} name="idnumber" id="idnumber" className="form-control input-sm" placeholder="ID Number" tabIndex="4" />
+                                        <div className="theeditorsProfile" id="idnber_edit">
+                                            <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "idnber_edit")} className="btn-danger" style={{ float: "right" }} />
+                                            <h4>Edit id number</h4>
+                                            <div>
+                                                <input type="number" value={global.id_number} name="idnumber_new" id="idnumber_new" className="form-control input-sm" placeholder="ID Number" tabIndex="4" />
+                                                <input className="btn-primary" type="button" value="Update" />
+                                            </div>
+
+                                        </div>
                                     </div>
                                     <div className="row">
                                         <div className="col-xs-12 col-sm-6 col-md-6">
-                                            <div onClick={this.editThisProfileIntel.bind(this, "surname")} className="form-group">
+                                            <div onClick={this.editThisProfileIntel.bind(this, "surname_edit")} className="form-group">
                                                 <input disabled={(this.state.surname_enabled) ? "" : "disabled"} value={global.surname} type="text" name="surname_name" id="surname_name" className="form-control input-sm" placeholder="Surname Name" tabIndex="1" />
+                                            </div>
+                                            <div className="theeditorsProfile" id="surname_edit">
+                                                <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "surname_edit")} className="btn-danger" style={{ float: "right" }} />
+                                                <h4>Edit Surname</h4>
+                                                <div>
+                                                    <input type="text" value={global.surname} name="surname_name_new" id="surname_name_new" className="form-control input-sm" placeholder="Surname Name" tabIndex="4" />
+                                                    <input type="button" className="btn-primary" value="Update" />
+                                                </div>
                                             </div>
                                         </div>
                                         <div className="col-xs-12 col-sm-6 col-md-6">
-                                            <div onClick={this.editThisProfileIntel.bind(this, "lastname")} className="form-group">
+                                            <div onClick={this.editThisProfileIntel.bind(this, "lastname_edit")} className="form-group">
                                                 <input disabled={(this.state.lastname_enabled) ? "" : "disabled"} type="text" value={global.lastname} name="last_name" id="last_name" className="form-control input-sm" placeholder="Last Name" tabIndex="2" />
+                                            </div>
+                                            <div className="theeditorsProfile" id="lastname_edit">
+                                                <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "lastname_edit")} className="btn-danger" style={{ float: "right" }} />
+                                                <h4>Edit Lastname</h4>
+                                                <div>
+                                                    <input type="text" value={global.lastname} name="last_name_new" id="last_name_new" className="form-control input-sm" placeholder="Last Name" tabIndex="4" />
+                                                    <input type="button" className="btn-primary" value="Update" />
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div onClick={this.editThisProfileIntel.bind(this, "email")} className="form-group">
-                                        <input disabled={(this.state.email_enabled) ? "" : "disabled"} value={global.email} type="email" name="email" id="email" className="form-control input-sm" placeholder="Email Address" tabIndex="4" />
+                                    <div onClick={this.editThisProfileIntel.bind(this, "email_edit")} className="form-group">
+                                        <input disabled={(this.state.email_enabled) ? "" : "disabled"} value={global.email} type="email" name="email" className="form-control input-sm" placeholder="Email Address" tabIndex="4" />
+                                        <div className="theeditorsProfile" id="email_edit">
+                                            <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "email_edit")} className="btn-danger" style={{ float: "right" }} />
+                                            <h4>Edit Email</h4>
+                                            <div>
+                                                <input  value={global.email} type="email" name="email_new" className="form-control input-sm" placeholder="Email Address" tabIndex="4" />
+                                                <input type="button" className="btn-primary" value="Update" />
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div onClick={this.editThisProfileIntel.bind(this, "plate_number")} className="form-group">
+                                    <div onClick={this.editThisProfileIntel.bind(this, "plate_number_edit")} className="form-group">
                                         <input disabled={(this.state.plate_number_enabled) ? "" : "disabled"} value={global.plate_number} type="text" name="email" id="email" className="form-control input-sm" placeholder="License Plate Number" tabIndex="4" />
+                                        <div className="theeditorsProfile" id="plate_number_edit">
+                                            <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "plate_number_edit")} className="btn-danger" style={{ float: "right" }} />
+                                            <h4>Edit Plate number</h4>
+                                            <div>
+                                                <input  value={global.plate_number} type="text" name="email_new" id="email_new" className="form-control input-sm" placeholder="License Plate Number" tabIndex="4" />
+                                                <input type="button" className="btn-primary" value="Update" />
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div onClick={this.editThisProfileIntel.bind(this, "occupation")} className="form-group">
+                                    <div onClick={this.editThisProfileIntel.bind(this, "occupation_edit")} className="form-group">
                                         <input disabled={(this.state.occupation_enabled) ? "" : "disabled"} value={global.occupation} type="text" name="where_y_wrk_the_most" id="where_y_wrk_the_most" className="form-control input-sm" placeholder="Where you work the most?" tabIndex="4" />
+                                        <div className="theeditorsProfile" id="occupation_edit">
+                                            <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "occupation_edit")} className="btn-danger" style={{ float: "right" }} />
+                                            <h4>Edit occupation</h4>
+                                            <div>
+                                                <input  value={global.occupation} type="text" name="where_y_wrk_the_most_new" id="where_y_wrk_the_most_new" className="form-control input-sm" placeholder="Where you work the most?" tabIndex="4" />
+                                                <input type="button" className="btn-primary" value="Update" />
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div onClick={this.editThisProfileIntel.bind(this, "phonenumber")} className="form-group">
+                                    <div onClick={this.editThisProfileIntel.bind(this, "phonenumber_edit")} className="form-group">
                                         <input disabled={(this.state.phonenumber_enabled) ? "" : "disabled"} value={global.phonenumber} type="tel" name="phone_nber" id="phone_nber" className="form-control input-sm" placeholder="Phone number" tabIndex="4" />
+                                        <div className="theeditorsProfile" id="phonenumber_edit">
+                                            <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "phonenumber_edit")} className="btn-danger" style={{ float: "right" }} />
+                                            <h4>Edit phone number</h4>
+                                            <div>
+                                                <input  value={global.phonenumber} type="tel" name="phone_nber_new" id="phone_nber_new" className="form-control input-sm" placeholder="Phone number" tabIndex="4" />
+                                                <input type="button" className="btn-primary" value="Update" />
+                                            </div>
+
+                                        </div>
                                     </div>
                                     <div className="row">
                                         <div className="col-xs-9 col-sm-3 col-md-3">
-                                            <div onClick={this.editThisProfileIntel.bind(this, "phonenumber")} className="form-group">
+                                            <div onClick={this.editThisProfileIntel.bind(this, "province_edit")} className="form-group">
                                                 <input disabled={(this.state.province_enabled) ? "" : "disabled"} value={global.province} type="text" name="province" id="province" className="form-control input-sm" placeholder="Province" tabIndex="1" />
+                                                <div className="theeditorsProfile" id="province_edit">
+                                                    <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "province_edit")} className="btn-danger" style={{ float: "right" }} />
+                                                    <h4>Edit province</h4>
+                                                    <div>
+                                                        <input  value={global.province} type="text" name="province_new" id="province_new" className="form-control input-sm" placeholder="Province" tabIndex="1" />
+                                                        <input type="button" className="btn-primary" value="Update" />
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div onClick={this.editThisProfileIntel.bind(this, "district")} className="col-xs-9 col-sm-3 col-md-3">
+                                        <div onClick={this.editThisProfileIntel.bind(this, "district_edit")} className="col-xs-9 col-sm-3 col-md-3">
                                             <div className="form-group">
-                                                <input disabled={(this.state.district_enabled) ? "" : "disabled"} value={global.district} type="text" name="district" id="district" className="form-control input-sm" placeholder="District" tabIndex="2" />
+                                                <input disabled={(this.state.district_enabled) ? "" : "disabled"} value={global.district} type="text" name="district" className="form-control input-sm" placeholder="District" tabIndex="2" />
+                                                <div className="theeditorsProfile" id="district_edit">
+                                                    <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "district_edit")} className="btn-danger" style={{ float: "right" }} />
+                                                    <h4>Edit district</h4>
+                                                    <div>
+                                                        <input  value={global.district} type="text" name="district_new" className="form-control input-sm" placeholder="District" tabIndex="2" />
+                                                        <input type="button" className="btn-primary" value="Update" />
+                                                    </div>
+
+                                                </div>
                                             </div>
                                         </div>
-                                        <div onClick={this.editThisProfileIntel.bind(this, "sector")} className="col-xs-9 col-sm-3 col-md-3">
+                                        <div onClick={this.editThisProfileIntel.bind(this, "sector_edit")} className="col-xs-9 col-sm-3 col-md-3">
                                             <div className="form-group">
                                                 <input disabled={(this.state.sector_enabled) ? "" : "disabled"} value={global.sector} type="text" name="sector" id="district" className="form-control input-sm" placeholder="Sector" tabIndex="2" />
+                                                <div className="theeditorsProfile" id="sector_edit">
+                                                    <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "sector_edit")} className="btn-danger" style={{ float: "right" }} />
+                                                    <h4>Edit sector</h4>
+                                                    <div>
+                                                        <input  value={global.sector} type="text" name="sector" id="district_new" className="form-control input-sm" placeholder="Sector" tabIndex="2" />
+                                                        <input type="button" className="btn-primary" value="Update" />
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div onClick={this.editThisProfileIntel.bind(this, "username")} className="form-group">
+                                    <div onClick={this.editThisProfileIntel.bind(this, "username_edit")} className="form-group">
                                         <input disabled={(this.state.username_enabled) ? "" : "disabled"} value={global.username} type="text" name="username" id="username" className="form-control input-sm" placeholder="Username" tabIndex="4" />
+                                        <div className="theeditorsProfile" id="username_edit">
+                                            <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "username_edit")} className="btn-danger" style={{ float: "right" }} />
+                                            <h4>Edit username</h4>
+                                            <div>
+                                                <input  value={global.username} type="text" name="username_new" id="username_new" className="form-control input-sm" placeholder="Username" tabIndex="4" />
+                                                <input type="button" className="btn-primary" value="Update" />
+                                            </div>
+
+                                        </div>
                                     </div>
                                     <div className="row">
                                         <div className="col-xs-12 col-sm-6 col-md-6">
-                                            <div onClick={this.editThisProfileIntel.bind(this, "password")} className="form-group">
+                                            <div onClick={this.editThisProfileIntel.bind(this, "password_edit")} className="form-group">
                                                 <input disabled={(this.state.password_enabled) ? "" : "disabled"} type="password" name="password" id="password" className="form-control input-sm" placeholder="New Password" tabIndex="5" />
+                                                <div className="theeditorsProfile" id="password_edit">
+                                                    <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "password_edit")} className="btn-danger" style={{ float: "right" }} />
+                                                    <h4>Edit password</h4>
+                                                    <div>
+                                                        <input  type="password" name="password" id="password_new" className="form-control input-sm" placeholder="New Password" tabIndex="5" />
+                                                        <input type="button" className="btn-primary" value="Update" />
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div className="col-xs-12 col-sm-6 col-md-6">
-                                            <div onClick={this.editThisProfileIntel.bind(this, "password_retype")} className="form-group">
+                                            <div onClick={this.editThisProfileIntel.bind(this, "password_retype_edit")} className="form-group">
                                                 <input disabled={(this.state.password_retype_enabled) ? "" : "disabled"} type="password" name="password_confirmation" id="password_confirmation" className="form-control input-sm" placeholder="Confirm New Password" tabIndex="6" />
+                                                <div className="theeditorsProfile" id="password_retype_edit">
+                                                    <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "password_retype_edit")} className="btn-danger" style={{ float: "right" }} />
+                                                    <h4>Edit Retype password</h4>
+                                                    <div>
+                                                        <input  type="password" name="password_confirmation" id="password_confirmation_new" className="form-control input-sm" placeholder="Confirm New Password" tabIndex="6" />
+                                                        <input type="button" className="btn-primary" value="Update" />
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="colorgraph">
                                         <div className="row">
                                             <div className="col-xs-12 col-md-6"></div>
-                                       </div>
+                                        </div>
 
                                     </div>
                                 </div>

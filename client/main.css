@@ -571,3 +571,36 @@ body {
 .custom-file-input:active::before {
     background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
 }
+.edit_profile_inputs_skin {
+    background-image: linear-gradient(to top, #fdcbf1 0%, #fdcbf1 1%, #e6dee9 100%);
+    z-index:1200;
+}
+.theeditorsProfile {
+    display: none;
+    font-size: 16px;
+    padding: 10px;
+    text-align: center;
+    background-color: #fff;
+    border-radius:6px;
+    border:1px solid #333;
+    margin-top:-50px;
+    color: white;
+    border: solid 1px #a6d8a8;
+    margin: auto;
+    position:absolute;
+    z-index:2000;
+}
+.theeditorsProfile_hidden {
+    display: none;
+    background: yellow;
+    color: green;
+    font-size: 16px;
+    padding: 10px;
+    text-align: center;
+    background-color: greenyellow;
+    color: white;
+    border: solid 1px #a6d8a8;
+    margin: auto;
+    position: absolute;
+    z-index: 2000;
+}

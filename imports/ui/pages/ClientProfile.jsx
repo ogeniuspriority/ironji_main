@@ -197,7 +197,7 @@ class DriverMainPage extends Component {
                         <div >
                             <div>
                                 {this.renderThisAccountAvatarEdit()} <form id="imgForm">
-                                    <input onChange={this.uploadImageToRemoteServer.bind(this)} id="test-input" style={{ width: "0px" }} type="file" className="custom-file-input" />
+                                    <input onChange={this.uploadImageToRemoteServer.bind(this)} id="test-input" style={{ width: "auto" }} type="file" className="custom-file-input" />
                                 </form>
                                 <h5>Gopinath Perumal</h5>
                                 <div>
