@@ -545,16 +545,18 @@ body {
 }
 .custom-file-input::-webkit-file-upload-button {
     visibility: hidden;
+    display:none;
 }
 
 .custom-file-input::before {
-    content: '        Change Profile Image           ';
+    content: '                  Change Profile Image                 ';
     display: inline-block;
     background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
     border: 1px solid #999;
     border-radius: 3px;
     padding: 5px 8px;
     outline: none;
+    width:200px;
     white-space: nowrap;
     -webkit-user-select: none;
     cursor: pointer;
@@ -589,8 +591,9 @@ body {
     margin: auto;
     position:absolute;
     z-index:2000;
-    width:40%;
+    width:200px;
     height:120px;
+    font-size:16px;
 }
 .theeditorsProfile_hidden {
     display: none;
@@ -605,4 +608,78 @@ body {
     margin: auto;
     position: absolute;
     z-index: 2000;
+}
+.lds-ellipsis {
+    display: inline-block;
+    position: relative;
+    width: 64px;
+    height: 64px;
+}
+
+    .lds-ellipsis div {
+        position: absolute;
+        top: 27px;
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        background: #cef;
+        animation-timing-function: cubic-bezier(0, 1, 1, 0);
+    }
+
+        .lds-ellipsis div:nth-child(1) {
+            left: 6px;
+            animation: lds-ellipsis1 0.6s infinite;
+        }
+
+        .lds-ellipsis div:nth-child(2) {
+            left: 6px;
+            animation: lds-ellipsis2 0.6s infinite;
+        }
+
+        .lds-ellipsis div:nth-child(3) {
+            left: 26px;
+            animation: lds-ellipsis2 0.6s infinite;
+        }
+
+        .lds-ellipsis div:nth-child(4) {
+            left: 45px;
+            animation: lds-ellipsis3 0.6s infinite;
+        }
+
+@keyframes lds-ellipsis1 {
+    0% {
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes lds-ellipsis3 {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(0);
+    }
+}
+
+@keyframes lds-ellipsis2 {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    100% {
+        transform: translate(19px, 0);
+    }
+}
+.domMessenger {
+
+
+}
+.center-block {
+
+z-index:2400;
 }

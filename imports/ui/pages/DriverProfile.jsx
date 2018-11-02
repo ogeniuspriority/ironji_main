@@ -27,6 +27,7 @@ import { geolocated } from 'react-geolocated';
 
 
 
+
 class DriverMainPage extends Component {
     constructor(props) {
         super(props);
@@ -81,6 +82,419 @@ class DriverMainPage extends Component {
             window.open("/", "_self");
         }
         console.log(sessionStorage.getItem('ironji_account_username'));
+
+
+    }
+
+    updateMyProfileData(whichj, event) {
+        var idnumber_new = this.refs.idnumber_new.value;
+        var surname_name_new = this.refs.surname_name_new.value;
+        var last_name_new = this.refs.last_name_new.value;
+        var email_new = this.refs.email_new.value;
+        var plate_nber_new = this.refs.plate_nber_new.value;
+        var occupation_new = this.refs.occupation_new.value;
+        var phone_nber_new = this.refs.phone_nber_new.value;
+        var province_new = this.refs.province_new.value;
+        var district_new = this.refs.district_new.value;
+        var sector_new = this.refs.sector_new.value;
+        var username_new = this.refs.username_new.value;
+        global.password_new = this.refs.password_new.value;
+        var password_confirmation_new = this.refs.password_confirmation_new.value;
+        //-----------
+        var district_new = this.refs.district_new.value;
+        //alert(idnumber_new + "-" + surname_name_new + "-" + last_name_new + "-" + email_new + "-" + plate_nber_new + "-" + occupation_new + "-" + phone_nber_new + "-" + province_new + "-" + district_new + "-" + sector_new + "-" + global.password_new + "-" + password_confirmation_new);
+        //---global.the_id_op-
+        /*
+         *  var theData = {
+                    "text": "Lucky John",
+                    "createdAt": new Date(),
+                    "account_type": "driver",
+                    "currentLatitude": "-1.9443547",
+                    "currentLongitude": "30.089413699999998",
+                    "accountConfirmed": "1",
+                    "id_number": global.id_number,
+                    "surname": global.surname,
+                    "lastname": global.lastname,
+                    "email": global.email,
+                    "plate_number": global.plate_number,
+                    "occupation": global.occupation,
+                    "phonenumber": global.phonenumber,
+                    "province": global.province,
+                    "district": global.district,
+                    "sector": global.sector,
+                    "username": global.username,
+                    "password": global.password,
+                };window.open("/driverMainPage", "_self");waiting_loading */
+       
+             //document.getElementById("waiting_loading").style.display = "block";
+      
+        
+
+        if (whichj.includes("id_nber")) {
+
+
+            if (idnumber_new != "") {
+                document.getElementById("waiting_loading").style.display = "block";
+
+                Users.update({ _id: global.the_id_op }, {
+                    $set: { id_number: idnumber_new }
+                }, function (err, result) {
+                    if (err) {
+                        setTimeout(function () {
+                            document.getElementById("waiting_loading").style.display = "none";
+                        }, 500);
+
+                    } else {
+                        //console.log(result);
+                        window.open("/Driverprofile", "_self");
+
+                    }
+                });
+            } else {
+                //------------
+                document.getElementById("dom_messenger").style.display = "block";
+                document.getElementById("dom_messenger_data").innerHTML = "Id number field empty!";
+                setTimeout(function () {
+                    document.getElementById("dom_messenger").style.display = "none";
+                }, 3000);
+
+            }
+
+        } else if (whichj.includes("surname")) {
+
+            if (surname_name_new != "") {
+                document.getElementById("waiting_loading").style.display = "block";
+
+                Users.update({ _id: global.the_id_op }, {
+                    $set: { surname: surname_name_new }
+                }, function (err, result) {
+                    if (err) {
+                        setTimeout(function () {
+                            document.getElementById("waiting_loading").style.display = "none";
+                        }, 500);
+
+                    } else {
+                        //console.log(result);
+                        window.open("/Driverprofile", "_self");
+
+                    }
+                });
+
+            } else {
+                document.getElementById("dom_messenger").style.display = "block";
+                document.getElementById("dom_messenger_data").innerHTML = "Surname field empty!";
+                setTimeout(function () {
+                    document.getElementById("dom_messenger").style.display = "none";
+                }, 3000);
+            }
+        } else if (whichj.includes("plate_nber")) {
+
+            if (plate_nber_new != "") {
+                document.getElementById("waiting_loading").style.display = "block";
+
+
+                Users.update({ _id: global.the_id_op }, {
+                    $set: { plate_number: plate_nber_new }
+                }, function (err, result) {
+                    if (err) {
+                        setTimeout(function () {
+                            document.getElementById("waiting_loading").style.display = "none";
+                        }, 500);
+
+                    } else {
+                        //console.log(result);
+                        window.open("/Driverprofile", "_self");
+
+                    }
+                });
+
+            } else {
+                document.getElementById("dom_messenger").style.display = "block";
+                document.getElementById("dom_messenger_data").innerHTML = "Plate number field empty!";
+                setTimeout(function () {
+                    document.getElementById("dom_messenger").style.display = "none";
+                }, 3000);
+            }
+        } else if (whichj.includes("district")) {
+
+            if (district_new != "") {
+                document.getElementById("waiting_loading").style.display = "block";
+
+                Users.update({ _id: global.the_id_op }, {
+                    $set: { district: district_new }
+                }, function (err, result) {
+                    if (err) {
+                        setTimeout(function () {
+                            document.getElementById("waiting_loading").style.display = "none";
+                        }, 500);
+
+                    } else {
+                        //console.log(result);
+                        window.open("/Driverprofile", "_self");
+
+                    }
+                });
+            } else {
+                document.getElementById("dom_messenger").style.display = "block";
+                document.getElementById("dom_messenger_data").innerHTML = "District field empty!";
+                setTimeout(function () {
+                    document.getElementById("dom_messenger").style.display = "none";
+                }, 3000);
+            }
+        } else if (whichj.includes("username")) {           
+
+                if (username_new != "") {
+                    global.taken_op = "";
+                    var po = Users.find({ username: username_new }, { sort: { text: 1 } }).fetch();
+                    for (var key in po) {
+                        if (po.hasOwnProperty(key)) {
+                            //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
+                            global.taken_op = "Okay";
+                        }
+                    }
+
+                    if (global.taken_op == "Okay") {
+
+                        document.getElementById("dom_messenger").style.display = "block";
+                        document.getElementById("dom_messenger_data").innerHTML = "Username not available, choose new one!";
+                        setTimeout(function () {
+                            document.getElementById("dom_messenger").style.display = "none";
+                        }, 3000);
+
+                    } else {
+
+
+                        document.getElementById("waiting_loading").style.display = "block";
+
+                        Users.update({ _id: global.the_id_op }, {
+                            $set: { username: username_new }
+                        }, function (err, result) {
+                            if (err) {
+                                setTimeout(function () {
+                                    document.getElementById("waiting_loading").style.display = "none";
+                                }, 500);
+
+                            } else {
+                                //console.log(result);
+                                window.open("/Driverprofile", "_self");
+
+                            }
+                        });
+                    }
+            } else {
+                document.getElementById("dom_messenger").style.display = "block";
+                document.getElementById("dom_messenger_data").innerHTML = "Username field empty!";
+                setTimeout(function () {
+                    document.getElementById("dom_messenger").style.display = "none";
+                }, 3000);
+            }
+        } else if (whichj.includes("phone_nber")) {
+
+            if (phone_nber_new != "") {
+                document.getElementById("waiting_loading").style.display = "block";
+
+                Users.update({ _id: global.the_id_op }, {
+                    $set: { phonenumber: phone_nber_new }
+                }, function (err, result) {
+                    if (err) {
+                        setTimeout(function () {
+                            document.getElementById("waiting_loading").style.display = "none";
+                        }, 500);
+
+                    } else {
+                        //console.log(result);
+                        window.open("/Driverprofile", "_self");
+
+                    }
+                });
+            } else {
+                document.getElementById("dom_messenger").style.display = "block";
+                document.getElementById("dom_messenger_data").innerHTML = "Phone number field empty!";
+                setTimeout(function () {
+                    document.getElementById("dom_messenger").style.display = "none";
+                }, 3000);
+            }
+        } else if (whichj.includes("password_retype")) {
+
+            if (password_confirmation_new != "") {
+
+                if (global.password_new == password_confirmation_new) {
+
+                    document.getElementById("waiting_loading").style.display = "block";
+
+                    Users.update({ _id: global.the_id_op }, {
+                        $set: { password: password_confirmation_new }
+                    }, function (err, result) {
+                        if (err) {
+                            setTimeout(function () {
+                                document.getElementById("waiting_loading").style.display = "none";
+                            }, 500);
+
+                        } else {
+                            //console.log(result);
+                            window.open("/Driverprofile", "_self");
+
+                        }
+                    });
+                } else {
+                    document.getElementById("dom_messenger").style.display = "block";
+                    document.getElementById("dom_messenger_data").innerHTML = "Passwords do not match!";
+                    setTimeout(function () {
+                        document.getElementById("dom_messenger").style.display = "none";
+                    }, 3000);
+                }
+            } else {
+                document.getElementById("dom_messenger").style.display = "block";
+                document.getElementById("dom_messenger_data").innerHTML = "Password confirmation field empty!";
+                setTimeout(function () {
+                    document.getElementById("dom_messenger").style.display = "none";
+                }, 3000);
+            }
+
+        } else if (whichj.includes("lastname")) {
+
+            if (last_name_new  != "") {
+                document.getElementById("waiting_loading").style.display = "block";
+
+                Users.update({ _id: global.the_id_op }, {
+                    $set: { lastname: last_name_new }
+                }, function (err, result) {
+                    if (err) {
+                        setTimeout(function () {
+                            document.getElementById("waiting_loading").style.display = "none";
+                        }, 500);
+
+                    } else {
+                        //console.log(result);
+                        window.open("/Driverprofile", "_self");
+
+                    }
+                });
+            } else {
+                document.getElementById("dom_messenger").style.display = "block";
+                document.getElementById("dom_messenger_data").innerHTML = "Lastname field empty!";
+                setTimeout(function () {
+                    document.getElementById("dom_messenger").style.display = "none";
+                }, 3000);
+            }
+        } else if (whichj.includes("email")) {
+            if (email_new != "") {
+                document.getElementById("waiting_loading").style.display = "block";
+
+                Users.update({ _id: global.the_id_op }, {
+                    $set: { email: email_new }
+                }, function (err, result) {
+                    if (err) {
+                        setTimeout(function () {
+                            document.getElementById("waiting_loading").style.display = "none";
+                        }, 500);
+
+                    } else {
+                        //console.log(result);
+                        window.open("/Driverprofile", "_self");
+
+                    }
+                });
+            } else {
+                document.getElementById("dom_messenger").style.display = "block";
+                document.getElementById("dom_messenger_data").innerHTML = "Email field empty!";
+                setTimeout(function () {
+                    document.getElementById("dom_messenger").style.display = "none";
+                }, 3000);
+            }
+        } else if (whichj.includes("occupation")) {
+            if (occupation_new != "") {
+                document.getElementById("waiting_loading").style.display = "block";
+
+                Users.update({ _id: global.the_id_op }, {
+                    $set: { occupation: occupation_new }
+                }, function (err, result) {
+                    if (err) {
+                        setTimeout(function () {
+                            document.getElementById("waiting_loading").style.display = "none";
+                        }, 500);
+
+                    } else {
+                        //console.log(result);
+                        window.open("/Driverprofile", "_self");
+
+                    }
+                });
+            } else {
+                document.getElementById("dom_messenger").style.display = "block";
+                document.getElementById("dom_messenger_data").innerHTML = "Occupation field empty!";
+                setTimeout(function () {
+                    document.getElementById("dom_messenger").style.display = "none";
+                }, 3000);
+            }
+        } else if (whichj.includes("province")) {
+
+            if (province_new != "") {
+                document.getElementById("waiting_loading").style.display = "block";
+
+                Users.update({ _id: global.the_id_op }, {
+                    $set: { province: province_new }
+                }, function (err, result) {
+                    if (err) {
+                        setTimeout(function () {
+                            document.getElementById("waiting_loading").style.display = "none";
+                        }, 500);
+
+                    } else {
+                        //console.log(result);
+                        window.open("/Driverprofile", "_self");
+
+                    }
+                });
+            } else {
+                document.getElementById("dom_messenger").style.display = "block";
+                document.getElementById("dom_messenger_data").innerHTML = "Province field empty!";
+                setTimeout(function () {
+                    document.getElementById("dom_messenger").style.display = "none";
+                }, 3000);
+            }
+        } else if (whichj.includes("sector")) {
+
+            if (sector_new != "") {
+                document.getElementById("waiting_loading").style.display = "block";
+                Users.update({ _id: global.the_id_op }, {
+                    $set: { sector: sector_new }
+                }, function (err, result) {
+                    if (err) {
+                        setTimeout(function () {
+                            document.getElementById("waiting_loading").style.display = "none";
+                        }, 500);
+
+                    } else {
+                        //console.log(result);
+                        window.open("/Driverprofile", "_self");
+
+                    }
+                });
+            } else {
+
+            }
+        } else if (whichj.includes("password")) {
+            //--global.password_new
+            if (global.password_new != "") {
+                setTimeout(function () {
+                    var divsToHide = document.getElementsByClassName("theeditorsProfile"); //divsToHide is an array
+                    //alert(divsToHide.length);
+                    for (var i = 0; i < divsToHide.length; i++) {
+                        //divsToHide[i].style.visibility = "hidden"; // or
+                        divsToHide[i].style.display = "none"; // depending on what you're doing
+
+                    }
+
+                }, 300);
+            } else {
+                document.getElementById("dom_messenger").style.display = "block";
+                document.getElementById("dom_messenger_data").innerHTML = "Password field empty!";
+                setTimeout(function () {
+                    document.getElementById("dom_messenger").style.display = "none";
+                }, 3000);
+            }
+        } 
 
 
     }
@@ -255,7 +669,7 @@ class DriverMainPage extends Component {
                             <tr><td><a href="/" className="headerLinks">Homepage</a></td><td><a href="/" className="headerLinks">Logout</a></td></tr>
                         </tbody>
                     </table>
-                </div>
+                </div>                
 
                 <div className="container">
                     <div className="theTopMenus">
@@ -296,6 +710,14 @@ class DriverMainPage extends Component {
             </div>
 
             <div className="row" id="main" >
+                <div id="waiting_loading" className="center-block" style={{ display:"none",position: "fixed", zIndex: 2000, background: "white", padding: "10px", borderRadius: "5px", marginLeft: "45%", border: "1px solid #333333" }}>
+                    <div style={{ fontSize: "16px", fontWeight:"bolder" }}>Thinking ....</div>
+                    <div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+                </div>
+                <div id="dom_messenger" className="center-block  domMessenger alert alert-info" style={{ display: "none", position: "fixed", zIndex: 2005, background: "white", padding: "10px", borderRadius: "5px", marginLeft: "45%", border: "1px solid #333333" }}>
+                    <div id="dom_messenger_data" style={{ fontSize: "16px", fontWeight: "bolder" }}>Not send</div>
+                    
+                </div>
                 <div className="col-md-3" id="leftPanel">
                     <div className="row">
                         <div >
@@ -326,8 +748,8 @@ class DriverMainPage extends Component {
                                             
                                             <div>
                                                 <div>Edit id number</div>
-                                                <input type="number" value={global.id_number} name="idnumber_new" id="idnumber_new" className="form-control input-sm" placeholder="ID Number" tabIndex="4" />
-                                                <input className="btn-primary" type="button" value="Update" />
+                                                <input type="number" name="idnumber_new" ref="idnumber_new" id="idnumber_new" style={{ width: "300px" }} className="form-control input-sm" placeholder="ID Number" tabIndex="4" />
+                                                <input onClick={this.updateMyProfileData.bind(this,"id_nber")} className="btn-primary" type="button" value="Update" />
                                             </div>
 
                                         </div>
@@ -342,8 +764,8 @@ class DriverMainPage extends Component {
                                                 
                                                 <div>
                                                     <div>Edit Surname</div>
-                                                    <input type="text" value={global.surname} name="surname_name_new" id="surname_name_new" className="form-control input-sm" placeholder="Surname Name" tabIndex="4" />
-                                                    <input type="button" className="btn-primary" value="Update" />
+                                                    <input type="text" name="surname_name_new" ref="surname_name_new" id="surname_name_new" style={{ width: "300px" }} className="form-control input-sm" placeholder="Surname Name" tabIndex="4" />
+                                                    <input onClick={this.updateMyProfileData.bind(this, "surname")} type="button" className="btn-primary" value="Update" />
                                                 </div>
                                             </div>
                                         </div>
@@ -356,8 +778,8 @@ class DriverMainPage extends Component {
                                                 
                                                 <div>
                                                     <div>Edit Lastname</div>
-                                                    <input type="text" value={global.lastname} name="last_name_new" id="last_name_new" className="form-control input-sm" placeholder="Last Name" tabIndex="4" />
-                                                    <input type="button" className="btn-primary" value="Update" />
+                                                    <input type="text" name="last_name_new" ref="last_name_new" id="last_name_new" style={{ width: "300px" }} className="form-control input-sm" placeholder="Last Name" tabIndex="4" />
+                                                    <input onClick={this.updateMyProfileData.bind(this, "lastname")} type="button" className="btn-primary" value="Update" />
                                                 </div>
                                             </div>
                                         </div>
@@ -369,8 +791,8 @@ class DriverMainPage extends Component {
                                             
                                             <div>
                                                 <div>Edit Email</div>
-                                                <input  value={global.email} type="email" name="email_new" className="form-control input-sm" placeholder="Email Address" tabIndex="4" />
-                                                <input type="button" className="btn-primary" value="Update" />
+                                                <input type="email" ref="email_new" name="email_new" style={{ width: "300px" }} className="form-control input-sm" placeholder="Email Address" tabIndex="4" />
+                                                <input onClick={this.updateMyProfileData.bind(this, "email")} type="button" className="btn-primary" value="Update" />
                                             </div>
                                         </div>
                                     </div>
@@ -381,8 +803,8 @@ class DriverMainPage extends Component {
                                             
                                             <div>
                                                 <div>Edit Plate number</div>
-                                                <input  value={global.plate_number} type="text" name="email_new" id="email_new" className="form-control input-sm" placeholder="License Plate Number" tabIndex="4" />
-                                                <input type="button" className="btn-primary" value="Update" />
+                                                <input type="text" name="email_new" ref="plate_nber_new"  style={{ width: "300px" }} className="form-control input-sm" placeholder="License Plate Number" tabIndex="4" />
+                                                <input onClick={this.updateMyProfileData.bind(this, "plate_nber")} type="button" className="btn-primary" value="Update" />
                                             </div>
                                         </div>
                                     </div>
@@ -393,8 +815,8 @@ class DriverMainPage extends Component {
                                             
                                             <div>
                                                 <div>Edit occupation</div>
-                                                <input  value={global.occupation} type="text" name="where_y_wrk_the_most_new" id="where_y_wrk_the_most_new" className="form-control input-sm" placeholder="Where you work the most?" tabIndex="4" />
-                                                <input type="button" className="btn-primary" value="Update" />
+                                                <input type="text" name="where_y_wrk_the_most_new" ref="occupation_new" id="where_y_wrk_the_most_new" style={{ width: "300px" }} className="form-control input-sm" placeholder="Where you work the most?" tabIndex="4" />
+                                                <input onClick={this.updateMyProfileData.bind(this, "occupation")} type="button" className="btn-primary" value="Update" />
                                             </div>
                                         </div>
                                     </div>
@@ -405,8 +827,8 @@ class DriverMainPage extends Component {
                                             
                                             <div>
                                                 <div>Edit phone number</div>
-                                                <input  value={global.phonenumber} type="tel" name="phone_nber_new" id="phone_nber_new" className="form-control input-sm" placeholder="Phone number" tabIndex="4" />
-                                                <input type="button" className="btn-primary" value="Update" />
+                                                <input type="tel" name="phone_nber_new" ref="phone_nber_new" id="phone_nber_new" style={{ width: "300px" }} className="form-control input-sm" placeholder="Phone number" tabIndex="4" />
+                                                <input onClick={this.updateMyProfileData.bind(this, "phone_nber")} type="button" className="btn-primary" value="Update" />
                                             </div>
 
                                         </div>
@@ -420,8 +842,8 @@ class DriverMainPage extends Component {
                                                     
                                                     <div>
                                                         <div>Edit province</div>
-                                                        <input  value={global.province} type="text" name="province_new" id="province_new" className="form-control input-sm" placeholder="Province" tabIndex="1" />
-                                                        <input type="button" className="btn-primary" value="Update" />
+                                                        <input type="text" name="province_new" ref="province_new" id="province_new" style={{ width: "300px" }} className="form-control input-sm" placeholder="Province" tabIndex="1" />
+                                                        <input onClick={this.updateMyProfileData.bind(this, "province")} type="button" className="btn-primary" value="Update" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -434,8 +856,8 @@ class DriverMainPage extends Component {
                                                     
                                                     <div>
                                                         <div>Edit district</div>
-                                                        <input  value={global.district} type="text" name="district_new" className="form-control input-sm" placeholder="District" tabIndex="2" />
-                                                        <input type="button" className="btn-primary" value="Update" />
+                                                        <input type="text" ref="district_new" name="district_new" style={{ width: "300px" }} className="form-control input-sm" placeholder="District" tabIndex="2" />
+                                                        <input onClick={this.updateMyProfileData.bind(this, "district")} type="button" className="btn-primary" value="Update" />
                                                     </div>
 
                                                 </div>
@@ -449,8 +871,8 @@ class DriverMainPage extends Component {
                                                   
                                                     <div>
                                                         <div>Edit sector</div>
-                                                        <input  value={global.sector} type="text" name="sector" id="district_new" className="form-control input-sm" placeholder="Sector" tabIndex="2" />
-                                                        <input type="button" className="btn-primary" value="Update" />
+                                                        <input type="text" name="sector" ref="sector_new"  style={{ width: "300px" }} className="form-control input-sm" placeholder="Sector" tabIndex="2" />
+                                                        <input onClick={this.updateMyProfileData.bind(this, "sector")} type="button" className="btn-primary" value="Update" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -463,8 +885,8 @@ class DriverMainPage extends Component {
                                            
                                             <div>
                                                 <div>Edit username</div>
-                                                <input  value={global.username} type="text" name="username_new" id="username_new" className="form-control input-sm" placeholder="Username" tabIndex="4" />
-                                                <input type="button" className="btn-primary" value="Update" />
+                                                <input type="text" name="username_new" ref="username_new" id="username_new" style={{ width: "300px" }} className="form-control input-sm" placeholder="Username" tabIndex="4" />
+                                                <input onClick={this.updateMyProfileData.bind(this, "username")} type="button" className="btn-primary" value="Update" />
                                             </div>
 
                                         </div>
@@ -478,8 +900,8 @@ class DriverMainPage extends Component {
                                                     
                                                     <div>
                                                         <div>Edit password</div>
-                                                        <input  type="password" name="password" id="password_new" className="form-control input-sm" placeholder="New Password" tabIndex="5" />
-                                                        <input type="button" className="btn-primary" value="Update" />
+                                                        <input type="password" name="password" ref="password_new" id="password_new" style={{ width: "300px" }} className="form-control input-sm" placeholder="New Password" tabIndex="5" />
+                                                        <input onClick={this.updateMyProfileData.bind(this, "password")} type="button" className="btn-primary" value="Update" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -492,8 +914,8 @@ class DriverMainPage extends Component {
                                                     
                                                     <div>
                                                         <div>Edit Retype password</div>
-                                                        <input  type="password" name="password_confirmation" id="password_confirmation_new" className="form-control input-sm" placeholder="Confirm New Password" tabIndex="6" />
-                                                        <input type="button" className="btn-primary" value="Update" />
+                                                        <input type="password" name="password_confirmation" ref="password_confirmation_new" id="password_confirmation_new" style={{ width: "300px" }} className="form-control input-sm" placeholder="Confirm New Password" tabIndex="6" />
+                                                        <input onClick={this.updateMyProfileData.bind(this, "password_retype")} type="button" className="btn-primary" value="Update" />
                                                     </div>
                                                 </div>
                                             </div>

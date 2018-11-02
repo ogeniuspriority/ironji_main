@@ -33,6 +33,7 @@
     "password-hash": "^1.2.2",
     "rc-time-picker": "^3.3.1",
     "react": "^15.6.2",
+    "react-alert": "^4.0.4",
     "react-bootstrap": "^0.32.1",
     "react-bootstrap-modal": "^4.1.1",
     "react-datepicker": "^1.7.0",
