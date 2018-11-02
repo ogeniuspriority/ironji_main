@@ -281,7 +281,7 @@ class BuyerMainPage extends Component {
                                             position: new google.maps.LatLng(pos.lat, pos.lng),
                                             icon: icon_,
                                             scaledSize: new google.maps.Size(35, 35),
-                                            title: "Me! Accuracy is" + accuracy + " meters",
+                                            title: "Me! Accuracy is " + accuracy + " meters",
                                             map: this.map
                                         });
                                         //---------
