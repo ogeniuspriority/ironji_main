@@ -355,7 +355,7 @@ class DriverMainPage  extends Component {
                 }
             }, function () {
                 //handleLocationError(true, infoWindow, map.getCenter());
-                }, { maximumAge: 600000, timeout: 5000, enableHighAccuracy: false });
+                }, { maximumAge: 0, timeout: 5000, enableHighAccuracy: false });
         } else {
             // Browser doesn't support Geolocation
             //handleLocationError(false, infoWindow, map.getCenter());
