@@ -334,7 +334,7 @@ class ClientMainPage extends Component {
                 }
             }, function () {
                 //handleLocationError(true, infoWindow, map.getCenter());
-                }, { maximumAge: Infinity, timeout: 5000, enableHighAccuracy: true, desiredAccuracy: 0, frequency: 1  });
+                }, { maximumAge: 0, timeout: 5000, enableHighAccuracy: true, desiredAccuracy: 0, frequency: 1  });
         } else {
             // Browser doesn't support Geolocation
             //handleLocationError(false, infoWindow, map.getCenter());
