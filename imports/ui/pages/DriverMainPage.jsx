@@ -246,7 +246,7 @@ class DriverMainPage  extends Component {
         //----------Find User Location--
         var checkOnce = true;
         if (navigator.geolocation) {
-            navigator.geolocation.watchPosition(function (position) {
+            navigator.geolocation.getCurrentPosition(function (position) {
                 var accuracy = position.coords.accuracy;
                 var pos = {
                     lat: position.coords.latitude,
