@@ -222,7 +222,7 @@ class ClientMainPage extends Component {
         //----------Find User Location--
         var checkOnce = true;
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function (position) {
+            navigator.geolocation.watchPosition(function (position) {
                 var accuracy = position.coords.accuracy;
                 var pos = {
                     lat: position.coords.latitude,
@@ -331,7 +331,7 @@ class ClientMainPage extends Component {
                 }
             }, function () {
                 //handleLocationError(true, infoWindow, map.getCenter());
-                }, { maximumAge: 600000, timeout: 5000, enableHighAccuracy: false });
+                }, { maximumAge: 600000, timeout: 5000, enableHighAccuracy:true });
         } else {
             // Browser doesn't support Geolocation
             //handleLocationError(false, infoWindow, map.getCenter());
