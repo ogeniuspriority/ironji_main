@@ -327,7 +327,7 @@ class BuyerMainPage extends Component {
                 }
             }, function () {
                 //handleLocationError(true, infoWindow, map.getCenter());
-                }, { maximumAge: 0, timeout: 5000, enableHighAccuracy: true, desiredAccuracy: 0, frequency: 1  });
+                }, { maximumAge: 1000, timeout: 1000, enableHighAccuracy: true});
         } else {
             // Browser doesn't support Geolocation
             //handleLocationError(false, infoWindow, map.getCenter());
