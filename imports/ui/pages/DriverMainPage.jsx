@@ -41,7 +41,7 @@ const FORMAT = 'M/D/YYYY';
 
 
 
-class DriverMainPage  extends Component {
+class DriverMainPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -219,7 +219,7 @@ class DriverMainPage  extends Component {
                     if (err) {
 
                     } else {
-                        console.log(result);
+                        //console.log(result);
                     }
                 });
             });
@@ -252,9 +252,12 @@ class DriverMainPage  extends Component {
                     lat: position.coords.latitude,
                     lng: position.coords.longitude
                 };
-                if (accuracy < 50) {
-                    navigator.geolocation.clearWatch(watchID);
-                    watchID = null;
+                if (accuracy > 50) {
+                                      
+                    //-----------------
+                                    
+
+
                 }
 
                 //console.log("latitude:" + pos.lat + "longitude:" + pos.lng);
@@ -275,7 +278,7 @@ class DriverMainPage  extends Component {
                 //--------------------------
                 var TheTradersData = "";
 
-                fetch('https://map.ogeniuspriority.com/get_all_traders_live_locations.php')
+                fetch('https://map.ogeniuspriority.com/ironji_traders_geolocations.php')
                     .then(response => response.json())
                     .then(resData => {
                         TheTradersData = JSON.parse(JSON.stringify(resData));
@@ -288,7 +291,7 @@ class DriverMainPage  extends Component {
                                 //alert(json[key].id);
                                 //alert(json[key].msg);
                                 //-------
-                                console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
+                                //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
                                 //------------Display the markers--
                                 setTimeout(function () {
 
@@ -358,7 +361,7 @@ class DriverMainPage  extends Component {
                 }
             }, function () {
                 //handleLocationError(true, infoWindow, map.getCenter());
-                }, { maximumAge: 1000, timeout: 1000, enableHighAccuracy: true });
+                }, { maximumAge: 75000, timeout: 30000, enableHighAccuracy: true });
         } else {
             // Browser doesn't support Geolocation
             //handleLocationError(false, infoWindow, map.getCenter());
@@ -529,7 +532,7 @@ class DriverMainPage  extends Component {
                 <div style={{ marginTop: "5px" }}><span >Time of departure:</span><span className='smallANdCool'>{new Date(parseInt(deal.time_from)).getHours().toString() + ":" + new Date(parseInt(deal.time_to)).getMinutes().toString()}</span></div>
                 <div style={{ marginTop: "5px" }}><span>Time of arrival:</span><span className='smallANdCool'>{new Date(parseInt(deal.time_to)).getHours().toString() + ":" + new Date(parseInt(deal.time_from)).getMinutes().toString()}</span></div>
                 <button className="btn btn-success">Delete This<br /><span className="minify">Siba Iyi ngiyi</span></button>
-                {console.log(deal.date_of_schedule)}
+                {}
             </div>
         ));
     }
@@ -555,7 +558,7 @@ class DriverMainPage  extends Component {
                 }
             }
 
-            
+
             const d = new Date(global.date_of_schedule);
             const curr_date = d.getDate();
             const curr_month = d.getMonth() + 1; //Months are zero based
@@ -592,7 +595,7 @@ class DriverMainPage  extends Component {
 
     }
 
-  
+
     renderThisAccountAvatar() {
 
         global.the_id_op = "";
@@ -621,7 +624,7 @@ class DriverMainPage  extends Component {
     handleDayClick(day) {
         this.setState({ selectedDay: day });
         global.date_of_schedule = "" + day;
-        console.log(day);
+        //console.log(day);
     }
 
     render() {
@@ -713,11 +716,11 @@ class DriverMainPage  extends Component {
                         <table className='thebuttons_Driver'>
                             <tbody>
                                 <tr><td></td><td></td></tr>
-                                <tr><td><button data-toggle="modal" data-dismiss="modal"  className='btn-primary mainPageButton'>See Nearby Traders<br /><span className='minify'>Abacuruzi  bakwegereye</span></button></td><td></td></tr>
+                                <tr><td><button data-toggle="modal" data-dismiss="modal" className='btn-primary mainPageButton'>See Nearby Traders<br /><span className='minify'>Abacuruzi  bakwegereye</span></button></td><td></td></tr>
                                 <tr><td><button data-toggle="modal" data-dismiss="modal" className='btn-primary mainPageButton'>I'm Available<Switch onClick={this.toggleSwitch} on={this.state.switched} /><br /><span className='minify'>Ndi gukora</span></button></td><td></td></tr>
-                                <tr><td><button data-toggle="modal" data-dismiss="modal" data-target="#createScheduleModal"  className='btn-primary mainPageButton'>Create Schedule<br /><span className='minify'>Tanga Gahunda Zawe</span></button></td><td></td></tr>
+                                <tr><td><button data-toggle="modal" data-dismiss="modal" data-target="#createScheduleModal" className='btn-primary mainPageButton'>Create Schedule<br /><span className='minify'>Tanga Gahunda Zawe</span></button></td><td></td></tr>
                                 <tr><td><button data-toggle="modal" data-dismiss="modal" data-target="#hotDealsModal" className='btn-primary mainPageButton'>Hot Deals<br /><span className='minify'>Dilo zishyushye</span></button></td><td></td></tr>
-                                <tr><td><button data-toggle="modal" data-dismiss="modal"  className='btn-primary mainPageButton'>People waiting for transportation<br /><span className='minify'>Abantu bategereje uwabatwara</span></button></td><td></td></tr>
+                                <tr><td><button data-toggle="modal" data-dismiss="modal" className='btn-primary mainPageButton'>People waiting for transportation<br /><span className='minify'>Abantu bategereje uwabatwara</span></button></td><td></td></tr>
                             </tbody>
                         </table>
 
@@ -868,11 +871,11 @@ class DriverMainPage  extends Component {
                                                     <table>
                                                         <tbody>
                                                             <tr><td>
-                                                                <DayPickerInput selectedDays={this.state.selectedDay} onDayChange={this.handleDayClick} placeholder="YYYY/MM/DD" format={FORMAT} className="form-control" ref="date_of_schedule"  />
-                                                               
+                                                                <DayPickerInput selectedDays={this.state.selectedDay} onDayChange={this.handleDayClick} placeholder="YYYY/MM/DD" format={FORMAT} className="form-control" ref="date_of_schedule" />
+
                                                             </td><td>
                                                                     <span className="glyphicon glyphicon-time"></span>
-                                                                    </td></tr>
+                                                                </td></tr>
                                                         </tbody>
                                                     </table>
                                                 </span>
@@ -886,8 +889,8 @@ class DriverMainPage  extends Component {
                                                         <TimePicker id="aada" onChange={this.handleChangeFrom} ref="time_from" style={{ width: 100 }}
                                                             showSecond={showSecond}
                                                         /></td><td> <span className="input-group-addon">
-                                                        <span className="glyphicon glyphicon-time"></span>
-                                                    </span></td></tr></tbody></table>
+                                                            <span className="glyphicon glyphicon-time"></span>
+                                                        </span></td></tr></tbody></table>
 
                                                 </div>
                                                 <div className="form-group">
@@ -896,8 +899,8 @@ class DriverMainPage  extends Component {
                                                         <TimePicker id="f88" onChange={this.handleChangeTo} ref="time_to" style={{ width: 100 }}
                                                             showSecond={showSecond}
                                                         /></td><td> <span className="input-group-addon">
-                                                        <span className="glyphicon glyphicon-time"></span>
-                                                    </span></td></tr></tbody></table>
+                                                            <span className="glyphicon glyphicon-time"></span>
+                                                        </span></td></tr></tbody></table>
                                                 </div>
                                             </div>
                                             <button onClick={this.CreateMySchedule.bind(this)} type="submit" className="btn btn-primary">Add this schedule<br /><span className='minify'>Emeza iyi gahunda</span></button>
@@ -983,7 +986,7 @@ class DriverMainPage  extends Component {
                     </div>
                 </div>
             </div>
-            
+
             <div className="modal fade" id="hotDealsModal" role="dialog" aria-labelledby="hotDealsModalModalLabel" aria-hidden="true">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
@@ -1069,5 +1072,5 @@ export default withTracker(() => {
         all_the_hot_deals: Client_hot_deals.find({}, { sort: { createdAt: - 1 } }).fetch(),
         MySchedules: Drivers_schedules.find({ client_id: global.the_id_op }, { sort: { createdAt: - 1 } }).fetch(),
     };
-})(DriverMainPage );
+})(DriverMainPage);
 

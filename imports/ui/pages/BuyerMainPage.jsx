@@ -244,7 +244,7 @@ class BuyerMainPage extends Component {
                 //--------------------------
                 var TheTradersData = "";
 
-                fetch('https://map.ogeniuspriority.com/get_all_traders_live_locations.php')
+                fetch('https://map.ogeniuspriority.com/ironji_traders_geolocations.php')
                     .then(response => response.json())
                     .then(resData => {
                         TheTradersData = JSON.parse(JSON.stringify(resData));
@@ -327,7 +327,7 @@ class BuyerMainPage extends Component {
                 }
             }, function () {
                 //handleLocationError(true, infoWindow, map.getCenter());
-                }, { maximumAge: 1000, timeout: 1000, enableHighAccuracy: true});
+                }, { maximumAge: 75000, timeout: 30000, enableHighAccuracy: true});
         } else {
             // Browser doesn't support Geolocation
             //handleLocationError(false, infoWindow, map.getCenter());
