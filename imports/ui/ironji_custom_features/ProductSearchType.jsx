@@ -20,7 +20,7 @@ import "react-toggle-switch/dist/css/switch.min.css";
 
 
 
-export class ViewHotProducts extends Component {
+export class ProductSearchType extends Component {
     constructor(props) {
         super(props);
      
@@ -34,18 +34,16 @@ export class ViewHotProducts extends Component {
     render() {
 
         return (<div >
-            <div style={{ boxShadow: "2px 2px 4px 4px #333",padding:"20px" }}>
-                <h5>Shadrack</h5>
-                <p>Come at Nyabugogo market, plot 52 and buy passion fruit at only 50 Rwf each</p>
-            </div>
-            <div style={{ boxShadow: "2px 2px 4px 4px #333", padding: "20px" }}>
-                <h5>Cedrick</h5>
-                <p>Brand new Samsung S7 at iphone shop on only 120000Rwf</p>
-            </div>
-            <div style={{ boxShadow: "2px 2px 4px 4px #333", padding: "20px" }}>
-                <h5>Emma</h5>
-                <p>New jeans at kabash house from Italy at only 30000Rwf a pair</p>
-            </div>
+            <select className="form-control" id="sel1">                
+                <option>Food</option>
+                <option>Music instruments</option>
+                <option>Clothes</option>
+                <option>Artifacts</option>
+                <option>Dry Cleaners</option>
+                <option>Restaurents</option>
+                <option>Electronic devices</option>
+                <option>Movies</option>
+            </select>
                
         </div>
         );
@@ -57,5 +55,5 @@ export default withTracker(() => {
         tasks: Users.find({}).fetch(),
         theSchedules: Drivers_schedules.find({}, { sort: { createdAt: -1 } }).fetch(),
     };
-})(ViewHotProducts);
+})(ProductSearchType);
 

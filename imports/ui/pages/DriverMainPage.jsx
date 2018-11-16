@@ -20,6 +20,7 @@ import 'react-day-picker/lib/style.css';
 //--------External components--
 import { ViewHotProducts } from '../ironji_custom_features/ViewHotProducts';
 import { ViewProductsInRadius } from '../ironji_custom_features/ViewProductsInRadius';
+import { ProductSearchType } from '../ironji_custom_features/ProductSearchType';
 
 //import {TrackerReact} from 'ultimatejs:tracker-react';
 const ARC_DE_TRIOMPHE_POSITION = {
@@ -679,16 +680,7 @@ class DriverMainPage extends Component {
                     </div>
                     <div className="form-group">
                         <label >Product type:</label>
-                        <select className="form-control" id="sel1">
-                            <option>Food</option>
-                            <option>Music instruments</option>
-                            <option>Clothes</option>
-                            <option>Artifacts</option>
-                            <option>Dry Cleaners</option>
-                            <option>Restaurents</option>
-                            <option>Electronic devices</option>
-                            <option>Movies</option>
-                        </select>
+                        <ProductSearchType />
                         <input className="btn-success" type="button" value="Apply changes" />
                     </div>
                     <div className="form-group">
