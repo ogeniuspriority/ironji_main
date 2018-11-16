@@ -21,6 +21,9 @@ import 'react-day-picker/lib/style.css';
 import { ViewHotProducts } from '../ironji_custom_features/ViewHotProducts';
 import { ViewProductsInRadius } from '../ironji_custom_features/ViewProductsInRadius';
 import { ProductSearchType } from '../ironji_custom_features/ProductSearchType';
+import { ViewMapInText } from '../ironji_custom_features/ViewMapInText';
+import { MadeDriverSchedules } from '../ironji_custom_features/MadeDriverSchedules';
+import { ViewHotDealsFromTraders } from '../ironji_custom_features/ViewHotDealsFromTraders';
 
 //import {TrackerReact} from 'ultimatejs:tracker-react';
 const ARC_DE_TRIOMPHE_POSITION = {
@@ -884,9 +887,9 @@ class DriverMainPage extends Component {
                                     </div>
                                     <div className="col-sm" style={{ width: "23%", float: "left", borderLeft: "1px solid black" }}>
                                         <h4>My Schedules<br /><span className="minify">Gahunda zanjye</span></h4>
-                                        <div style={{ overflowY: "scroll", height: "350px" }}>
-                                            {this.renderMySchedules()}
-
+                                        <div style={{ overflowY: "scroll", height: "350px",overflowX:"hidden" }}>
+                                            <MadeDriverSchedules thedata={this.renderMySchedules()} />
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -928,32 +931,8 @@ class DriverMainPage extends Component {
                             </button>
                         </div>
                         <div className="modal-body">
-                            <div className="container" style={{ height: "300px", overflow: "scroll", width: "400px" }}>
-                                <div style={{ border: "1px solid chocolate", margin: "5px" }}>
-                                    <h4>Names : Bizimana Eric</h4>
-                                    <p>Nyabugogo, near Modern office</p>
-                                    <button className='btn-primary'>Talk To Them</button>
-                                </div>
-                                <div style={{ border: "1px solid chocolate", margin: "5px" }}>
-                                    <h4>Names : Kanakuze Dative</h4>
-                                    <p>Near Kimironko market </p>
-                                    <button className='btn-primary'>Talk To Them</button>
-                                </div>
-                                <div style={{ border: "1px solid chocolate", margin: "5px" }}>
-                                    <h4>Names : Maman Kelia</h4>
-                                    <p>Nyamirambo, Cosmos </p>
-                                    <button className='btn-primary'>Talk To Them</button>
-                                </div>
-                                <div style={{ border: "1px solid chocolate", margin: "5px" }}>
-                                    <h4>Names : Muhirwa Emma</h4>
-                                    <p> Kinyinya, Gasharu market </p>
-                                    <button className='btn-primary'>Talk To Them</button>
-                                </div>
-                                <div style={{ border: "1px solid chocolate", margin: "5px" }}>
-                                    <h4>Names : Jose</h4>
-                                    <p>Kwa mutangana </p>
-                                    <button className='btn-primary'>Talk To Them</button>
-                                </div>
+                            <div className="container" style={{ height: "300px", overflowY: "scroll", width: "400px" }}>
+                              <ViewMapInText  />
                             </div>
                         </div>
                         <div className="modal-footer">
@@ -973,10 +952,9 @@ class DriverMainPage extends Component {
                             </button>
                         </div>
                         <div className="modal-body">
-                            <div className="container" style={{ overflow: "scroll", height: "350px", width: "350px" }}>
+                            <div className="container" style={{ overflowY: "scroll",overflowX:"hidden", height: "350px", width: "350px" }}>
                                 <div>
-                                    {this.renderTheHotDeals()}
-
+                                    <ViewHotDealsFromTraders datain={this.renderTheHotDeals()} />                                  
 
                                 </div>
                             </div>
