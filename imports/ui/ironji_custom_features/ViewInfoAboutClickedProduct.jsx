@@ -20,7 +20,7 @@ import "react-toggle-switch/dist/css/switch.min.css";
 
 
 
-export class ViewMapInText extends Component {
+export class ViewInfoAboutClickedProduct extends Component {
     constructor(props) {
         super(props);
      
@@ -34,32 +34,7 @@ export class ViewMapInText extends Component {
     render() {
 
         return (<div >
-
-            <div style={{ border: "1px solid chocolate", margin: "5px" }}>
-                <h4>Names : Bizimana Eric</h4>
-                <p>Nyabugogo, near Modern office</p>
-                <button className='btn-primary'>Talk To Them</button>
-            </div>
-            <div style={{ border: "1px solid chocolate", margin: "5px" }}>
-                <h4>Names : Kanakuze Dative</h4>
-                <p>Near Kimironko market </p>
-                <button className='btn-primary'>Talk To Them</button>
-            </div>
-            <div style={{ border: "1px solid chocolate", margin: "5px" }}>
-                <h4>Names : Maman Kelia</h4>
-                <p>Nyamirambo, Cosmos </p>
-                <button className='btn-primary'>Talk To Them</button>
-            </div>
-            <div style={{ border: "1px solid chocolate", margin: "5px" }}>
-                <h4>Names : Muhirwa Emma</h4>
-                <p> Kinyinya, Gasharu market </p>
-                <button className='btn-primary'>Talk To Them</button>
-            </div>
-            <div style={{ border: "1px solid chocolate", margin: "5px" }}>
-                <h4>Names : Jose</h4>
-                <p>Kwa mutangana </p>
-                <button className='btn-primary'>Talk To Them</button>
-            </div>
+            <div>Details on products and button to see on map are going here!</div>
                
         </div>
         );
@@ -71,5 +46,5 @@ export default withTracker(() => {
         tasks: Users.find({}).fetch(),
         theSchedules: Drivers_schedules.find({}, { sort: { createdAt: -1 } }).fetch(),
     };
-})(ViewMapInText);
+})(ViewInfoAboutClickedProduct);
 
