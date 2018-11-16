@@ -15,6 +15,7 @@ import 'rc-time-picker/assets/index.css';
 import { render } from 'react-dom';
 import Switch from 'react-toggle-switch';
 import "react-toggle-switch/dist/css/switch.min.css";
+import { ViewInfoAboutClickedProduct } from './ViewInfoAboutClickedProduct';
 
 //import {TrackerReact} from 'ultimatejs:tracker-react';
 
