@@ -55,7 +55,7 @@ export class ViewProductsInRadius extends Component {
             
             <div >
 
-                <div> <OverlayTrigger trigger="focus" placement="right" overlay={popoverRight}><img tabIndex="12" className="theseImgsFood" src="images/ironji.png" />
+                <div> <OverlayTrigger trigger="click" rootClose placement="right" overlay={popoverRight}><img tabIndex="12" className="theseImgsFood" src="images/ironji.png" />
                 </OverlayTrigger>
                     <div className="foodNames">Orange<br /><span className="minify">Ironji</span></div></div>
             
