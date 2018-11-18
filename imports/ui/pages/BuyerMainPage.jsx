@@ -17,6 +17,13 @@ import Switch from 'react-toggle-switch';
 import "react-toggle-switch/dist/css/switch.min.css";
 
 //import {TrackerReact} from 'ultimatejs:tracker-react';
+//--------External components--
+import { ViewHotProducts } from '../ironji_custom_features/ViewHotProducts';
+import { ViewProductsInRadius } from '../ironji_custom_features/ViewProductsInRadius';
+import { ProductSearchType } from '../ironji_custom_features/ProductSearchType';
+import { ViewMapInText } from '../ironji_custom_features/ViewMapInText';
+import { MadeDriverSchedules } from '../ironji_custom_features/MadeDriverSchedules';
+import { ViewHotDealsFromTraders } from '../ironji_custom_features/ViewHotDealsFromTraders';
 const ARC_DE_TRIOMPHE_POSITION = {
     lat: 48.873947,
     lng: 2.295038
@@ -220,7 +227,7 @@ class BuyerMainPage extends Component {
                     lng: position.coords.longitude
                 };
 
-                if (accuracy<50) {
+                if (accuracy < 50) {
                     navigator.geolocation.clearWatch(watchID);
                     watchID = null;
                 }
@@ -327,13 +334,13 @@ class BuyerMainPage extends Component {
                 }
             }, function () {
                 //handleLocationError(true, infoWindow, map.getCenter());
-                }, { maximumAge: 75000, timeout: 30000, enableHighAccuracy: true});
+            }, { maximumAge: 75000, timeout: 30000, enableHighAccuracy: true });
         } else {
             // Browser doesn't support Geolocation
             //handleLocationError(false, infoWindow, map.getCenter());
             alert("Your device refused to allow geolocation!! Enable you location if u want to use the near tool! ");
         }
-      
+
 
     }
 
@@ -563,42 +570,29 @@ class BuyerMainPage extends Component {
                     </div>
                     <div className="form-group">
                         <label >Product type:</label>
-                        <select className="form-control" id="sel1">
-                            <option>Food</option>
-                            <option>Music instruments</option>
-                            <option>Clothes</option>
-                            <option>Artifacts</option>
-                            <option>Dry Cleaners</option>
-                            <option>Restaurents</option>
-                            <option>Electronic devices</option>
-                            <option>Movies</option>
-                        </select>
+                        <ProductSearchType />
                         <input className="btn-success" type="button" value="Apply changes" />
                     </div>
                     <div className="form-group">
                         <input type="text" className="form-control" placeholder="Search a product by name" />
                         <input className="btn-success" type="button" value="Apply changes" />
                     </div></div>
-                <div className="middleFeature_left"><div className="middleFeature_left_in"><div ><img onClick={this.showThisProductInfo.bind(this)} className="theseImgsFood" src="images/ironji.png" /><div className="foodNames">Orange<br /><span className="minify">Ironji</span></div></div>
-                    <div><img className="theseImgsFood" onClick={this.showThisProductInfo.bind(this)} src="images/pineapple.jpg" /><div className="foodNames">Pineapple<br /><span className="minify">Inanasi</span></div></div>
-                    <div><img className="theseImgsFood" onClick={this.showThisProductInfo.bind(this)} src="images/banana.jpg" /><div className="foodNames">Banana<br /><span className="minify">Umuneke</span></div></div>
-                    <div><img className="theseImgsFood" onClick={this.showThisProductInfo.bind(this)} src="images/meat.jpg" /><div className="foodNames">Meat<br /><span className="minify">Inyama</span></div></div>
-                    <div><img className="theseImgsFood" onClick={this.showThisProductInfo.bind(this)} src="images/fish.jpg" /><div className="foodNames">Fish<br /><span className="minify">Ifi</span></div></div>
-                    <div><img className="theseImgsFood" onClick={this.showThisProductInfo.bind(this)} src="images/capati.jpg" /><div className="foodNames">Capati<br /><span className="minify">Capati</span></div></div>
-                    <div><img className="theseImgsFood" onClick={this.showThisProductInfo.bind(this)} src="images/chicken.jpg" /><div className="foodNames">Chicken<br /><span className="minify">Inkoko</span></div></div>
-                </div>
+                <div className="middleFeature_left">
+                    <div className="middleFeature_left_in">
+                        <ViewProductsInRadius />
+                    </div>
                 </div>
                 <div className="middleFeature_middle">
                     <button data-toggle="modal" data-target="#mapInTextModal" data-dismiss="modal" className="btn mapInText" style={{ float: "right", color: "red", background: "transparent", border: "1px solid red", borderTopLeftRadius: "5px" }}>Map In Text</button>
-                    <button style={{display:"none"}} className="btn btn-info" onClick={this.panToArcDeTriomphe.bind(this)}>Locate Yourself<br /><span className="minify">Reba aho uri</span></button>
+                    <button style={{ display: "none" }} className="btn btn-info" onClick={this.panToArcDeTriomphe.bind(this)}>Locate Yourself<br /><span className="minify">Reba aho uri</span></button>
                     <div>
                         <form>
                             <div className="form-group" style={{ width: "60%" }}>
                                 <input type="search" style={{ width: "80%" }} placeholder="Search place here.." className="form-control" id="origin" />
                             </div>
-                                
+
                             <input type="button" onClick={this.showPolyLinePath.bind(this)} className="btn-success" value="Search a place" />
-  </form>
+                        </form>
                     </div>
                     <div ref="map" className="TheMapGuru map" id="map" ref="map">I should be a map!</div>
                     <div>
@@ -607,7 +601,7 @@ class BuyerMainPage extends Component {
                                 <tr><td></td><td></td></tr>
                                 <tr><td><button data-toggle="modal" data-dismiss="modal" data-target="#createScheduleModal" className='btn-primary mainPageButton'>Get nearby driver.<br /><span className='minify'>Shaka umushoferi ukwegereye.</span></button></td><td></td></tr>
                                 <tr><td><button data-toggle="modal" data-dismiss="modal" className='btn-primary mainPageButton'>I Need Transportation Now<Switch onClick={this.toggleSwitch} on={this.state.switched} /><br /><span className='minify'>Nkeneye Umuntu Untwara Nonaha</span></button></td><td></td></tr>
-                                
+
                             </tbody>
                         </table>
 
@@ -616,22 +610,7 @@ class BuyerMainPage extends Component {
                 </div>
                 <div className="middleFeature_right">
                     <h2>Hot products</h2>
-                    <div>
-                        <div style={{ boxShadow: "2px 2px 4px 4px #333" }}>
-                            <h5>Shadrack</h5>
-                            <p>Come at Nyabugogo market, plot 52 and buy passion fruit at only 50 Rwf each</p>
-                        </div>
-                        <div style={{ boxShadow: "2px 2px 4px 4px #333" }}>
-                            <h5>Cedrick</h5>
-                            <p>Brand new Samsung S7 at iphone shop on only 120000Rwf</p>
-                        </div>
-                        <div style={{ boxShadow: "2px 2px 4px 4px #333" }}>
-                            <h5>Emma</h5>
-                            <p>New jeans at kabash house from Italy at only 30000Rwf a pair</p>
-                        </div>
-
-
-                    </div>
+                    <ViewHotProducts class="middleFeature_right" />
                 </div>
             </div>
 
@@ -736,7 +715,7 @@ class BuyerMainPage extends Component {
                         </div>
                         <div className="modal-body">
 
-                            <p>Drives mainly in Kimironko<br/><span className="minify">Akunda gukorera kimironko</span></p>
+                            <p>Drives mainly in Kimironko<br /><span className="minify">Akunda gukorera kimironko</span></p>
                             <button className="btn-default btn-primary">Talk To Them</button>
                         </div>
                         <div className="modal-footer">

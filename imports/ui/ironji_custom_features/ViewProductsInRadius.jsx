@@ -16,7 +16,7 @@ import { render } from 'react-dom';
 import Switch from 'react-toggle-switch';
 import "react-toggle-switch/dist/css/switch.min.css";
 import { Button, PopoverHeader } from 'react-bootstrap';
-import Popup  from "reactjs-popup";
+import Popup from "reactjs-popup";
 import { ViewInfoAboutClickedProduct } from './ViewInfoAboutClickedProduct';
 import Popover from 'react-bootstrap/lib/Popover'
 import Overlay from 'react-bootstrap/lib/Overlay';
@@ -36,7 +36,7 @@ export class ViewProductsInRadius extends Component {
     }
 
     componentDidMount() {
-       
+
     }
     toggle() {
         this.setState({
@@ -45,29 +45,44 @@ export class ViewProductsInRadius extends Component {
     }
     render() {
 
-        const popoverRight = (
-            <Popover id="popover-positioned-right" title="About Orange">
-                <ViewInfoAboutClickedProduct />
-  </Popover>
-        );
+
 
         return (<div >
-            
-            <div >
-
-                <div> <OverlayTrigger trigger="click" rootClose placement="right" overlay={popoverRight}><img tabIndex="12" className="theseImgsFood" src="images/ironji.png" />
-                </OverlayTrigger>
-                    <div className="foodNames">Orange<br /><span className="minify">Ironji</span></div></div>
-            
-           </div>
-
-            <div><img className="theseImgsFood" src="images/pineapple.jpg" /><div className="foodNames">Pineapple<br /><span className="minify">Inanasi</span></div></div>
-            <div><img className="theseImgsFood"  src="images/banana.jpg" /><div className="foodNames">Banana<br /><span className="minify">Umuneke</span></div></div>
-            <div><img className="theseImgsFood"  src="images/meat.jpg" /><div className="foodNames">Meat<br /><span className="minify">Inyama</span></div></div>
-            <div><img className="theseImgsFood"  src="images/fish.jpg" /><div className="foodNames">Fish<br /><span className="minify">Ifi</span></div></div>
-            <div><img className="theseImgsFood"  src="images/capati.jpg" /><div className="foodNames">Capati<br /><span className="minify">Capati</span></div></div>
-            <div><img className="theseImgsFood"  src="images/chicken.jpg" /><div className="foodNames">Chicken<br /><span className="minify">Inkoko</span></div></div>
-              
+            <ViewInfoAboutClickedProduct myData0="Orange Details" myData1="It's time for actual implementations."
+                myData2="images/ironji.png"
+                myData3="Orange"
+                myData4="Ironji"
+            />
+            <ViewInfoAboutClickedProduct myData0="Pineapple Details" myData1="It's time for actual implementations."
+                myData2="images/pineapple.jpg"
+                myData3="Pineapple"
+                myData4="Inanasi"
+            />
+            <ViewInfoAboutClickedProduct myData0="Banana Details" myData1="It's time for actual implementations."
+                myData2="images/banana.jpg"
+                myData3="Banana"
+                myData4="Umuneke"
+            />
+            <ViewInfoAboutClickedProduct myData0="Meat Details" myData1="It's time for actual implementations."
+                myData2="images/meat.jpg"
+                myData3="Meat"
+                myData4="Inyama"
+            />
+            <ViewInfoAboutClickedProduct myData0="Fish Details" myData1="It's time for actual implementations."
+                myData2="images/fish.jpg"
+                myData3="Fish"
+                myData4="Ifi"
+            />
+            <ViewInfoAboutClickedProduct myData0="Capati Details" myData1="It's time for actual implementations."
+                myData2="images/capati.jpg"
+                myData3="Capati"
+                myData4="Capati"
+            />
+            <ViewInfoAboutClickedProduct myData0="Chicken Details" myData1="It's time for actual implementations."
+                myData2="images/chicken.jpg"
+                myData3="Chicken"
+                myData4="Inkoko"
+            />         
         </div>
         );
     }

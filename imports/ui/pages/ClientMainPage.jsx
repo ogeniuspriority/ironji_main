@@ -17,6 +17,13 @@ import Switch from 'react-toggle-switch';
 import "react-toggle-switch/dist/css/switch.min.css";
 
 //import {TrackerReact} from 'ultimatejs:tracker-react';
+//--------External components--
+import { ViewHotProducts } from '../ironji_custom_features/ViewHotProducts';
+import { ViewProductsInRadius } from '../ironji_custom_features/ViewProductsInRadius';
+import { ProductSearchType } from '../ironji_custom_features/ProductSearchType';
+import { ViewMapInText } from '../ironji_custom_features/ViewMapInText';
+import { MadeDriverSchedules } from '../ironji_custom_features/MadeDriverSchedules';
+import { ViewHotDealsFromTraders } from '../ironji_custom_features/ViewHotDealsFromTraders';
 const ARC_DE_TRIOMPHE_POSITION = {
     lat: 48.873947,
     lng: 2.295038
@@ -334,7 +341,7 @@ class ClientMainPage extends Component {
                 }
             }, function () {
                 //handleLocationError(true, infoWindow, map.getCenter());
-                }, { maximumAge: 75000, timeout: 30000, enableHighAccuracy: true });
+            }, { maximumAge: 75000, timeout: 30000, enableHighAccuracy: true });
         } else {
             // Browser doesn't support Geolocation
             //handleLocationError(false, infoWindow, map.getCenter());
@@ -565,30 +572,18 @@ class ClientMainPage extends Component {
                     </div>
                     <div className="form-group">
                         <label >Product type:</label>
-                        <select className="form-control" id="sel1">
-                            <option>Food</option>
-                            <option>Music instruments</option>
-                            <option>Clothes</option>
-                            <option>Artifacts</option>
-                            <option>Dry Cleaners</option>
-                            <option>Restaurents</option>
-                            <option>Electronic devices</option>
-                            <option>Movies</option>
-                        </select>
+                        <ProductSearchType />
                         <input className="btn-success" type="button" value="Apply changes" />
                     </div>
                     <div className="form-group">
                         <input type="text" className="form-control" placeholder="Search a product by name" />
                         <input className="btn-success" type="button" value="Apply changes" />
                     </div></div>
-                <div className="middleFeature_left"><div className="middleFeature_left_in"><div ><img onClick={this.showThisProductInfo.bind(this)} className="theseImgsFood" src="images/ironji.png" /><div className="foodNames">Orange<br /><span className="minify">Ironji</span></div></div>
-                    <div><img className="theseImgsFood" onClick={this.showThisProductInfo.bind(this)} src="images/pineapple.jpg" /><div className="foodNames">Pineapple<br /><span className="minify">Inanasi</span></div></div>
-                    <div><img className="theseImgsFood" onClick={this.showThisProductInfo.bind(this)} src="images/banana.jpg" /><div className="foodNames">Banana<br /><span className="minify">Umuneke</span></div></div>
-                    <div><img className="theseImgsFood" onClick={this.showThisProductInfo.bind(this)} src="images/meat.jpg" /><div className="foodNames">Meat<br /><span className="minify">Inyama</span></div></div>
-                    <div><img className="theseImgsFood" onClick={this.showThisProductInfo.bind(this)} src="images/fish.jpg" /><div className="foodNames">Fish<br /><span className="minify">Ifi</span></div></div>
-                    <div><img className="theseImgsFood" onClick={this.showThisProductInfo.bind(this)} src="images/capati.jpg" /><div className="foodNames">Capati<br /><span className="minify">Capati</span></div></div>
-                    <div><img className="theseImgsFood" onClick={this.showThisProductInfo.bind(this)} src="images/chicken.jpg" /><div className="foodNames">Chicken<br /><span className="minify">Inkoko</span></div></div>
-                </div>
+                <div className="middleFeature_left">
+                    <div className="middleFeature_left_in">
+                        <ViewProductsInRadius />
+
+                    </div>
                 </div>
                 <div className="middleFeature_middle">
                     <button data-toggle="modal" data-target="#mapInTextModal" data-dismiss="modal" className="btn mapInText" style={{ float: "right", color: "red", background: "transparent", border: "1px solid red", borderTopLeftRadius: "5px" }}>Map In Text</button>
@@ -619,22 +614,8 @@ class ClientMainPage extends Component {
                 </div>
                 <div className="middleFeature_right">
                     <h2>Hot products</h2>
-                    <div>
-                        <div style={{ boxShadow: "2px 2px 4px 4px #333" }}>
-                            <h5>Shadrack</h5>
-                            <p>Come at Nyabugogo market, plot 52 and buy passion fruit at only 50 Rwf each</p>
-                        </div>
-                        <div style={{ boxShadow: "2px 2px 4px 4px #333" }}>
-                            <h5>Cedrick</h5>
-                            <p>Brand new Samsung S7 at iphone shop on only 120000Rwf</p>
-                        </div>
-                        <div style={{ boxShadow: "2px 2px 4px 4px #333" }}>
-                            <h5>Emma</h5>
-                            <p>New jeans at kabash house from Italy at only 30000Rwf a pair</p>
-                        </div>
+                    <ViewHotProducts class="middleFeature_right" />
 
-
-                    </div>
 
                 </div>
             </div>
