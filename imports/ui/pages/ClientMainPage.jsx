@@ -24,6 +24,9 @@ import { ProductSearchType } from '../ironji_custom_features/ProductSearchType';
 import { ViewMapInText } from '../ironji_custom_features/ViewMapInText';
 import { MadeDriverSchedules } from '../ironji_custom_features/MadeDriverSchedules';
 import { ViewHotDealsFromTraders } from '../ironji_custom_features/ViewHotDealsFromTraders';
+import { IronjiAssistantProfile } from '../ironji_custom_features/IronjiAssistantProfile';
+
+
 const ARC_DE_TRIOMPHE_POSITION = {
     lat: 48.873947,
     lng: 2.295038
@@ -59,6 +62,7 @@ class ClientMainPage extends Component {
             conversationPopX: "0px",
             conversationPopY: "0px",
             value: 5,
+            putYourSelfOnTheMap: false,
         };
 
 
@@ -102,7 +106,11 @@ class ClientMainPage extends Component {
     componentWillUnmount() {
         clearInterval(this.interval);
     }
-
+    toggleOnlinePresencePop() {
+        this.setState({
+            putYourSelfOnTheMap: !this.state.putYourSelfOnTheMap
+        });
+    }
     toggleSwitch() {
         this.setState({
             switched: !this.state.switched
@@ -596,6 +604,10 @@ class ClientMainPage extends Component {
                             <input type="button" className="btn-success" value="Search a place" />
                         </form>
                     </div>
+                    <button style={{fontSize:"12px"}} onClick={this.toggleOnlinePresencePop.bind(this)} className="myButton">Advertise yourself on the trade map.Toggle window by clicking!</button>
+                    <div className={(this.state.putYourSelfOnTheMap) ? "popInvis_inverse" : "popInvis"}>
+                        <IronjiAssistantProfile />
+                    </div>
                     <div ref="map" className="TheMapGuru map" id="map" ref="map">I should be a map!</div>
                     <div>
                         <table className='thebuttons_Driver'>
@@ -741,7 +753,7 @@ class ClientMainPage extends Component {
                             </button>
                         </div>
                         <div className="modal-body">
-                            <div className="container" style={{ height: "300px", overflow: "scroll", width: "400px" }}>
+                            <div className="container" style={{ height: "300px", overflowY: "scroll", width: "400px",overflowX:"hidden" }}>
                                 <div style={{ border: "1px solid chocolate", margin: "5px" }}>
                                     <h4>Names : Bizimana Eric</h4>
                                     <p>Nyabugogo, near Modern office</p>

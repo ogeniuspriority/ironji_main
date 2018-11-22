@@ -32,19 +32,19 @@ body {
     text-align: center;
 }
 
-.logoHome img {
-    max-width: 80px;
-    max-height: 80px;
-}
+    .logoHome img {
+        max-width: 80px;
+        max-height: 80px;
+    }
 
 .logoHome_For_DRiver {
     padding: 30px;
 }
 
-.logoHome_For_DRiver img {
-    max-width: 80px;
-    max-height: 80px;
-}
+    .logoHome_For_DRiver img {
+        max-width: 80px;
+        max-height: 80px;
+    }
 
 .TrademarkAndName {
     padding-top: 20px;
@@ -94,11 +94,11 @@ body {
     cursor: hand;
 }
 
-.theTgg div button {
-    margin: auto;
-    font-size: 18px;
-    min-width: 140px;
-}
+    .theTgg div button {
+        margin: auto;
+        font-size: 18px;
+        min-width: 140px;
+    }
 
 .MyButtonsHome {
     margin-left: 20%;
@@ -159,11 +159,11 @@ body {
     text-decoration: underline;
 }
 
-.thetransparent:hover {
-    color: navy;
-    background: white;
-    border: 1px solid red;
-}
+    .thetransparent:hover {
+        color: navy;
+        background: white;
+        border: 1px solid red;
+    }
 
 .btn {
     min-width: 130px;
@@ -221,11 +221,11 @@ body {
     font-style: italic;
 }
 
-.jkly div {
-    color: #F33E16;
-    font-style: italic;
-    float: right;
-}
+    .jkly div {
+        color: #F33E16;
+        font-style: italic;
+        float: right;
+    }
 
 .TheMapGuru {
     width: 100%;
@@ -247,26 +247,26 @@ body {
     max-height: 700px;
 }
 
-.middleFeature_left_in::-webkit-scrollbar {
-    width: 8px; /*-The Width of the total scrollbar-*/
-}
+    .middleFeature_left_in::-webkit-scrollbar {
+        width: 8px; /*-The Width of the total scrollbar-*/
+    }
 
-.middleFeature_left_in::-webkit-scrollbar-thumb { /*-Thum means the slider-*/
-    border-radius: 10px;
-    background-color: orange; /*-Change slider color here-*/
-    box-shadow: inset 0 0 6px rgba(0, 0, .1);
-}
+    .middleFeature_left_in::-webkit-scrollbar-thumb { /*-Thum means the slider-*/
+        border-radius: 10px;
+        background-color: orange; /*-Change slider color here-*/
+        box-shadow: inset 0 0 6px rgba(0, 0, .1);
+    }
 
-.middleFeature_left_in::-webkit-scrollbar-track { /*-The background or track of slider/thumb -*/
-    border-radius: 10px;
-    background-color: #fff; /*-Change scrollbar background color here-*/
-    box-shadow: 0 0 6px rgba(0, 0, .3);
-}
+    .middleFeature_left_in::-webkit-scrollbar-track { /*-The background or track of slider/thumb -*/
+        border-radius: 10px;
+        background-color: #fff; /*-Change scrollbar background color here-*/
+        box-shadow: 0 0 6px rgba(0, 0, .3);
+    }
 
 
-.middleFeature_left_in img {
-    cursor: hand;
-}
+    .middleFeature_left_in img {
+        cursor: hand;
+    }
 
 .middleFeature_middle {
     width: 70%;
@@ -274,7 +274,7 @@ body {
 }
 
 .middleFeature_right {
-    padding-left:3%;
+    padding-left: 3%;
     width: 20%;
     float: left;
 }
@@ -285,8 +285,8 @@ body {
 
 .theseImgsFood {
     width: 70%;
-    padding:2%;
-    height:auto;
+    padding: 2%;
+    height: auto;
     margin: 5px;
     box-shadow: 2px 2px 1px 2px #333333;
     border-radius: 5px;
@@ -306,21 +306,21 @@ body {
 .myTraders_0 {
 }
 
-.myTraders_0::-webkit-scrollbar {
-    width: 2px; /*-The Width of the total scrollbar-*/
-}
+    .myTraders_0::-webkit-scrollbar {
+        width: 2px; /*-The Width of the total scrollbar-*/
+    }
 
-.myTraders_0::-webkit-scrollbar-thumb { /*-Thum means the slider-*/
-    border-radius: 5px;
-    background-color: orange; /*-Change slider color here-*/
-    box-shadow: inset 0 0 3px rgba(0, 0, .1);
-}
+    .myTraders_0::-webkit-scrollbar-thumb { /*-Thum means the slider-*/
+        border-radius: 5px;
+        background-color: orange; /*-Change slider color here-*/
+        box-shadow: inset 0 0 3px rgba(0, 0, .1);
+    }
 
-.myTraders_0::-webkit-scrollbar-track { /*-The background or track of slider/thumb -*/
-    border-radius: 5px;
-    background-color: #fff; /*-Change scrollbar background color here-*/
-    box-shadow: 0 0 3px rgba(0, 0, .3);
-}
+    .myTraders_0::-webkit-scrollbar-track { /*-The background or track of slider/thumb -*/
+        border-radius: 5px;
+        background-color: #fff; /*-Change scrollbar background color here-*/
+        box-shadow: 0 0 3px rgba(0, 0, .3);
+    }
 
 .theProds_content {
     width: 200px;
@@ -352,20 +352,20 @@ body {
     border-radius: 4px;
 }
 
-.btn-default:hover {
-    border: 1px solid black;
-    border-radius: 4px;
-}
+    .btn-default:hover {
+        border: 1px solid black;
+        border-radius: 4px;
+    }
 
 .testimonial-group > .row {
     overflow-x: auto;
     white-space: nowrap;
 }
 
-.testimonial-group > .row > .col-xs-4 {
-    display: inline-block;
-    float: none;
-}
+    .testimonial-group > .row > .col-xs-4 {
+        display: inline-block;
+        float: none;
+    }
 
 .col-xs-4 {
     color: #fff;
@@ -374,17 +374,17 @@ body {
     padding-top: 18px;
 }
 
-.col-xs-4:nth-child(3n+1) {
-    background: #c69;
-}
+    .col-xs-4:nth-child(3n+1) {
+        background: #c69;
+    }
 
-.col-xs-4:nth-child(3n+2) {
-    background: #9c6;
-}
+    .col-xs-4:nth-child(3n+2) {
+        background: #9c6;
+    }
 
-.col-xs-4:nth-child(3n+3) {
-    background: #69c;
-}
+    .col-xs-4:nth-child(3n+3) {
+        background: #69c;
+    }
 
 .theTopMenus .theConainer {
     flloat: left;
@@ -423,9 +423,9 @@ body {
     border-radius: 5px;
 }
 
-.mainPageButton:hover {
-    border: 1px solid orange;
-}
+    .mainPageButton:hover {
+        border: 1px solid orange;
+    }
 
 .makeSmall {
     width: 50px
@@ -473,9 +473,9 @@ body {
     transition: 0.4s;
 }
 
-.active, .accordion:hover {
-    background-color: #ccc;
-}
+    .active, .accordion:hover {
+        background-color: #ccc;
+    }
 
 .panel {
     padding: 0 18px;
@@ -483,46 +483,50 @@ body {
     background-color: white;
     overflow: hidden;
 }
+
 .tradersDashboard:hover {
     border-left: 2px solid green;
     border-right: 2px solid green;
-    border-radius:5px;
+    border-radius: 5px;
 }
-.popoverWithArrow .error-label{
-    padding:10px;
+
+.popoverWithArrow .error-label {
+    padding: 10px;
     color: #fff;
     background-color: #DA362A;
-    -webkit-border-radius: 5px; 
-    -moz-border-radius: 5px; 
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
     border-radius: 5px;
-    width:190px;
-    margin:30px;
+    width: 190px;
+    margin: 30px;
 }
 
-.popoverWithArrow. error-label:before {
-    content: ' ';
-    height: 0;
-    position: absolute;
-    width: 0;
-    left:10px;
-    border: 10px solid transparent;
-    border-right-color: #DA362A;
-}
+    .popoverWithArrow. error-label:before {
+        content: ' ';
+        height: 0;
+        position: absolute;
+        width: 0;
+        left: 10px;
+        border: 10px solid transparent;
+        border-right-color: #DA362A;
+    }
+
 .arrow-left {
-    width: 0; 
-    height: 0; 
+    width: 0;
+    height: 0;
     border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent; 
-
-    border-right:10px solid blue; 
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid blue;
 }
 
-.popoverWithArrow_hide_it_set{
-    display:none;
+.popoverWithArrow_hide_it_set {
+    display: none;
 }
-.popoverWithArrow_hide_it_set_visible{
-    display:block;
+
+.popoverWithArrow_hide_it_set_visible {
+    display: block;
 }
+
 #leftPanel {
     background-color: #0079ac;
     color: #fff;
@@ -544,9 +548,10 @@ body {
     background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
     background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
 }
+
 .custom-file-input::-webkit-file-upload-button {
     visibility: hidden;
-    display:none;
+    display: none;
 }
 
 .custom-file-input::before {
@@ -557,13 +562,13 @@ body {
     border-radius: 3px;
     padding: 5px 8px;
     outline: none;
-    width:200px;
+    width: 200px;
     white-space: nowrap;
     -webkit-user-select: none;
     cursor: pointer;
     text-shadow: 1px 1px #fff;
     font-weight: 700;
-    color:chocolate;
+    color: chocolate;
     font-size: 10pt;
 }
 
@@ -574,28 +579,31 @@ body {
 .custom-file-input:active::before {
     background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
 }
+
 .edit_profile_inputs_skin {
     background-image: linear-gradient(to top, #fdcbf1 0%, #fdcbf1 1%, #e6dee9 100%);
-    z-index:1200;
+    z-index: 1200;
 }
+
 .theeditorsProfile {
     display: none;
     font-size: 16px;
     padding: 10px;
     text-align: center;
     background-color: #fff;
-    border-radius:6px;
-    border:1px solid #333;
-    margin-top:-50px;
+    border-radius: 6px;
+    border: 1px solid #333;
+    margin-top: -50px;
     color: black;
     border: solid 1px #a6d8a8;
     margin: auto;
-    position:absolute;
-    z-index:2000;
-    width:200px;
-    height:120px;
-    font-size:16px;
+    position: absolute;
+    z-index: 2000;
+    width: 200px;
+    height: 120px;
+    font-size: 16px;
 }
+
 .theeditorsProfile_hidden {
     display: none;
     background: yellow;
@@ -610,6 +618,7 @@ body {
     position: absolute;
     z-index: 2000;
 }
+
 .lds-ellipsis {
     display: inline-block;
     position: relative;
@@ -676,11 +685,60 @@ body {
         transform: translate(19px, 0);
     }
 }
+
 .domMessenger {
-
-
 }
-.center-block {
 
-z-index:2400;
+.center-block {
+    z-index: 2400;
+}
+
+.myButton {
+    -moz-box-shadow: 0px 10px 14px -7px #276873;
+    -webkit-box-shadow: 0px 10px 14px -7px #276873;
+    box-shadow: 0px 10px 14px -7px #276873;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #599bb3), color-stop(1, #408c99));
+    background: -moz-linear-gradient(top, #599bb3 5%, #408c99 100%);
+    background: -webkit-linear-gradient(top, #599bb3 5%, #408c99 100%);
+    background: -o-linear-gradient(top, #599bb3 5%, #408c99 100%);
+    background: -ms-linear-gradient(top, #599bb3 5%, #408c99 100%);
+    background: linear-gradient(to bottom, #599bb3 5%, #408c99 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#599bb3', endColorstr='#408c99',GradientType=0);
+    background-color: #599bb3;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 13px 44px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #3d768a;
+}
+
+ .myButton:hover {
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #408c99), color-stop(1, #599bb3));
+        background: -moz-linear-gradient(top, #408c99 5%, #599bb3 100%);
+        background: -webkit-linear-gradient(top, #408c99 5%, #599bb3 100%);
+        background: -o-linear-gradient(top, #408c99 5%, #599bb3 100%);
+        background: -ms-linear-gradient(top, #408c99 5%, #599bb3 100%);
+        background: linear-gradient(to bottom, #408c99 5%, #599bb3 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#408c99', endColorstr='#599bb3',GradientType=0);
+        background-color: #408c99;
+}
+
+.myButton:active {
+        position: relative;
+        top: 1px;
+}
+.popInvis {
+  display:none;
+}
+.popInvis_inverse {
+  display:block;
+  position:absolute;
+  z-index:1000;
 }
