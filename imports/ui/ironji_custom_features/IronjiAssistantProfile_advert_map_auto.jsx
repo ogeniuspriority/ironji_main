@@ -58,13 +58,22 @@ export class IronjiAssistantProfile_advert_map_auto extends Component {
        
         map0.addListener('click', function (event) {
             if (marker_CLICKED == null) {
+                var icon_ = {
+                    url: "images/locate_me.png", // url
+                    scaledSize: new google.maps.Size(35, 70), // scaled size
+                    origin: new google.maps.Point(0, 0), // origin
+                    anchor: new google.maps.Point(0, 0) // anchor
+                };
+
                 marker_CLICKED = new google.maps.Marker({
                     position: event.latLng,
                     map: map0,
+                    icon: icon_,
                     clickable: true,
                     draggable: true,
                     animation: google.maps.Animation.DROP
                 });
+                //marker_CLICKED.setMap(that0.map0);
             } else {
                 marker_CLICKED.setPosition(event.latLng);
             }
