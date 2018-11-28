@@ -101,8 +101,8 @@ export class IronjiAssistantProfile_advert_map extends Component {
     render() {
 
         return (<div >
-            <div style={{ boxShadow:"2px 2px #cdcdcd", background: "#ebedee", borderRadius: "4px", padding: "5px", width: "99%", border: "1px solid #fff", marginLeft: "1%" }}>
-                <div>Put your business location on the map. If the automatic location is not accurate fixing by dragging the marker.</div>
+            <div style={{ boxShadow: "2px 2px #cdcdcd", background: "#ebedee", borderRadius: "4px", padding: "5px", width: "99%", border: "1px solid #fff", marginLeft: "1%" }}>
+                <div style={{fontSize:"14px"}}>Put your business location on the map. If the automatic location is not accurate fix it by dragging the marker on the map.</div>
                 <div ref="map_adjust" className="TheMapGuru map" id="map_adjust"  ></div>
                 
             </div>

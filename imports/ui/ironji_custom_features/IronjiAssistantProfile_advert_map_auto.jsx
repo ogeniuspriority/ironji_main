@@ -156,7 +156,7 @@ export class IronjiAssistantProfile_advert_map_auto extends Component {
 
         return (<div >
             <div style={{ boxShadow: "2px 2px #cdcdcd", background: "#ebedee", borderRadius: "4px", padding: "5px", width: "99%", border: "1px solid #fff", marginLeft: "1%" }}>
-                <h4>Search by location name <input type="text" style={{ width: "50%" }} ref="placeSearch" id="pac-input" className="form-control" placeholder="Type location name here" /></h4>
+                <h4 style={{ fontSize: "14px" }}>Search by location name.Click on map to place marker. If the automatic location is not accurate fix it by dragging the marker on the map <input type="text" style={{ width: "50%" }} ref="placeSearch" id="pac-input" className="form-control" placeholder="Type location name here" /></h4>
                 <div></div>
                 <div ref="map_adjust_auto" className="TheMapGuru map" id="map_adjust_auto"  ></div>
             </div>
