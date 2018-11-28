@@ -115,7 +115,7 @@ export class IronjiAssistantProfile extends Component {
 
         return (<div >
             <div style={{ background: "#EDBB99", borderRadius: "4px", padding: "5px", width: "100%", border: "1px solid #fff", marginLeft: "-15%" }}>
-                <h4>Make your online presence.</h4>
+                <h4>Make your online presence using either the automatic locator on the right or by typing the location, adjust the location by dragging the marker on either map, confirm the location to save.</h4>
                 <div>
 
                 </div>
