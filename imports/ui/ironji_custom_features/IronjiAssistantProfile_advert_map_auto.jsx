@@ -82,7 +82,7 @@ export class IronjiAssistantProfile_advert_map_auto extends Component {
             geocoder0 = new google.maps.Geocoder();
             google.maps.event.addListener(marker_CLICKED, "drag", function () {
                 var pos = marker_CLICKED.getPosition();
-                markers.setAnimation(google.maps.Animation.BOUNCE);
+                marker_CLICKED.setAnimation(google.maps.Animation.BOUNCE);
                 document.getElementById("latitude").value = pos.lat();
                 document.getElementById("longitude").value = pos.lng();
             });

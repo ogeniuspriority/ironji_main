@@ -26,6 +26,9 @@ import { MadeDriverSchedules } from '../ironji_custom_features/MadeDriverSchedul
 import { ViewHotDealsFromTraders } from '../ironji_custom_features/ViewHotDealsFromTraders';
 import { IronjiAssistantProfile } from '../ironji_custom_features/IronjiAssistantProfile';
 
+import { IronjiAssistantProfile_advert_AboutYourBusiness } from '../ironji_custom_features/IronjiAssistantProfile_advert_AboutYourBusiness';
+import { IronjiAssistantProfile_advert_productList } from '../ironji_custom_features/IronjiAssistantProfile_advert_productList';
+
 
 const ARC_DE_TRIOMPHE_POSITION = {
     lat: 48.873947,
@@ -63,6 +66,8 @@ class ClientMainPage extends Component {
             conversationPopY: "0px",
             value: 5,
             putYourSelfOnTheMap: false,
+            aboutBusiness: false,
+            productList: false,
         };
 
 
@@ -109,6 +114,16 @@ class ClientMainPage extends Component {
     toggleOnlinePresencePop() {
         this.setState({
             putYourSelfOnTheMap: !this.state.putYourSelfOnTheMap
+        });
+    }
+    toggleAboutBusiness() {
+        this.setState({
+            aboutBusiness: !this.state.aboutBusiness
+        });
+    }
+    toggleProductList() {
+        this.setState({
+            productList: !this.state.productList
         });
     }
     toggleSwitch() {
@@ -604,9 +619,17 @@ class ClientMainPage extends Component {
                             <input type="button" className="btn-success" value="Search a place" />
                         </form>
                     </div>
-                    <button style={{fontSize:"12px"}} onClick={this.toggleOnlinePresencePop.bind(this)} className="myButton">Advertise yourself on the trade map.Toggle window by clicking!</button>
+                    <button style={{ fontSize: "12px" }} onClick={this.toggleOnlinePresencePop.bind(this)} className="myButton">Adjust your geolocation to allow your visibility on the trading map!</button>
+                    <button style={{ fontSize: "12px" }} onClick={this.toggleAboutBusiness.bind(this)} className="myButton">About my business!</button>
+                    <button style={{ fontSize: "12px" }} onClick={this.toggleProductList.bind(this)} className="myButton">Products i offer!</button>
                     <div className={(this.state.putYourSelfOnTheMap) ? "popInvis_inverse" : "popInvis"}>
                         <IronjiAssistantProfile />
+                    </div>
+                    <div className={(this.state.aboutBusiness) ? "popInvis_inverse" : "popInvis"}>
+                        <IronjiAssistantProfile_advert_AboutYourBusiness />
+                    </div>
+                    <div className={(this.state.productList) ? "popInvis_inverse" : "popInvis"}>
+                        <IronjiAssistantProfile_advert_productList />
                     </div>
                     <div ref="map" className="TheMapGuru map" id="map" ref="map">I should be a map!</div>
                     <div>

@@ -742,3 +742,129 @@ body {
   position:absolute;
   z-index:1000;
 }
+#label {
+    cursor: pointer;
+    /* Style as you please, it will become the visible UI component. */
+    background: skyblue;
+    border-radius: 3px;
+    padding:5px;
+    margin:5px;
+    color:#333333;
+}
+#label:hover {
+    background:#669ae1;
+}
+#upload-photo {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+}
+#upload-photo0 {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+.row_products {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    -ms-flex-wrap: wrap; /* IE10 */
+    flex-wrap: wrap;
+    padding: 0 4px;
+}
+
+/* Create four equal columns that sits next to each other */
+.column_products {
+    -ms-flex: 25%; /* IE10 */
+    flex: 25%;
+    max-width: 25%;
+    padding: 0 4px;
+}
+
+.column_products_images {
+    margin-top: 8px;
+    vertical-align: middle;
+}
+
+.layout {
+    width: 60vw;
+    height: 80vh;
+    padding: 20px;
+    display: grid;
+    grid-gap: 10px 10px;
+    grid-template-rows: repeat(3, minmax(max-content, 1fr));
+    grid-template-columns: repeat(6, minmax(max-content, 1fr));
+    grid-template-areas: "d d a a e e" "d d b c e e" "d d b c e e";
+}
+
+.img-1 {
+    grid-area: a;
+}
+
+.img-2 {
+    grid-area: b;
+}
+
+.img-3 {
+    grid-area: c;
+}
+
+.img-4 {
+    grid-area: d;
+}
+
+.img-5 {
+    grid-area: e;
+}
+.container_check input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.container_check:hover input ~ .checkmark {
+    background-color: #333;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container_check input:checked ~ .checkmark {
+    background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.container_check input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.container_check .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}

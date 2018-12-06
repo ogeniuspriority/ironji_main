@@ -132,8 +132,6 @@ export class IronjiAssistantProfile extends Component {
                     <IronjiAssistantProfile_advert_map />
                 </div>
                 <div style={{ clear: "both" }}></div>
-                <IronjiAssistantProfile_advert_AboutYourBusiness />
-                <IronjiAssistantProfile_advert_productList />
             </div>
                
         </div>

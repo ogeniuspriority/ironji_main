@@ -34,7 +34,7 @@ export class ProductSearchType extends Component {
     render() {
 
         return (<div >
-            <select className="form-control" id="sel1">                
+            <select className="form-control productChoiceWhenAdding" id="sel1">                
                 <option>Food</option>
                 <option>Music instruments</option>
                 <option>Clothes</option>
