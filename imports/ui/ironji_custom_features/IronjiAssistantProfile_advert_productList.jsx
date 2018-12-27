@@ -163,6 +163,7 @@ export class IronjiAssistantProfile_advert_productList extends Component {
                         TheTradersData = JSON.parse(JSON.stringify(resData));
                         if (TheTradersData['theMarkersOfTraders'].includes("Great")) {
                             toastr.success('Products added to your shop!', 'Thank you!', { timeOut: 5000 });
+                            global.product_to_add_to_my_list = "";
                         } else {
 
                         }
