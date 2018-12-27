@@ -163,7 +163,7 @@ export class IronjiAssistantProfile_advert_productList extends Component {
                         <ProductsIsell />
                     </div>
                 </div>
-                <h4>Choose from ironji products to showcase!</h4>
+                <h4>Choose from ironji products to showcase in your account!</h4>
                 <div style={{ borderRadius: "6px", border: "1px solid black", width: "600px", height: "660px", overflowY: "scroll", overflowX: "hidden" }}>
                     <ProductsInIronjiDatabase />          
                 </div>

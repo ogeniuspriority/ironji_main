@@ -3,9 +3,12 @@
     "",
     "\\imports",
     "\\imports\\ui",
+    "\\imports\\ui\\ironji_custom_features",
     "\\imports\\ui\\pages",
-    "\\public"
+    "\\node_modules\\babel-runtime\\helpers",
+    "\\public",
+    "\\public\\images"
   ],
-  "SelectedNode": "\\imports\\ui\\pages\\ClientMainPage.jsx",
+  "SelectedNode": "\\imports\\ui\\pages\\BuyerProfile.jsx",
   "PreviewInSolutionExplorer": false
 }

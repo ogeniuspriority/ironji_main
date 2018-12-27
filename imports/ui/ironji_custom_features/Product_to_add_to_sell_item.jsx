@@ -32,7 +32,10 @@ export class Product_to_add_to_sell_item extends Component {
     componentDidMount() {
 
     }
-
+    checkChooseThisProduct(obj,e) { 
+        var if_checked = e.target.checked;
+        alert("--" + if_checked + '-' + e.target.name + "---" + document.getElementById(e.target.name.split("~~~~~")[1]).value + "----" + e.target.name.split("~~~~~")[0]);
+    }
     render() {
 
         return (
@@ -45,13 +48,13 @@ export class Product_to_add_to_sell_item extends Component {
                 </div>
                 <div className="form-group" style={{ marginTop: "5px" }}>
                     <label>Product Price:</label>
-                    <input type="text" value={this.props.price_prod} className="form-control" />
+                    <input id={"yuii" + this.props.id_prod} type="text" value={this.props.price_prod} className="form-control" />
                 </div>         
               
                 <div>
                     <label className="container_check" style={{ border: "1px solid black", borderRadius: "4px" }}>
-                        <input type="checkbox" name={"----" + this.props.id_prod} />
-                    <span className="checkmark"></span>
+                        <input onClick={this.checkChooseThisProduct.bind(this, this.props.id_prod)} type="checkbox" name={"" + this.props.id_prod + "~~~~~yuii" + this.props.id_prod} />
+                        <span style={{border:"2px solid #333",borderRadius:"4px"}} className="checkmark"></span>
                     </label>
                     </div>
 
