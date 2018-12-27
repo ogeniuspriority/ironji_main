@@ -277,8 +277,8 @@ class DriverMainPage extends Component {
                     mapTypeId: google.maps.MapTypeId.ROADMAP
                 });
                 var icon = {
-                    url: 'images/tradericon.jpeg', // url
-                    scaledSize: new google.maps.Size(35, 35), // scaled size
+                    url: 'images/trader_loc.png', // url
+                    scaledSize: new google.maps.Size(60, 60), // scaled size
                     origin: new google.maps.Point(0, 0), // origin
                     anchor: new google.maps.Point(0, 0) // anchor
                 };
