@@ -152,6 +152,32 @@ export class IronjiAssistantProfile_advert_productList extends Component {
                 });
         } 
     }
+    addProductToMyList() {
+        /*
+        */
+        if (global.product_to_add_to_my_list) {
+            if (global.product_to_add_to_my_list != "") {
+                fetch('https://map.ogeniuspriority.com/map_scripts/add_choosen_products_to_pool_for_business.php?id=' + global.the_id_op + "&chosenProductsToAdd=" + global.product_to_add_to_my_list)
+                    .then(response => response.json())
+                    .then(resData => {
+                        TheTradersData = JSON.parse(JSON.stringify(resData));
+                        if (TheTradersData['theMarkersOfTraders'].includes("Great")) {
+                            toastr.success('Products added to your shop!', 'Thank you!', { timeOut: 5000 });
+                        } else {
+
+                        }
+                    });
+            } else {
+                toastr.error('Error', " You haven't chosen any products!!");
+                toastr.options.closeMethod = 'fadeOut';
+                toastr.options.closeDuration = 300;
+                toastr.options.closeEasing = 'swing';
+                toastr.options.progressBar = true;
+                toastr.options.preventDuplicates = true;
+                toastr.options.extendedTimeOut = 300;
+            }
+        }
+    }
     render() {
 
         return (<div >
@@ -167,7 +193,7 @@ export class IronjiAssistantProfile_advert_productList extends Component {
                 <div style={{ borderRadius: "6px", border: "1px solid black", width: "600px", height: "660px", overflowY: "scroll", overflowX: "hidden" }}>
                     <ProductsInIronjiDatabase />          
                 </div>
-                <button type="button" className="btn-primary">Add selected products to your list</button>
+                <button type="button" onClick={this.addProductToMyList.bind(this)} className="btn-primary">Add selected products to your list</button>
                 <h4>Add new custom product to the repertoire:</h4>
                 <div style={{ borderRadius: "6px", border: "1px solid black", height: "auto",width:"600px", overflowY: "scroll" }}>
                     <form id="imgForm">

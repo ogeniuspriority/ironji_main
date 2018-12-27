@@ -32,9 +32,25 @@ export class Product_to_add_to_sell_item extends Component {
     componentDidMount() {
 
     }
-    checkChooseThisProduct(obj,e) { 
+    checkChooseThisProduct(obj, e) {         
         var if_checked = e.target.checked;
-        alert("--" + if_checked + '-' + e.target.name + "---" + document.getElementById(e.target.name.split("~~~~~")[1]).value + "----" + e.target.name.split("~~~~~")[0]);
+        //alert(document.getElementById(e.target.name.split("~~~~~")[1]).value + "----" + e.target.name.split("~~~~~")[0]);
+        if (if_checked) {
+            if (!global.product_to_add_to_my_list) {
+                global.product_to_add_to_my_list = "" + ((document.getElementById(e.target.name.split("~~~~~")[1]).value == "") ? "0 Rwf" : document.getElementById(e.target.name.split("~~~~~")[1]).value) + "----" + e.target.name.split("~~~~~")[0];
+            } else {
+                global.product_to_add_to_my_list = global.product_to_add_to_my_list + "@cyuma@^" + ((document.getElementById(e.target.name.split("~~~~~")[1]).value == "") ? "0 Rwf" : document.getElementById(e.target.name.split("~~~~~")[1]).value) + "----" + e.target.name.split("~~~~~")[0];
+            }
+            //---------------            
+        } else {
+            var temPtreat = global.product_to_add_to_my_list;
+            var res = temPtreat.replace("" + ((document.getElementById(e.target.name.split("~~~~~")[1]).value == "") ? "0 Rwf" : document.getElementById(e.target.name.split("~~~~~")[1]).value) + "----" + e.target.name.split("~~~~~")[0], "deletedd");
+            global.product_to_add_to_my_list = ""+res;
+        }
+        //----------------
+        //alert(global.product_to_add_to_my_list);
+        //---------Save The chosen products--
+        
     }
     render() {
 
