@@ -719,20 +719,20 @@ class ClientMainPage extends Component {
                         <label >Adjust radius in  from where you are standing:</label>
                         <span id="valBox">6 km</span>
                         <input className="form-control" type="range" ref="myRange" onChange={this.recordValue.bind(this)} onInput={this.recordValue.bind(this)} min="1" max="41" step="1" id="myRange" value={this.state.value} />
-                        <input className="btn-success" type="button" value="Apply changes" />
+                        <input style={{display:"none"}} className="btn-success" type="button" value="Apply changes" />
                     </div>
                     <div className="form-group">
                         <label >Product type:</label>
                         <ProductSearchType />
-                        <input className="btn-success" type="button" value="Apply changes" />
+                        <input style={{ display: "none" }} className="btn-success" type="button" value="Apply changes" />
                     </div>
                     <div className="form-group">
-                        <input type="text" className="form-control" placeholder="Search a product by name" />
-                        <input className="btn-success" type="button" value="Apply changes" />
+                        <input type="text" id="productSearchFieldData" className="form-control" placeholder="Search a product by name" />
+                        <input style={{ display: "none" }} className="btn-success" type="button" value="Apply changes" />
                     </div></div>
                 <div className="middleFeature_left">
                     <div className="middleFeature_left_in">
-                        <ViewProductsInRadius />
+                        <ViewProductsInRadius mylatitude={this.state.the_main_page_latitude} mylongitude={this.state.the_main_page_longitude} />
 
                     </div>
                 </div>

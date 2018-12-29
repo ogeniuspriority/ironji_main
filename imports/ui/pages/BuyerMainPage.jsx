@@ -218,7 +218,7 @@ class BuyerMainPage extends Component {
             window.open("/", "_self");
         }
         //----------Find User Location--
-        var checkOnce = true;
+        /*var checkOnce = true;
         if (navigator.geolocation) {
             var watchID = navigator.geolocation.getCurrentPosition(function (position) {
                 var accuracy = position.coords.accuracy;
@@ -339,7 +339,132 @@ class BuyerMainPage extends Component {
             // Browser doesn't support Geolocation
             //handleLocationError(false, infoWindow, map.getCenter());
             alert("Your device refused to allow geolocation!! Enable you location if u want to use the near tool! ");
-        }
+        }*/
+        var checkOnce = true;
+        var geocoder0_for_main_page;
+        var marker_CLICKED_for_main_page;
+        // var placeSearch = this.refs.placeSearch.value;
+        var map0_for_main_page = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: 1.9433, lng: 30.0596 },
+            zoom: 16,
+            mapTypeId: 'roadmap'
+        });
+        var that_auto_for_main_page = this;
+        //--------
+        var input_for_main_page = document.getElementById('pac-input_for_main_page');
+        var searchBox_for_main_page = new google.maps.places.SearchBox(input_for_main_page);
+        map0_for_main_page.controls[google.maps.ControlPosition.TOP_LEFT].push(input_for_main_page);
+
+        // Bias the SearchBox results towards current map's viewport.
+        map0_for_main_page.addListener('bounds_changed', function () {
+            searchBox_for_main_page.setBounds(map0_for_main_page.getBounds());
+        });
+
+        map0_for_main_page.addListener('click', function (event) {
+
+            if (marker_CLICKED_for_main_page == null) {
+                var icon_ = {
+                    url: "images/locate_me.png", // url
+                    scaledSize: new google.maps.Size(35, 70), // scaled size
+                    origin: new google.maps.Point(0, 0), // origin
+                    anchor: new google.maps.Point(0, 0) // anchor
+                };
+
+                marker_CLICKED_for_main_page = new google.maps.Marker({
+                    position: event.latLng,
+                    map: map0_for_main_page,
+                    icon: icon_,
+                    clickable: true,
+                    draggable: true,
+                    animation: google.maps.Animation.DROP
+                });
+                //marker_CLICKED_for_main_page.setPosition(event.latLng);
+            } else {
+                marker_CLICKED_for_main_page.setPosition(event.latLng);
+            }
+            //-------------
+            //console.log("Map clicked!" + event.latLng);
+            //alert("sksof sfsi " + event.latLng);
+            that_auto_for_main_page.setState({
+                the_main_page_longitude: event.latLng.lng(),
+                the_main_page_latitude: event.latLng.lat()
+            });
+            //-------------            
+            geocoder0_for_main_page = new google.maps.Geocoder();
+            google.maps.event.addListener(marker_CLICKED_for_main_page, "drag", function () {
+                var pos_for_main_page = marker_CLICKED_for_main_page.getPosition();
+                marker_CLICKED_for_main_page.setAnimation(google.maps.Animation.BOUNCE);
+                //document.getElementById("latitude").value = pos.lat();
+                //document.getElementById("longitude").value = pos.lng();
+                that_auto_for_main_page.setState({
+                    the_main_page_longitude: pos_for_main_page.lng(),
+                    the_main_page_latitude: pos_for_main_page.lat()
+                });
+                //alert(that_auto_for_main_page.state.the_main_page_longitude);
+            });
+
+            //marker_CLICKED_for_main_page.setMap(that_auto_for_main_page.map0_for_main_page);        
+
+        });
+        //---------
+
+
+
+
+        var markers0_for_main_page = [];
+        // Listen for the event fired when the user selects a prediction and retrieve
+        // more details for that place.
+        searchBox_for_main_page.addListener('places_changed', function () {
+            var places_for_main_page = searchBox_for_main_page.getPlaces();
+
+            if (places_for_main_page.length == 0) {
+                return;
+            }
+
+            // Clear out the old markers.
+            markers0_for_main_page.forEach(function (marker) {
+                marker.setMap(null);
+            });
+            markers0_for_main_page = [];
+
+            // For each place, get the icon, name and location.
+            var bounds_for_main_page = new google.maps.LatLngBounds();
+            places_for_main_page.forEach(function (place_for_main_page) {
+                if (!place_for_main_page.geometry) {
+                    //console.log("Returned place contains no geometry");
+                    return;
+                }
+                var icon = {
+                    url: place_for_main_page.icon,
+                    size: new google.maps.Size(71, 71),
+                    origin: new google.maps.Point(0, 0),
+                    anchor: new google.maps.Point(17, 34),
+                    scaledSize: new google.maps.Size(25, 25)
+                };
+
+                // Create a marker for each place.
+                markers0_for_main_page.push(new google.maps.Marker({
+                    map: map0_for_main_page,
+                    icon: icon,
+                    title: place_for_main_page.name,
+                    position: place_for_main_page.geometry.location
+                }));
+                //var pos = markers[0].getPosition();
+                //markers[0].setAnimation(google.maps.Animation.BOUNCE);
+                //document.getElementById("latitude").value = pos.lat();
+                //document.getElementById("longitude").value = pos.lng();
+                if (place_for_main_page.geometry.viewport) {
+                    // Only geocodes have viewport.
+                    bounds_for_main_page.union(place_for_main_page.geometry.viewport);
+                } else {
+                    bounds_for_main_page.extend(place_for_main_page.geometry.location);
+                }
+            });
+            map0_for_main_page.fitBounds(bounds_for_main_page);
+        });
+
+
+
 
 
     }
@@ -566,16 +691,16 @@ class BuyerMainPage extends Component {
                         <label >Adjust radius in  from where you are standing:</label>
                         <span id="valBox">6 km</span>
                         <input className="form-control" type="range" ref="myRange" onChange={this.recordValue.bind(this)} onInput={this.recordValue.bind(this)} min="1" max="41" step="1" id="myRange" value={this.state.value} />
-                        <input className="btn-success" type="button" value="Apply changes" />
+                        <input style={{ display: "none" }} className="btn-success" type="button" value="Apply changes" />
                     </div>
                     <div className="form-group">
                         <label >Product type:</label>
                         <ProductSearchType />
-                        <input className="btn-success" type="button" value="Apply changes" />
+                        <input style={{ display: "none" }} className="btn-success" type="button" value="Apply changes" />
                     </div>
                     <div className="form-group">
-                        <input type="text" className="form-control" placeholder="Search a product by name" />
-                        <input className="btn-success" type="button" value="Apply changes" />
+                        <input type="text" id="productSearchFieldData" className="form-control" placeholder="Search a product by name" />
+                        <input style={{ display: "none" }} className="btn-success" type="button" value="Apply changes" />
                     </div></div>
                 <div className="middleFeature_left">
                     <div className="middleFeature_left_in">
@@ -585,14 +710,14 @@ class BuyerMainPage extends Component {
                 <div className="middleFeature_middle">
                     <button data-toggle="modal" data-target="#mapInTextModal" data-dismiss="modal" className="btn mapInText" style={{ float: "right", color: "red", background: "transparent", border: "1px solid red", borderTopLeftRadius: "5px" }}>Map In Text</button>
                     <button style={{ display: "none" }} className="btn btn-info" onClick={this.panToArcDeTriomphe.bind(this)}>Locate Yourself<br /><span className="minify">Reba aho uri</span></button>
+                    
                     <div>
-                        <form>
-                            <div className="form-group" style={{ width: "60%" }}>
-                                <input type="search" style={{ width: "80%" }} placeholder="Search place here.." className="form-control" id="origin" />
-                            </div>
 
-                            <input type="button" onClick={this.showPolyLinePath.bind(this)} className="btn-success" value="Search a place" />
-                        </form>
+                        <div className="form-group" style={{ width: "60%" }}>
+                            <h4 style={{ fontSize: "14px" }}><input type="text" style={{ width: "70%" }} placeholder="Find any place by typing in, adjust the locator by dragging.." className="form-control" ref="pac-input_for_main_page" id="pac-input_for_main_page" /></h4>
+                        </div>
+
+
                     </div>
                     <div ref="map" className="TheMapGuru map" id="map" ref="map">I should be a map!</div>
                     <div>
