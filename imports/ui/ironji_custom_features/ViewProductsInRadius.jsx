@@ -63,7 +63,7 @@ export class ViewProductsInRadius extends Component {
             .then(response => response.json())
             .then(resData => {
                 TheTradersData = JSON.parse(JSON.stringify(resData));
-                console.log("---"  + "---" + JSON.stringify(resData));
+                //console.log("---"  + "---" + JSON.stringify(resData));
                 var theMarkersOfTraders = TheTradersData["theMarkersOfTraders"];
                 //document.getElementById("MyBusinessData").innerHTML = theMarkersOfTraders;
                 var theResults = [];
@@ -78,13 +78,13 @@ export class ViewProductsInRadius extends Component {
                         i_db++;
                     }
                 }                
-                //----------------   
-                //console(this.productsInRadiusWhereIam_temp + "--" + theResults);
+                   
+                
                 if (JSON.stringify(this.productsInRadiusWhereIam_temp) !== JSON.stringify(theResults)) {
                     this.setState({ productsInRadiusWhereIam_temp: theResults });
                     this.setState({ productsInRadiusWhereIam: theResults });
                 } else {
-                    //this.setState({ productsInRadiusWhereIam: theResults });
+                    
                 }
                 
 
