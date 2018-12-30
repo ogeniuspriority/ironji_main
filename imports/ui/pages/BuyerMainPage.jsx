@@ -59,6 +59,8 @@ class BuyerMainPage extends Component {
             conversationPopX: "0px",
             conversationPopY: "0px",
             value: 5,
+            the_main_page_longitude: "30.059572",
+            the_main_page_latitude: "-1.943659",
 
         };
 
@@ -704,7 +706,8 @@ class BuyerMainPage extends Component {
                     </div></div>
                 <div className="middleFeature_left">
                     <div className="middleFeature_left_in">
-                        <ViewProductsInRadius />
+                        <ViewProductsInRadius mylatitude={this.state.the_main_page_latitude} mylongitude={this.state.the_main_page_longitude} />
+
                     </div>
                 </div>
                 <div className="middleFeature_middle">
