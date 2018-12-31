@@ -36,18 +36,32 @@ export class ViewInfoAboutClickedProduct extends Component {
 
     }
 
+    adjustAndShowInfoAboutProduct(e) {
+        var rect = e.target.getBoundingClientRect();
+        //console.log(rect.top, rect.right, rect.bottom, rect.left);
+        //alert("Top: " + rect.top + "Left: " + rect.left);
+        //document.getElementById("" + e.target.name).style.left = "" + rect.left+"px";
+        //document.getElementById("" + e.target.name).style.top = "" + rect.top + "px";
+        //document.getElementById("" + e.target.name).style.display="block";
+        document.getElementById("thePopDataInfo").innerHTML = "";
+        var theTitle = "Info about '<span style='color:orange;'>" + this.props.myData3 + "</span>' at " + document.getElementById("pac-input_for_main_page").value;
+        document.getElementById("thePopDataInfo").innerHTML = '<div class="" id="productShow-~" ' + this.props.productId + ' style="width:800px;box-shadow:2px 2px #333;z-index:7000;position:fixed;background:white;top:' + 50 + "px;left" + rect.left + "px;" + ';border-radius:6px;padding:10px;margin-top:150px;margin-left:80px">' + '<div class="modal-header"><h4 style="text-align:center;color:blue;">' + theTitle+'</h4><button style="float:right;background:transparent;border-radius:3px;border:1px solid black;" onclick="closeThisPop()"'+'>X</button></div><div class="modal-body">sfji fsojfj</div>'+'</div>';
+
+    }
+
+
     render() {
 
         const popoverRight = (
-            <Popover id="0" title={this.props.myData0}>
-                <div>{this.props.myData1}</div>
+            <Popover id="0" title={"More about '" + this.props.myData3+"'"}>
+                <div>{this.props.productId + "---" + this.props.myData3}</div>
             </Popover>
         );
 
         return (<div >
-            <div >
-                <div> <OverlayTrigger trigger="click" rootClose placement="right" overlay={popoverRight}><img tabIndex="12" className="theseImgsFood" src={this.props.myData2} />
-                </OverlayTrigger>
+            <div>
+                <div ><img name={"productShow-~" + this.props.productId} onClick={this.adjustAndShowInfoAboutProduct.bind(this)} tabIndex="12" className="theseImgsFood" src={this.props.myData2} /> 
+                    <div id={"productShow-~" + this.props.productId} style={{ zIndex: "7000",display:"none", background: "white", position: "fixed",marginTop:"-70px",marginLeft:"50px",borderRadius:"6px",padding:"6px" }}>fsh sfi sfij</div>
                     <div className="foodNames">{this.props.myData3}<br /><span className="minify">{this.props.myData4}</span></div></div>
             </div>
 

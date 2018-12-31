@@ -715,7 +715,7 @@ class BuyerMainPage extends Component {
                     </div>
                 </div>
                 <div className="middleFeature_middle">
-                    <button data-toggle="modal" data-target="#mapInTextModal" data-dismiss="modal" className="btn mapInText" style={{ float: "right", color: "red", background: "transparent", border: "1px solid red", borderTopLeftRadius: "5px" }}>Map In Text</button>
+                    <button data-toggle="modal" data-target="#mapInTextModal" data-dismiss="modal" className="btn mapInText" style={{ float: "right", color: "red", background: "transparent", border: "1px solid red", borderTopLeftRadius: "5px",display:"none" }}>Map In Text</button>
                     <button style={{ display: "none" }} className="btn btn-info" onClick={this.panToArcDeTriomphe.bind(this)}>Locate Yourself<br /><span className="minify">Reba aho uri</span></button>
                     
                     <div>

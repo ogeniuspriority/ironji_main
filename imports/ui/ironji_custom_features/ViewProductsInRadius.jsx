@@ -117,6 +117,9 @@ export class ViewProductsInRadius extends Component {
 
 
         return (<div >
+            <div id="thePopDataInfo">
+
+            </div>
             <div style={{display:"none"}}>{this.props.mylatitude + "--" + this.props.mylongitude}</div>
             {this.showResultsr_forInRadiusProjects()}
         </div>
