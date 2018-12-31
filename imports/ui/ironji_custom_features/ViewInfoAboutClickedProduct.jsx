@@ -43,10 +43,24 @@ export class ViewInfoAboutClickedProduct extends Component {
         //document.getElementById("" + e.target.name).style.left = "" + rect.left+"px";
         //document.getElementById("" + e.target.name).style.top = "" + rect.top + "px";
         //document.getElementById("" + e.target.name).style.display="block";
+        //----------------Load the remote Data--
         document.getElementById("thePopDataInfo").innerHTML = "";
         var theTitle = "Info about '<span style='color:orange;'>" + this.props.myData3 + "</span>' at " + document.getElementById("pac-input_for_main_page").value;
-        document.getElementById("thePopDataInfo").innerHTML = '<div class="" id="productShow-~" ' + this.props.productId + ' style="width:800px;box-shadow:2px 2px #333;z-index:7000;position:fixed;background:white;top:' + 50 + "px;left" + rect.left + "px;" + ';border-radius:6px;padding:10px;margin-top:150px;margin-left:80px">' + '<div class="modal-header"><h4 style="text-align:center;color:blue;">' + theTitle+'</h4><button style="float:right;background:transparent;border-radius:3px;border:1px solid black;" onclick="closeThisPop()"'+'>X</button></div><div class="modal-body">sfji fsojfj</div>'+'</div>';
+        document.getElementById("thePopDataInfo").innerHTML = '<div class="" id="productShow-~" ' + this.props.productId + ' style="border:1px solid #333;width:800px;box-shadow:2px 2px #333;z-index:7000;position:fixed;background:white;top:' + 50 + "px;left" + rect.left + "px;" + ';border-radius:6px;padding:10px;margin-top:80px;margin-left:80px">' + '<div class="modal-header"><h4 style="text-align:center;color:blue;">' + theTitle + '</h4><button style="float:right;background:transparent;border-radius:3px;border:1px solid black;" onclick="closeThisPop()"' + '>X</button></div><div class="modal-body" style="height:350px;overflow-y:scroll">' + "Wait, Loading data..." + '</div>' + '</div>';
 
+        fetch('https://map.ogeniuspriority.com/map_scripts/search_the_traders_for_this_product.php?productId=' + this.props.productId)
+            .then(response => response.json())
+            .then(resData => {
+                TheTradersData = JSON.parse(JSON.stringify(resData));
+                console.log("---"  + "---" + JSON.stringify(resData));
+                var theMarkersOfTraders = TheTradersData["theMarkersOfTraders"];
+                document.getElementById("thePopDataInfo").innerHTML = "";
+                var theTitle = "Info about '<span style='color:orange;'>" + this.props.myData3 + "</span>' at " + document.getElementById("pac-input_for_main_page").value;
+                document.getElementById("thePopDataInfo").innerHTML = '<div class="" id="productShow-~" ' + this.props.productId + ' style="border:1px solid #333;width:800px;box-shadow:2px 2px #333;z-index:7000;position:fixed;background:white;top:' + 50 + "px;left" + rect.left + "px;" + ';border-radius:6px;padding:10px;margin-top:80px;margin-left:80px">' + '<div class="modal-header"><h4 style="text-align:center;color:blue;">' + theTitle + '</h4><button style="float:right;background:transparent;border-radius:3px;border:1px solid black;" onclick="closeThisPop()"' + '>X</button></div><div class="modal-body" style="height:350px;overflow-y:scroll">' + theMarkersOfTraders+'</div>' + '</div>';
+
+
+            });
+    
     }
 
 

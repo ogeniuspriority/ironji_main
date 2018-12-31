@@ -73,7 +73,7 @@ export class ViewProductsInRadius extends Component {
                 var i_db = 0;
                 for (var key in theMarkersOfTraders) {
                     if (theMarkersOfTraders.hasOwnProperty(key)) {
-                        console.log("" + theMarkersOfTraders[key].ironji_traders_product_list_image + "~" + theMarkersOfTraders[key].ironji_traders_product_list_name + "~" + theMarkersOfTraders[key].ironji_traders_product_list_id);
+                        //console.log("" + theMarkersOfTraders[key].ironji_traders_product_list_image + "~" + theMarkersOfTraders[key].ironji_traders_product_list_name + "~" + theMarkersOfTraders[key].ironji_traders_product_list_id);
                         theResults.push(theMarkersOfTraders[key].ironji_traders_product_list_image + "~" + theMarkersOfTraders[key].ironji_traders_product_list_name + "~" + theMarkersOfTraders[key].ironji_traders_product_list_id);
                         i_db++;
                     }
