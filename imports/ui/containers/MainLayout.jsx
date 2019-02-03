@@ -30,6 +30,11 @@ import ClientProfile from '../pages/ClientProfile.jsx';
 import DriverProfile from '../pages/DriverProfile.jsx';
 import BuyerProfile from '../pages/BuyerProfile.jsx';
 import Team from '../pages/Team.jsx';
+import FarmerRegister from '../pages/FarmerRegister.jsx';
+import FarmerDashboard from '../pages/FarmerDashboard.jsx';
+import FarmerMainPage from '../pages/FarmerMainPage.jsx';
+import FarmerProfile from '../pages/FarmerProfile.jsx';
+import FarmerMessages from '../pages/FarmerMessages.jsx';
 
 
 export default class MainLayout extends React.Component {
@@ -60,7 +65,12 @@ export default class MainLayout extends React.Component {
                  <Route path = '/profile' component={Profile} />
                  <Route path = '/Clientprofile' component={ClientProfile} />
                  <Route path = '/Driverprofile' component={DriverProfile} />
-                 <Route path = '/Buyerprofile' component={BuyerProfile} />
+                    <Route path='/Buyerprofile' component={BuyerProfile} />
+                    <Route path='/FarmerRegister' component={FarmerRegister} />
+                    <Route path='/FarmerDashboard' component={FarmerDashboard} />
+                    <Route path='/FarmerMainPage' component={FarmerMainPage} />
+                    <Route path='/FarmerMessages' component={FarmerMessages} />
+                    <Route path='/FarmerProfile' component={FarmerProfile} />
               <Route component={NotFound} />
             </Switch>
             <Footer />

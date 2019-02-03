@@ -37,7 +37,7 @@ class ClientRegister extends Component {
 
     RegisterAsDriver() {
 
-        window.open("/driverRegister", "_self");
+        window.open("/DriverRegister", "_self");
     }
 
     RegisterAsClient() {
@@ -49,7 +49,7 @@ class ClientRegister extends Component {
     }
 
     loginIntoAccount() {
-        window.open("/driverMainPage", "_self")
+        window.open("/clientMainPage", "_self")
     }
     registerDriver(e) {
         e.preventDefault();
@@ -139,9 +139,9 @@ class ClientRegister extends Component {
                         alert("User Not Created");
                     }
                     if (result) {
-                        sessionStorage.setItem('ironji_account_type', "trader");
+                        sessionStorage.setItem('ironji_account_type', "farmer");
                         sessionStorage.setItem('ironji_account_username', username);
-                        window.open("/clientMainPage", "_self");
+                        window.open("/ClientMainPage", "_self");
                     }
                 });
             }

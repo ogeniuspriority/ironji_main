@@ -4,11 +4,8 @@
     "\\imports",
     "\\imports\\ui",
     "\\imports\\ui\\ironji_custom_features",
-    "\\imports\\ui\\pages",
-    "\\node_modules\\babel-runtime\\helpers",
-    "\\public",
-    "\\public\\images"
+    "\\imports\\ui\\pages"
   ],
-  "SelectedNode": "\\imports\\ui\\pages\\BuyerProfile.jsx",
+  "SelectedNode": "\\imports\\ui\\ironji_custom_features\\ViewInfoAboutClickedProduct.jsx",
   "PreviewInSolutionExplorer": false
 }

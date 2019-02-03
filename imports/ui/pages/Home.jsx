@@ -51,6 +51,9 @@ class Home extends Component {
     RegisterAsBuyer(){
         window.open("/buyerRegister", "_self");
     }
+    RegisterAsFarmer() {
+        window.open("/FarmerRegister", "_self");
+    }
 
     frequentlyAskedQuestions() {
         window.open("/fq_asked", "_self")
@@ -97,6 +100,13 @@ class Home extends Component {
                         sessionStorage.setItem('ironji_account_username', po[key].username);
                         window.open("/BuyerDashboard", "_self");
                         break;
+                    } else if (po[key].account_type == "farmer") {
+                        //alert("Driver");
+                        sessionStorage.setItem('ironji_id', po[key]._id);
+                        sessionStorage.setItem('ironji_account_type', po[key].account_type);
+                        sessionStorage.setItem('ironji_account_username', po[key].username);
+                        window.open("/FarmerDashboard", "_self");
+                        break;
                     }
 
                 } else {
@@ -127,6 +137,9 @@ class Home extends Component {
                 </div>
                 <div className="padMe" style={{float:"left",marginLeft:"10%"}}>
                     <button className='btn  theHomeBtns' onClick={this.RegisterAsBuyer.bind(this)} >I'm a buyer<br /><span className='minify'>Ndi umuguzi</span></button>
+                </div>
+                <div className="padMe" style={{ float: "left", marginLeft: "10%" }}>
+                    <button className='btn  theHomeBtns' onClick={this.RegisterAsFarmer.bind(this)} >I'm a farmer<br /><span className='minify'>Ndi umuguzi</span></button>
                 </div>
                 <div style={{clear:"both"}}></div>
             </div>
