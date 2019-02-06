@@ -35,6 +35,8 @@ import FarmerDashboard from '../pages/FarmerDashboard.jsx';
 import FarmerMainPage from '../pages/FarmerMainPage.jsx';
 import FarmerProfile from '../pages/FarmerProfile.jsx';
 import FarmerMessages from '../pages/FarmerMessages.jsx';
+import SendCargo from '../pages/SendCargo.jsx';
+import CarryCargo from '../pages/CarryCargo.jsx';
 
 
 export default class MainLayout extends React.Component {
@@ -71,6 +73,8 @@ export default class MainLayout extends React.Component {
                     <Route path='/FarmerMainPage' component={FarmerMainPage} />
                     <Route path='/FarmerMessages' component={FarmerMessages} />
                     <Route path='/FarmerProfile' component={FarmerProfile} />
+                    <Route path='/SendCargo' component={SendCargo} />
+                    <Route path='/CarryCargo' component={CarryCargo} />
               <Route component={NotFound} />
             </Switch>
             <Footer />
