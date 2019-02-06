@@ -112,7 +112,7 @@ class DriverDashboard extends Component {
                 </div>
                 <div style={{ marginTop: "70px" }} >
                     <div style={{ float: "left", width: "250px", height: "100px" }}>
-                        <h4>Send your cargo</h4>
+                        <h4>Carry out shipments</h4>
                         <a href={"/CarryCargo"}><img src={"images/take_shipment_job.jpg"} style={{ width: "100px", height: "100px" }} /></a>
                     </div>
                    
