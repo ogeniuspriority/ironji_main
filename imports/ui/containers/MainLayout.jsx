@@ -35,8 +35,14 @@ import FarmerDashboard from '../pages/FarmerDashboard.jsx';
 import FarmerMainPage from '../pages/FarmerMainPage.jsx';
 import FarmerProfile from '../pages/FarmerProfile.jsx';
 import FarmerMessages from '../pages/FarmerMessages.jsx';
-import SendCargo from '../pages/SendCargo.jsx';
-import CarryCargo from '../pages/CarryCargo.jsx';
+import BuyerSendCargo from '../pages/BuyerSendCargo.jsx';
+import TraderSendCargo from '../pages/TraderSendCargo.jsx';
+import FarmerSendCargo from '../pages/FarmerSendCargo.jsx';
+import DriverSendCargo from '../pages/DriverSendCargo.jsx';
+import DriverCarryCargo from '../pages/DriverCarryCargo.jsx';
+import FarmerCarryCargo from '../pages/FarmerCarryCargo.jsx';
+import BuyerCarryCargo from '../pages/BuyerCarryCargo.jsx';
+import TraderCarryCargo from '../pages/TraderCarryCargo.jsx';
 
 
 export default class MainLayout extends React.Component {
@@ -73,8 +79,14 @@ export default class MainLayout extends React.Component {
                     <Route path='/FarmerMainPage' component={FarmerMainPage} />
                     <Route path='/FarmerMessages' component={FarmerMessages} />
                     <Route path='/FarmerProfile' component={FarmerProfile} />
-                    <Route path='/SendCargo' component={SendCargo} />
-                    <Route path='/CarryCargo' component={CarryCargo} />
+                    <Route path='/DriverSendCargo' component={DriverSendCargo} />
+                    <Route path='/BuyerSendCargo' component={BuyerSendCargo} />
+                    <Route path='/FarmerSendCargo' component={FarmerSendCargo} />
+                    <Route path='/TraderSendCargo' component={TraderSendCargo} />
+                    <Route path='/FarmerCarryCargo' component={FarmerCarryCargo} />
+                    <Route path='/BuyerCarryCargo' component={BuyerCarryCargo} />
+                    <Route path='/DriverCarryCargo' component={DriverCarryCargo} />
+                    <Route path='/TraderCarryCargo' component={TraderCarryCargo} />
               <Route component={NotFound} />
             </Switch>
             <Footer />

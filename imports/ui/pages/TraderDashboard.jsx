@@ -113,8 +113,8 @@ class TraderDashboard extends Component {
                 </div>
                 <div style={{ marginTop: "70px" }} >
                     <div style={{ float: "left", width: "250px", height: "100px" }}>
-                        <h4>Carry Shipments</h4>
-                        <a href={"/SendCargo"}><img src={"images/user_send_cargo.jpg"} style={{ width: "100px", height: "100px" }} /></a>
+                        <h4>Send your cargo!</h4>
+                        <a href={"/TraderSendCargo"}><img src={"images/user_send_cargo.jpg"} style={{ width: "100px", height: "100px" }} /></a>
                     </div>
 
                     <div style={{ clear: "both" }}></div>

@@ -113,7 +113,7 @@ class BuyerDashboard extends Component {
                 <div style={{ marginTop: "70px" }} >
                     <div style={{ float: "left", width: "250px", height: "100px" }}>
                         <h4>Send your cargo</h4>
-                        <a href={"/SendCargo"}><img src={"images/user_send_cargo.jpg"} style={{ width: "100px", height: "100px" }} /></a>
+                        <a href={"/BuyerSendCargo"}><img src={"images/user_send_cargo.jpg"} style={{ width: "100px", height: "100px" }} /></a>
                     </div>
 
                     <div style={{ clear: "both" }}></div>
