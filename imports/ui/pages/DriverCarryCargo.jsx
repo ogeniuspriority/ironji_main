@@ -54,7 +54,7 @@ class DriverCarryCargo extends Component {
         global.userna_me = "";
         return (<img className="followLinks" src={url} />);
     }
-    switchBetweenShipmentMenus(param,e) {
+    switchBetweenShipmentMenus(param, e) {
         //alert(param);
         if (param.includes("tabWin0")) {
             document.getElementById("tabWin0").style.display = "block";
@@ -125,7 +125,7 @@ class DriverCarryCargo extends Component {
             if (arr.indexOf(name) == -1) {
                 element.className += " " + name;
             }
-            
+
         } else if (param.includes("tabWin1")) {
             document.getElementById("tabWin0").style.display = "none";
             document.getElementById("tabWin1").style.display = "block";
@@ -444,7 +444,7 @@ class DriverCarryCargo extends Component {
                 </div>
             </div>
             <div>
-                <div style={{ width: "90%",float: "left", padding: "6px", borderRadius: "5px" }}>
+                <div style={{ width: "90%", float: "left", padding: "6px", borderRadius: "5px" }}>
                     <div style={{ textAlign: "center", padding: "4px", background: "skyblue", borderRadius: "5px", fontSize: "16px" }}>
                         Carry Out Shipments
                     </div>
@@ -458,24 +458,172 @@ class DriverCarryCargo extends Component {
                                 <td ><button id="btntabWin4" onClick={this.switchBetweenShipmentMenus.bind(this, "tabWin4")} style={{ minWidth: "70px" }} className="btn-success disabled">Finalized Shipping Deals(Ironji shipping)<span className="badge" style={{ background: "black", borderRadius: "30px", width: "40px", color: "yellow" }}>2</span></button></td>
                             </tr>
                         </table>
-                        <div style={{ padding: "5px", display:"none", borderRadius: "5px", border: "1px solid black" }}>
+                        <div style={{ padding: "5px", display: "none", borderRadius: "5px", border: "1px solid black" }}>
                             <input type="text" placeholder="Search in contact" />
                         </div>
-                        <div style={{ padding: "5px", height: "340px" }}>
-                            <div id="tabWin0" className="modal-content" style={{marginTop:"5px",padding:"6px"}}>
-                                    0  divjudbv dv dvodjnibv odjbiv dovbiu divj9hdb
+                        <div style={{ padding: "5px", height: "auto" }}>
+                            <div id="tabWin0" className="modal-content" style={{ marginTop: "5px", padding: "6px" }}>
+                                <div style={{ padding: "5px", margin: "5px", borderRadius: "5px", height: "300px", overflowY: "scroll" }}>
+                                    <div style={{ padding: "5px", borderRadius: "4px", margin: "5px", boxShadow: "2px 2px #333", border: "1px solid black" }}>
+                                        <table className="table-striped">
+                                            <tr className="row">
+                                                <td>Ironji Shipment Id:</td><td>34567.ab.88</td>
+                                            </tr>
+                                            <tr className="row">
+                                                <td>From:</td><td>Mugabo</td>
+                                            </tr >
+                                            <tr className="row">
+                                                <td>Account type:</td><td>Trader</td>
+                                            </tr>
+                                            <tr className="row">
+                                                <td>Product weight:</td><td>10 kg</td>
+                                            </tr>
+                                            <tr className="row">
+                                                <td>Product volume:</td><td>3 meter cubes</td>
+                                            </tr>
+                                            <tr className="row">
+                                                <td>Date of initiation:</td><td>12/07/2019</td>
+                                            </tr>
+                                            <tr className="row">
+                                                <td>Pick up location:</td><td>Kanombe kk 57 St</td>
+                                            </tr>
+                                            <tr className="row">
+                                                <td>Cargo Destination:</td><td>Burera BN 57 St</td>
+                                            </tr>
+                                            <tr className="row">
+                                                <td>Cargo Additional Details:</td><td>It is in a yellow envelope!</td>
+                                            </tr>
+                                        </table>
+                                        <table>
+                                            <tr className="row">
+                                                <td><button className="btn-primary">Accept Deal</button></td><td><button className="btn-primary">Deny Deal</button></td><td><button className="btn-primary">Open Deal Negotiation Window <i className="fa fa-info-circle" ></i></button></td>
+                                            </tr>
+                                            <tr className="row">
+                                                <td><button className="btn-primary">See digital contract</button></td>
+                                            </tr>
+                                        </table>
+                                        <div style={{ width: "60%", background:"white", position: "absolute", padding: "6px", borderRadius: "5px",marginTop:"-250px",zIndex:"1000",marginLeft:"50%",border:"1px solid black" }}>
+                                            <div style={{ textAlign: "center", padding: "4px", background: "skyblue", borderRadius: "5px", fontSize: "16px" }}>
+                                                Negotiation Room
+                                                <button className="btn-danger" style={{ float: "right" }}>X</button>
+                                                <div style={{clear:"both"}}></div>
+                    </div>
+                                            <div>
+                                                <div style={{ padding: "5px", height: "320px", borderRadius: "5px", overflowY: "scroll" }}>
+                                                    <div style={{ width: "100%", marginTop: "10px" }}><div className="modal-content" style={{ float: "right" }}>
+                                                        <h4>Cedric</h4>
+                                                        <div>
+                                                            Proposed price:200
+                                                        </div>
+                                                        <div style={{ padding: "6px" }}>
+                                                            digd gdgib gidnbg nig gdigb gni
+                                </div>
+                                                        <div style={{ float: "right", boxShadow: "2px 2px #cdcdcd" }}>11:12 pm</div>
+
+                                                    </div><div style={{ clear: "both" }}></div></div>
+                                                    <div style={{ width: "100%", marginTop: "10px" }} ><div className="modal-content" style={{ float: "right" }} style={{ float: "left" }}>
+                                                        <h4>Cedric</h4>
+                                                        <div>
+                                                            Proposed price:200
+                                                        </div>
+                                                        <div style={{ padding: "6px" }}>
+                                                            digd gdgib gidnbg nig gdigb gni
+                                </div>
+                                                        <div style={{ float: "right", boxShadow: "2px 2px #cdcdcd" }}>11:12 pm</div>
+
+                                                    </div><div style={{ clear: "both" }}></div></div>
+                                                    <div style={{ width: "100%", marginTop: "10px" }} ><div className="modal-content" style={{ float: "right" }} style={{ float: "right" }}>
+                                                        <h4>Cedric</h4>
+                                                        <div>
+                                                            Proposed price:200
+                                                        </div>
+                                                        <div style={{ padding: "6px" }}>
+                                                            digd gdgib gidnbg nig gdigb gni
+                                </div>
+                                                        <div style={{ float: "right", boxShadow: "2px 2px #cdcdcd" }}>11:12 pm</div>
+
+                                                    </div><div style={{ clear: "both" }}></div></div>
+                                                    <div style={{ width: "100%", marginTop: "10px" }} ><div className="modal-content" style={{ float: "right" }} style={{ float: "right" }}>
+                                                        <h4>Cedric</h4>
+                                                        <div>
+                                                            Proposed price:200
+                                                        </div>
+                                                        <div style={{ padding: "6px" }}>
+                                                            digd gdgib gidnbg nig gdigb gni
+                                </div>
+                                                        <div style={{ float: "left", boxShadow: "2px 2px #cdcdcd" }}>11:12 pm</div>
+
+                                                    </div> <div style={{ clear: "both" }}></div></div>
+
+                                                </div>
+                                                <div>
+                                                    <table>
+                                                        <tr>
+                                                            <td><input type="number" className="btn-control" placeholder="The price you propose.." /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><textarea className="form-control" placeholder="Your message here.." style={{ maxHeight: "70px", height: "70px", maxWidth: "350px", width: "350px" }}></textarea></td>
+                                                            <td><button className="btn-primary">Send</button></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style={{ padding: "5px", borderRadius: "4px", margin: "5px", boxShadow: "2px 2px #333", border: "1px solid black" }}>
+                                        <table className="table-striped">
+                                            <tr className="row">
+                                                <td>Ironji Shipment Id:</td><td>34567.ab.88</td>
+                                            </tr>
+                                            <tr className="row">
+                                                <td>From:</td><td>Mugabo</td>
+                                            </tr >
+                                            <tr className="row">
+                                                <td>Account type:</td><td>Trader</td>
+                                            </tr>
+                                            <tr className="row">
+                                                <td>Product weight:</td><td>10 kg</td>
+                                            </tr>
+                                            <tr className="row">
+                                                <td>Product volume:</td><td>3 meter cubes</td>
+                                            </tr>
+                                            <tr className="row">
+                                                <td>Date of initiation:</td><td>12/07/2019</td>
+                                            </tr>
+                                            <tr className="row">
+                                                <td>Pick up location:</td><td>Kanombe kk 57 St</td>
+                                            </tr>
+                                            <tr className="row">
+                                                <td>Cargo Destination:</td><td>Burera BN 57 St</td>
+                                            </tr>
+                                            <tr className="row">
+                                                <td>Cargo Additional Details:</td><td>It is in a yellow envelope!</td>
+                                            </tr>
+                                        </table>
+                                        <table>
+                                            <tr className="row">
+                                                <td><button className="btn-primary">Accept Deal</button></td><td><button className="btn-primary">Deny Deal</button></td><td><button className="btn-primary">Open Deal Negotiation Window <i className="fa fa-info-circle" ></i></button></td>
+                                            </tr>
+                                            <tr className="row">
+                                                <td><button className="btn-primary">See digital contract</button></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+
+                                </div>
                             </div>
                             <div id="tabWin1" className="modal-content" style={{ marginTop: "5px", padding: "6px" }}>
-                              1  divjudbv dv dvodjnibv odjbiv dovbiu divj9hdb
+                                1  divjudbv dv dvodjnibv odjbiv dovbiu divj9hdb
                             </div>
                             <div id="tabWin2" className="modal-content" style={{ marginTop: "5px", padding: "6px" }}>
-                              2  divjudbv dv dvodjnibv odjbiv dovbiu divj9hdb
+                                2  divjudbv dv dvodjnibv odjbiv dovbiu divj9hdb
                             </div>
                             <div id="tabWin3" className="modal-content" style={{ marginTop: "5px", padding: "6px" }}>
-                             3   divjudbv dv dvodjnibv odjbiv dovbiu divj9hdb
+                                3   divjudbv dv dvodjnibv odjbiv dovbiu divj9hdb
                             </div>
                             <div id="tabWin4" className="modal-content" style={{ marginTop: "5px", padding: "6px" }}>
-                              4  divjudbv dv dvodjnibv odjbiv dovbiu divj9hdb
+                                4  divjudbv dv dvodjnibv odjbiv dovbiu divj9hdb
                             </div>
 
 
@@ -483,7 +631,7 @@ class DriverCarryCargo extends Component {
 
                     </div>
                 </div>
-                
+
             </div>
         </div>)
     }

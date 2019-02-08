@@ -461,7 +461,7 @@ class TraderSendCargo extends Component {
                         <div style={{ padding: "5px", borderRadius: "5px", border: "1px solid black" }}>
                             <input type="text" placeholder="Search in contact" />
                         </div>
-                        <div style={{ padding: "5px", height: "340px" }}>
+                        <div style={{ padding: "5px", height: "auto" }}>
                             <div id="tabWin0" className="modal-content" style={{ marginTop: "5px", padding: "6px" }}>
                                 0  divjudbv dv dvodjnibv odjbiv dovbiu divj9hdb
                             </div>
