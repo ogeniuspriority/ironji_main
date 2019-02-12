@@ -657,7 +657,7 @@ class FarmerMainPage extends Component {
                                             <td><a href={'/FarmerProfile'}>{this.renderThisAccountAvatar()}<br /><span>Hi, {sessionStorage.getItem('ironji_account_username')}</span></a></td>
                                             <td><a href={'/FarmerDashboard'}><img className="followLinks" src="images/dashboard.jpg" /><br /><span>Dashboard</span></a></td>
                                             <td><a href={'/FarmerMainPage'}><img className="followLinks" src="images/home.png" /><br /><span>Home</span></a></td>
-                                            <td><a href={'/SendCargo'}><img className="followLinks" src="images/user_send_cargo.jpg" /><br /><span>Send your cargo</span></a></td>
+                                            <td><a href={'/FarmerSendCargo'}><img className="followLinks" src="images/user_send_cargo.jpg" /><br /><span>Send your cargo</span></a></td>
                                         </tr>
                                     </tbody>
                                 </table>

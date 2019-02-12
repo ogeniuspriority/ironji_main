@@ -447,7 +447,7 @@ class DriverCarryCargo extends Component {
                                             <td><a href={'/Buyerprofile'}>{this.renderThisAccountAvatar()}<br /><span>Hi, {sessionStorage.getItem('ironji_account_username')}</span></a></td>
                                             <td><a href={'/BuyerDashboard'}><img className="followLinks" src="images/dashboard.jpg" /><br /><span>Dashboard</span></a></td>
                                             <td><a href={'/buyerMainPage'}><img className="followLinks" src="images/home.png" /><br /><span>Home</span></a></td>
-                                            <td><a href={'/SendCargo'}><img className="followLinks" src="images/user_send_cargo.jpg" /><br /><span>Send your cargo</span></a></td></tr>
+                                            <td><a href={'/DriverCarryCargo'}><img className="followLinks" src="images/user_send_cargo.jpg" /><br /><span>Send your cargo</span></a></td></tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -552,7 +552,7 @@ class DriverCarryCargo extends Component {
                                                     <tr>
                                                         <td><textarea className="form-control" placeholder="Your message here.." style={{ maxHeight: "70px", height: "70px", maxWidth: "350px", width: "350px" }}></textarea></td>
                                                         <td><button className="btn-primary">Send</button></td>
-                                                        <td><button className="btn-primary">Accept the last offer received</button></td>
+                                                       </tr><tr> <td><button className="btn-primary">Accept the last offer received</button></td>
                                                     </tr>
                                                 </table>
                                             </div>

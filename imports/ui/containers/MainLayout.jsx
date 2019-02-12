@@ -24,6 +24,7 @@ import NotFound from '../pages/NotFound.jsx';
 import Messages from '../pages/Messages.jsx';
 import BuyerMessages from '../pages/BuyerMessages.jsx';
 import ClientMessages from '../pages/ClientMessages.jsx';
+import tradermessages from '../pages/ClientMessages.jsx';
 import DriverMessages from '../pages/DriverMessages.jsx';
 import Profile from '../pages/Profile.jsx';
 import ClientProfile from '../pages/ClientProfile.jsx';
@@ -87,6 +88,7 @@ export default class MainLayout extends React.Component {
                     <Route path='/BuyerCarryCargo' component={BuyerCarryCargo} />
                     <Route path='/DriverCarryCargo' component={DriverCarryCargo} />
                     <Route path='/TraderCarryCargo' component={TraderCarryCargo} />
+                    <Route path='/tradermessages' component={tradermessages} />
               <Route component={NotFound} />
             </Switch>
             <Footer />
