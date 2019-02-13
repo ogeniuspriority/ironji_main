@@ -18,6 +18,12 @@ import "react-toggle-switch/dist/css/switch.min.css";
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
 
+import { DriverCarryCargoWin0 } from '../drivers_custom/DriverCarryCargoWin0';
+import { DriverCarryCargoWin1 } from '../drivers_custom/DriverCarryCargoWin1';
+import { DriverCarryCargoWin2 } from '../drivers_custom/DriverCarryCargoWin2';
+import { DriverCarryCargoWin3 } from '../drivers_custom/DriverCarryCargoWin3';
+import { DriverCarryCargoWin4 } from '../drivers_custom/DriverCarryCargoWin4';
+
 class DriverCarryCargo extends Component {
     constructor(props) {
         super(props);
@@ -28,6 +34,12 @@ class DriverCarryCargo extends Component {
         document.getElementById("tabWin2").style.display = "none";
         document.getElementById("tabWin3").style.display = "none";
         document.getElementById("tabWin4").style.display = "none";
+    }
+    openNegotiationRoomWin0_hide(param, e) {
+        document.getElementById("driverCarryCargoWin0ChatRoom").style.display = "none";
+    }
+    openNegotiationRoomWin4_hide(param, e) {
+        document.getElementById("driverCarryCargoWin4ChatRoom").style.display = "none";
     }
     renderThisAccountAvatar() {
 
@@ -405,18 +417,7 @@ class DriverCarryCargo extends Component {
         }
     }
 
-    openNegotiationRoomWin0(param, e) {
-        document.getElementById("driverCarryCargoWin0ChatRoom").style.display = "block";
-    }
-    openNegotiationRoomWin0_hide(param, e) {
-        document.getElementById("driverCarryCargoWin0ChatRoom").style.display = "none";
-    }
-    openNegotiationRoomWin4(param, e) {
-        document.getElementById("driverCarryCargoWin4ChatRoom").style.display = "block";
-    }
-    openNegotiationRoomWin4_hide(param, e) {
-        document.getElementById("driverCarryCargoWin4ChatRoom").style.display = "none";
-    }
+ 
     render() {
 
         return (<div className="container">
@@ -463,13 +464,14 @@ class DriverCarryCargo extends Component {
                     </div>
                     <div>
                         <table>
+                            <tbody>
                             <tr>
                                 <td ><button id="btntabWin0" onClick={this.switchBetweenShipmentMenus.bind(this, "tabWin0")} style={{ minWidth: "70px" }} className="btn-success active">Newly Arrived Shipping Deals(Ironji shipping)<span className="badge" style={{ background: "black", borderRadius: "30px", width: "40px", color: "yellow" }}>2</span></button></td>
                                 <td ><button id="btntabWin1" onClick={this.switchBetweenShipmentMenus.bind(this, "tabWin1")} style={{ minWidth: "70px" }} className="btn-success disabled">Accepted Ongoing Shipping Deals(Ironji shipping)<span className="badge" style={{ background: "black", borderRadius: "30px", width: "40px", color: "yellow" }}>2</span></button></td>
                                 <td ><button id="btntabWin2" onClick={this.switchBetweenShipmentMenus.bind(this, "tabWin2")} style={{ minWidth: "70px" }} className="btn-success disabled">Rejected Shipping Deals(Ironji shipping)<span className="badge" style={{ background: "black", borderRadius: "30px", width: "40px", color: "yellow" }}>2</span></button></td>
                                 <td ><button id="btntabWin3" onClick={this.switchBetweenShipmentMenus.bind(this, "tabWin3")} style={{ minWidth: "70px" }} className="btn-success disabled">Cancelled Shipping Deals(Ironji shipping)<span className="badge" style={{ background: "black", borderRadius: "30px", width: "40px", color: "yellow" }}>2</span></button></td>
-                                <td ><button id="btntabWin4" onClick={this.switchBetweenShipmentMenus.bind(this, "tabWin4")} style={{ minWidth: "70px" }} className="btn-success disabled">Finalized Shipping Deals(Ironji shipping)<span className="badge" style={{ background: "black", borderRadius: "30px", width: "40px", color: "yellow" }}>2</span></button></td>
-                            </tr>
+                                    <td ><button id="btntabWin4" onClick={this.switchBetweenShipmentMenus.bind(this, "tabWin4")} style={{ minWidth: "70px" }} className="btn-success disabled">Finalized Shipping Deals(Ironji shipping)<span className="badge" style={{ background: "black", borderRadius: "30px", width: "40px", color: "yellow" }}>2</span></button></td>
+                                </tr></tbody>
                         </table>
                         <div style={{ padding: "5px", display: "none", borderRadius: "5px", border: "1px solid black" }}>
                             <input type="text" placeholder="Search in contact" />
@@ -546,325 +548,38 @@ class DriverCarryCargo extends Component {
                                             </div>
                                             <div>
                                                 <table>
+                                                    <tbody>
                                                     <tr>
                                                         <td><input type="number" className="btn-control" placeholder="The price you propose.." /></td>
                                                     </tr>
                                                     <tr>
                                                         <td><textarea className="form-control" placeholder="Your message here.." style={{ maxHeight: "70px", height: "70px", maxWidth: "350px", width: "350px" }}></textarea></td>
                                                         <td><button className="btn-primary">Send</button></td>
-                                                       </tr><tr> <td><button className="btn-primary">Accept the last offer received</button></td>
-                                                    </tr>
+                                                        </tr><tr> <td><button className="btn-primary">Accept the last offer received</button></td>
+                                                        </tr></tbody>
                                                 </table>
                                             </div>
 
                                         </div>
-                                    </div>
-                                    <div style={{ padding: "5px", borderRadius: "4px", margin: "5px", boxShadow: "2px 2px #333", border: "1px solid black" }}>
-                                        <table className="table-striped">
-                                            <tr className="row">
-                                                <td>Ironji Shipment Id:</td><td>34567.ab.88</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>From:</td><td>Mugabo</td>
-                                            </tr >
-                                            <tr className="row">
-                                                <td>Account type:</td><td>Trader</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Product weight:</td><td>10 kg</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Product volume:</td><td>3 meter cubes</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Date of initiation:</td><td>12/07/2019</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Pick up location:</td><td>Kanombe kk 57 St</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Cargo Destination:</td><td>Burera BN 57 St</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Cargo Additional Details:</td><td>It is in a yellow envelope!</td>
-                                            </tr>
-                                        </table>
-                                        <table>
-                                            <tr className="row">
-                                                <td><button className="btn-primary">Accept Deal</button></td><td><button className="btn-primary">Deny Deal</button></td><td><button onClick={this.openNegotiationRoomWin0.bind(this, "win0")} className="btn-primary">Open Deal Negotiation Window <i className="fa fa-info-circle" ></i></button></td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td><button className="btn-primary">See digital contract</button></td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                    <div style={{ padding: "5px", borderRadius: "4px", margin: "5px", boxShadow: "2px 2px #333", border: "1px solid black" }}>
-                                        <table className="table-striped">
-                                            <tr className="row">
-                                                <td>Ironji Shipment Id:</td><td>34567.ab.88</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>From:</td><td>Mugabo</td>
-                                            </tr >
-                                            <tr className="row">
-                                                <td>Account type:</td><td>Trader</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Product weight:</td><td>10 kg</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Product volume:</td><td>3 meter cubes</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Date of initiation:</td><td>12/07/2019</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Pick up location:</td><td>Kanombe kk 57 St</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Cargo Destination:</td><td>Burera BN 57 St</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Cargo Additional Details:</td><td>It is in a yellow envelope!</td>
-                                            </tr>
-                                        </table>
-                                        <table>
-                                            <tr className="row">
-                                                <td><button className="btn-primary">Accept Deal</button></td><td><button className="btn-primary">Deny Deal</button></td><td><button onClick={this.openNegotiationRoomWin0.bind(this, "win0")} className="btn-primary">Open Deal Negotiation Window <i className="fa fa-info-circle" ></i></button></td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td><button className="btn-primary">See digital contract</button></td>
-                                            </tr>
-                                        </table>
-                                    </div>
-
+                                    </div>                                   
+                                    
+                                    <DriverCarryCargoWin0 />
                                 </div>
+                                
                             </div>
                             <div id="tabWin1" className="modal-content" style={{ marginTop: "5px", padding: "6px" }}>
                                 <div style={{ padding: "5px", margin: "5px", borderRadius: "5px", height: "300px", overflowY: "scroll" }}>
-
-                                    <div style={{ padding: "5px", borderRadius: "4px", margin: "5px", boxShadow: "2px 2px #333", border: "1px solid black" }}>
-                                        <table className="table-striped">
-                                            <tr className="row">
-                                                <td>Ironji Shipment Id:</td><td>34567.ab.88</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>From:</td><td>Mugabo</td>
-                                            </tr >
-                                            <tr className="row">
-                                                <td>Account type:</td><td>Trader</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Product weight:</td><td>10 kg</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Product volume:</td><td>3 meter cubes</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Date of initiation:</td><td>12/07/2019</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Pick up location:</td><td>Kanombe kk 57 St</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Cargo Destination:</td><td>Burera BN 57 St</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Cargo Additional Details:</td><td>It is in a yellow envelope!</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Ongoing Deal Details:</td><td>Agreed on 500 Rwf</td>
-                                            </tr>
-                                        </table>
-                                        <table>
-                                            <tr className="row">
-                                                <td><button  className="btn-danger">Cancel the deal</button></td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                    <div style={{ padding: "5px", borderRadius: "4px", margin: "5px", boxShadow: "2px 2px #333", border: "1px solid black" }}>
-                                        <table className="table-striped">
-                                            <tr className="row">
-                                                <td>Ironji Shipment Id:</td><td>34567.ab.88</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>From:</td><td>Mugabo</td>
-                                            </tr >
-                                            <tr className="row">
-                                                <td>Account type:</td><td>Trader</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Product weight:</td><td>10 kg</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Product volume:</td><td>3 meter cubes</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Date of initiation:</td><td>12/07/2019</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Pick up location:</td><td>Kanombe kk 57 St</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Cargo Destination:</td><td>Burera BN 57 St</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Cargo Additional Details:</td><td>It is in a yellow envelope!</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Ongoing Deal Details:</td><td>Agreed on 500 Rwf</td>
-                                            </tr>
-                                        </table>
-                                        <table>
-                                            <tr className="row">
-                                                <td><button  className="btn-danger">Cancel the deal</button></td>
-                                            </tr>
-                                        </table>
-                                    </div>
+                                    <DriverCarryCargoWin1 />                                    
                                 </div>
                             </div>
                             <div id="tabWin2" className="modal-content" style={{ marginTop: "5px", padding: "6px" }}>
                                 <div style={{ padding: "5px", margin: "5px", borderRadius: "5px", height: "300px", overflowY: "scroll" }}>
-                                    <div style={{ padding: "5px", borderRadius: "4px", margin: "5px", boxShadow: "2px 2px #333", border: "1px solid black" }}>
-                                        <table className="table-striped">
-                                            <tr className="row">
-                                                <td>Ironji Shipment Id:</td><td>34567.ab.88</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>From:</td><td>Mugabo</td>
-                                            </tr >
-                                            <tr className="row">
-                                                <td>Account type:</td><td>Trader</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Product weight:</td><td>10 kg</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Product volume:</td><td>3 meter cubes</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Date of initiation:</td><td>12/07/2019</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Pick up location:</td><td>Kanombe kk 57 St</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Cargo Destination:</td><td>Burera BN 57 St</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Cargo Additional Details:</td><td>It is in a yellow envelope!</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Ongoing Deal Details:</td><td>Agreed on 500 Rwf</td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                    <div style={{ padding: "5px", borderRadius: "4px", margin: "5px", boxShadow: "2px 2px #333", border: "1px solid black" }}>
-                                        <table className="table-striped">
-                                            <tr className="row">
-                                                <td>Ironji Shipment Id:</td><td>34567.ab.88</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>From:</td><td>Mugabo</td>
-                                            </tr >
-                                            <tr className="row">
-                                                <td>Account type:</td><td>Trader</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Product weight:</td><td>10 kg</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Product volume:</td><td>3 meter cubes</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Date of initiation:</td><td>12/07/2019</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Pick up location:</td><td>Kanombe kk 57 St</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Cargo Destination:</td><td>Burera BN 57 St</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Cargo Additional Details:</td><td>It is in a yellow envelope!</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Ongoing Deal Details:</td><td>Agreed on 500 Rwf</td>
-                                            </tr>
-                                        </table>
-                                    </div>
+                                    <DriverCarryCargoWin2 />                                    
                                 </div>
                             </div>
                             <div id="tabWin3" className="modal-content" style={{ marginTop: "5px", padding: "6px" }}>
                                 <div style={{ padding: "5px", margin: "5px", borderRadius: "5px", height: "300px", overflowY: "scroll" }}>
-                                    <div style={{ padding: "5px", borderRadius: "4px", margin: "5px", boxShadow: "2px 2px #333", border: "1px solid black" }}>
-                                        <table className="table-striped">
-                                            <tr className="row">
-                                                <td>Ironji Shipment Id:</td><td>34567.ab.88</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>From:</td><td>Mugabo</td>
-                                            </tr >
-                                            <tr className="row">
-                                                <td>Account type:</td><td>Trader</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Product weight:</td><td>10 kg</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Product volume:</td><td>3 meter cubes</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Date of initiation:</td><td>12/07/2019</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Pick up location:</td><td>Kanombe kk 57 St</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Cargo Destination:</td><td>Burera BN 57 St</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Cargo Additional Details:</td><td>It is in a yellow envelope!</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Ongoing Deal Details:</td><td>Agreed on 500 Rwf</td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                    <div style={{ padding: "5px", borderRadius: "4px", margin: "5px", boxShadow: "2px 2px #333", border: "1px solid black" }}>
-                                        <table className="table-striped">
-                                            <tr className="row">
-                                                <td>Ironji Shipment Id:</td><td>34567.ab.88</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>From:</td><td>Mugabo</td>
-                                            </tr >
-                                            <tr className="row">
-                                                <td>Account type:</td><td>Trader</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Product weight:</td><td>10 kg</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Product volume:</td><td>3 meter cubes</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Date of initiation:</td><td>12/07/2019</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Pick up location:</td><td>Kanombe kk 57 St</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Cargo Destination:</td><td>Burera BN 57 St</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Cargo Additional Details:</td><td>It is in a yellow envelope!</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Ongoing Deal Details:</td><td>Agreed on 500 Rwf</td>
-                                            </tr>
-                                        </table>
-                                    </div>
+                                    <DriverCarryCargoWin3 />                                    
                                 </div>
                             </div>
                             <div id="tabWin4" className="modal-content" style={{ marginTop: "5px", padding: "6px" }}>
@@ -937,97 +652,23 @@ class DriverCarryCargo extends Component {
 
                                             </div>
                                             <div>
-                                                <table style={{display:"none"}}>
+                                                <table style={{ display: "none" }}>
+                                                    <tbody>
                                                     <tr>
                                                         <td><input type="number" className="btn-control" placeholder="The price you propose.." /></td>
                                                     </tr>
                                                     <tr>
                                                         <td><textarea className="form-control" placeholder="Your message here.." style={{ maxHeight: "70px", height: "70px", maxWidth: "350px", width: "350px" }}></textarea></td>
                                                         <td><button className="btn-primary">Send</button></td>
-                                                    </tr>
+                                                        </tr>
+                                                    </tbody>
                                                 </table>
                                             </div>
 
                                         </div>
                                     </div>
-                                    <div style={{ padding: "5px", borderRadius: "4px", margin: "5px", boxShadow: "2px 2px #333", border: "1px solid black" }}>
-                                        <table className="table-striped">
-                                            <tr className="row">
-                                                <td>Ironji Shipment Id:</td><td>34567.ab.88</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>From:</td><td>Mugabo</td>
-                                            </tr >
-                                            <tr className="row">
-                                                <td>Account type:</td><td>Trader</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Product weight:</td><td>10 kg</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Product volume:</td><td>3 meter cubes</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Date of initiation:</td><td>12/07/2019</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Pick up location:</td><td>Kanombe kk 57 St</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Cargo Destination:</td><td>Burera BN 57 St</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Cargo Additional Details:</td><td>It is in a yellow envelope!</td>
-                                            </tr>
-                                        </table>
-                                        <table>
-                                            <tr className="row">
-                                                <td><button onClick={this.openNegotiationRoomWin4.bind(this, "win4")} className="btn-primary">Open Deal Negotiation Window <i className="fa fa-info-circle" ></i></button></td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td><button className="btn-primary">See digital contract</button></td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                    <div style={{ padding: "5px", borderRadius: "4px", margin: "5px", boxShadow: "2px 2px #333", border: "1px solid black" }}>
-                                        <table className="table-striped">
-                                            <tr className="row">
-                                                <td>Ironji Shipment Id:</td><td>34567.ab.88</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>From:</td><td>Mugabo</td>
-                                            </tr >
-                                            <tr className="row">
-                                                <td>Account type:</td><td>Trader</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Product weight:</td><td>10 kg</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Product volume:</td><td>3 meter cubes</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Date of initiation:</td><td>12/07/2019</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Pick up location:</td><td>Kanombe kk 57 St</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Cargo Destination:</td><td>Burera BN 57 St</td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td>Cargo Additional Details:</td><td>It is in a yellow envelope!</td>
-                                            </tr>
-                                        </table>
-                                        <table>
-                                            <tr className="row">
-                                                <td><button onClick={this.openNegotiationRoomWin4.bind(this, "win4")} className="btn-primary">Open Deal Negotiation Window <i className="fa fa-info-circle" ></i></button></td>
-                                            </tr>
-                                            <tr className="row">
-                                                <td><button className="btn-primary">See digital contract</button></td>
-                                            </tr>
-                                        </table>
-                                    </div>
+                                    <DriverCarryCargoWin4 />                                   
+                                    
                                 </div>
                             </div>
 
