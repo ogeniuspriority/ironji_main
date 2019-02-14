@@ -25,6 +25,7 @@ class Home extends Component {
         return (
             <div className={classNames('Home', 'foo', 'bar')} >
                 <div>
+                    <a href={"/"} style={{background:"skyblue",padding:"5px",borderRadius:"5px"}}>Go back to login page.</a>
                     <h4 className="lead">Fequently Asked Question and Forum:</h4>
 
                     <ul className="nav nav-tabs">

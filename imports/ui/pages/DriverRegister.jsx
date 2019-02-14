@@ -101,6 +101,7 @@ class DriverRegister extends Component {
             global.sector = this.refs.sector.value;
             global.username = this.refs.username.value;
             global.password = this.refs.password.value;
+            global.gender = this.refs.gender.value;
             //alert(global.username.value);
 
             //--------Check Username Availability--
@@ -138,6 +139,7 @@ class DriverRegister extends Component {
                     "sector": global.sector,
                     "username": global.username,
                     "password": global.password,
+                    "gender": global.gender
                 };
                 //var myJSON = JSON.stringify(theData);
                 Users.insert(theData, function (error, result) {
@@ -193,6 +195,16 @@ class DriverRegister extends Component {
                         <div className="row">
                             <div className="col-sm-9">Email:</div>
                             <div className="col-sm-9"><input type="email" ref="email" className="form-control" name="last_name" placeholder="Email" required="required" /></div>
+                        </div>
+                        <div className="row">
+                            <div className="col-sm-9">Gender:</div>
+                            <div className="col-sm-9">
+                                <select className="form-control" id="gender" ref="gender">
+                                    <option value="Female">Female</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
                         </div>
                         <div className="row">
                             <div className="col-sm-9">Plate number:</div>
