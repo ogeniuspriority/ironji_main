@@ -22,7 +22,8 @@ class Home extends Component {
         global.password = "xxx";
     }
     componentDidMount() {
-
+        document.getElementById("rememberME").style.display = "none";
+       
 
 
     }
@@ -62,6 +63,7 @@ class Home extends Component {
     loginIntoAccount() {
         global.username = this.refs.username.value;
         global.password = this.refs.password.value;
+      
         //alert(this.refs.username.value+"--"+this.refs.password.value+"--"+global.username);
         //sessionStorage.setItem('ironji_id', 'value');
         //window.open("/driverMainPage","_self")
@@ -75,10 +77,15 @@ class Home extends Component {
             alert("Wrong Username  Or Password");
 
         } else {
+            //------------Set--the cookies--
+           
+           
+            //----------------
             for (var key in po) {
                 if (po.hasOwnProperty(key)) {
                     console.log(key + " -> " + po[key]._id + "--" + po[key].username + "--" + po[key].account_type);
-
+                    console.log("email--", po[key].email);
+                    console.log("id--", po[key]._id);
                     if (po[key].account_type == "client") {
                         //alert("Client");
                         sessionStorage.setItem('ironji_id', po[key]._id);
@@ -118,7 +125,156 @@ class Home extends Component {
         }
 
     }
+    //------------getEmailOrTelephone_verify
+    findRegistryCode() {
+        global.the_id_opU = "";
+        global.emailU = "";
+        global.USername = "";
+        var avail = "";
+        var which="";
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (!re.test(String(document.getElementById("getEmailOrTelephone").value).toLowerCase())) {
+            which = "email";
+        } else {
+            avail = "email";
+        }
 
+        var phoneno = /^\d{12}$/;
+        if (!(document.getElementById("getEmailOrTelephone").value.match(phoneno))){
+            which = "phone";
+        } else {
+            avail = "phone";
+        }
+
+        if (avail == "") {
+            toastr.error('Invalid Email or Phone Number!', 'Status!', { timeOut: 3000 });
+            //toastr.success('Product Price Updated!', 'Status!', { timeOut: 5000 });
+        } else {
+            global.emailU = document.getElementById("getEmailOrTelephone").value;
+            var po;
+            if (avail.includes("phone")) {
+                po = Users.find({ phone: global.emailU }, { sort: { text: 1 } }).fetch();
+                for (var key in po) {
+                    if (po.hasOwnProperty(key)) {
+                        global.the_id_op = po[key]._id;
+                    }
+                }
+            } else {
+                po = Users.find({ email: global.emailU }, { sort: { text: 1 } }).fetch();
+                for (var key in po) {
+                    if (po.hasOwnProperty(key)) {
+                        global.the_id_opU = po[key]._id;
+                        console.log("email--", po[key].email);
+                        console.log("id--", po[key]._id);
+                        console.log("username--", po[key].username);
+                        console.log("username--", po[key].username);
+                        global.USername = po[key].username;
+                    }
+                }
+            }
+
+            
+
+            if (po.length == 0) {                
+                toastr.error("The email or phone doen't exist in our system!", 'Status!', { timeOut: 3000 });
+            } else {
+                //------------Set--the cookies--global.the_id_op
+                
+                var genRandomCode = "";
+                var text = "";
+                var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+                for (var i = 0; i < 5; i++) {
+                    text += possible.charAt(Math.floor(Math.random() * possible.length));
+                }
+                genRandomCode = text;
+                
+            
+                fetch('https://map.ogeniuspriority.com/map_scripts/send_mail_account_retreive.php?email=' + document.getElementById("getEmailOrTelephone").value + "&type=" + avail + "&genRandomCode=" + genRandomCode, {
+                    
+                })
+                    .then(response => response.json())
+                    .then(resData => {
+                       setTimeout(function cb1() {
+                            Users.update({ _id: global.the_id_opU }, {
+                                $set: { password: genRandomCode }
+                            }, { "multi": true }, function (err, result) {
+                                if (err) {
+
+                                } else {
+                                    //alert(the_id_op + "oooo" + genRandomCode + "----" + result);
+                                    console.log(result);
+                                    toastr.success('Your new passcode have been sent!', 'Status!', { timeOut: 1000 });
+
+                                }
+                            });
+                        }, 0);
+                        
+                    });
+            }
+
+            
+
+        }
+
+        
+    }
+
+    findRegistryCode_verify() {
+        var passCode = document.getElementById("getEmailOrTelephone_verify").value;
+        var po = Users.find({ username: global.USername, password: passCode }, { sort: { text: 1 } }).fetch();
+
+        if (po.length == 0) {
+            alert("Wrong Username  Or Password");
+
+        } else {
+            //------------Set--the cookies--
+
+
+            //----------------
+            for (var key in po) {
+                if (po.hasOwnProperty(key)) {
+                    console.log(key + " -> " + po[key]._id + "--" + po[key].username + "--" + po[key].account_type);
+                    console.log("email--", po[key].email);
+                    console.log("id--", po[key]._id);
+                    if (po[key].account_type == "client") {
+                        //alert("Client");
+                        sessionStorage.setItem('ironji_id', po[key]._id);
+                        sessionStorage.setItem('ironji_account_type', po[key].account_type);
+                        sessionStorage.setItem('ironji_account_username', po[key].username);
+                        window.open("/TraderDashboard", "_self");
+                        break;
+                    } else if (po[key].account_type == "driver") {
+                        //alert("Driver");
+                        sessionStorage.setItem('ironji_id', po[key]._id);
+                        sessionStorage.setItem('ironji_account_type', po[key].account_type);
+                        sessionStorage.setItem('ironji_account_username', po[key].username);
+                        window.open("/DriverDashboard", "_self");
+                        break;
+                    } else if (po[key].account_type == "buyer") {
+                        //alert("Driver");
+                        sessionStorage.setItem('ironji_id', po[key]._id);
+                        sessionStorage.setItem('ironji_account_type', po[key].account_type);
+                        sessionStorage.setItem('ironji_account_username', po[key].username);
+                        window.open("/BuyerDashboard", "_self");
+                        break;
+                    } else if (po[key].account_type == "farmer") {
+                        //alert("Driver");
+                        sessionStorage.setItem('ironji_id', po[key]._id);
+                        sessionStorage.setItem('ironji_account_type', po[key].account_type);
+                        sessionStorage.setItem('ironji_account_username', po[key].username);
+                        window.open("/FarmerDashboard", "_self");
+                        break;
+                    }
+
+                } else {
+                    alert("Wrong Username  Or Password");
+                    break;
+                }
+
+            }
+        }
+    }
     render() {
         return (<div className="container">
             <div className="logoHome">
@@ -169,17 +325,17 @@ class Home extends Component {
                             <div className="container">
                                 <div className="form-group">
                                     <label ><b>Telephone Or Email</b><br /><span className='minify'>Telefoni cg Email</span></label>
-                                    <input className="widthLogInput" type="text" placeholder="" name="uname" required />
+                                    <input className="widthLogInput" type="text" id="getEmailOrTelephone" placeholder="" name="uname" required />
                                 </div>
                                 <div className="form-group">
-                                    <button className="btn btn-success pull-center" type="button">Get Code<br /><span className='minify'>Aka Code</span></button>
+                                    <button className="btn btn-success pull-center" onClick={this.findRegistryCode.bind(this)} type="button">Get Code<br /><span className='minify'>Aka Code</span></button>
                                 </div>
                                 <div className="form-group">
                                     <label ><b>Put Received Code</b><br /><span className='minify'>Shyiramo CodeWahawel</span></label>
-                                    <input className="widthLogInput" type="text" placeholder="" name="uname" required />
+                                    <input id="getEmailOrTelephone_verify"  className="widthLogInput" type="text" placeholder="" name="uname" required />
                                 </div>
                                 <div className="form-group">
-                                    <button className="btn btn-success pull-center" type="button">Verify<br /><span className='minify'>Emeza</span></button>
+                                    <button onClick={this.findRegistryCode_verify.bind(this)} className="btn btn-success pull-center" type="button">Verify<br /><span className='minify'>Emeza</span></button>
                                 </div>
 
                             </div>
@@ -203,15 +359,15 @@ class Home extends Component {
                             <div className="container">
                                 <div className="form-group">
                                     <label ><b>Username</b><br /><span className='minify'>Izina ryo kwinjira</span></label>
-                                    <input className="widthLogInput" ref="username" type="text" placeholder="Enter Username" name="uname" required />
+                                    <input className="widthLogInput" ref="username" id="username" type="text" placeholder="Enter Username" name="uname" required />
                                 </div><div className="form-group">
 
                                     <label ><b>Password</b><br /><span className='minify'>Ijambo ry' ibanga</span></label>
-                                    <input type="password" ref="password" className="widthLogInput" placeholder="Enter Password" name="psw" required />
+                                    <input type="password" ref="password" id="password" className="widthLogInput" placeholder="Enter Password" name="psw" required />
                                 </div>
                                
-                                <label className="thth">
-                                    <input type="checkbox" name="remember" /> Remember me
+                                <label id="rememberME" className="thth">
+                                    <input type="checkbox"  ref="rememberME" name="remember" /> Remember me
                             <br /><span className='minify'>Uzanyibuke Ningaruka</span>
                                 </label>
                             </div>

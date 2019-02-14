@@ -82,70 +82,83 @@ class BuyerRegister extends Component {
         } else if (!this.refs.checkInfo.checked) {
             alert("Accept that information provided are true !");
         } else {
-
-            global.id_number = this.refs.id_number.value;
-            global.surname = this.refs.surname.value;
-            global.lastname = this.refs.lastname.value;
-            global.email = this.refs.email.value;
-            global.plate_number = "90";
-            global.occupation = this.refs.occupation.value;
-            global.phonenumber = this.refs.phonenumber.value;
-            global.province = this.refs.province.value;
-            global.district = this.refs.district.value;
-            global.sector = this.refs.sector.value;
-            global.username = this.refs.username.value;
-            global.password = this.refs.password.value;
-            global.gender = this.refs.gender.value;
-            //alert(global.username.value);
-            var theData = {
-                "text": "Lucky John",
-                "createdAt": new Date(),
-                "account_type": "buyer",
-                "currentLatitude": "-1.9443547",
-                "currentLongitude": "30.089413699999998",
-                "accountConfirmed": "1",
-                "id_number": global.id_number,
-                "surname": global.surname,
-                "lastname": global.lastname,
-                "email": global.email,
-                "plate_number": global.plate_number,
-                "occupation": global.occupation,
-                "phonenumber": global.phonenumber,
-                "province": global.province,
-                "district": global.district,
-                "sector": global.sector,
-                "username": global.username,
-                "password": global.password,
-                "gender": global.gender
-
-            };
-            //var myJSON = JSON.stringify(theData);
-
-            //--------Check Username Availability--
-            global.taken_op = "";
-            var po = Users.find({ username: global.username }, { sort: { text: 1 } }).fetch();
+            var po = Users.find({ email: global.email }, { sort: { text: 1 } }).fetch();
             for (var key in po) {
                 if (po.hasOwnProperty(key)) {
-                    //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
-                    global.taken_op = "Okay";
+                    global.the_id_opU = po[key]._id;
+                    console.log("email--", po[key].email);
+                    console.log("id--", po[key]._id);
+                    console.log("username--", po[key].username);
                 }
             }
-            //---------
-            if (global.taken_op == "Okay") {
 
-                alert("Username Already Taken!");
-
+            if (po.length != 0) {
+                toastr.error("The email is already taken!", 'Status!', { timeOut: 3000 });
             } else {
-                Users.insert(theData, function (error, result) {
-                    if (error) {
-                        alert("User Not Created");
+                global.id_number = this.refs.id_number.value;
+                global.surname = this.refs.surname.value;
+                global.lastname = this.refs.lastname.value;
+                global.email = this.refs.email.value;
+                global.plate_number = "90";
+                global.occupation = this.refs.occupation.value;
+                global.phonenumber = this.refs.phonenumber.value;
+                global.province = this.refs.province.value;
+                global.district = this.refs.district.value;
+                global.sector = this.refs.sector.value;
+                global.username = this.refs.username.value;
+                global.password = this.refs.password.value;
+                global.gender = this.refs.gender.value;
+                //alert(global.username.value);
+                var theData = {
+                    "text": "Lucky John",
+                    "createdAt": new Date(),
+                    "account_type": "buyer",
+                    "currentLatitude": "-1.9443547",
+                    "currentLongitude": "30.089413699999998",
+                    "accountConfirmed": "1",
+                    "id_number": global.id_number,
+                    "surname": global.surname,
+                    "lastname": global.lastname,
+                    "email": global.email,
+                    "plate_number": global.plate_number,
+                    "occupation": global.occupation,
+                    "phonenumber": global.phonenumber,
+                    "province": global.province,
+                    "district": global.district,
+                    "sector": global.sector,
+                    "username": global.username,
+                    "password": global.password,
+                    "gender": global.gender
+
+                };
+                //var myJSON = JSON.stringify(theData);
+
+                //--------Check Username Availability--
+                global.taken_op = "";
+                var po = Users.find({ username: global.username }, { sort: { text: 1 } }).fetch();
+                for (var key in po) {
+                    if (po.hasOwnProperty(key)) {
+                        //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
+                        global.taken_op = "Okay";
                     }
-                    if (result) {
-                        sessionStorage.setItem('ironji_account_type', "buyer");
-                        sessionStorage.setItem('ironji_account_username', username);
-                        window.open("/buyerMainPage", "_self");
-                    }
-                });
+                }
+                //---------
+                if (global.taken_op == "Okay") {
+
+                    alert("Username Already Taken!");
+
+                } else {
+                    Users.insert(theData, function (error, result) {
+                        if (error) {
+                            alert("User Not Created");
+                        }
+                        if (result) {
+                            sessionStorage.setItem('ironji_account_type', "buyer");
+                            sessionStorage.setItem('ironji_account_username', username);
+                            window.open("/buyerMainPage", "_self");
+                        }
+                    });
+                }
             }
 
 
