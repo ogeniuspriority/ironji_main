@@ -63,6 +63,7 @@ class DriverMainPage extends Component {
             username_enabled_edit_menu_status: false,
             password_enabled_edit_menu_status: false,
             password_retype_enabled_edit_menu_status: false,
+            gender_enabled:false
 
 
         };
@@ -82,6 +83,11 @@ class DriverMainPage extends Component {
             window.open("/", "_self");
         }
         console.log(sessionStorage.getItem('ironji_account_username'));
+        //-----------
+        setTimeout(function () {
+            var element = document.getElementById("gender");
+            element.value = global.gender;
+        }, 3000);
 
 
     }
@@ -102,6 +108,7 @@ class DriverMainPage extends Component {
         var password_confirmation_new = this.refs.password_confirmation_new.value;
         //-----------
         var district_new = this.refs.district_new.value;
+        var gender_new = this.refs.gender_new.value;
         //alert(idnumber_new + "-" + surname_name_new + "-" + last_name_new + "-" + email_new + "-" + plate_nber_new + "-" + occupation_new + "-" + phone_nber_new + "-" + province_new + "-" + district_new + "-" + sector_new + "-" + global.password_new + "-" + password_confirmation_new);
         //---global.the_id_op-
         /*
@@ -474,6 +481,27 @@ class DriverMainPage extends Component {
             } else {
 
             }
+        } else if (whichj.includes("gender")) {
+
+            if (gender_new != "") {
+                document.getElementById("waiting_loading").style.display = "block";
+                Users.update({ _id: global.the_id_op }, {
+                    $set: { gender: gender_new }
+                }, function (err, result) {
+                    if (err) {
+                        setTimeout(function () {
+                            document.getElementById("waiting_loading").style.display = "none";
+                        }, 500);
+
+                    } else {
+                        //console.log(result);
+                        window.open("/Driverprofile", "_self");
+
+                    }
+                });
+            } else {
+
+            }
         } else if (whichj.includes("password")) {
             //--global.password_new
             if (global.password_new != "") {
@@ -494,7 +522,7 @@ class DriverMainPage extends Component {
                     document.getElementById("dom_messenger").style.display = "none";
                 }, 3000);
             }
-        } 
+        }  
 
 
     }
@@ -593,6 +621,7 @@ class DriverMainPage extends Component {
         global.district = "";
         global.sector = "";
         global.username = "";
+        global.gender = "";
         var po = Users.find({ username: "" + sessionStorage.getItem('ironji_account_username') }, { sort: { text: 1 } }).fetch();
         for (var key in po) {
             if (po.hasOwnProperty(key)) {
@@ -618,6 +647,7 @@ class DriverMainPage extends Component {
                     global.district = po[key].district;
                     global.sector = po[key].sector;
                     global.username = po[key].username;
+                    global.gender = po[key].gender;
                 }
             }
         }
@@ -744,7 +774,7 @@ class DriverMainPage extends Component {
                                 <div className="colorgraph">
                                     <div onClick={this.editThisProfileIntel.bind(this, "idnber_edit")} className="form-group">
                                         <input disabled={(this.state.id_number_enabled) ? "" : "disabled"} type="number" value={global.id_number} name="idnumber" id="idnumber" className="form-control input-sm" placeholder="ID Number" tabIndex="4" />
-                                        <div className="theeditorsProfile" id="idnber_edit">
+                                        <i className="fa fa-edit" style={{ fontSize: "24px" }}></i><div className="theeditorsProfile" id="idnber_edit">
                                             <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "idnber_edit")} className="btn-danger" style={{ float: "right" }} />
                                             
                                             <div>
@@ -759,7 +789,7 @@ class DriverMainPage extends Component {
                                         <div className="col-xs-12 col-sm-6 col-md-6">
                                             <div onClick={this.editThisProfileIntel.bind(this, "surname_edit")} className="form-group">
                                                 <input disabled={(this.state.surname_enabled) ? "" : "disabled"} value={global.surname} type="text" name="surname_name" id="surname_name" className="form-control input-sm" placeholder="Surname Name" tabIndex="1" />
-                                            </div>
+                                                <i className="fa fa-edit" style={{ fontSize: "24px" }}></i></div>
                                             <div className="theeditorsProfile" id="surname_edit">
                                                 <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "surname_edit")} className="btn-danger" style={{ float: "right" }} />
                                                 
@@ -773,7 +803,7 @@ class DriverMainPage extends Component {
                                         <div className="col-xs-12 col-sm-6 col-md-6">
                                             <div onClick={this.editThisProfileIntel.bind(this, "lastname_edit")} className="form-group">
                                                 <input disabled={(this.state.lastname_enabled) ? "" : "disabled"} type="text" value={global.lastname} name="last_name" id="last_name" className="form-control input-sm" placeholder="Last Name" tabIndex="2" />
-                                            </div>
+                                                <i className="fa fa-edit" style={{ fontSize: "24px" }}></i></div>
                                             <div className="theeditorsProfile" id="lastname_edit">
                                                 <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "lastname_edit")} className="btn-danger" style={{ float: "right" }} />
                                                 
@@ -785,9 +815,29 @@ class DriverMainPage extends Component {
                                             </div>
                                         </div>
                                     </div>
+                                    <div onClick={this.editThisProfileIntel.bind(this, "gender_edit")} className="form-group">                                        
+                                        <label onClick={this.editThisProfileIntel.bind(this, "gender_edit")} >Gender: <select disabled={(this.state.gender_enabled) ? "" : "disabled"} className="form-control" id="gender" ref="gender">
+                                            <option value="Female">Female</option>
+                                            <option value="Male">Male</option>
+                                            <option value="Other">Other</option>
+                                        </select><i className="fa fa-edit" style={{ fontSize:"24px"}}></i></label>
+                                        <div className="theeditorsProfile" id="gender_edit">
+                                            <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "gender_edit")} className="btn-danger" style={{ float: "right" }} />
+
+                                            <div>
+                                                <div>Edit Gender</div>
+                                                <select  className="form-control" id="gender_new" ref="gender_new">
+                                                    <option value="Female">Female</option>
+                                                    <option value="Male">Male</option>
+                                                    <option value="Other">Other</option>
+                                                </select>
+                                                <input onClick={this.updateMyProfileData.bind(this, "gender")} type="button" className="btn-primary" value="Update" />
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div onClick={this.editThisProfileIntel.bind(this, "email_edit")} className="form-group">
                                         <input disabled={(this.state.email_enabled) ? "" : "disabled"} value={global.email} type="email" name="email" className="form-control input-sm" placeholder="Email Address" tabIndex="4" />
-                                        <div className="theeditorsProfile" id="email_edit">
+                                        <i className="fa fa-edit" style={{ fontSize: "24px" }}></i><div className="theeditorsProfile" id="email_edit">
                                             <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "email_edit")} className="btn-danger" style={{ float: "right" }} />
                                             
                                             <div>
@@ -811,7 +861,7 @@ class DriverMainPage extends Component {
                                     </div>
                                     <div onClick={this.editThisProfileIntel.bind(this, "occupation_edit")} className="form-group">
                                         <input disabled={(this.state.occupation_enabled) ? "" : "disabled"} value={global.occupation} type="text" name="where_y_wrk_the_most" id="where_y_wrk_the_most" className="form-control input-sm" placeholder="Where you work the most?" tabIndex="4" />
-                                        <div className="theeditorsProfile" id="occupation_edit">
+                                        <i className="fa fa-edit" style={{ fontSize: "24px" }}></i><div className="theeditorsProfile" id="occupation_edit">
                                             <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "occupation_edit")} className="btn-danger" style={{ float: "right" }} />
                                             
                                             <div>
@@ -823,7 +873,7 @@ class DriverMainPage extends Component {
                                     </div>
                                     <div onClick={this.editThisProfileIntel.bind(this, "phonenumber_edit")} className="form-group">
                                         <input disabled={(this.state.phonenumber_enabled) ? "" : "disabled"} value={global.phonenumber} type="tel" name="phone_nber" id="phone_nber" className="form-control input-sm" placeholder="Phone number" tabIndex="4" />
-                                        <div className="theeditorsProfile" id="phonenumber_edit">
+                                        <i className="fa fa-edit" style={{ fontSize: "24px" }}></i><div className="theeditorsProfile" id="phonenumber_edit">
                                             <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "phonenumber_edit")} className="btn-danger" style={{ float: "right" }} />
                                             
                                             <div>
@@ -838,7 +888,7 @@ class DriverMainPage extends Component {
                                         <div className="col-xs-9 col-sm-3 col-md-3">
                                             <div onClick={this.editThisProfileIntel.bind(this, "province_edit")} className="form-group">
                                                 <input disabled={(this.state.province_enabled) ? "" : "disabled"} value={global.province} type="text" name="province" id="province" className="form-control input-sm" placeholder="Province" tabIndex="1" />
-                                                <div className="theeditorsProfile" id="province_edit">
+                                                <i className="fa fa-edit" style={{ fontSize: "24px" }}></i><div className="theeditorsProfile" id="province_edit">
                                                     <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "province_edit")} className="btn-danger" style={{ float: "right" }} />
                                                     
                                                     <div>
@@ -852,7 +902,7 @@ class DriverMainPage extends Component {
                                         <div onClick={this.editThisProfileIntel.bind(this, "district_edit")} className="col-xs-9 col-sm-3 col-md-3">
                                             <div className="form-group">
                                                 <input disabled={(this.state.district_enabled) ? "" : "disabled"} value={global.district} type="text" name="district" className="form-control input-sm" placeholder="District" tabIndex="2" />
-                                                <div className="theeditorsProfile" id="district_edit">
+                                                <i className="fa fa-edit" style={{ fontSize: "24px" }}></i><div className="theeditorsProfile" id="district_edit">
                                                     <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "district_edit")} className="btn-danger" style={{ float: "right" }} />
                                                     
                                                     <div>
@@ -867,7 +917,7 @@ class DriverMainPage extends Component {
                                         <div onClick={this.editThisProfileIntel.bind(this, "sector_edit")} className="col-xs-9 col-sm-3 col-md-3">
                                             <div className="form-group">
                                                 <input disabled={(this.state.sector_enabled) ? "" : "disabled"} value={global.sector} type="text" name="sector" id="district" className="form-control input-sm" placeholder="Sector" tabIndex="2" />
-                                                <div className="theeditorsProfile" id="sector_edit">
+                                                <i className="fa fa-edit" style={{ fontSize: "24px" }}></i><div className="theeditorsProfile" id="sector_edit">
                                                     <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "sector_edit")} className="btn-danger" style={{ float: "right" }} />
                                                   
                                                     <div>
@@ -881,7 +931,7 @@ class DriverMainPage extends Component {
                                     </div>
                                     <div onClick={this.editThisProfileIntel.bind(this, "username_edit")} className="form-group">
                                         <input disabled={(this.state.username_enabled) ? "" : "disabled"} value={global.username} type="text" name="username" id="username" className="form-control input-sm" placeholder="Username" tabIndex="4" />
-                                        <div className="theeditorsProfile" id="username_edit">
+                                        <i className="fa fa-edit" style={{ fontSize: "24px" }}></i><div className="theeditorsProfile" id="username_edit">
                                             <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "username_edit")} className="btn-danger" style={{ float: "right" }} />
                                            
                                             <div>
@@ -896,7 +946,7 @@ class DriverMainPage extends Component {
                                         <div className="col-xs-12 col-sm-6 col-md-6">
                                             <div onClick={this.editThisProfileIntel.bind(this, "password_edit")} className="form-group">
                                                 <input disabled={(this.state.password_enabled) ? "" : "disabled"} type="password" name="password" id="password" className="form-control input-sm" placeholder="New Password" tabIndex="5" />
-                                                <div className="theeditorsProfile" id="password_edit">
+                                                <i className="fa fa-edit" style={{ fontSize: "24px" }}></i><div className="theeditorsProfile" id="password_edit">
                                                     <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "password_edit")} className="btn-danger" style={{ float: "right" }} />
                                                     
                                                     <div>
@@ -910,7 +960,7 @@ class DriverMainPage extends Component {
                                         <div className="col-xs-12 col-sm-6 col-md-6">
                                             <div onClick={this.editThisProfileIntel.bind(this, "password_retype_edit")} className="form-group">
                                                 <input disabled={(this.state.password_retype_enabled) ? "" : "disabled"} type="password" name="password_confirmation" id="password_confirmation" className="form-control input-sm" placeholder="Confirm New Password" tabIndex="6" />
-                                                <div className="theeditorsProfile" id="password_retype_edit">
+                                                <i className="fa fa-edit" style={{ fontSize: "24px" }}></i><div className="theeditorsProfile" id="password_retype_edit">
                                                     <input type="button" value="x" onClick={this.hideThisEditWindow.bind(this, "password_retype_edit")} className="btn-danger" style={{ float: "right" }} />
                                                     
                                                     <div>
