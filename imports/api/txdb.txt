@@ -1,0 +1,15 @@
+ironji_shipment_deals_negotiation
+-------------------------------
+id, id_deal,id_sender,id_receiver,shipment_price,shipment_comment,regdate,negotiation_deal
+
+ironji_shipment_deals
+---------------------------
+id,id_deals_creator,regdate,visibility,product_weight,product_volume,pick_up_location,destination,deal_accepted_status
+
+ironji_messages_mychatties
+----------------------------------
+id,user_id,regdate
+
+ironji_messages_conversations
+-------------------------------------
+id,id_sender,id_reciever,regdate,sent_time,receive_time,message_visibility

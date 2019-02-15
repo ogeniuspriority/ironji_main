@@ -47,6 +47,24 @@ class DriverMessages extends Component {
         global.userna_me = "";
         return (<img className="followLinks" src={url} />);
     }
+
+    searchInAllIronjiDb(e) {
+        //console.log("--->" + e.target.value);
+
+        if (e.target.value.length >= 3) {
+            document.getElementById("contact_search_list_contacts").innerHTML = e.target.value;
+            document.getElementById("contact_search_list_contacts").style.display = "block";
+        } else {
+            document.getElementById("contact_search_list_contacts").style.display = "none";
+        }
+
+    }
+    //-----OpenedWinDriversMessages  
+    markContactType(theWinInfo) {
+        document.getElementById("OpenedWinDriversMessages").innerHTML = "" + theWinInfo;
+    }
+
+
     render() {
 
         return (<div className="container">
@@ -96,15 +114,20 @@ class DriverMessages extends Component {
                     <div>
                         <table>
                             <tr>
-                                <td><button style={{ minWidth: "70px" }} className="btn-success active">All</button></td>
-                                <td><button style={{ minWidth: "70px" }} className="btn-success disabled">Buyers</button></td>
-                                <td><button style={{ minWidth: "70px" }} className="btn-success disabled">Traders</button></td>
-                                <td><button style={{ minWidth: "70px" }} className="btn-success disabled">Farmers</button></td>
-                                <td><button style={{ minWidth: "70px" }} className="btn-success disabled">Transporters</button></td>
+                                <td><button onClick={this.markContactType.bind(this,"All")} style={{ minWidth: "70px" }} className="btn-success active">All</button></td>
+                                <td><button onClick={this.markContactType.bind(this, "Buyers")} style={{ minWidth: "70px" }} className="btn-success active">Buyers</button></td>
+                                <td><button onClick={this.markContactType.bind(this, "Traders")} style={{ minWidth: "70px" }} style={{ minWidth: "70px" }} className="btn-success active">Traders</button></td>
+                                <td><button onClick={this.markContactType.bind(this, "Farmers")} style={{ minWidth: "70px" }} className="btn-success active">Farmers</button></td>
+                                <td><button onClick={this.markContactType.bind(this, "Transporters")} style={{ minWidth: "70px" }} className="btn-success active">Transporters</button></td>
                             </tr>
                         </table>
                         <div style={{ padding: "5px", borderRadius: "5px", border: "1px solid black" }}>
-                            <input type="text" placeholder="Search in contact" />
+                            <input type="text" onKeyUp={this.searchInAllIronjiDb.bind(this)} className="form-control" placeholder="Search in contact" /><button className="btn-info">See Random list</button>
+                            <div id="contact_search_list_contacts" style={{ display:"none", position: "absolute", borderRadius: "6px", padding: "5px", width: "300px", maxWidth: "300px", height: "250px", maxHeight: "250px", zIndex: "5000", wordWrap: "break-word" }} className="modal-content">
+                                f9df dnbf djfidhbfv dfiinbf fnibd findbf dnfib
+                            </div>
+                            <div style={{ padding: "5px", boxShadow: "2px 2px #333" }} id="OpenedWinDriversMessages">All</div>
+                            <input type="hidden" id="OpenedWinDriversMessages_Data" value="All"  />
                         </div>
                         <div style={{ padding: "5px", height: "340px" }}>
 
