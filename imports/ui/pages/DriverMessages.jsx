@@ -52,7 +52,7 @@ class DriverMessages extends Component {
         //console.log("--->" + e.target.value);
 
         if (e.target.value.length >= 3) {
-            document.getElementById("contact_search_list_contacts").innerHTML = e.target.value;
+            //document.getElementById("contact_search_list_contacts").innerHTML = e.target.value;
             document.getElementById("contact_search_list_contacts").style.display = "block";
         } else {
             document.getElementById("contact_search_list_contacts").style.display = "none";
@@ -123,8 +123,85 @@ class DriverMessages extends Component {
                         </table>
                         <div style={{ padding: "5px", borderRadius: "5px", border: "1px solid black" }}>
                             <input type="text" onKeyUp={this.searchInAllIronjiDb.bind(this)} className="form-control" placeholder="Search in contact" /><button className="btn-info">See Random list</button>
-                            <div id="contact_search_list_contacts" style={{ display:"none", position: "absolute", borderRadius: "6px", padding: "5px", width: "300px", maxWidth: "300px", height: "250px", maxHeight: "250px", zIndex: "5000", wordWrap: "break-word" }} className="modal-content">
-                                f9df dnbf djfidhbfv dfiinbf fnibd findbf dnfib
+                            <div id="contact_search_list_contacts" style={{ overflowY:"scroll",display:"none", position: "absolute", borderRadius: "6px", padding: "5px", width: "300px", maxWidth: "300px", height: "350px", maxHeight: "350px", zIndex: "5000", wordWrap: "break-word",background:"white" }} className="modal-content">
+                                <div className="modal-content contactsListSd" style={{ width: "auto", marginTop: "5px" }}>
+                                    <table>
+                                        <tr>
+                                            <td><img className="img-circle" style={{ maxWidth: "70px", maxHeight: "70px" }} src={"images/clet.jpg"} /></td>
+                                            <td>
+                                                <h4>Cedric </h4>
+                                                <h4>Trader</h4>
+                                                <h4>Male</h4>
+                                            </td>
+                                            <td>
+                                                <button className="btn-info">Add to contact list</button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div className="modal-content contactsListSd" style={{ width: "auto", marginTop: "5px" }}>
+                                    <table>
+                                        <tr>
+                                            <td><img className="img-circle" style={{ maxWidth: "70px", maxHeight: "70px" }} src={"images/clet.jpg"} /></td>
+                                            <td>
+                                                <h4>Cedric </h4>
+                                                <h4>Trader</h4>
+                                                <h4>Male</h4>
+                                            </td>
+                                            <td>
+                                                <button className="btn-info">Add to contact list</button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div className="modal-content contactsListSd" style={{ width: "auto", marginTop: "5px" }}>
+                                    <table>
+                                        <tr>
+                                            <td><img className="img-circle" style={{ maxWidth: "70px", maxHeight: "70px" }} src={"images/clet.jpg"} /></td>
+                                            <td>
+                                                <h4>Cedric </h4>
+                                                <h4>Trader</h4>
+                                                <h4>Male</h4>
+                                            </td>
+                                            <td>
+                                                <button className="btn-info">Add to contact list</button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div className="modal-content contactsListSd" style={{ width: "auto", marginTop: "5px" }}>
+                                    <table>
+                                        <tr>
+                                            <td><img className="img-circle" style={{ maxWidth: "70px", maxHeight: "70px" }} src={"images/clet.jpg"} /></td>
+                                            <td>
+                                                <h4>Cedric </h4>
+                                                <h4>Trader</h4>
+                                                <h4>Male</h4>
+                                            </td>
+                                            <td>
+                                                <button className="btn-info">Add to contact list</button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div className="modal-content contactsListSd" style={{ width: "auto", marginTop: "5px" }}>
+                                    <table>
+                                        <tr>
+                                            <td><img className="img-circle" style={{ maxWidth: "70px", maxHeight: "70px" }} src={"images/clet.jpg"} /></td>
+                                            <td>
+                                                <h4>Cedric </h4>
+                                                <h4>Trader</h4>
+                                                <h4>Male</h4>
+                                            </td>
+                                            <td>
+                                                <button className="btn-info">Add to contact list</button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                
+                               
+                                
                             </div>
                             <div style={{ padding: "5px", boxShadow: "2px 2px #333" }} id="OpenedWinDriversMessages">All</div>
                             <input type="hidden" id="OpenedWinDriversMessages_Data" value="All"  />
