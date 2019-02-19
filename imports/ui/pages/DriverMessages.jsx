@@ -17,10 +17,21 @@ import Switch from 'react-toggle-switch';
 import "react-toggle-switch/dist/css/switch.min.css";
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
+import { DriverMessagesContactsSearch } from '../search_ui/DriverMessagesContactsSearch';
+
+import { ironji_messages_my_chatties } from '../../api/ironji_messages_my_chatties';
+
 
 class DriverMessages extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            ironjiPeopleSearch: [],
+        };
+    }
+    componentDidMount() {
+        global.search_param_key = "";
+        global.search_query_orient = "All";
     }
     renderThisAccountAvatar() {
 
@@ -50,8 +61,69 @@ class DriverMessages extends Component {
 
     searchInAllIronjiDb(e) {
         //console.log("--->" + e.target.value);
+        global.search_param_key = e.target.value;
+        global.the_id_op = "";
+        var po = Users.find({ username: "" + sessionStorage.getItem('ironji_account_username') }, { sort: { text: 1 } }).fetch();
+        for (var key in po) {
+            if (po.hasOwnProperty(key)) {
+                //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
 
+                if (po[key].account_type == "driver") {
+                    global.the_id_op = po[key]._id;
+                }
+            }
+        }
+        //---------------Search Params--      
+        //---
+        var searchRegex = "";
+        try {
+            global.search_param_key = global.search_param_key.replace(/\W/g, "");
+            searchRegex = new RegExp(global.search_param_key, "igm");
+            console.log("searchRegex", searchRegex);
+        } catch (err) {
+            console.log("error", err);
+        }
+
+
+        if (global.search_query_orient.includes("All")) {
+            //---------
+            console.log("cyuma", "All");
+            
+            var theDbRes = Users.find({ $and: [{ "_id": { $ne: global.the_id_op } }, { $or: [{ username: searchRegex }, { surname: searchRegex }, { lastname: searchRegex }] }] }, { sort: { createdAt: - 1 } }).fetch();
+            console.log("length", theDbRes.length);
+            var theResults = [];
+
+            this.setState({ ironjiPeopleSearch: theResults });
+
+            var i_db = 0;
+            for (var key in theDbRes) {
+                if (theDbRes.hasOwnProperty(key)) {
+                    //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
+                    theResults.push(theDbRes[key.username]);
+                    i_db++;
+                }
+            }
+            //----------------
+            this.setState({ productsFromIronjiDatabase: theResults });
+
+        } else if (global.search_query_orient.includes("Buyers")) {
+            //---------
+            console.log("cyuma", "Buyers");
+          
+        } else if (global.search_query_orient.includes("Traders")) {
+            //---------
+            console.log("cyuma", "Traders");
+          
+        } else if (global.search_query_orient.includes("Farmers")) {
+            //---------
+            console.log("cyuma", "Farmers");
+           
+        } else if (global.search_query_orient.includes("Transporters")) {
+            console.log("cyuma", "Drivers");
+         
+        }
         if (e.target.value.length >= 3) {
+
             //document.getElementById("contact_search_list_contacts").innerHTML = e.target.value;
             document.getElementById("contact_search_list_contacts").style.display = "block";
         } else {
@@ -62,8 +134,22 @@ class DriverMessages extends Component {
     //-----OpenedWinDriversMessages  
     markContactType(theWinInfo) {
         document.getElementById("OpenedWinDriversMessages").innerHTML = "" + theWinInfo;
+        global.search_query_orient = theWinInfo;
     }
+    renderMessagesContactListSearch() {
 
+        if (this.state.ironjiPeopleSearch) {
+
+            return (this.state.ironjiPeopleSearch.map((el) => (
+
+                <DriverMessagesContactsSearch />
+            )));
+
+        } else {
+            return <div>No Data!</div>;
+        }
+
+    }
 
     render() {
 
@@ -113,179 +199,112 @@ class DriverMessages extends Component {
                     </div>
                     <div>
                         <table>
-                            <tr>
-                                <td><button onClick={this.markContactType.bind(this,"All")} style={{ minWidth: "70px" }} className="btn-success active">All</button></td>
-                                <td><button onClick={this.markContactType.bind(this, "Buyers")} style={{ minWidth: "70px" }} className="btn-success active">Buyers</button></td>
-                                <td><button onClick={this.markContactType.bind(this, "Traders")} style={{ minWidth: "70px" }} style={{ minWidth: "70px" }} className="btn-success active">Traders</button></td>
-                                <td><button onClick={this.markContactType.bind(this, "Farmers")} style={{ minWidth: "70px" }} className="btn-success active">Farmers</button></td>
-                                <td><button onClick={this.markContactType.bind(this, "Transporters")} style={{ minWidth: "70px" }} className="btn-success active">Transporters</button></td>
-                            </tr>
+                            <tbody>
+                                <tr>
+                                    <td><button onClick={this.markContactType.bind(this, "All")} style={{ minWidth: "70px" }} className="btn-success active">All</button></td>
+                                    <td><button onClick={this.markContactType.bind(this, "Buyers")} style={{ minWidth: "70px" }} className="btn-success active">Buyers</button></td>
+                                    <td><button onClick={this.markContactType.bind(this, "Traders")} style={{ minWidth: "70px" }} style={{ minWidth: "70px" }} className="btn-success active">Traders</button></td>
+                                    <td><button onClick={this.markContactType.bind(this, "Farmers")} style={{ minWidth: "70px" }} className="btn-success active">Farmers</button></td>
+                                    <td><button onClick={this.markContactType.bind(this, "Transporters")} style={{ minWidth: "70px" }} className="btn-success active">Transporters</button></td>
+                                </tr>
+                            </tbody>
                         </table>
                         <div style={{ padding: "5px", borderRadius: "5px", border: "1px solid black" }}>
-                            <input type="text" onKeyUp={this.searchInAllIronjiDb.bind(this)} className="form-control" placeholder="Search in contact" /><button className="btn-info">See Random list</button>
-                            <div id="contact_search_list_contacts" style={{ overflowY:"scroll",display:"none", position: "absolute", borderRadius: "6px", padding: "5px", width: "300px", maxWidth: "300px", height: "350px", maxHeight: "350px", zIndex: "5000", wordWrap: "break-word",background:"white" }} className="modal-content">
-                                <div className="modal-content contactsListSd" style={{ width: "auto", marginTop: "5px" }}>
-                                    <table>
-                                        <tr>
-                                            <td><img className="img-circle" style={{ maxWidth: "70px", maxHeight: "70px" }} src={"images/clet.jpg"} /></td>
-                                            <td>
-                                                <h4>Cedric </h4>
-                                                <h4>Trader</h4>
-                                                <h4>Male</h4>
-                                            </td>
-                                            <td>
-                                                <button className="btn-info">Add to contact list</button>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                <div className="modal-content contactsListSd" style={{ width: "auto", marginTop: "5px" }}>
-                                    <table>
-                                        <tr>
-                                            <td><img className="img-circle" style={{ maxWidth: "70px", maxHeight: "70px" }} src={"images/clet.jpg"} /></td>
-                                            <td>
-                                                <h4>Cedric </h4>
-                                                <h4>Trader</h4>
-                                                <h4>Male</h4>
-                                            </td>
-                                            <td>
-                                                <button className="btn-info">Add to contact list</button>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                <div className="modal-content contactsListSd" style={{ width: "auto", marginTop: "5px" }}>
-                                    <table>
-                                        <tr>
-                                            <td><img className="img-circle" style={{ maxWidth: "70px", maxHeight: "70px" }} src={"images/clet.jpg"} /></td>
-                                            <td>
-                                                <h4>Cedric </h4>
-                                                <h4>Trader</h4>
-                                                <h4>Male</h4>
-                                            </td>
-                                            <td>
-                                                <button className="btn-info">Add to contact list</button>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                <div className="modal-content contactsListSd" style={{ width: "auto", marginTop: "5px" }}>
-                                    <table>
-                                        <tr>
-                                            <td><img className="img-circle" style={{ maxWidth: "70px", maxHeight: "70px" }} src={"images/clet.jpg"} /></td>
-                                            <td>
-                                                <h4>Cedric </h4>
-                                                <h4>Trader</h4>
-                                                <h4>Male</h4>
-                                            </td>
-                                            <td>
-                                                <button className="btn-info">Add to contact list</button>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                <div className="modal-content contactsListSd" style={{ width: "auto", marginTop: "5px" }}>
-                                    <table>
-                                        <tr>
-                                            <td><img className="img-circle" style={{ maxWidth: "70px", maxHeight: "70px" }} src={"images/clet.jpg"} /></td>
-                                            <td>
-                                                <h4>Cedric </h4>
-                                                <h4>Trader</h4>
-                                                <h4>Male</h4>
-                                            </td>
-                                            <td>
-                                                <button className="btn-info">Add to contact list</button>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                
-                               
-                                
+                            <input type="text" onKeyUp={this.searchInAllIronjiDb.bind(this)} ref="searchContactsValueParam" id="searchContactsValueParam" className="form-control" placeholder="Search in contact" /><button className="btn-info">See Random list</button>
+                            <div id="contact_search_list_contacts" style={{ overflowY: "scroll", display: "none", position: "absolute", borderRadius: "6px", padding: "5px", width: "300px", maxWidth: "300px", height: "350px", maxHeight: "350px", zIndex: "5000", wordWrap: "break-word", background: "white" }} className="modal-content">
+                                {this.renderMessagesContactListSearch}
                             </div>
                             <div style={{ padding: "5px", boxShadow: "2px 2px #333" }} id="OpenedWinDriversMessages">All</div>
-                            <input type="hidden" id="OpenedWinDriversMessages_Data" value="All"  />
+                            <input type="hidden" id="OpenedWinDriversMessages_Data" value="All" />
                         </div>
                         <div style={{ padding: "5px", height: "340px" }}>
 
                             <div style={{ height: "220px", overflowY: "scroll" }}>
                                 <div className="modal-content contactsListSd" style={{ width: "340px", marginTop: "5px" }}>
                                     <table>
-                                        <tr>
-                                            <td><img className="img-circle" style={{ maxWidth: "70px", maxHeight: "70px" }} src={"images/clet.jpg"} /></td>
-                                            <td>
-                                                <h4>Cedric </h4>
-                                                <h4>Trader</h4>
-                                                <h4>Male</h4>
-                                            </td><td>
-                                                <div>
-                                                    <span className="badge" style={{ background: "green", borderRadius: "30px", width: "40px" }}>2</span>
-                                                    <div style={{ padding: "5px", boxShadow: "2px 2px #333" }}>
-                                                        fo9jfsfis sfibs fsnifb
+                                        <tbody>
+                                            <tr>
+                                                <td><img className="img-circle" style={{ maxWidth: "70px", maxHeight: "70px" }} src={"images/clet.jpg"} /></td>
+                                                <td>
+                                                    <h4>Cedric </h4>
+                                                    <h4>Trader</h4>
+                                                    <h4>Male</h4>
+                                                </td><td>
+                                                    <div>
+                                                        <span className="badge" style={{ background: "green", borderRadius: "30px", width: "40px" }}>2</span>
+                                                        <div style={{ padding: "5px", boxShadow: "2px 2px #333" }}>
+                                                            fo9jfsfis sfibs fsnifb
                                                     </div>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
                                     </table>
                                 </div>
                                 <div className="modal-content contactsListSd" style={{ width: "340px", marginTop: "5px" }}>
                                     <table>
-                                        <tr>
-                                            <td><img className="img-circle" style={{ maxWidth: "70px", maxHeight: "70px" }} src={"images/clet.jpg"} /></td>
-                                            <td>
-                                                <h4>Cedric </h4>
-                                                <h4>Trader</h4>
-                                                <h4>Male</h4>
-                                            </td>
-                                            <td>
-                                                <div>
-                                                    <span className="badge" style={{ background: "green", borderRadius: "30px", width: "40px" }}>2</span>
-                                                    <div style={{ padding: "5px", boxShadow: "2px 2px #333" }}>
-                                                        fo9jfsfis sfibs fsnifb
+                                        <tbody>
+                                            <tr>
+                                                <td><img className="img-circle" style={{ maxWidth: "70px", maxHeight: "70px" }} src={"images/clet.jpg"} /></td>
+                                                <td>
+                                                    <h4>Cedric </h4>
+                                                    <h4>Trader</h4>
+                                                    <h4>Male</h4>
+                                                </td>
+                                                <td>
+                                                    <div>
+                                                        <span className="badge" style={{ background: "green", borderRadius: "30px", width: "40px" }}>2</span>
+                                                        <div style={{ padding: "5px", boxShadow: "2px 2px #333" }}>
+                                                            fo9jfsfis sfibs fsnifb
                                                     </div>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
                                     </table>
                                 </div>
                                 <div className="modal-content contactsListSd" style={{ width: "340px", marginTop: "5px" }}>
                                     <table>
-                                        <tr>
-                                            <td><img className="img-circle" style={{ maxWidth: "70px", maxHeight: "70px" }} src={"images/clet.jpg"} /></td>
-                                            <td>
-                                                <h4>Cedric </h4>
-                                                <h4>Trader</h4>
-                                                <h4>Male</h4>
-                                            </td>
-                                            <td>
-                                                <div>
-                                                    <span className="badge" style={{ background: "green", borderRadius: "30px", width: "40px" }}>2</span>
-                                                    <div style={{ padding: "5px", boxShadow: "2px 2px #333" }}>
-                                                        fo9jfsfis sfibs fsnifb
+                                        <tbody>
+                                            <tr>
+                                                <td><img className="img-circle" style={{ maxWidth: "70px", maxHeight: "70px" }} src={"images/clet.jpg"} /></td>
+                                                <td>
+                                                    <h4>Cedric </h4>
+                                                    <h4>Trader</h4>
+                                                    <h4>Male</h4>
+                                                </td>
+                                                <td>
+                                                    <div>
+                                                        <span className="badge" style={{ background: "green", borderRadius: "30px", width: "40px" }}>2</span>
+                                                        <div style={{ padding: "5px", boxShadow: "2px 2px #333" }}>
+                                                            fo9jfsfis sfibs fsnifb
                                                     </div>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
                                     </table>
                                 </div>
                                 <div className="modal-content contactsListSd" style={{ width: "340px", marginTop: "5px" }}>
                                     <table>
-                                        <tr>
-                                            <td><img className="img-circle" style={{ maxWidth: "70px", maxHeight: "70px" }} src={"images/clet.jpg"} /></td>
-                                            <td>
-                                                <h4>Cedric </h4>
-                                                <h4>Trader</h4>
-                                                <h4>Male</h4>
-                                            </td>
-                                            <td>
-                                                <div>
-                                                    <span className="badge" style={{ background: "green", borderRadius: "30px", width: "40px" }}>2</span>
-                                                    <div style={{ padding: "5px", boxShadow: "2px 2px #333" }}>
-                                                        fo9jfsfis sfibs fsnifb
+                                        <tbody>
+                                            <tr>
+                                                <td><img className="img-circle" style={{ maxWidth: "70px", maxHeight: "70px" }} src={"images/clet.jpg"} /></td>
+                                                <td>
+                                                    <h4>Cedric </h4>
+                                                    <h4>Trader</h4>
+                                                    <h4>Male</h4>
+                                                </td>
+                                                <td>
+                                                    <div>
+                                                        <span className="badge" style={{ background: "green", borderRadius: "30px", width: "40px" }}>2</span>
+                                                        <div style={{ padding: "5px", boxShadow: "2px 2px #333" }}>
+                                                            fo9jfsfis sfibs fsnifb
                                                     </div>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
                                     </table>
                                 </div>
 
@@ -336,10 +355,12 @@ class DriverMessages extends Component {
                         </div>
                         <div>
                             <table>
-                                <tr>
-                                    <td><textarea className="form-control" placeholder="Your message here.." style={{ maxHeight: "70px", height: "70px", maxWidth: "350px", width: "350px" }}></textarea></td>
-                                    <td><button className="btn-primary">Send</button></td>
-                                </tr>
+                                <tbody>
+                                    <tr>
+                                        <td><textarea className="form-control" placeholder="Your message here.." style={{ maxHeight: "70px", height: "70px", maxWidth: "350px", width: "350px" }}></textarea></td>
+                                        <td><button className="btn-primary">Send</button></td>
+                                    </tr>
+                                </tbody>
                             </table>
                         </div>
 
