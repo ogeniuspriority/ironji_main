@@ -41,8 +41,21 @@ class DriverMessages extends Component {
         //-----------Assign the in ids-
         var that = this;
         setTimeout(function () {            
+            global.the_id_op = "";
+            global.avatar_profile = "";
+            var po = Users.find({ username: "" + sessionStorage.getItem('ironji_account_username') }, { sort: { text: 1 } }).fetch();
+            for (var key in po) {
+                if (po.hasOwnProperty(key)) {
+                    //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
 
-            var theDbRes = Ironji_messages_my_chatties.find().fetch();
+                    if (po[key].account_type == "driver") {
+                        global.the_id_op = po[key]._id;
+                        global.avatar_profile = po[key].avatar_profile;
+                    }
+                }
+            }
+            
+            var theDbRes = Ironji_messages_my_chatties.find({ "my_id": global.the_id_op }).fetch();
             console.log("length", theDbRes.length);
 
             var i_db = 0;
@@ -300,6 +313,7 @@ class DriverMessages extends Component {
     }
 
     prepareChattiesRender() {
+        
         global.search_param_key = "";
         global.the_id_op = "";
         var po = Users.find({ username: "" + sessionStorage.getItem('ironji_account_username') }, { sort: { text: 1 } }).fetch();
@@ -427,7 +441,7 @@ class DriverMessages extends Component {
                             <input type="hidden" id="OpenedWinDriversMessages_Data" value="All" />
                         </div>
                         <div style={{ padding: "5px", height: "340px" }}>
-
+                            <h4>My Contact List:</h4>
                             <div style={{ height: "220px", overflowY: "scroll" }}>
                                 {this.renderMessagesMyChatties()}
                             </div>
@@ -439,7 +453,7 @@ class DriverMessages extends Component {
                     <div style={{ textAlign: "center", padding: "4px", background: "skyblue", borderRadius: "5px", fontSize: "16px" }}>
                         Chat room
                     </div>
-                    <div>
+                    <div><h4>Talking to "Patrick", "Driver":</h4>
                         <div style={{ padding: "5px", height: "320px", borderRadius: "5px", overflowY: "scroll" }}>
                             <div style={{ width: "100%", marginTop: "10px" }}><div className="modal-content" style={{ float: "right" }}>
                                 <h4>Cedric</h4>

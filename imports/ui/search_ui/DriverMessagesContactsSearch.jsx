@@ -48,10 +48,24 @@ export class DriverMessagesContactsSearch extends Component {
 
     addThisUserToMyContacts(data,e) {
         //console.log("======" + data);
+        global.the_id_op = "";
+        global.avatar_profile = "";
+        var po = Users.find({ username: "" + sessionStorage.getItem('ironji_account_username') }, { sort: { text: 1 } }).fetch();
+        for (var key in po) {
+            if (po.hasOwnProperty(key)) {
+                //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
+
+                if (po[key].account_type == "driver") {
+                    global.the_id_op = po[key]._id;
+                    global.avatar_profile = po[key].avatar_profile;
+                }
+            }
+        }
         var elemId = e.target.id;
         var theData = {
             "user_id": data ,
             "regdate": new Date(),
+            "my_id": global.the_id_op
         };
         //var myJSON = JSON.stringify(theData);
         Ironji_messages_my_chatties.insert(theData, function (error, result) {
