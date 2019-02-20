@@ -14,7 +14,7 @@ import 'rc-time-picker/assets/index.css';
 import { ironji_messages_my_chatties } from '../../api/ironji_messages_my_chatties';
 
 
-export class DriverMessagesContactsSearch extends Component {
+export class DriverMessagesChatties extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -74,4 +74,4 @@ export default withTracker(() => {
     return {
         tasks: Users.find({}).fetch(),
     };
-})(DriverMessagesContactsSearch);
+})(DriverMessagesChatties);
