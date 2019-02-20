@@ -87,10 +87,10 @@ class DriverMessages extends Component {
 
         if (global.search_query_orient.includes("All")) {
             //---------
-            console.log("cyuma", "All");
+            //console.log("cyuma", "All");
             
             var theDbRes = Users.find({ $and: [{ "_id": { $ne: global.the_id_op } }, { $or: [{ username: searchRegex }, { surname: searchRegex }, { lastname: searchRegex }] }] }, { sort: { createdAt: - 1 } }).fetch();
-            console.log("length", theDbRes.length);
+            //console.log("length", theDbRes.length);
             var theResults = [];
 
             this.setState({ ironjiPeopleSearch: theResults });
@@ -99,27 +99,92 @@ class DriverMessages extends Component {
             for (var key in theDbRes) {
                 if (theDbRes.hasOwnProperty(key)) {
                     //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
-                    theResults.push(theDbRes[key.username]);
+                    theResults.push(theDbRes[key]._id + "~" + theDbRes[key].text + "~" + theDbRes[key].createdAt + "~" + theDbRes[key].account_type + "~" + theDbRes[key].currentLatitude + "~" + theDbRes[key].currentLongitude + "~" + theDbRes[key].accountConfirmed + "~" + theDbRes[key].id_number + "~" + theDbRes[key].surname + "~" + theDbRes[key].lastname + "~" + theDbRes[key].email + "~" + theDbRes[key].platenumber + "~" + theDbRes[key].province + "~" + theDbRes[key].district + "~" + theDbRes[key].sector + "~" + theDbRes[key].username + "~" + theDbRes[key].gender);
                     i_db++;
                 }
             }
             //----------------
-            this.setState({ productsFromIronjiDatabase: theResults });
+            this.setState({ ironjiPeopleSearch: theResults });
 
         } else if (global.search_query_orient.includes("Buyers")) {
             //---------
-            console.log("cyuma", "Buyers");
+            //console.log("cyuma", "Buyers");
+            var theDbRes = Users.find({ $and: [{ "_id": { $ne: global.the_id_op } }, {account_type:"buyer"}, { $or: [{ username: searchRegex }, { surname: searchRegex }, { lastname: searchRegex }] }] }, { sort: { createdAt: - 1 } }).fetch();
+            //console.log("length", theDbRes.length);
+            var theResults = [];
+
+            this.setState({ ironjiPeopleSearch: theResults });
+
+            var i_db = 0;
+            for (var key in theDbRes) {
+                if (theDbRes.hasOwnProperty(key)) {
+                    //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
+                    theResults.push(theDbRes[key]._id + "~" + theDbRes[key].text + "~" + theDbRes[key].createdAt + "~" + theDbRes[key].account_type + "~" + theDbRes[key].currentLatitude + "~" + theDbRes[key].currentLongitude + "~" + theDbRes[key].accountConfirmed + "~" + theDbRes[key].id_number + "~" + theDbRes[key].surname + "~" + theDbRes[key].lastname + "~" + theDbRes[key].email + "~" + theDbRes[key].platenumber + "~" + theDbRes[key].province + "~" + theDbRes[key].district + "~" + theDbRes[key].sector + "~" + theDbRes[key].username + "~" + theDbRes[key].gender);
+                    i_db++;
+                }
+            }
+            //----------------
+            this.setState({ ironjiPeopleSearch: theResults });
           
         } else if (global.search_query_orient.includes("Traders")) {
             //---------
-            console.log("cyuma", "Traders");
+            //console.log("cyuma", "Traders");
+            var theDbRes = Users.find({ $and: [{ "_id": { $ne: global.the_id_op } }, { account_type: "client" }, { $or: [{ username: searchRegex }, { surname: searchRegex }, { lastname: searchRegex }] }] }, { sort: { createdAt: - 1 } }).fetch();
+            //console.log("length", theDbRes.length);
+            var theResults = [];
+
+            this.setState({ ironjiPeopleSearch: theResults });
+
+            var i_db = 0;
+            for (var key in theDbRes) {
+                if (theDbRes.hasOwnProperty(key)) {
+                    //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
+                    theResults.push(theDbRes[key]._id + "~" + theDbRes[key].text + "~" + theDbRes[key].createdAt + "~" + theDbRes[key].account_type + "~" + theDbRes[key].currentLatitude + "~" + theDbRes[key].currentLongitude + "~" + theDbRes[key].accountConfirmed + "~" + theDbRes[key].id_number + "~" + theDbRes[key].surname + "~" + theDbRes[key].lastname + "~" + theDbRes[key].email + "~" + theDbRes[key].platenumber + "~" + theDbRes[key].province + "~" + theDbRes[key].district + "~" + theDbRes[key].sector + "~" + theDbRes[key].username + "~" + theDbRes[key].gender);
+                    i_db++;
+                }
+            }
+            //----------------
+            this.setState({ ironjiPeopleSearch: theResults });
           
         } else if (global.search_query_orient.includes("Farmers")) {
             //---------
-            console.log("cyuma", "Farmers");
+            //console.log("cyuma", "Farmers");
+            var theDbRes = Users.find({ $and: [{ "_id": { $ne: global.the_id_op } }, { account_type: "farmer" }, { $or: [{ username: searchRegex }, { surname: searchRegex }, { lastname: searchRegex }] }] }, { sort: { createdAt: - 1 } }).fetch();
+            //console.log("length", theDbRes.length);
+            var theResults = [];
+
+            this.setState({ ironjiPeopleSearch: theResults });
+
+            var i_db = 0;
+            for (var key in theDbRes) {
+                if (theDbRes.hasOwnProperty(key)) {
+                    //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
+                    theResults.push(theDbRes[key]._id + "~" + theDbRes[key].text + "~" + theDbRes[key].createdAt + "~" + theDbRes[key].account_type + "~" + theDbRes[key].currentLatitude + "~" + theDbRes[key].currentLongitude + "~" + theDbRes[key].accountConfirmed + "~" + theDbRes[key].id_number + "~" + theDbRes[key].surname + "~" + theDbRes[key].lastname + "~" + theDbRes[key].email + "~" + theDbRes[key].platenumber + "~" + theDbRes[key].province + "~" + theDbRes[key].district + "~" + theDbRes[key].sector + "~" + theDbRes[key].username + "~" + theDbRes[key].gender);
+                    i_db++;
+                }
+            }
+            //----------------
+            this.setState({ ironjiPeopleSearch: theResults });
            
         } else if (global.search_query_orient.includes("Transporters")) {
-            console.log("cyuma", "Drivers");
+            //console.log("cyuma", "Drivers");
+            var theDbRes = Users.find({ $and: [{ "_id": { $ne: global.the_id_op } }, { account_type: "driver" }, { $or: [{ username: searchRegex }, { surname: searchRegex }, { lastname: searchRegex }] }] }, { sort: { createdAt: - 1 } }).fetch();
+            //console.log("length", theDbRes.length);
+            var theResults = [];
+
+            this.setState({ ironjiPeopleSearch: theResults });
+
+            var i_db = 0;
+            for (var key in theDbRes) {
+                if (theDbRes.hasOwnProperty(key)) {
+                    //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
+                    theResults.push(theDbRes[key]._id + "~" + theDbRes[key].text + "~" + theDbRes[key].createdAt + "~" + theDbRes[key].account_type + "~" + theDbRes[key].currentLatitude + "~" + theDbRes[key].currentLongitude + "~" + theDbRes[key].accountConfirmed + "~" + theDbRes[key].id_number + "~" + theDbRes[key].surname + "~" + theDbRes[key].lastname + "~" + theDbRes[key].email + "~" + theDbRes[key].platenumber + "~" + theDbRes[key].province + "~" + theDbRes[key].district + "~" + theDbRes[key].sector + "~" + theDbRes[key].username + "~" + theDbRes[key].gender);
+                    i_db++;
+                }
+            }
+            //----------------
+            document.getElementById("contact_search_list_contacts").innerHTML = "";
+            this.setState({ ironjiPeopleSearch: theResults });
          
         }
         if (e.target.value.length >= 3) {
@@ -138,11 +203,11 @@ class DriverMessages extends Component {
     }
     renderMessagesContactListSearch() {
 
-        if (this.state.ironjiPeopleSearch) {
+        if (this.state.ironjiPeopleSearch.length>0) {
 
             return (this.state.ironjiPeopleSearch.map((el) => (
 
-                <DriverMessagesContactsSearch />
+                <DriverMessagesContactsSearch ironji_users_id={el.split("~")[0]} ironji_users_text={el.split("~")[1]} ironji_users_createdAt={el.split("~")[2]} ironji_users_account_type={el.split("~")[3]} ironji_users_currentLatitude={el.split("~")[4]} ironji_users_currentLongitude={el.split("~")[5]} ironji_users_accountConfirmed={el.split("~")[6]} ironji_users_id_number={el.split("~")[7]} ironji_users_surname={el.split("~")[8]} ironji_users_lastname={el.split("~")[9]} ironji_users_email={el.split("~")[10]} ironji_users_plate_number={el.split("~")[11]} ironji_users_occupation={el.split("~")[12]} ironji_users_phone_numbers={el.split("~")[13]} ironji_users_province={el.split("~")[14]} ironji_users_district={el.split("~")[15]} ironji_users_sector={el.split("~")[16]} ironji_users_username={el.split("~")[15]} ironji_users_id_gender={el.split("~")[16]} />
             )));
 
         } else {
@@ -212,7 +277,7 @@ class DriverMessages extends Component {
                         <div style={{ padding: "5px", borderRadius: "5px", border: "1px solid black" }}>
                             <input type="text" onKeyUp={this.searchInAllIronjiDb.bind(this)} ref="searchContactsValueParam" id="searchContactsValueParam" className="form-control" placeholder="Search in contact" /><button className="btn-info">See Random list</button>
                             <div id="contact_search_list_contacts" style={{ overflowY: "scroll", display: "none", position: "absolute", borderRadius: "6px", padding: "5px", width: "300px", maxWidth: "300px", height: "350px", maxHeight: "350px", zIndex: "5000", wordWrap: "break-word", background: "white" }} className="modal-content">
-                                {this.renderMessagesContactListSearch}
+                                {this.renderMessagesContactListSearch()}
                             </div>
                             <div style={{ padding: "5px", boxShadow: "2px 2px #333" }} id="OpenedWinDriversMessages">All</div>
                             <input type="hidden" id="OpenedWinDriversMessages_Data" value="All" />

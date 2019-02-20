@@ -35,9 +35,9 @@ export class DriverMessagesContactsSearch extends Component {
                     <tr>
                         <td><img className="img-circle" style={{ maxWidth: "70px", maxHeight: "70px" }} src={"images/clet.jpg"} /></td>
                         <td>
-                            <h4>Cedric </h4>
-                            <h4>Trader</h4>
-                            <h4>Male</h4>
+                                <h4>{this.props.ironji_users_username} </h4>
+                                <h4>{this.props.ironji_users_account_type}</h4>
+                                <h4>{this.props.ironji_users_id_gender}</h4>
                         </td>
                         <td>
                             <button className="btn-info">Add to contact list</button>
