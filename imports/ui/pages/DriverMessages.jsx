@@ -78,7 +78,7 @@ class DriverMessages extends Component {
             }
             //-----------
             that.prepareChattiesRender();
-        },1000);
+        },4000);
 
     }
     renderThisAccountAvatar() {
