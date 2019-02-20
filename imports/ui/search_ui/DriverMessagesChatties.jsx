@@ -11,7 +11,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import TimePicker from 'rc-time-picker';
 import 'rc-time-picker/assets/index.css';
 
-import { ironji_messages_my_chatties } from '../../api/ironji_messages_my_chatties';
+import { Ironji_messages_my_chatties } from '../../api/ironji_messages_my_chatties';
 
 
 export class DriverMessagesChatties extends Component {
@@ -44,6 +44,7 @@ export class DriverMessagesChatties extends Component {
         return (<img className="img-circle" style={{ maxWidth: "70px", maxHeight: "70px" }} src={this.state.thisAvatar} />);
     }
 
+
     render() {
         return (<div>
             <div className="modal-content contactsListSd" style={{ width: "auto", marginTop: "5px", display: "" + this.props.data_display }}>
@@ -56,9 +57,14 @@ export class DriverMessagesChatties extends Component {
                                 <h4>{this.props.ironji_users_account_type}</h4>
                                 <h4>{this.props.ironji_users_id_gender}</h4>
                         </td>
-                        <td>
-                            <button className="btn-info">Add to contact list</button>
-                        </td>
+                            <td>
+                                <div>
+                                    <span className="badge" style={{ background: "green", borderRadius: "30px", width: "40px" }}>2</span>
+                                    <div style={{ padding: "5px", boxShadow: "2px 2px #333" }}>
+                                        fo9jfsfis sfibs fsnifb
+                                                    </div>
+                                </div>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

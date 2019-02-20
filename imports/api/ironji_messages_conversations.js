@@ -1,4 +1,4 @@
 import { Mongo } from 'meteor/mongo';
  
-export const Client_hot_deals = new Mongo.Collection('ironji_messages_conversations');
+export const Ironji_messages_conversations = new Mongo.Collection('ironji_messages_conversations');
 
