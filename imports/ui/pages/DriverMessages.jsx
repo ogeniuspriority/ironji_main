@@ -59,6 +59,51 @@ class DriverMessages extends Component {
         return (<img className="followLinks" src={url} />);
     }
 
+    showListOfUsers() {
+        global.search_param_key = document.getElementById("searchContactsValueParam").value;
+        global.the_id_op = "";
+        var po = Users.find({ username: "" + sessionStorage.getItem('ironji_account_username') }, { sort: { text: 1 } }).fetch();
+        for (var key in po) {
+            if (po.hasOwnProperty(key)) {
+                //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
+
+                if (po[key].account_type == "driver") {
+                    global.the_id_op = po[key]._id;
+                }
+            }
+        }
+        //---------------Search Params--      
+        //---
+        var searchRegex = "";
+        try {
+            global.search_param_key = global.search_param_key.replace(/\W/g, "");
+            searchRegex = new RegExp(global.search_param_key, "igm");
+            //console.log("searchRegex", searchRegex);
+        } catch (err) {
+            //console.log("error", err);
+        }
+
+        var theDbRes = Users.find({ $and: [{ "_id": { $ne: global.the_id_op } }, { $or: [{ username: searchRegex }, { surname: searchRegex }, { lastname: searchRegex }] }] }, { sort: { createdAt: - 1 } }).fetch();
+        //console.log("length", theDbRes.length);
+        var theResults = [];
+
+        this.setState({ ironjiPeopleSearch: theResults });
+
+        var i_db = 0;
+        for (var key in theDbRes) {
+            if (theDbRes.hasOwnProperty(key)) {
+                //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
+                if (i_db < 15) {
+                    theResults.push(theDbRes[key]._id + "~" + theDbRes[key].text + "~" + theDbRes[key].createdAt + "~" + theDbRes[key].account_type + "~" + theDbRes[key].currentLatitude + "~" + theDbRes[key].currentLongitude + "~" + theDbRes[key].accountConfirmed + "~" + theDbRes[key].id_number + "~" + theDbRes[key].surname + "~" + theDbRes[key].lastname + "~" + theDbRes[key].email + "~" + theDbRes[key].platenumber + "~" + theDbRes[key].province + "~" + theDbRes[key].district + "~" + theDbRes[key].sector + "~" + theDbRes[key].username + "~" + theDbRes[key].gender);
+                }
+                i_db++;
+            }
+        }
+        //----------------
+        this.setState({ ironjiPeopleSearch: theResults });
+        document.getElementById("contact_search_list_contacts").style.display = "block";
+    }
+
     searchInAllIronjiDb(e) {
         //console.log("--->" + e.target.value);
         global.search_param_key = e.target.value;
@@ -79,9 +124,9 @@ class DriverMessages extends Component {
         try {
             global.search_param_key = global.search_param_key.replace(/\W/g, "");
             searchRegex = new RegExp(global.search_param_key, "igm");
-            console.log("searchRegex", searchRegex);
+            //console.log("searchRegex", searchRegex);
         } catch (err) {
-            console.log("error", err);
+            //.log("error", err);
         }
 
 
@@ -275,7 +320,7 @@ class DriverMessages extends Component {
                             </tbody>
                         </table>
                         <div style={{ padding: "5px", borderRadius: "5px", border: "1px solid black" }}>
-                            <input type="text" onKeyUp={this.searchInAllIronjiDb.bind(this)} ref="searchContactsValueParam" id="searchContactsValueParam" className="form-control" placeholder="Search in contact" /><button className="btn-info">See Random list</button>
+                            <input type="text" onKeyUp={this.searchInAllIronjiDb.bind(this)} ref="searchContactsValueParam" id="searchContactsValueParam" className="form-control" placeholder="Search in contact" /><button onClick={this.showListOfUsers.bind(this)} className="btn-info">See Random list</button>
                             <div id="contact_search_list_contacts" style={{ overflowY: "scroll", display: "none", position: "absolute", borderRadius: "6px", padding: "5px", width: "300px", maxWidth: "300px", height: "350px", maxHeight: "350px", zIndex: "5000", wordWrap: "break-word", background: "white" }} className="modal-content">
                                 {this.renderMessagesContactListSearch()}
                             </div>
