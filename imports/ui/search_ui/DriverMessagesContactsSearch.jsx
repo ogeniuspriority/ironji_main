@@ -16,16 +16,32 @@ export class DriverMessagesContactsSearch extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            hideCompleted: false
+            hideCompleted: false,
+            thisAvatar:"/images/profile.png"
         };
     }
     componentDidMount() {
+        
+        if (this.props.ironji_users_image.includes("undefined")) {
+            global.avatar = "/images/profile.png";
+            this.setState({ thisAvatar: global.avatar });
 
+            
+        } else {
+            global.avatar = "https://map.ogeniuspriority.com/upload_scripts/" + this.props.ironji_users_image;
+            this.setState({ thisAvatar: global.avatar });
+        }
+
+        console.log(global.avatar);
     }
     openNegotiationRoomWin0(param, e) {
         document.getElementById("buyerCarryCargoWin0ChatRoom").style.display = "block";
     }
-    
+
+    profileShow()
+    {
+        return (<img className="img-circle" style={{ maxWidth: "70px", maxHeight: "70px" }} src={this.state.thisAvatar} />);
+    }
 
     render() {
         return (<div>
@@ -33,7 +49,7 @@ export class DriverMessagesContactsSearch extends Component {
                 <table>
                     <tbody>
                     <tr>
-                        <td><img className="img-circle" style={{ maxWidth: "70px", maxHeight: "70px" }} src={"images/clet.jpg"} /></td>
+                            <td>{this.profileShow()}</td>
                         <td>
                                 <h4>{this.props.ironji_users_username} </h4>
                                 <h4>{this.props.ironji_users_account_type}</h4>
