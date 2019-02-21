@@ -30,7 +30,8 @@ class DriverMessages extends Component {
         this.state = {
             ironjiPeopleSearch: [],
             ironjiMyChatties: [],
-            allMyChatties: ""
+            allMyChatties: "",
+            ironjiMyChatties_temporary: "",
         };
     }
     componentDidMount() {
@@ -40,7 +41,7 @@ class DriverMessages extends Component {
 
         //-----------Assign the in ids-
         var that = this;
-        setTimeout(function () {            
+        setTimeout(function() {
             global.the_id_op = "";
             global.avatar_profile = "";
             var po = Users.find({ username: "" + sessionStorage.getItem('ironji_account_username') }, { sort: { text: 1 } }).fetch();
@@ -54,7 +55,7 @@ class DriverMessages extends Component {
                     }
                 }
             }
-            
+
             var theDbRes = Ironji_messages_my_chatties.find({ "my_id": global.the_id_op }).fetch();
             console.log("length", theDbRes.length);
 
@@ -78,7 +79,58 @@ class DriverMessages extends Component {
             }
             //-----------
             that.prepareChattiesRender();
-        },4000);
+        }, 4000);
+        //---------------Check for newly activated chatties--
+        setInterval(function() {
+            global.the_id_op = "";
+            global.avatar_profile = "";
+            var po = Users.find({ username: "" + sessionStorage.getItem('ironji_account_username') }, { sort: { text: 1 } }).fetch();
+            for (var key in po) {
+                if (po.hasOwnProperty(key)) {
+                    //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
+
+                    if (po[key].account_type == "driver") {
+                        global.the_id_op = po[key]._id;
+                        global.avatar_profile = po[key].avatar_profile;
+                    }
+                }
+            }
+
+            var theDbRes = Ironji_messages_my_chatties.find({ "my_id": global.the_id_op }).fetch();
+            console.log("length", theDbRes.length);
+
+            var i_db = 0;
+            for (var key in theDbRes) {
+                if (theDbRes.hasOwnProperty(key)) {
+                    //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
+
+                    if (i_db == 0) {
+                        var currChatty = "";
+                        currChatty = "" + theDbRes[key].user_id
+                        that.setState({ allMyChatties: currChatty });
+
+                    } else {
+                        var currChatty = "";
+                        currChatty = that.state.allMyChatties + "~" + theDbRes[key].user_id
+                        that.setState({ allMyChatties: currChatty });
+                    }
+                    i_db++;
+                }
+            }
+            //-----------
+            if (that.ironjiMyChatties_temporary == "") {
+                that.setState({ ironjiMyChatties_temporary: that.state.ironjiMyChatties });
+            } else {
+                if (that.ironjiMyChatties_temporary == that.state.ironjiMyChatties) {
+
+                } else {
+                    that.prepareChattiesRender();
+                    that.setState({ ironjiMyChatties_temporary: that.state.ironjiMyChatties });
+                }
+
+            }
+        }, 8000);
+
 
     }
     renderThisAccountAvatar() {
@@ -122,6 +174,7 @@ class DriverMessages extends Component {
         }
         //---------------Search Params--      
         //---
+        global.search_param_key = "";
         var searchRegex = "";
         try {
             global.search_param_key = global.search_param_key.replace(/\W/g, "");
@@ -131,26 +184,108 @@ class DriverMessages extends Component {
             //console.log("error", err);
         }
 
-        var theDbRes = Users.find({ $and: [{ "_id": { $ne: global.the_id_op } }, { $or: [{ username: searchRegex }, { surname: searchRegex }, { lastname: searchRegex }] }] }, { sort: { createdAt: - 1 } }).fetch();
-        //console.log("length", theDbRes.length);
-        var theResults = [];
+        if (global.search_query_orient.includes("All")) {
+            //---------
+            //console.log("cyuma", "All");
 
-        this.setState({ ironjiPeopleSearch: theResults });
+            var theDbRes = Users.find({ $and: [{ "_id": { $ne: global.the_id_op } }, { $or: [{ username: searchRegex }, { surname: searchRegex }, { lastname: searchRegex }] }] }, { sort: { createdAt: - 1 } }).fetch();
+            //console.log("length", theDbRes.length);
+            var theResults = [];
 
-        var i_db = 0;
-        for (var key in theDbRes) {
-            if (theDbRes.hasOwnProperty(key)) {
-                //console.log(theDbRes[key]._id);
-                //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
-                if (i_db < 15) {
+            this.setState({ ironjiPeopleSearch: theResults });
+
+            var i_db = 0;
+            for (var key in theDbRes) {
+                if (theDbRes.hasOwnProperty(key)) {
+                    //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
                     theResults.push("" + theDbRes[key]._id + "~" + theDbRes[key].text + "~" + theDbRes[key].createdAt + "~" + theDbRes[key].account_type + "~" + theDbRes[key].currentLatitude + "~" + theDbRes[key].currentLongitude + "~" + theDbRes[key].accountConfirmed + "~" + theDbRes[key].id_number + "~" + theDbRes[key].surname + "~" + theDbRes[key].lastname + "~" + theDbRes[key].email + "~" + theDbRes[key].platenumber + "~" + theDbRes[key].province + "~" + theDbRes[key].district + "~" + theDbRes[key].sector + "~" + theDbRes[key].username + "~" + theDbRes[key].gender + "~" + theDbRes[key].avatar_profile);
-                    //console.log(theDbRes[key]._id);
+                    i_db++;
                 }
-                i_db++;
             }
+            //----------------
+            this.setState({ ironjiPeopleSearch: theResults });
+
+        } else if (global.search_query_orient.includes("Buyers")) {
+            //---------
+            //console.log("cyuma", "Buyers");
+            var theDbRes = Users.find({ $and: [{ "_id": { $ne: global.the_id_op } }, { account_type: "buyer" }, { $or: [{ username: searchRegex }, { surname: searchRegex }, { lastname: searchRegex }] }] }, { sort: { createdAt: - 1 } }).fetch();
+            //console.log("length", theDbRes.length);
+            var theResults = [];
+
+            this.setState({ ironjiPeopleSearch: theResults });
+
+            var i_db = 0;
+            for (var key in theDbRes) {
+                if (theDbRes.hasOwnProperty(key)) {
+                    //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
+                    theResults.push("" + theDbRes[key]._id + "~" + theDbRes[key].text + "~" + theDbRes[key].createdAt + "~" + theDbRes[key].account_type + "~" + theDbRes[key].currentLatitude + "~" + theDbRes[key].currentLongitude + "~" + theDbRes[key].accountConfirmed + "~" + theDbRes[key].id_number + "~" + theDbRes[key].surname + "~" + theDbRes[key].lastname + "~" + theDbRes[key].email + "~" + theDbRes[key].platenumber + "~" + theDbRes[key].province + "~" + theDbRes[key].district + "~" + theDbRes[key].sector + "~" + theDbRes[key].username + "~" + theDbRes[key].gender + "~" + theDbRes[key].avatar_profile);
+                    i_db++;
+                }
+            }
+            //----------------
+            this.setState({ ironjiPeopleSearch: theResults });
+
+        } else if (global.search_query_orient.includes("Traders")) {
+            //---------
+            //console.log("cyuma", "Traders");
+            var theDbRes = Users.find({ $and: [{ "_id": { $ne: global.the_id_op } }, { account_type: "client" }, { $or: [{ username: searchRegex }, { surname: searchRegex }, { lastname: searchRegex }] }] }, { sort: { createdAt: - 1 } }).fetch();
+            //console.log("length", theDbRes.length);
+            var theResults = [];
+
+            this.setState({ ironjiPeopleSearch: theResults });
+
+            var i_db = 0;
+            for (var key in theDbRes) {
+                if (theDbRes.hasOwnProperty(key)) {
+                    //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
+                    theResults.push("" + theDbRes[key]._id + "~" + theDbRes[key].text + "~" + theDbRes[key].createdAt + "~" + theDbRes[key].account_type + "~" + theDbRes[key].currentLatitude + "~" + theDbRes[key].currentLongitude + "~" + theDbRes[key].accountConfirmed + "~" + theDbRes[key].id_number + "~" + theDbRes[key].surname + "~" + theDbRes[key].lastname + "~" + theDbRes[key].email + "~" + theDbRes[key].platenumber + "~" + theDbRes[key].province + "~" + theDbRes[key].district + "~" + theDbRes[key].sector + "~" + theDbRes[key].username + "~" + theDbRes[key].gender + "~" + theDbRes[key].avatar_profile);
+                    i_db++;
+                }
+            }
+            //----------------
+            this.setState({ ironjiPeopleSearch: theResults });
+
+        } else if (global.search_query_orient.includes("Farmers")) {
+            //---------
+            //console.log("cyuma", "Farmers");
+            var theDbRes = Users.find({ $and: [{ "_id": { $ne: global.the_id_op } }, { account_type: "farmer" }, { $or: [{ username: searchRegex }, { surname: searchRegex }, { lastname: searchRegex }] }] }, { sort: { createdAt: - 1 } }).fetch();
+            //console.log("length", theDbRes.length);
+            var theResults = [];
+
+            this.setState({ ironjiPeopleSearch: theResults });
+
+            var i_db = 0;
+            for (var key in theDbRes) {
+                if (theDbRes.hasOwnProperty(key)) {
+                    //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
+                    theResults.push("" + theDbRes[key]._id + "~" + theDbRes[key].text + "~" + theDbRes[key].createdAt + "~" + theDbRes[key].account_type + "~" + theDbRes[key].currentLatitude + "~" + theDbRes[key].currentLongitude + "~" + theDbRes[key].accountConfirmed + "~" + theDbRes[key].id_number + "~" + theDbRes[key].surname + "~" + theDbRes[key].lastname + "~" + theDbRes[key].email + "~" + theDbRes[key].platenumber + "~" + theDbRes[key].province + "~" + theDbRes[key].district + "~" + theDbRes[key].sector + "~" + theDbRes[key].username + "~" + theDbRes[key].gender + "~" + theDbRes[key].avatar_profile);
+                    i_db++;
+                }
+            }
+            //----------------
+            this.setState({ ironjiPeopleSearch: theResults });
+
+        } else if (global.search_query_orient.includes("Transporters")) {
+            //console.log("cyuma", "Drivers");
+            var theDbRes = Users.find({ $and: [{ "_id": { $ne: global.the_id_op } }, { account_type: "driver" }, { $or: [{ username: searchRegex }, { surname: searchRegex }, { lastname: searchRegex }] }] }, { sort: { createdAt: - 1 } }).fetch();
+            //console.log("length", theDbRes.length);
+            var theResults = [];
+
+            this.setState({ ironjiPeopleSearch: theResults });
+
+            var i_db = 0;
+            for (var key in theDbRes) {
+                if (theDbRes.hasOwnProperty(key)) {
+                    //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
+                    theResults.push("" + theDbRes[key]._id + "~" + theDbRes[key].text + "~" + theDbRes[key].createdAt + "~" + theDbRes[key].account_type + "~" + theDbRes[key].currentLatitude + "~" + theDbRes[key].currentLongitude + "~" + theDbRes[key].accountConfirmed + "~" + theDbRes[key].id_number + "~" + theDbRes[key].surname + "~" + theDbRes[key].lastname + "~" + theDbRes[key].email + "~" + theDbRes[key].platenumber + "~" + theDbRes[key].province + "~" + theDbRes[key].district + "~" + theDbRes[key].sector + "~" + theDbRes[key].username + "~" + theDbRes[key].gender + "~" + theDbRes[key].avatar_profile);
+                    i_db++;
+                }
+            }
+            //----------------
+            document.getElementById("contact_search_list_contacts").innerHTML = "";
+            this.setState({ ironjiPeopleSearch: theResults });
+
         }
-        //----------------
-        this.setState({ ironjiPeopleSearch: theResults });
         document.getElementById("contact_search_list_contacts").style.display = "block";
     }
 
@@ -302,7 +437,7 @@ class DriverMessages extends Component {
 
             return (this.state.ironjiPeopleSearch.map((el) => (
 
-                <DriverMessagesContactsSearch  ironji_users_id={el.split("~")[0]} data_display={(this.state.allMyChatties.includes(el.split("~")[0])) ? "none" : "block"} ironji_users_text={el.split("~")[1]} ironji_users_createdAt={el.split("~")[2]} ironji_users_account_type={el.split("~")[3]} ironji_users_currentLatitude={el.split("~")[4]} ironji_users_currentLongitude={el.split("~")[5]} ironji_users_accountConfirmed={el.split("~")[6]} ironji_users_id_number={el.split("~")[7]} ironji_users_surname={el.split("~")[8]} ironji_users_lastname={el.split("~")[9]} ironji_users_email={el.split("~")[10]} ironji_users_plate_number={el.split("~")[11]} ironji_users_occupation={el.split("~")[12]} ironji_users_phone_numbers={el.split("~")[13]} ironji_users_province={el.split("~")[14]} ironji_users_district={el.split("~")[15]} ironji_users_sector={el.split("~")[16]} ironji_users_username={el.split("~")[15]} ironji_users_id_gender={el.split("~")[16]} ironji_users_image={"" + el.split("~")[17]} />
+                <DriverMessagesContactsSearch ironji_users_id={el.split("~")[0]} data_display={(this.state.allMyChatties.includes(el.split("~")[0])) ? "none" : "block"} ironji_users_text={el.split("~")[1]} ironji_users_createdAt={el.split("~")[2]} ironji_users_account_type={el.split("~")[3]} ironji_users_currentLatitude={el.split("~")[4]} ironji_users_currentLongitude={el.split("~")[5]} ironji_users_accountConfirmed={el.split("~")[6]} ironji_users_id_number={el.split("~")[7]} ironji_users_surname={el.split("~")[8]} ironji_users_lastname={el.split("~")[9]} ironji_users_email={el.split("~")[10]} ironji_users_plate_number={el.split("~")[11]} ironji_users_occupation={el.split("~")[12]} ironji_users_phone_numbers={el.split("~")[13]} ironji_users_province={el.split("~")[14]} ironji_users_district={el.split("~")[15]} ironji_users_sector={el.split("~")[16]} ironji_users_username={el.split("~")[15]} ironji_users_id_gender={el.split("~")[16]} ironji_users_image={"" + el.split("~")[17]} />
             )));
 
 
@@ -313,7 +448,7 @@ class DriverMessages extends Component {
     }
 
     prepareChattiesRender() {
-        
+
         global.search_param_key = "";
         global.the_id_op = "";
         var po = Users.find({ username: "" + sessionStorage.getItem('ironji_account_username') }, { sort: { text: 1 } }).fetch();
@@ -436,7 +571,7 @@ class DriverMessages extends Component {
                             <input type="text" onKeyUp={this.searchInAllIronjiDb.bind(this)} ref="searchContactsValueParam" id="searchContactsValueParam" className="form-control" placeholder="Search in contact" /><button onClick={this.showListOfUsers.bind(this)} className="btn-info">See Random list</button>
                             <div id="contact_search_list_contacts" style={{ overflowY: "scroll", display: "none", position: "absolute", borderRadius: "6px", padding: "5px", width: "300px", maxWidth: "300px", height: "350px", maxHeight: "350px", zIndex: "5000", wordWrap: "break-word", background: "white" }} className="modal-content">
                                 {this.renderMessagesContactListSearch()}
-                            </div>            
+                            </div>
                             <div style={{ padding: "5px", boxShadow: "2px 2px #333" }} id="OpenedWinDriversMessages">All</div>
                             <input type="hidden" id="OpenedWinDriversMessages_Data" value="All" />
                         </div>
