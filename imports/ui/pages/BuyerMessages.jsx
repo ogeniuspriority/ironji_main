@@ -18,9 +18,463 @@ import "react-toggle-switch/dist/css/switch.min.css";
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
 
+import { BuyerMessagesContactsSearch } from '../search_ui/BuyerMessagesContactsSearch';
+
+import { Ironji_messages_my_chatties } from '../../api/ironji_messages_my_chatties';
+import { BuyerMessagesChatties } from '../search_ui/BuyerMessagesChatties';
+
 class BuyerMessages extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            ironjiPeopleSearch: [],
+            ironjiMyChatties: [],
+            allMyChatties: "",
+            ironjiMyChatties_temporary: "",
+        };
+
+    }
+    componentDidMount() {
+        global.search_param_key = "";
+        global.search_query_orient = "All";
+        //------------
+        //-----------Assign the in ids-
+        var that = this;
+        setTimeout(function () {
+            global.the_id_op = "";
+            global.avatar_profile = "";
+            var po = Users.find({ username: "" + sessionStorage.getItem('ironji_account_username') }, { sort: { text: 1 } }).fetch();
+            for (var key in po) {
+                if (po.hasOwnProperty(key)) {
+                    //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
+
+                    if (po[key].account_type == "buyer") {
+                        global.the_id_op = po[key]._id;
+                        global.avatar_profile = po[key].avatar_profile;
+                    }
+                }
+            }
+
+            var theDbRes = Ironji_messages_my_chatties.find({ "my_id": global.the_id_op }).fetch();
+            console.log("length", theDbRes.length);
+
+            var i_db = 0;
+            for (var key in theDbRes) {
+                if (theDbRes.hasOwnProperty(key)) {
+                    //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
+
+                    if (i_db == 0) {
+                        var currChatty = "";
+                        currChatty = "" + theDbRes[key].user_id
+                        that.setState({ allMyChatties: currChatty });
+
+                    } else {
+                        var currChatty = "";
+                        currChatty = that.state.allMyChatties + "~" + theDbRes[key].user_id
+                        that.setState({ allMyChatties: currChatty });
+                    }
+                    i_db++;
+                }
+            }
+            //-----------
+            that.prepareChattiesRender();
+        }, 4000);
+        //---------------Check for newly activated chatties--
+        setInterval(function () {
+            global.the_id_op = "";
+            global.avatar_profile = "";
+            var po = Users.find({ username: "" + sessionStorage.getItem('ironji_account_username') }, { sort: { text: 1 } }).fetch();
+            for (var key in po) {
+                if (po.hasOwnProperty(key)) {
+                    //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
+
+                    if (po[key].account_type == "buyer") {
+                        global.the_id_op = po[key]._id;
+                        global.avatar_profile = po[key].avatar_profile;
+                    }
+                }
+            }
+
+            var theDbRes = Ironji_messages_my_chatties.find({ "my_id": global.the_id_op }).fetch();
+            console.log("length", theDbRes.length);
+
+            var i_db = 0;
+            for (var key in theDbRes) {
+                if (theDbRes.hasOwnProperty(key)) {
+                    //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
+
+                    if (i_db == 0) {
+                        var currChatty = "";
+                        currChatty = "" + theDbRes[key].user_id
+                        that.setState({ allMyChatties: currChatty });
+
+                    } else {
+                        var currChatty = "";
+                        currChatty = that.state.allMyChatties + "~" + theDbRes[key].user_id
+                        that.setState({ allMyChatties: currChatty });
+                    }
+                    i_db++;
+                }
+            }
+            //-----------
+            if (that.ironjiMyChatties_temporary == "") {
+                that.setState({ ironjiMyChatties_temporary: that.state.ironjiMyChatties });
+            } else {
+                if (that.ironjiMyChatties_temporary == that.state.ironjiMyChatties) {
+
+                } else {
+                    that.prepareChattiesRender();
+                    that.setState({ ironjiMyChatties_temporary: that.state.ironjiMyChatties });
+                }
+
+            }
+        }, 8000);
+    }
+    showListOfUsers() {
+        global.search_param_key = document.getElementById("searchContactsValueParam").value;
+        global.the_id_op = "";
+        var po = Users.find({ username: "" + sessionStorage.getItem('ironji_account_username') }, { sort: { text: 1 } }).fetch();
+        for (var key in po) {
+            if (po.hasOwnProperty(key)) {
+                //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
+
+                if (po[key].account_type == "buyer") {
+                    global.the_id_op = po[key]._id;
+                }
+            }
+        }
+        //---------------Search Params--      
+        //---
+        global.search_param_key = "";
+        var searchRegex = "";
+        try {
+            global.search_param_key = global.search_param_key.replace(/\W/g, "");
+            searchRegex = new RegExp(global.search_param_key, "igm");
+            //console.log("searchRegex", searchRegex);
+        } catch (err) {
+            //console.log("error", err);
+        }
+
+        if (global.search_query_orient.includes("All")) {
+            //---------
+            //console.log("cyuma", "All");
+
+            var theDbRes = Users.find({ $and: [{ "_id": { $ne: global.the_id_op } }, { $or: [{ username: searchRegex }, { surname: searchRegex }, { lastname: searchRegex }] }] }, { sort: { createdAt: - 1 } }).fetch();
+            //console.log("length", theDbRes.length);
+            var theResults = [];
+
+            this.setState({ ironjiPeopleSearch: theResults });
+
+            var i_db = 0;
+            for (var key in theDbRes) {
+                if (theDbRes.hasOwnProperty(key)) {
+                    //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
+                    theResults.push("" + theDbRes[key]._id + "~" + theDbRes[key].text + "~" + theDbRes[key].createdAt + "~" + theDbRes[key].account_type + "~" + theDbRes[key].currentLatitude + "~" + theDbRes[key].currentLongitude + "~" + theDbRes[key].accountConfirmed + "~" + theDbRes[key].id_number + "~" + theDbRes[key].surname + "~" + theDbRes[key].lastname + "~" + theDbRes[key].email + "~" + theDbRes[key].platenumber + "~" + theDbRes[key].province + "~" + theDbRes[key].district + "~" + theDbRes[key].sector + "~" + theDbRes[key].username + "~" + theDbRes[key].gender + "~" + theDbRes[key].avatar_profile);
+                    i_db++;
+                }
+            }
+            //----------------
+            this.setState({ ironjiPeopleSearch: theResults });
+
+        } else if (global.search_query_orient.includes("Buyers")) {
+            //---------
+            //console.log("cyuma", "Buyers");
+            var theDbRes = Users.find({ $and: [{ "_id": { $ne: global.the_id_op } }, { account_type: "buyer" }, { $or: [{ username: searchRegex }, { surname: searchRegex }, { lastname: searchRegex }] }] }, { sort: { createdAt: - 1 } }).fetch();
+            //console.log("length", theDbRes.length);
+            var theResults = [];
+
+            this.setState({ ironjiPeopleSearch: theResults });
+
+            var i_db = 0;
+            for (var key in theDbRes) {
+                if (theDbRes.hasOwnProperty(key)) {
+                    //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
+                    theResults.push("" + theDbRes[key]._id + "~" + theDbRes[key].text + "~" + theDbRes[key].createdAt + "~" + theDbRes[key].account_type + "~" + theDbRes[key].currentLatitude + "~" + theDbRes[key].currentLongitude + "~" + theDbRes[key].accountConfirmed + "~" + theDbRes[key].id_number + "~" + theDbRes[key].surname + "~" + theDbRes[key].lastname + "~" + theDbRes[key].email + "~" + theDbRes[key].platenumber + "~" + theDbRes[key].province + "~" + theDbRes[key].district + "~" + theDbRes[key].sector + "~" + theDbRes[key].username + "~" + theDbRes[key].gender + "~" + theDbRes[key].avatar_profile);
+                    i_db++;
+                }
+            }
+            //----------------
+            this.setState({ ironjiPeopleSearch: theResults });
+
+        } else if (global.search_query_orient.includes("Traders")) {
+            //---------
+            //console.log("cyuma", "Traders");
+            var theDbRes = Users.find({ $and: [{ "_id": { $ne: global.the_id_op } }, { account_type: "client" }, { $or: [{ username: searchRegex }, { surname: searchRegex }, { lastname: searchRegex }] }] }, { sort: { createdAt: - 1 } }).fetch();
+            //console.log("length", theDbRes.length);
+            var theResults = [];
+
+            this.setState({ ironjiPeopleSearch: theResults });
+
+            var i_db = 0;
+            for (var key in theDbRes) {
+                if (theDbRes.hasOwnProperty(key)) {
+                    //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
+                    theResults.push("" + theDbRes[key]._id + "~" + theDbRes[key].text + "~" + theDbRes[key].createdAt + "~" + theDbRes[key].account_type + "~" + theDbRes[key].currentLatitude + "~" + theDbRes[key].currentLongitude + "~" + theDbRes[key].accountConfirmed + "~" + theDbRes[key].id_number + "~" + theDbRes[key].surname + "~" + theDbRes[key].lastname + "~" + theDbRes[key].email + "~" + theDbRes[key].platenumber + "~" + theDbRes[key].province + "~" + theDbRes[key].district + "~" + theDbRes[key].sector + "~" + theDbRes[key].username + "~" + theDbRes[key].gender + "~" + theDbRes[key].avatar_profile);
+                    i_db++;
+                }
+            }
+            //----------------
+            this.setState({ ironjiPeopleSearch: theResults });
+
+        } else if (global.search_query_orient.includes("Farmers")) {
+            //---------
+            //console.log("cyuma", "Farmers");
+            var theDbRes = Users.find({ $and: [{ "_id": { $ne: global.the_id_op } }, { account_type: "farmer" }, { $or: [{ username: searchRegex }, { surname: searchRegex }, { lastname: searchRegex }] }] }, { sort: { createdAt: - 1 } }).fetch();
+            //console.log("length", theDbRes.length);
+            var theResults = [];
+
+            this.setState({ ironjiPeopleSearch: theResults });
+
+            var i_db = 0;
+            for (var key in theDbRes) {
+                if (theDbRes.hasOwnProperty(key)) {
+                    //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
+                    theResults.push("" + theDbRes[key]._id + "~" + theDbRes[key].text + "~" + theDbRes[key].createdAt + "~" + theDbRes[key].account_type + "~" + theDbRes[key].currentLatitude + "~" + theDbRes[key].currentLongitude + "~" + theDbRes[key].accountConfirmed + "~" + theDbRes[key].id_number + "~" + theDbRes[key].surname + "~" + theDbRes[key].lastname + "~" + theDbRes[key].email + "~" + theDbRes[key].platenumber + "~" + theDbRes[key].province + "~" + theDbRes[key].district + "~" + theDbRes[key].sector + "~" + theDbRes[key].username + "~" + theDbRes[key].gender + "~" + theDbRes[key].avatar_profile);
+                    i_db++;
+                }
+            }
+            //----------------
+            this.setState({ ironjiPeopleSearch: theResults });
+
+        } else if (global.search_query_orient.includes("Transporters")) {
+            //console.log("cyuma", "Drivers");
+            var theDbRes = Users.find({ $and: [{ "_id": { $ne: global.the_id_op } }, { account_type: "driver" }, { $or: [{ username: searchRegex }, { surname: searchRegex }, { lastname: searchRegex }] }] }, { sort: { createdAt: - 1 } }).fetch();
+            //console.log("length", theDbRes.length);
+            var theResults = [];
+
+            this.setState({ ironjiPeopleSearch: theResults });
+
+            var i_db = 0;
+            for (var key in theDbRes) {
+                if (theDbRes.hasOwnProperty(key)) {
+                    //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
+                    theResults.push("" + theDbRes[key]._id + "~" + theDbRes[key].text + "~" + theDbRes[key].createdAt + "~" + theDbRes[key].account_type + "~" + theDbRes[key].currentLatitude + "~" + theDbRes[key].currentLongitude + "~" + theDbRes[key].accountConfirmed + "~" + theDbRes[key].id_number + "~" + theDbRes[key].surname + "~" + theDbRes[key].lastname + "~" + theDbRes[key].email + "~" + theDbRes[key].platenumber + "~" + theDbRes[key].province + "~" + theDbRes[key].district + "~" + theDbRes[key].sector + "~" + theDbRes[key].username + "~" + theDbRes[key].gender + "~" + theDbRes[key].avatar_profile);
+                    i_db++;
+                }
+            }
+            //----------------
+            document.getElementById("contact_search_list_contacts").innerHTML = "";
+            this.setState({ ironjiPeopleSearch: theResults });
+
+        }
+        document.getElementById("contact_search_list_contacts").style.display = "block";
+    }
+    searchInAllIronjiDb(e) {
+        //console.log("--->" + e.target.value);
+        global.search_param_key = e.target.value;
+        global.the_id_op = "";
+        var po = Users.find({ username: "" + sessionStorage.getItem('ironji_account_username') }, { sort: { text: 1 } }).fetch();
+        for (var key in po) {
+            if (po.hasOwnProperty(key)) {
+                //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
+
+                if (po[key].account_type == "buyer") {
+                    global.the_id_op = po[key]._id;
+                }
+            }
+        }
+        //---------------Search Params--      
+        //---
+        var searchRegex = "";
+        try {
+            global.search_param_key = global.search_param_key.replace(/\W/g, "");
+            searchRegex = new RegExp(global.search_param_key, "igm");
+            //console.log("searchRegex", searchRegex);
+        } catch (err) {
+            //.log("error", err);
+        }
+
+
+        if (global.search_query_orient.includes("All")) {
+            //---------
+            //console.log("cyuma", "All");
+
+            var theDbRes = Users.find({ $and: [{ "_id": { $ne: global.the_id_op } }, { $or: [{ username: searchRegex }, { surname: searchRegex }, { lastname: searchRegex }] }] }, { sort: { createdAt: - 1 } }).fetch();
+            //console.log("length", theDbRes.length);
+            var theResults = [];
+
+            this.setState({ ironjiPeopleSearch: theResults });
+
+            var i_db = 0;
+            for (var key in theDbRes) {
+                if (theDbRes.hasOwnProperty(key)) {
+                    //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
+                    theResults.push("" + theDbRes[key]._id + "~" + theDbRes[key].text + "~" + theDbRes[key].createdAt + "~" + theDbRes[key].account_type + "~" + theDbRes[key].currentLatitude + "~" + theDbRes[key].currentLongitude + "~" + theDbRes[key].accountConfirmed + "~" + theDbRes[key].id_number + "~" + theDbRes[key].surname + "~" + theDbRes[key].lastname + "~" + theDbRes[key].email + "~" + theDbRes[key].platenumber + "~" + theDbRes[key].province + "~" + theDbRes[key].district + "~" + theDbRes[key].sector + "~" + theDbRes[key].username + "~" + theDbRes[key].gender + "~" + theDbRes[key].avatar_profile);
+                    i_db++;
+                }
+            }
+            //----------------
+            this.setState({ ironjiPeopleSearch: theResults });
+
+        } else if (global.search_query_orient.includes("Buyers")) {
+            //---------
+            //console.log("cyuma", "Buyers");
+            var theDbRes = Users.find({ $and: [{ "_id": { $ne: global.the_id_op } }, { account_type: "buyer" }, { $or: [{ username: searchRegex }, { surname: searchRegex }, { lastname: searchRegex }] }] }, { sort: { createdAt: - 1 } }).fetch();
+            //console.log("length", theDbRes.length);
+            var theResults = [];
+
+            this.setState({ ironjiPeopleSearch: theResults });
+
+            var i_db = 0;
+            for (var key in theDbRes) {
+                if (theDbRes.hasOwnProperty(key)) {
+                    //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
+                    theResults.push("" + theDbRes[key]._id + "~" + theDbRes[key].text + "~" + theDbRes[key].createdAt + "~" + theDbRes[key].account_type + "~" + theDbRes[key].currentLatitude + "~" + theDbRes[key].currentLongitude + "~" + theDbRes[key].accountConfirmed + "~" + theDbRes[key].id_number + "~" + theDbRes[key].surname + "~" + theDbRes[key].lastname + "~" + theDbRes[key].email + "~" + theDbRes[key].platenumber + "~" + theDbRes[key].province + "~" + theDbRes[key].district + "~" + theDbRes[key].sector + "~" + theDbRes[key].username + "~" + theDbRes[key].gender + "~" + theDbRes[key].avatar_profile);
+                    i_db++;
+                }
+            }
+            //----------------
+            this.setState({ ironjiPeopleSearch: theResults });
+
+        } else if (global.search_query_orient.includes("Traders")) {
+            //---------
+            //console.log("cyuma", "Traders");
+            var theDbRes = Users.find({ $and: [{ "_id": { $ne: global.the_id_op } }, { account_type: "client" }, { $or: [{ username: searchRegex }, { surname: searchRegex }, { lastname: searchRegex }] }] }, { sort: { createdAt: - 1 } }).fetch();
+            //console.log("length", theDbRes.length);
+            var theResults = [];
+
+            this.setState({ ironjiPeopleSearch: theResults });
+
+            var i_db = 0;
+            for (var key in theDbRes) {
+                if (theDbRes.hasOwnProperty(key)) {
+                    //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
+                    theResults.push("" + theDbRes[key]._id + "~" + theDbRes[key].text + "~" + theDbRes[key].createdAt + "~" + theDbRes[key].account_type + "~" + theDbRes[key].currentLatitude + "~" + theDbRes[key].currentLongitude + "~" + theDbRes[key].accountConfirmed + "~" + theDbRes[key].id_number + "~" + theDbRes[key].surname + "~" + theDbRes[key].lastname + "~" + theDbRes[key].email + "~" + theDbRes[key].platenumber + "~" + theDbRes[key].province + "~" + theDbRes[key].district + "~" + theDbRes[key].sector + "~" + theDbRes[key].username + "~" + theDbRes[key].gender + "~" + theDbRes[key].avatar_profile);
+                    i_db++;
+                }
+            }
+            //----------------
+            this.setState({ ironjiPeopleSearch: theResults });
+
+        } else if (global.search_query_orient.includes("Farmers")) {
+            //---------
+            //console.log("cyuma", "Farmers");
+            var theDbRes = Users.find({ $and: [{ "_id": { $ne: global.the_id_op } }, { account_type: "farmer" }, { $or: [{ username: searchRegex }, { surname: searchRegex }, { lastname: searchRegex }] }] }, { sort: { createdAt: - 1 } }).fetch();
+            //console.log("length", theDbRes.length);
+            var theResults = [];
+
+            this.setState({ ironjiPeopleSearch: theResults });
+
+            var i_db = 0;
+            for (var key in theDbRes) {
+                if (theDbRes.hasOwnProperty(key)) {
+                    //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
+                    theResults.push("" + theDbRes[key]._id + "~" + theDbRes[key].text + "~" + theDbRes[key].createdAt + "~" + theDbRes[key].account_type + "~" + theDbRes[key].currentLatitude + "~" + theDbRes[key].currentLongitude + "~" + theDbRes[key].accountConfirmed + "~" + theDbRes[key].id_number + "~" + theDbRes[key].surname + "~" + theDbRes[key].lastname + "~" + theDbRes[key].email + "~" + theDbRes[key].platenumber + "~" + theDbRes[key].province + "~" + theDbRes[key].district + "~" + theDbRes[key].sector + "~" + theDbRes[key].username + "~" + theDbRes[key].gender + "~" + theDbRes[key].avatar_profile);
+                    i_db++;
+                }
+            }
+            //----------------
+            this.setState({ ironjiPeopleSearch: theResults });
+
+        } else if (global.search_query_orient.includes("Transporters")) {
+            //console.log("cyuma", "Drivers");
+            var theDbRes = Users.find({ $and: [{ "_id": { $ne: global.the_id_op } }, { account_type: "driver" }, { $or: [{ username: searchRegex }, { surname: searchRegex }, { lastname: searchRegex }] }] }, { sort: { createdAt: - 1 } }).fetch();
+            //console.log("length", theDbRes.length);
+            var theResults = [];
+
+            this.setState({ ironjiPeopleSearch: theResults });
+
+            var i_db = 0;
+            for (var key in theDbRes) {
+                if (theDbRes.hasOwnProperty(key)) {
+                    //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
+                    theResults.push("" + theDbRes[key]._id + "~" + theDbRes[key].text + "~" + theDbRes[key].createdAt + "~" + theDbRes[key].account_type + "~" + theDbRes[key].currentLatitude + "~" + theDbRes[key].currentLongitude + "~" + theDbRes[key].accountConfirmed + "~" + theDbRes[key].id_number + "~" + theDbRes[key].surname + "~" + theDbRes[key].lastname + "~" + theDbRes[key].email + "~" + theDbRes[key].platenumber + "~" + theDbRes[key].province + "~" + theDbRes[key].district + "~" + theDbRes[key].sector + "~" + theDbRes[key].username + "~" + theDbRes[key].gender + "~" + theDbRes[key].avatar_profile);
+                    i_db++;
+                }
+            }
+            //----------------
+            document.getElementById("contact_search_list_contacts").innerHTML = "";
+            this.setState({ ironjiPeopleSearch: theResults });
+
+        }
+        if (e.target.value.length >= 3) {
+
+            //document.getElementById("contact_search_list_contacts").innerHTML = e.target.value;
+            document.getElementById("contact_search_list_contacts").style.display = "block";
+        } else {
+            document.getElementById("contact_search_list_contacts").style.display = "none";
+        }
+
+    }
+    //-----OpenedWinDriversMessages  
+    markContactType(theWinInfo) {
+        document.getElementById("OpenedWinDriversMessages").innerHTML = "" + theWinInfo;
+        global.search_query_orient = theWinInfo;
+    }
+    renderMessagesContactListSearch() {
+
+        if (this.state.ironjiPeopleSearch.length > 0) {
+
+            return (this.state.ironjiPeopleSearch.map((el) => (
+
+                <BuyerMessagesContactsSearch ironji_users_id={el.split("~")[0]} data_display={(this.state.allMyChatties.includes(el.split("~")[0])) ? "none" : "block"} ironji_users_text={el.split("~")[1]} ironji_users_createdAt={el.split("~")[2]} ironji_users_account_type={el.split("~")[3]} ironji_users_currentLatitude={el.split("~")[4]} ironji_users_currentLongitude={el.split("~")[5]} ironji_users_accountConfirmed={el.split("~")[6]} ironji_users_id_number={el.split("~")[7]} ironji_users_surname={el.split("~")[8]} ironji_users_lastname={el.split("~")[9]} ironji_users_email={el.split("~")[10]} ironji_users_plate_number={el.split("~")[11]} ironji_users_occupation={el.split("~")[12]} ironji_users_phone_numbers={el.split("~")[13]} ironji_users_province={el.split("~")[14]} ironji_users_district={el.split("~")[15]} ironji_users_sector={el.split("~")[16]} ironji_users_username={el.split("~")[15]} ironji_users_id_gender={el.split("~")[16]} ironji_users_image={"" + el.split("~")[17]} />
+            )));
+
+
+        } else {
+            return <div>No Data!</div>;
+        }
+
+    }
+    prepareChattiesRender() {
+
+        global.search_param_key = "";
+        global.the_id_op = "";
+        var po = Users.find({ username: "" + sessionStorage.getItem('ironji_account_username') }, { sort: { text: 1 } }).fetch();
+        for (var key in po) {
+            if (po.hasOwnProperty(key)) {
+                //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
+
+                if (po[key].account_type == "buyer") {
+                    global.the_id_op = po[key]._id;
+                }
+            }
+        }
+        //---------------Search Params--      
+        //---
+        var searchRegex = "";
+        try {
+            global.search_param_key = global.search_param_key.replace(/\W/g, "");
+            searchRegex = new RegExp(global.search_param_key, "igm");
+            //console.log("searchRegex", searchRegex);
+        } catch (err) {
+            //console.log("error", err);
+        }
+
+        var theDbRes = Users.find({ $and: [{ "_id": { $ne: global.the_id_op } }, { $or: [{ username: searchRegex }, { surname: searchRegex }, { lastname: searchRegex }] }] }, { sort: { createdAt: - 1 } }).fetch();
+        //console.log("length", theDbRes.length);
+        var theResults = [];
+
+        this.setState({ ironjiMyChatties: theResults });
+
+        var i_db = 0;
+        for (var key in theDbRes) {
+            if (theDbRes.hasOwnProperty(key)) {
+                //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
+
+                theResults.push(theDbRes[key]._id + "~" + theDbRes[key].text + "~" + theDbRes[key].createdAt + "~" + theDbRes[key].account_type + "~" + theDbRes[key].currentLatitude + "~" + theDbRes[key].currentLongitude + "~" + theDbRes[key].accountConfirmed + "~" + theDbRes[key].id_number + "~" + theDbRes[key].surname + "~" + theDbRes[key].lastname + "~" + theDbRes[key].email + "~" + theDbRes[key].platenumber + "~" + theDbRes[key].province + "~" + theDbRes[key].district + "~" + theDbRes[key].sector + "~" + theDbRes[key].username + "~" + theDbRes[key].gender + "~" + theDbRes[key].avatar_profile);
+
+                i_db++;
+            }
+        }
+        //----------------
+        this.setState({ ironjiMyChatties: theResults });
+
+    }
+    renderMessagesMyChatties() {
+
+        if (this.state.ironjiMyChatties.length > 0) {
+
+            return (this.state.ironjiMyChatties.map((el) => (
+
+                <BuyerMessagesChatties data_display={(this.state.allMyChatties.includes(el.split("~")[0])) ? "block" : "none"} ironji_users_id={el.split("~")[0]} ironji_users_text={el.split("~")[1]} ironji_users_createdAt={el.split("~")[2]} ironji_users_account_type={el.split("~")[3]} ironji_users_currentLatitude={el.split("~")[4]} ironji_users_currentLongitude={el.split("~")[5]} ironji_users_accountConfirmed={el.split("~")[6]} ironji_users_id_number={el.split("~")[7]} ironji_users_surname={el.split("~")[8]} ironji_users_lastname={el.split("~")[9]} ironji_users_email={el.split("~")[10]} ironji_users_plate_number={el.split("~")[11]} ironji_users_occupation={el.split("~")[12]} ironji_users_phone_numbers={el.split("~")[13]} ironji_users_province={el.split("~")[14]} ironji_users_district={el.split("~")[15]} ironji_users_sector={el.split("~")[16]} ironji_users_username={el.split("~")[15]} ironji_users_id_gender={el.split("~")[16]} ironji_users_image={"" + el.split("~")[17]} />
+            )));
+
+
+        } else {
+            return <div>No Contacts!</div>;
+        }
+
     }
     renderThisAccountAvatar() {
 
@@ -93,100 +547,27 @@ class BuyerMessages extends Component {
                     </div>
                     <div>
                         <table>
-                            <tr>
-                                <td><button style={{ minWidth: "70px" }} className="btn-success active">All</button></td>
-                                <td><button style={{ minWidth: "70px" }} className="btn-success disabled">Buyers</button></td>
-                                <td><button style={{ minWidth: "70px" }} className="btn-success disabled">Traders</button></td>
-                                <td><button style={{ minWidth: "70px" }} className="btn-success disabled">Farmers</button></td>
-                                <td><button style={{ minWidth: "70px" }} className="btn-success disabled">Transporters</button></td>
-                            </tr>
+                            <tbody>
+                                <tr>
+                                    <td><button onClick={this.markContactType.bind(this, "All")} style={{ minWidth: "70px" }} className="btn-success active">All</button></td>
+                                    <td><button onClick={this.markContactType.bind(this, "Buyers")} style={{ minWidth: "70px" }} className="btn-success active">Buyers</button></td>
+                                    <td><button onClick={this.markContactType.bind(this, "Traders")} style={{ minWidth: "70px" }} style={{ minWidth: "70px" }} className="btn-success active">Traders</button></td>
+                                    <td><button onClick={this.markContactType.bind(this, "Farmers")} style={{ minWidth: "70px" }} className="btn-success active">Farmers</button></td>
+                                    <td><button onClick={this.markContactType.bind(this, "Transporters")} style={{ minWidth: "70px" }} className="btn-success active">Transporters</button></td>
+                                </tr></tbody>
                         </table>
                         <div style={{ padding: "5px", borderRadius: "5px", border: "1px solid black" }}>
-                            <input type="text" placeholder="Search in contact" />
+                            <input type="text" onKeyUp={this.searchInAllIronjiDb.bind(this)} ref="searchContactsValueParam" id="searchContactsValueParam" className="form-control" placeholder="Search in contact" /><button onClick={this.showListOfUsers.bind(this)} className="btn-info">See Random list</button>
+                            <div id="contact_search_list_contacts" style={{ overflowY: "scroll", display: "none", position: "absolute", borderRadius: "6px", padding: "5px", width: "300px", maxWidth: "300px", height: "350px", maxHeight: "350px", zIndex: "5000", wordWrap: "break-word", background: "white" }} className="modal-content">
+                                {this.renderMessagesContactListSearch()}
+                            </div>
+                            <div style={{ padding: "5px", boxShadow: "2px 2px #333" }} id="OpenedWinDriversMessages">All</div>
+                            <input type="hidden" id="OpenedWinDriversMessages_Data" value="All" />
                         </div>
                         <div style={{ padding: "5px", height: "340px" }}>
-
+                            <h4>My Contact List:</h4>
                             <div style={{ height: "220px", overflowY: "scroll" }}>
-                                <div className="modal-content contactsListSd" style={{ width: "340px", marginTop: "5px" }}>
-                                    <table>
-                                        <tr>
-                                            <td><img className="img-circle" style={{ maxWidth: "70px", maxHeight: "70px" }} src={"images/clet.jpg"} /></td>
-                                            <td>
-                                                <h4>Cedric </h4>
-                                                <h4>Trader</h4>
-                                                <h4>Male</h4>
-                                            </td><td>
-                                                <div>
-                                                    <span className="badge" style={{ background: "green", borderRadius: "30px", width: "40px" }}>2</span>
-                                                    <div style={{ padding: "5px", boxShadow: "2px 2px #333" }}>
-                                                        fo9jfsfis sfibs fsnifb
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                <div className="modal-content contactsListSd" style={{ width: "340px", marginTop: "5px" }}>
-                                    <table>
-                                        <tr>
-                                            <td><img className="img-circle" style={{ maxWidth: "70px", maxHeight: "70px" }} src={"images/clet.jpg"} /></td>
-                                            <td>
-                                                <h4>Cedric </h4>
-                                                <h4>Trader</h4>
-                                                <h4>Male</h4>
-                                            </td>
-                                            <td>
-                                                <div>
-                                                    <span className="badge" style={{ background: "green", borderRadius: "30px", width: "40px" }}>2</span>
-                                                    <div style={{ padding: "5px", boxShadow: "2px 2px #333" }}>
-                                                        fo9jfsfis sfibs fsnifb
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                <div className="modal-content contactsListSd" style={{ width: "340px", marginTop: "5px" }}>
-                                    <table>
-                                        <tr>
-                                            <td><img className="img-circle" style={{ maxWidth: "70px", maxHeight: "70px" }} src={"images/clet.jpg"} /></td>
-                                            <td>
-                                                <h4>Cedric </h4>
-                                                <h4>Trader</h4>
-                                                <h4>Male</h4>
-                                            </td>
-                                            <td>
-                                                <div>
-                                                    <span className="badge" style={{ background: "green", borderRadius: "30px", width: "40px" }}>2</span>
-                                                    <div style={{ padding: "5px", boxShadow: "2px 2px #333" }}>
-                                                        fo9jfsfis sfibs fsnifb
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                <div className="modal-content contactsListSd" style={{ width: "340px", marginTop: "5px" }}>
-                                    <table>
-                                        <tr>
-                                            <td><img className="img-circle" style={{ maxWidth: "70px", maxHeight: "70px" }} src={"images/clet.jpg"} /></td>
-                                            <td>
-                                                <h4>Cedric </h4>
-                                                <h4>Trader</h4>
-                                                <h4>Male</h4>
-                                            </td>
-                                            <td>
-                                                <div>
-                                                    <span className="badge" style={{ background: "green", borderRadius: "30px", width: "40px" }}>2</span>
-                                                    <div style={{ padding: "5px", boxShadow: "2px 2px #333" }}>
-                                                        fo9jfsfis sfibs fsnifb
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-
+                                {this.renderMessagesMyChatties()}
                             </div>
                         </div>
 
@@ -196,7 +577,7 @@ class BuyerMessages extends Component {
                     <div style={{ textAlign: "center", padding: "4px", background: "skyblue", borderRadius: "5px", fontSize: "16px" }}>
                         Chat room
                     </div>
-                    <div>
+                    <div><h4>Talking to "Patrick", "Driver":</h4>
                         <div style={{ padding: "5px", height: "320px", borderRadius: "5px", overflowY: "scroll" }}>
                             <div style={{ width: "100%", marginTop: "10px" }}><div className="modal-content" style={{ float: "right" }}>
                                 <h4>Cedric</h4>
@@ -234,10 +615,11 @@ class BuyerMessages extends Component {
                         </div>
                         <div>
                             <table>
+                                <tbody>
                                 <tr>
                                     <td><textarea className="form-control" placeholder="Your message here.." style={{ maxHeight: "70px", height: "70px", maxWidth: "350px", width: "350px" }}></textarea></td>
                                     <td><button className="btn-primary">Send</button></td>
-                                </tr>
+                                </tr></tbody>
                             </table>
                         </div>
 
