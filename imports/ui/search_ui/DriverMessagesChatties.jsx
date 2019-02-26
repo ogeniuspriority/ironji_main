@@ -33,7 +33,7 @@ export class DriverMessagesChatties extends Component {
             global.avatar = "https://map.ogeniuspriority.com/upload_scripts/" + this.props.ironji_users_image;
             this.setState({ thisAvatar: global.avatar });
         }
-        
+        //console.log("cyuma_test", this.props.style_display_checking)
     }
     openNegotiationRoomWin0(param, e) {
         document.getElementById("buyerCarryCargoWin0ChatRoom").style.display = "block";
@@ -47,7 +47,7 @@ export class DriverMessagesChatties extends Component {
 
     render() {
         return (<div>
-            <div className="modal-content contactsListSd" style={{ width: "auto", marginTop: "5px", display: "" + this.props.data_display }}>
+            <div className="modal-content contactsListSd" style={{ width: "auto", marginTop: "5px", display: "" + this.props.data_display, background: "" + this.props.style_display_checking_back_g }}>
                 <table>
                     <tbody>
                     <tr>

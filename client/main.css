@@ -868,7 +868,16 @@ body {
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
 }
-.contactsListSd:hover {
-    background: skyblue;
+.contactsListSd:hover {    
+    cursor: pointer;
+    border-radius: 6px;
+    padding: 5px;
+    border-left: 5px solid skyblue;
+    border-right: 5px solid skyblue;
+    border-top: 5px solid skyblue;
+    font-size:12px;
+}
+.ThisGuycontactsListSd {
+    background: chocolate;
     cursor: pointer;
 }
