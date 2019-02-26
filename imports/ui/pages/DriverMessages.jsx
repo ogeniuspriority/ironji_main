@@ -35,6 +35,7 @@ class DriverMessages extends Component {
             openedChatWinId: "",
             
         };
+        this.highlightSelectedRow = this.highlightSelectedRow.bind(this);
     }
     componentDidMount() {
         global.search_param_key = "";
@@ -497,13 +498,19 @@ class DriverMessages extends Component {
 
     }
 
+    highlightSelectedRow(theOtherChatty) {
+        //console.log("How are you doin " + theOtherChatty);
+        this.setState({ openedChatWinId: theOtherChatty });
+        this.prepareChattiesRender();
+    }
+
     renderMessagesMyChatties() {
 
         if (this.state.ironjiMyChatties.length > 0) {
 
             return (this.state.ironjiMyChatties.map((el) => (
 
-                <DriverMessagesChatties style_display_checking_back_g={(this.state.openedChatWinId.includes(el.split("~")[0])) ? "skyblue" : "white"} style_display_checking={(this.state.openedChatWinId.includes(el.split("~")[0])) ? "modal-content ThisGuycontactsListSd" :"modal-content contactsListSd"} data_display={(this.state.allMyChatties.includes(el.split("~")[0])) ? "block" : "none"} ironji_users_id={el.split("~")[0]} ironji_users_text={el.split("~")[1]} ironji_users_createdAt={el.split("~")[2]} ironji_users_account_type={el.split("~")[3]} ironji_users_currentLatitude={el.split("~")[4]} ironji_users_currentLongitude={el.split("~")[5]} ironji_users_accountConfirmed={el.split("~")[6]} ironji_users_id_number={el.split("~")[7]} ironji_users_surname={el.split("~")[8]} ironji_users_lastname={el.split("~")[9]} ironji_users_email={el.split("~")[10]} ironji_users_plate_number={el.split("~")[11]} ironji_users_occupation={el.split("~")[12]} ironji_users_phone_numbers={el.split("~")[13]} ironji_users_province={el.split("~")[14]} ironji_users_district={el.split("~")[15]} ironji_users_sector={el.split("~")[16]} ironji_users_username={el.split("~")[15]} ironji_users_id_gender={el.split("~")[16]} ironji_users_image={"" + el.split("~")[17]} />
+                <DriverMessagesChatties onSelectChatty={this.highlightSelectedRow}  style_display_checking_back_g={(this.state.openedChatWinId.includes(el.split("~")[0])) ? "skyblue" : "white"} style_display_checking={(this.state.openedChatWinId.includes(el.split("~")[0])) ? "modal-content ThisGuycontactsListSd" :"modal-content contactsListSd"} data_display={(this.state.allMyChatties.includes(el.split("~")[0])) ? "block" : "none"} ironji_users_id={el.split("~")[0]} ironji_users_text={el.split("~")[1]} ironji_users_createdAt={el.split("~")[2]} ironji_users_account_type={el.split("~")[3]} ironji_users_currentLatitude={el.split("~")[4]} ironji_users_currentLongitude={el.split("~")[5]} ironji_users_accountConfirmed={el.split("~")[6]} ironji_users_id_number={el.split("~")[7]} ironji_users_surname={el.split("~")[8]} ironji_users_lastname={el.split("~")[9]} ironji_users_email={el.split("~")[10]} ironji_users_plate_number={el.split("~")[11]} ironji_users_occupation={el.split("~")[12]} ironji_users_phone_numbers={el.split("~")[13]} ironji_users_province={el.split("~")[14]} ironji_users_district={el.split("~")[15]} ironji_users_sector={el.split("~")[16]} ironji_users_username={el.split("~")[15]} ironji_users_id_gender={el.split("~")[16]} ironji_users_image={"" + el.split("~")[17]} />
             )));
 
 
