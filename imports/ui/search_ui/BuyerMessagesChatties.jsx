@@ -44,10 +44,12 @@ export class BuyerMessagesChatties extends Component {
         return (<img className="img-circle" style={{ maxWidth: "70px", maxHeight: "70px" }} src={this.state.thisAvatar} />);
     }
 
-
+    selectNewChatty() {
+        this.props.onSelectChatty(this.props.ironji_users_id);
+    }
     render() {
         return (<div>
-            <div className="modal-content contactsListSd" style={{ width: "auto", marginTop: "5px", display: "" + this.props.data_display }}>
+            <div onClick={this.selectNewChatty.bind(this)} className="modal-content contactsListSd" style={{ width: "auto", marginTop: "5px", display: "" + this.props.data_display, background: "" + this.props.style_display_checking_back_g  }}>
                 <table>
                     <tbody>
                     <tr>

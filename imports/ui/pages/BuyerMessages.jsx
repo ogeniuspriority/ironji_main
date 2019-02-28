@@ -31,7 +31,9 @@ class BuyerMessages extends Component {
             ironjiMyChatties: [],
             allMyChatties: "",
             ironjiMyChatties_temporary: "",
+            openedChatWinId: "",
         };
+        this.highlightSelectedRow = this.highlightSelectedRow.bind(this);
 
     }
     componentDidMount() {
@@ -67,6 +69,8 @@ class BuyerMessages extends Component {
                         var currChatty = "";
                         currChatty = "" + theDbRes[key].user_id
                         that.setState({ allMyChatties: currChatty });
+                        //-------------The Opened One--
+                        that.setState({ openedChatWinId: theDbRes[key].user_id });
 
                     } else {
                         var currChatty = "";
@@ -467,7 +471,7 @@ class BuyerMessages extends Component {
 
             return (this.state.ironjiMyChatties.map((el) => (
 
-                <BuyerMessagesChatties data_display={(this.state.allMyChatties.includes(el.split("~")[0])) ? "block" : "none"} ironji_users_id={el.split("~")[0]} ironji_users_text={el.split("~")[1]} ironji_users_createdAt={el.split("~")[2]} ironji_users_account_type={el.split("~")[3]} ironji_users_currentLatitude={el.split("~")[4]} ironji_users_currentLongitude={el.split("~")[5]} ironji_users_accountConfirmed={el.split("~")[6]} ironji_users_id_number={el.split("~")[7]} ironji_users_surname={el.split("~")[8]} ironji_users_lastname={el.split("~")[9]} ironji_users_email={el.split("~")[10]} ironji_users_plate_number={el.split("~")[11]} ironji_users_occupation={el.split("~")[12]} ironji_users_phone_numbers={el.split("~")[13]} ironji_users_province={el.split("~")[14]} ironji_users_district={el.split("~")[15]} ironji_users_sector={el.split("~")[16]} ironji_users_username={el.split("~")[15]} ironji_users_id_gender={el.split("~")[16]} ironji_users_image={"" + el.split("~")[17]} />
+                <BuyerMessagesChatties onSelectChatty={this.highlightSelectedRow} style_display_checking_back_g={(this.state.openedChatWinId.includes(el.split("~")[0])) ? "skyblue" : "white"} style_display_checking={(this.state.openedChatWinId.includes(el.split("~")[0])) ? "modal-content ThisGuycontactsListSd" : "modal-content contactsListSd"} data_display={(this.state.allMyChatties.includes(el.split("~")[0])) ? "block" : "none"} ironji_users_id={el.split("~")[0]} ironji_users_text={el.split("~")[1]} ironji_users_createdAt={el.split("~")[2]} ironji_users_account_type={el.split("~")[3]} ironji_users_currentLatitude={el.split("~")[4]} ironji_users_currentLongitude={el.split("~")[5]} ironji_users_accountConfirmed={el.split("~")[6]} ironji_users_id_number={el.split("~")[7]} ironji_users_surname={el.split("~")[8]} ironji_users_lastname={el.split("~")[9]} ironji_users_email={el.split("~")[10]} ironji_users_plate_number={el.split("~")[11]} ironji_users_occupation={el.split("~")[12]} ironji_users_phone_numbers={el.split("~")[13]} ironji_users_province={el.split("~")[14]} ironji_users_district={el.split("~")[15]} ironji_users_sector={el.split("~")[16]} ironji_users_username={el.split("~")[15]} ironji_users_id_gender={el.split("~")[16]} ironji_users_image={"" + el.split("~")[17]} />
             )));
 
 
@@ -500,6 +504,11 @@ class BuyerMessages extends Component {
         }
         global.userna_me = "";
         return (<img className="followLinks" src={url} />);
+    }
+    highlightSelectedRow(theOtherChatty) {
+        //console.log("How are you doin " + theOtherChatty);
+        this.setState({ openedChatWinId: theOtherChatty });
+        this.prepareChattiesRender();
     }
     render() {
 
