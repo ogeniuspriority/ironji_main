@@ -118,7 +118,7 @@ class DriverMessages extends Component {
                             }
                             //----------------
                             that_1.setState({ chatMessages: theResults });
-                        }, 8000);
+                        }, 3000);
 
                     } else {
                         var currChatty = "";
@@ -611,7 +611,7 @@ class DriverMessages extends Component {
             //----------------
             that.setState({ chatMessages: theResults });
             that.renderMessagesFromChats();
-        }, 8000);
+        }, 3000);
         //-----------
         var that = this;
         setTimeout(function () {
@@ -703,7 +703,7 @@ class DriverMessages extends Component {
                     //----------------
                     that_0.setState({ chatMessages: theResults });
                     that_0.renderMessagesFromChats();
-                }, 8000);
+                }, 3000);
             }
         });
 
