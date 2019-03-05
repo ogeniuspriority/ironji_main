@@ -130,7 +130,7 @@ class DriverMessages extends Component {
             }
             //-----------
             that.prepareChattiesRender();
-        }, 4000);
+        }, 7000);
         //---------------Check for newly activated chatties--
         setInterval(function () {
             global.the_id_op = "";
@@ -221,7 +221,7 @@ class DriverMessages extends Component {
                    
                 }
             }
-        });
+        },8200);
 
 
     }
@@ -611,7 +611,7 @@ class DriverMessages extends Component {
             //----------------
             that.setState({ chatMessages: theResults });
             that.renderMessagesFromChats();
-        }, 2000);
+        }, 8400);
         //-----------
         var that = this;
         setTimeout(function () {
@@ -629,7 +629,7 @@ class DriverMessages extends Component {
 
                 }
             }
-        },2000);
+        },8500);
     }
 
     renderMessagesMyChatties() {
@@ -703,7 +703,7 @@ class DriverMessages extends Component {
                     //----------------
                     that_0.setState({ chatMessages: theResults });
                     that_0.renderMessagesFromChats();
-                }, 2000);
+                }, 6000);
             }
         });
 
