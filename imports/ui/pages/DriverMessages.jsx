@@ -102,7 +102,7 @@ class DriverMessages extends Component {
                         //----------------------
                         var that_1 = that;
 
-                        var theDbRes = Ironji_messages_conversations.find({ $and: [{ $or: [{ "id_sender": { $eq: global.the_id_op } }, { "id_reciever": global.the_id_op }] }, { "_id": { $ne: "none" } }] }, { sort: { regdate: 1 } }).fetch();
+                        var theDbRes = Ironji_messages_conversations.find({ $or: [{ $and: [{ "id_sender": { $eq: that.state.openedChatWinId } }, { "id_reciever": global.the_id_op }] }, { $and: [{ "id_sender": { $eq: global.the_id_op } }, { "id_reciever": that.state.openedChatWinId }] }] }, { sort: { regdate: 1 } }).fetch();
                         //console.log("length", theDbRes.length);
                         var theResults = [];
 
@@ -133,7 +133,7 @@ class DriverMessages extends Component {
             //-----------
             
             //---------------
-            var theDbRes = Ironji_messages_conversations.find({ $and: [{ $or: [{ "id_sender": { $eq: that.state.openedChatWinId } }, { "id_reciever": that.state.openedChatWinId }] }, { $or: [{ "id_sender": { $eq: that.state.openedChatWinId } }, { "id_reciever": global.id }] }] }, { sort: { regdate: 1 } }).fetch();
+            var theDbRes = Ironji_messages_conversations.find({ $and: [{ $or: [{ "id_sender": { $eq: that.state.openedChatWinId } }, { "id_reciever": that.state.openedChatWinId }] }, { $or: [{ "id_sender": { $eq: global.the_id_op } }, { "id_reciever": global.the_id_op }] }] }, { sort: { regdate: 1 } }).fetch();
             //console.log("length", theDbRes.length);
             var theResults = [];
 
@@ -233,7 +233,7 @@ class DriverMessages extends Component {
                 //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
 
                 if (po[key].account_type == "driver") {
-                    global.the_id_op = po[key]._id;
+                    global.the_id_op = po[key]._id.valueOf();
                     global.avatar_profile = po[key].avatar_profile;
                 }
             }
@@ -547,7 +547,7 @@ class DriverMessages extends Component {
                 //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
 
                 if (po[key].account_type == "driver") {
-                    global.the_id_op = po[key]._id;
+                    global.the_id_op = po[key]._id.valueOf();
                 }
             }
         }
@@ -590,7 +590,7 @@ class DriverMessages extends Component {
         //------Load Messages--
         var that = this;
         setTimeout(function () {
-            var theDbRes = Ironji_messages_conversations.find({ $and: [{ $or: [{ "id_sender": { $eq: global.the_id_op } }, { "id_reciever": global.the_id_op }] }, { "_id": { $ne: "none" } }] }, { sort: { regdate: 1 } }).fetch();
+            var theDbRes = Ironji_messages_conversations.find({ $or: [{ $and: [{ "id_sender": { $eq: that.state.openedChatWinId } }, { "id_reciever": global.the_id_op }] }, { $and: [{ "id_sender": { $eq: global.the_id_op } }, { "id_reciever": that.state.openedChatWinId }] }] }, { sort: { regdate: 1 } }).fetch();
             //console.log("length", theDbRes.length);
             var theResults = [];
 
@@ -682,7 +682,7 @@ class DriverMessages extends Component {
                 var that_0 = that;
 
                 setTimeout(function () {
-                    var theDbRes = Ironji_messages_conversations.find({ $and: [{ $or: [{ "id_sender": { $eq: global.the_id_op } }, { "id_reciever": global.the_id_op }] }, { "_id": { $ne: "none" } }] }, { sort: { regdate: 1 } }).fetch();
+                    var theDbRes = Ironji_messages_conversations.find({ $or: [{ $and: [{ "id_sender": { $eq: that.state.openedChatWinId } }, { "id_reciever": global.the_id_op }] }, { $and: [{ "id_sender": { $eq: global.the_id_op } }, { "id_reciever": that.state.openedChatWinId }] }] }, { sort: { regdate: 1 } }).fetch();
                     //console.log("length", theDbRes.length);
                     var theResults = [];
 
