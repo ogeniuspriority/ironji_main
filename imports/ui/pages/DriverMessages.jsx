@@ -48,11 +48,12 @@ class DriverMessages extends Component {
         global.search_param_key = "";
         global.search_query_orient = "All";
         //------------
+        global.the_id_op = "";
 
         //-----------Assign the in ids-
         var that = this;
         setTimeout(function () {
-            global.the_id_op = "";
+           
             global.avatar_profile = "";
             var po = Users.find({ username: "" + sessionStorage.getItem('ironji_account_username') }, { sort: { text: 1 } }).fetch();
             for (var key in po) {
@@ -166,7 +167,7 @@ class DriverMessages extends Component {
         }, 5000);
         //---------------Check for newly activated chatties--
         setInterval(function () {
-            global.the_id_op = "";
+            //global.the_id_op = "";
             global.avatar_profile = "";
             var po = Users.find({ username: "" + sessionStorage.getItem('ironji_account_username') }, { sort: { text: 1 } }).fetch();
             for (var key in po) {
@@ -248,7 +249,7 @@ class DriverMessages extends Component {
 
     showListOfUsers() {
         global.search_param_key = document.getElementById("searchContactsValueParam").value;
-        global.the_id_op = "";
+        //global.the_id_op = "";
         var po = Users.find({ username: "" + sessionStorage.getItem('ironji_account_username') }, { sort: { text: 1 } }).fetch();
         for (var key in po) {
             if (po.hasOwnProperty(key)) {
@@ -379,7 +380,7 @@ class DriverMessages extends Component {
     searchInAllIronjiDb(e) {
         //console.log("--->" + e.target.value);
         global.search_param_key = e.target.value;
-        global.the_id_op = "";
+        //global.the_id_op = "";
         var po = Users.find({ username: "" + sessionStorage.getItem('ironji_account_username') }, { sort: { text: 1 } }).fetch();
         for (var key in po) {
             if (po.hasOwnProperty(key)) {
@@ -537,7 +538,7 @@ class DriverMessages extends Component {
     prepareChattiesRender() {
 
         global.search_param_key = "";
-        global.the_id_op = "";
+        //global.the_id_op = "";
         var po = Users.find({ username: "" + sessionStorage.getItem('ironji_account_username') }, { sort: { text: 1 } }).fetch();
         for (var key in po) {
             if (po.hasOwnProperty(key)) {
