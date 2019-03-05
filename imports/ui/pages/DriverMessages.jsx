@@ -62,6 +62,7 @@ class DriverMessages extends Component {
 
                     if (po[key].account_type == "driver") {
                         global.the_id_op = po[key]._id;
+                        console.log("----oopp--", global.the_id_op);
                         global.avatar_profile = po[key].avatar_profile;
                     }
                 }
@@ -101,7 +102,7 @@ class DriverMessages extends Component {
                         //----------------------
                         var that_1 = that;
 
-                        var theDbRes = Ironji_messages_conversations.find({ $and: [{ $or: [{ "id_sender": { $eq: that.state.openedChatWinId } }, { "id_reciever": that_1.state.openedChatWinId }] }, { "_id": { $ne: "none" } }] }, { sort: { regdate: 1 } }).fetch();
+                        var theDbRes = Ironji_messages_conversations.find({ $and: [{ $or: [{ "id_sender": { $eq: global.the_id_op } }, { "id_reciever": global.the_id_op }] }, { "_id": { $ne: "none" } }] }, { sort: { regdate: 1 } }).fetch();
                         //console.log("length", theDbRes.length);
                         var theResults = [];
 
@@ -132,7 +133,7 @@ class DriverMessages extends Component {
             //-----------
             
             //---------------
-            var theDbRes = Ironji_messages_conversations.find({ $and: [{ $or: [{ "id_sender": { $eq: that.state.openedChatWinId } }, { "id_reciever": that.state.openedChatWinId }] }, { "_id": { $ne: "none" } }] }, { sort: { regdate: 1 } }).fetch();
+            var theDbRes = Ironji_messages_conversations.find({ $and: [{ $or: [{ "id_sender": { $eq: that.state.openedChatWinId } }, { "id_reciever": that.state.openedChatWinId }] }, { $or: [{ "id_sender": { $eq: that.state.openedChatWinId } }, { "id_reciever": global.id }] }] }, { sort: { regdate: 1 } }).fetch();
             //console.log("length", theDbRes.length);
             var theResults = [];
 
@@ -589,7 +590,7 @@ class DriverMessages extends Component {
         //------Load Messages--
         var that = this;
         setTimeout(function () {
-            var theDbRes = Ironji_messages_conversations.find({ $and: [{ $or: [{ "id_sender": { $eq: that.state.openedChatWinId } }, { "id_reciever": that.state.openedChatWinId }] }, { "_id": { $ne: "none" } }] }, { sort: { regdate: 1 } }).fetch();
+            var theDbRes = Ironji_messages_conversations.find({ $and: [{ $or: [{ "id_sender": { $eq: global.the_id_op } }, { "id_reciever": global.the_id_op }] }, { "_id": { $ne: "none" } }] }, { sort: { regdate: 1 } }).fetch();
             //console.log("length", theDbRes.length);
             var theResults = [];
 
@@ -647,7 +648,7 @@ class DriverMessages extends Component {
     renderMessagesFromChats() {
 
         if (this.state.chatMessages.length > 0) {
-            console.log("-------", global.the_id_op.valueOf());
+            //console.log("-------", global.the_id_op.valueOf());
             return (this.state.chatMessages.map((el) => (
                 <DriverMessagesChatties_ChatMessages idUseOf={(el.split("~")[1].includes(global.the_id_op.valueOf())) ? global.the_id_op.valueOf() : el.split("~")[1]} floating={(el.split("~")[1].includes(global.the_id_op.valueOf())) ? "right" : "left"} me={global.the_id_op.valueOf()} messageId={el.split("~")[0]} IdSender={el.split("~")[1]} IdReceiver={el.split("~")[2]} regdate={el.split("~")[3]} sentTime={el.split("~")[4]} recieveTime={el.split("~")[5]} messageVisibility={el.split("~")[6]} actualMessage={el.split("~")[7]} />
 
@@ -661,7 +662,7 @@ class DriverMessages extends Component {
     }
     sendMessageToChatRoom() {
         var theData = {
-            "id_sender": global.the_id_op,
+            "id_sender": global.the_id_op.valueOf(),
             "id_reciever": this.state.openedChatWinId,
             "regdate": new Date(),
             "sent_time": "",
@@ -681,7 +682,7 @@ class DriverMessages extends Component {
                 var that_0 = that;
 
                 setTimeout(function () {
-                    var theDbRes = Ironji_messages_conversations.find({ $and: [{ $or: [{ "id_sender": { $eq: that_0.state.openedChatWinId } }, { "id_reciever": that.state.openedChatWinId }] }, { "_id": { $ne: "none" } }] }, { sort: { regdate: 1 } }).fetch();
+                    var theDbRes = Ironji_messages_conversations.find({ $and: [{ $or: [{ "id_sender": { $eq: global.the_id_op } }, { "id_reciever": global.the_id_op }] }, { "_id": { $ne: "none" } }] }, { sort: { regdate: 1 } }).fetch();
                     //console.log("length", theDbRes.length);
                     var theResults = [];
 
