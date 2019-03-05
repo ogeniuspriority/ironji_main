@@ -38,7 +38,7 @@ class DriverMessages extends Component {
             lastIdLoaded: "0",
             chatMessages: [],
             openedUsername: "",
-            accountType:""
+            accountType: ""
 
 
         };
@@ -53,7 +53,7 @@ class DriverMessages extends Component {
         //-----------Assign the in ids-
         var that = this;
         setTimeout(function () {
-           
+
             global.avatar_profile = "";
             var po = Users.find({ username: "" + sessionStorage.getItem('ironji_account_username') }, { sort: { text: 1 } }).fetch();
             for (var key in po) {
@@ -82,44 +82,44 @@ class DriverMessages extends Component {
                         //-------------The Opened One--
                         that.setState({ openedChatWinId: theDbRes[key].user_id });
                         var that_0 = that;
-                        setTimeout(function () {
-                            global.username = "";
-                            var po = Users.find({ _id: "" + that_0.state.openedChatWinId }, { sort: { text: 1 } }).fetch();
-                            for (var key in po) {
-                                if (po.hasOwnProperty(key)) {
-                                    //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
+
+                        global.username = "";
+                        var po = Users.find({ _id: "" + that_0.state.openedChatWinId }, { sort: { text: 1 } }).fetch();
+                        for (var key in po) {
+                            if (po.hasOwnProperty(key)) {
+                                //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
 
 
-                                    global.username = po[key].username;
-                                    that_0.setState({ openedUsername: po[key].username });
-                                    that_0.setState({ accountType: po[key].account_type });
+                                global.username = po[key].username;
+                                that_0.setState({ openedUsername: po[key].username });
+                                that_0.setState({ accountType: po[key].account_type });
 
 
-                                }
                             }
-                        });
+                        }
+
                         //----------------------
                         var that_1 = that;
-                        setTimeout(function () {
-                            var theDbRes = Ironji_messages_conversations.find({ $and: [{ $or: [{ "id_sender": { $eq: that.state.openedChatWinId } }, { "id_reciever": that_1.state.openedChatWinId }] }, { "_id": { $ne: "none" } }] }, { sort: { regdate: 1 } }).fetch();
-                            //console.log("length", theDbRes.length);
-                            var theResults = [];
 
-                            that_1.setState({ chatMessages: theResults });
+                        var theDbRes = Ironji_messages_conversations.find({ $and: [{ $or: [{ "id_sender": { $eq: that.state.openedChatWinId } }, { "id_reciever": that_1.state.openedChatWinId }] }, { "_id": { $ne: "none" } }] }, { sort: { regdate: 1 } }).fetch();
+                        //console.log("length", theDbRes.length);
+                        var theResults = [];
 
-                            var i_db = 0;
-                            for (var key in theDbRes) {
-                                if (theDbRes.hasOwnProperty(key)) {
-                                    //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
+                        that_1.setState({ chatMessages: theResults });
 
-                                    theResults.push(theDbRes[key]._id + "~" + theDbRes[key].id_sender + "~" + theDbRes[key].id_reciever + "~" + theDbRes[key].regdate + "~" + theDbRes[key].sent_time + "~" + theDbRes[key].receive_time + "~" + theDbRes[key].message_visibility + "~" + theDbRes[key].actual_message);
+                        var i_db = 0;
+                        for (var key in theDbRes) {
+                            if (theDbRes.hasOwnProperty(key)) {
+                                //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
 
-                                    i_db++;
-                                }
+                                theResults.push(theDbRes[key]._id + "~" + theDbRes[key].id_sender + "~" + theDbRes[key].id_reciever + "~" + theDbRes[key].regdate + "~" + theDbRes[key].sent_time + "~" + theDbRes[key].receive_time + "~" + theDbRes[key].message_visibility + "~" + theDbRes[key].actual_message);
+
+                                i_db++;
                             }
-                            //----------------
-                            that_1.setState({ chatMessages: theResults });
-                        }, 2000);
+                        }
+                        //----------------
+                        that_1.setState({ chatMessages: theResults });
+
 
                     } else {
                         var currChatty = "";
@@ -164,10 +164,10 @@ class DriverMessages extends Component {
 
                 }
             }
-        }, 5000);
+        }, 4000);
         //---------------Check for newly activated chatties--
         setInterval(function () {
-            //global.the_id_op = "";
+            /*//global.the_id_op = "";
             global.avatar_profile = "";
             var po = Users.find({ username: "" + sessionStorage.getItem('ironji_account_username') }, { sort: { text: 1 } }).fetch();
             for (var key in po) {
@@ -179,7 +179,7 @@ class DriverMessages extends Component {
                         global.avatar_profile = po[key].avatar_profile;
                     }
                 }
-            }
+            }*/
 
             var theDbRes = Ironji_messages_my_chatties.find({ "my_id": global.the_id_op }).fetch();
             console.log("length", theDbRes.length);
@@ -215,10 +215,10 @@ class DriverMessages extends Component {
 
             }
 
-        }, 8000);
+        }, 6000);
         //-------find current chat messages--
-        
-       
+
+
 
     }
     renderThisAccountAvatar() {
@@ -588,7 +588,7 @@ class DriverMessages extends Component {
         //------Load Messages--
         var that = this;
         setTimeout(function () {
-            var theDbRes = Ironji_messages_conversations.find({ $and: [{ $or: [{ "id_sender": { $eq: that.state.openedChatWinId } }, { "id_reciever": that.state.openedChatWinId }] }, { "_id": { $ne: "none" } }] }, { sort: { regdate:  1 } }).fetch();
+            var theDbRes = Ironji_messages_conversations.find({ $and: [{ $or: [{ "id_sender": { $eq: that.state.openedChatWinId } }, { "id_reciever": that.state.openedChatWinId }] }, { "_id": { $ne: "none" } }] }, { sort: { regdate: 1 } }).fetch();
             //console.log("length", theDbRes.length);
             var theResults = [];
 
@@ -624,8 +624,8 @@ class DriverMessages extends Component {
             }
         }, 5400);
         //-----------
-        
-        
+
+
     }
 
     renderMessagesMyChatties() {
@@ -648,7 +648,7 @@ class DriverMessages extends Component {
         if (this.state.chatMessages.length > 0) {
 
             return (this.state.chatMessages.map((el) => (
-                <DriverMessagesChatties_ChatMessages idUseOf={(global.the_id_op.includes(el.split("~")[1])) ? global.the_id_op : el.split("~")[1]} floating={(global.the_id_op.includes(el.split("~")[1]))?"right":"left"} me={global.the_id_op} messageId={el.split("~")[0]} IdSender={el.split("~")[1]} IdReceiver={el.split("~")[2]} regdate={el.split("~")[3]} sentTime={el.split("~")[4]} recieveTime={el.split("~")[5]} messageVisibility={el.split("~")[6]} actualMessage={el.split("~")[7]}/>
+                <DriverMessagesChatties_ChatMessages idUseOf={(global.the_id_op.includes(el.split("~")[1])) ? global.the_id_op : el.split("~")[1]} floating={(global.the_id_op.includes(el.split("~")[1])) ? "right" : "left"} me={global.the_id_op} messageId={el.split("~")[0]} IdSender={el.split("~")[1]} IdReceiver={el.split("~")[2]} regdate={el.split("~")[3]} sentTime={el.split("~")[4]} recieveTime={el.split("~")[5]} messageVisibility={el.split("~")[6]} actualMessage={el.split("~")[7]} />
 
             )));
 
@@ -678,7 +678,7 @@ class DriverMessages extends Component {
                 document.getElementById("thisDataTextMsg").value = "";
                 //------Load Messages--
                 var that_0 = that;
-               
+
                 setTimeout(function () {
                     var theDbRes = Ironji_messages_conversations.find({ $and: [{ $or: [{ "id_sender": { $eq: that_0.state.openedChatWinId } }, { "id_reciever": that.state.openedChatWinId }] }, { "_id": { $ne: "none" } }] }, { sort: { regdate: 1 } }).fetch();
                     //console.log("length", theDbRes.length);
