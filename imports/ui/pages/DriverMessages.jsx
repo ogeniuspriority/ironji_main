@@ -215,7 +215,7 @@ class DriverMessages extends Component {
 
             }
 
-        }, 6000);
+        }, 8000);
         //-------find current chat messages--
         
        
