@@ -118,7 +118,7 @@ class DriverMessages extends Component {
                             }
                             //----------------
                             that_1.setState({ chatMessages: theResults });
-                        }, 6000);
+                        }, 2000);
 
                     } else {
                         var currChatty = "";
@@ -130,6 +130,39 @@ class DriverMessages extends Component {
             }
             //-----------
             that.prepareChattiesRender();
+            //---------------
+            var theDbRes = Ironji_messages_conversations.find({ $and: [{ $or: [{ "id_sender": { $eq: that.state.openedChatWinId } }, { "id_reciever": that.state.openedChatWinId }] }, { "_id": { $ne: "none" } }] }, { sort: { regdate: 1 } }).fetch();
+            //console.log("length", theDbRes.length);
+            var theResults = [];
+
+            that.setState({ chatMessages: theResults });
+
+            var i_db = 0;
+            for (var key in theDbRes) {
+                if (theDbRes.hasOwnProperty(key)) {
+                    //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
+
+                    theResults.push(theDbRes[key]._id + "~" + theDbRes[key].id_sender + "~" + theDbRes[key].id_reciever + "~" + theDbRes[key].regdate + "~" + theDbRes[key].sent_time + "~" + theDbRes[key].receive_time + "~" + theDbRes[key].message_visibility + "~" + theDbRes[key].actual_message);
+
+                    i_db++;
+                }
+            }
+            //----------------
+            that.setState({ chatMessages: theResults });
+            global.username = "";
+            var po = Users.find({ _id: "" + that.state.openedChatWinId }, { sort: { text: 1 } }).fetch();
+            for (var key in po) {
+                if (po.hasOwnProperty(key)) {
+                    //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
+
+
+                    global.username = po[key].username;
+                    that.setState({ openedUsername: po[key].username });
+                    that.setState({ accountType: po[key].account_type });
+
+
+                }
+            }
         }, 5000);
         //---------------Check for newly activated chatties--
         setInterval(function () {
@@ -183,42 +216,7 @@ class DriverMessages extends Component {
 
         }, 6000);
         //-------find current chat messages--
-        var that = this;
-        setTimeout(function () {
-            var theDbRes = Ironji_messages_conversations.find({ $and: [{ $or: [{ "id_sender": { $eq: that.state.openedChatWinId } }, { "id_reciever": that.state.openedChatWinId }] }, { "_id": { $ne: "none" } }] }, { sort: { regdate:  1 } }).fetch();
-            //console.log("length", theDbRes.length);
-            var theResults = [];
-
-            that.setState({ chatMessages: theResults });
-
-            var i_db = 0;
-            for (var key in theDbRes) {
-                if (theDbRes.hasOwnProperty(key)) {
-                    //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
-
-                    theResults.push(theDbRes[key]._id + "~" + theDbRes[key].id_sender + "~" + theDbRes[key].id_reciever + "~" + theDbRes[key].regdate + "~" + theDbRes[key].sent_time + "~" + theDbRes[key].receive_time + "~" + theDbRes[key].message_visibility + "~" + theDbRes[key].actual_message);
-
-                    i_db++;
-                }
-            }
-            //----------------
-            that.setState({ chatMessages: theResults });
-            global.username = "";
-            var po = Users.find({ _id: "" + that.state.openedChatWinId }, { sort: { text: 1 } }).fetch();
-            for (var key in po) {
-                if (po.hasOwnProperty(key)) {
-                    //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
-
-
-                    global.username = po[key].username;
-                    that.setState({ openedUsername: po[key].username });
-                    that.setState({ accountType: po[key].account_type });
-
-
-                }
-            }
-        },6100);
-        //-----------
+        
        
 
     }
