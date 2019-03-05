@@ -623,7 +623,7 @@ class DriverMessages extends Component {
 
                 }
             }
-        }, 5400);
+        }, 3400);
         //-----------
 
 
@@ -647,7 +647,7 @@ class DriverMessages extends Component {
     renderMessagesFromChats() {
 
         if (this.state.chatMessages.length > 0) {
-
+            console.log("-------", global.the_id_op);
             return (this.state.chatMessages.map((el) => (
                 <DriverMessagesChatties_ChatMessages idUseOf={(el.split("~")[1].includes(global.the_id_op)) ? global.the_id_op : el.split("~")[1]} floating={(el.split("~")[1].includes(global.the_id_op)) ? "right" : "left"} me={global.the_id_op} messageId={el.split("~")[0]} IdSender={el.split("~")[1]} IdReceiver={el.split("~")[2]} regdate={el.split("~")[3]} sentTime={el.split("~")[4]} recieveTime={el.split("~")[5]} messageVisibility={el.split("~")[6]} actualMessage={el.split("~")[7]} />
 
@@ -700,7 +700,7 @@ class DriverMessages extends Component {
                     //----------------
                     that_0.setState({ chatMessages: theResults });
                     that_0.renderMessagesFromChats();
-                }, 5000);
+                }, 3000);
             }
         });
 
