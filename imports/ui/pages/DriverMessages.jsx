@@ -221,7 +221,7 @@ class DriverMessages extends Component {
                    
                 }
             }
-        });
+        },8000);
 
 
     }
@@ -611,7 +611,7 @@ class DriverMessages extends Component {
             //----------------
             that.setState({ chatMessages: theResults });
             that.renderMessagesFromChats();
-        }, 3000);
+        }, 8000);
         //-----------
         var that = this;
         setTimeout(function () {
@@ -629,7 +629,7 @@ class DriverMessages extends Component {
 
                 }
             }
-        });
+        },8000);
     }
 
     renderMessagesMyChatties() {
@@ -703,7 +703,7 @@ class DriverMessages extends Component {
                     //----------------
                     that_0.setState({ chatMessages: theResults });
                     that_0.renderMessagesFromChats();
-                }, 3000);
+                }, 8000);
             }
         });
 
