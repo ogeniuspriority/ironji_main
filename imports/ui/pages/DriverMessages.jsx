@@ -118,7 +118,7 @@ class DriverMessages extends Component {
                             }
                             //----------------
                             that_1.setState({ chatMessages: theResults });
-                        }, 2000);
+                        }, 6000);
 
                     } else {
                         var currChatty = "";
@@ -130,7 +130,7 @@ class DriverMessages extends Component {
             }
             //-----------
             that.prepareChattiesRender();
-        }, 7000);
+        }, 5000);
         //---------------Check for newly activated chatties--
         setInterval(function () {
             global.the_id_op = "";
@@ -181,7 +181,7 @@ class DriverMessages extends Component {
 
             }
 
-        }, 8000);
+        }, 6000);
         //-------find current chat messages--
         var that = this;
         setTimeout(function () {
@@ -203,26 +203,23 @@ class DriverMessages extends Component {
             }
             //----------------
             that.setState({ chatMessages: theResults });
-        }, 8100);
-        //-----------
-        var that = this;
-        setTimeout(function () {
             global.username = "";
             var po = Users.find({ _id: "" + that.state.openedChatWinId }, { sort: { text: 1 } }).fetch();
             for (var key in po) {
                 if (po.hasOwnProperty(key)) {
                     //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
 
-                    
-                        global.username = po[key].username;
+
+                    global.username = po[key].username;
                     that.setState({ openedUsername: po[key].username });
                     that.setState({ accountType: po[key].account_type });
-                    
-                   
+
+
                 }
             }
-        },8200);
-
+        },6100);
+        //-----------
+       
 
     }
     renderThisAccountAvatar() {
@@ -611,10 +608,7 @@ class DriverMessages extends Component {
             //----------------
             that.setState({ chatMessages: theResults });
             that.renderMessagesFromChats();
-        }, 8400);
-        //-----------
-        var that = this;
-        setTimeout(function () {
+            //-----
             global.username = "";
             var po = Users.find({ _id: "" + that.state.openedChatWinId }, { sort: { text: 1 } }).fetch();
             for (var key in po) {
@@ -629,7 +623,10 @@ class DriverMessages extends Component {
 
                 }
             }
-        },8500);
+        }, 5400);
+        //-----------
+        
+        
     }
 
     renderMessagesMyChatties() {
@@ -703,7 +700,7 @@ class DriverMessages extends Component {
                     //----------------
                     that_0.setState({ chatMessages: theResults });
                     that_0.renderMessagesFromChats();
-                }, 6000);
+                }, 5000);
             }
         });
 
