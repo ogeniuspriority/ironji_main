@@ -130,7 +130,7 @@ class DriverMessages extends Component {
                 }
             }
             //-----------
-            that.prepareChattiesRender();
+            
             //---------------
             var theDbRes = Ironji_messages_conversations.find({ $and: [{ $or: [{ "id_sender": { $eq: that.state.openedChatWinId } }, { "id_reciever": that.state.openedChatWinId }] }, { "_id": { $ne: "none" } }] }, { sort: { regdate: 1 } }).fetch();
             //console.log("length", theDbRes.length);
@@ -164,6 +164,7 @@ class DriverMessages extends Component {
 
                 }
             }
+            that.prepareChattiesRender();
         }, 4000);
         //---------------Check for newly activated chatties--
         setInterval(function () {
@@ -223,7 +224,7 @@ class DriverMessages extends Component {
     }
     renderThisAccountAvatar() {
 
-        global.the_id_op = "";
+        //global.the_id_op = "";
         global.avatar_profile = "";
         var po = Users.find({ username: "" + sessionStorage.getItem('ironji_account_username') }, { sort: { text: 1 } }).fetch();
         for (var key in po) {
