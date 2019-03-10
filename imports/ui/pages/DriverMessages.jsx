@@ -182,7 +182,7 @@ class DriverMessages extends Component {
         }, 6000);
         //---------------Check for newly activated chatties--
         setInterval(function () {
-            /*//global.the_id_op = "";
+          global.the_id_op = "";
             global.avatar_profile = "";
             var po = Users.find({ username: "" + sessionStorage.getItem('ironji_account_username') }, { sort: { text: 1 } }).fetch();
             for (var key in po) {
@@ -194,7 +194,7 @@ class DriverMessages extends Component {
                         global.avatar_profile = po[key].avatar_profile;
                     }
                 }
-            }*/
+            
 
             var theDbRes = Ironji_messages_my_chatties.find({ $or: [{ "my_id": global.the_id_op }, { "user_id": global.the_id_op }] }).fetch();
             console.log("MyChatties", global.the_id_op+"--"+ theDbRes.length);
