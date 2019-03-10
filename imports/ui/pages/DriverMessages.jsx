@@ -55,7 +55,7 @@ class DriverMessages extends Component {
         //-----------Assign the in ids-
         var that = this;
         setTimeout(function () {
-
+            global.the_id_op = "";
             global.avatar_profile = "";
             var po = Users.find({ username: "" + sessionStorage.getItem('ironji_account_username') }, { sort: { text: 1 } }).fetch();
             for (var key in po) {
