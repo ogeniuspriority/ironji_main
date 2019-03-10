@@ -23,6 +23,10 @@ import { FarmerMessagesContactsSearch } from '../search_ui/FarmerMessagesContact
 import { Ironji_messages_my_chatties } from '../../api/ironji_messages_my_chatties';
 import { FarmerMessagesChatties } from '../search_ui/FarmerMessagesChatties';
 
+import { Ironji_messages_conversations } from '../../api/ironji_messages_conversations';
+import { FarmerMessagesChatties_ChatMessages } from '../search_ui/FarmerMessagesChatties_ChatMessages';
+
+
 class FarmerMessages extends Component {
     constructor(props) {
         super(props);
@@ -32,6 +36,10 @@ class FarmerMessages extends Component {
             allMyChatties: "",
             ironjiMyChatties_temporary: "",
             openedChatWinId: "",
+            lastIdLoaded: "0",
+            chatMessages: [],
+            openedUsername: "",
+            accountType: "",
         };
         this.highlightSelectedRow = this.highlightSelectedRow.bind(this);
     }
@@ -56,8 +64,9 @@ class FarmerMessages extends Component {
                 }
             }
 
-            var theDbRes = Ironji_messages_my_chatties.find({ "my_id": global.the_id_op }).fetch();
+            var theDbRes = Ironji_messages_my_chatties.find({ $or: [{ "my_id": global.the_id_op }, { "user_id": global.the_id_op }] }).fetch();
             console.log("length", theDbRes.length);
+
 
             var i_db = 0;
             for (var key in theDbRes) {
@@ -66,22 +75,103 @@ class FarmerMessages extends Component {
 
                     if (i_db == 0) {
                         var currChatty = "";
-                        currChatty = "" + theDbRes[key].user_id
+                        currChatty = "" + theDbRes[key].user_id;
+                        if (theDbRes[key].user_id.includes(global.the_id_op)) {
+                            currChatty = "" + theDbRes[key].my_id;
+                        } else {
+                            currChatty = "" + theDbRes[key].user_id;
+                        }
                         that.setState({ allMyChatties: currChatty });
                         //-------------The Opened One--
-                        that.setState({ openedChatWinId: theDbRes[key].user_id });
+                        that.setState({ openedChatWinId: currChatty });
+                        var that_0 = that;
+
+                        global.username = "";
+                        var po = Users.find({ _id: "" + that_0.state.openedChatWinId }, { sort: { text: 1 } }).fetch();
+                        for (var key in po) {
+                            if (po.hasOwnProperty(key)) {
+                                //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
+
+
+                                global.username = po[key].username;
+                                that_0.setState({ openedUsername: po[key].username });
+                                that_0.setState({ accountType: po[key].account_type });
+
+
+                            }
+                        }
+
+                        //----------------------
+                        var that_1 = that;
+
+                        var theDbRes = Ironji_messages_conversations.find({ $or: [{ $and: [{ "id_sender": { $eq: that.state.openedChatWinId } }, { "id_reciever": global.the_id_op }] }, { $and: [{ "id_sender": { $eq: global.the_id_op } }, { "id_reciever": that.state.openedChatWinId }] }] }, { sort: { regdate: 1 } }).fetch();
+                        //console.log("length", theDbRes.length);
+                        var theResults = [];
+
+                        that_1.setState({ chatMessages: theResults });
+
+                        var i_db = 0;
+                        for (var key in theDbRes) {
+                            if (theDbRes.hasOwnProperty(key)) {
+                                //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
+
+                                theResults.push(theDbRes[key]._id + "~" + theDbRes[key].id_sender + "~" + theDbRes[key].id_reciever + "~" + theDbRes[key].regdate + "~" + theDbRes[key].sent_time + "~" + theDbRes[key].receive_time + "~" + theDbRes[key].message_visibility + "~" + theDbRes[key].actual_message);
+
+                                i_db++;
+                            }
+                        }
+                        //----------------
+                        that_1.setState({ chatMessages: theResults });
 
                     } else {
                         var currChatty = "";
-                        currChatty = that.state.allMyChatties + "~" + theDbRes[key].user_id
+                        if (theDbRes[key].user_id.includes(global.the_id_op)) {
+                            currChatty = "" + theDbRes[key].my_id;
+                        } else {
+                            currChatty = "" + theDbRes[key].user_id;
+                        }
+                        currChatty = that.state.allMyChatties + "~" + currChatty;
                         that.setState({ allMyChatties: currChatty });
                     }
                     i_db++;
                 }
             }
+            //---------------
+            var theDbRes = Ironji_messages_conversations.find({ $or: [{ $and: [{ "id_sender": { $eq: that.state.openedChatWinId } }, { "id_reciever": global.the_id_op }] }, { $and: [{ "id_sender": { $eq: global.the_id_op } }, { "id_reciever": that.state.openedChatWinId }] }] }, { sort: { regdate: 1 } }).fetch();
+                        //console.log("length", theDbRes.length);
+            var theResults = [];
+
+            that.setState({ chatMessages: theResults });
+
+            var i_db = 0;
+            for (var key in theDbRes) {
+                if (theDbRes.hasOwnProperty(key)) {
+                    //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
+
+                    theResults.push(theDbRes[key]._id + "~" + theDbRes[key].id_sender + "~" + theDbRes[key].id_reciever + "~" + theDbRes[key].regdate + "~" + theDbRes[key].sent_time + "~" + theDbRes[key].receive_time + "~" + theDbRes[key].message_visibility + "~" + theDbRes[key].actual_message);
+
+                    i_db++;
+                }
+            }
+            //----------------
+            that.setState({ chatMessages: theResults });
+            global.username = "";
+            var po = Users.find({ _id: "" + that.state.openedChatWinId }, { sort: { text: 1 } }).fetch();
+            for (var key in po) {
+                if (po.hasOwnProperty(key)) {
+                    //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
+
+
+                    global.username = po[key].username;
+                    that.setState({ openedUsername: po[key].username });
+                    that.setState({ accountType: po[key].account_type });
+
+
+                }
+            }
             //-----------
             that.prepareChattiesRender();
-        }, 4000);
+        }, 3000);
         //---------------Check for newly activated chatties--
         setInterval(function () {
             global.the_id_op = "";
@@ -98,8 +188,9 @@ class FarmerMessages extends Component {
                 }
             }
 
-            var theDbRes = Ironji_messages_my_chatties.find({ "my_id": global.the_id_op }).fetch();
+            var theDbRes = Ironji_messages_my_chatties.find({ $or: [{ "my_id": global.the_id_op }, { "user_id": global.the_id_op }] }).fetch();
             console.log("length", theDbRes.length);
+
 
             var i_db = 0;
             for (var key in theDbRes) {
@@ -108,12 +199,22 @@ class FarmerMessages extends Component {
 
                     if (i_db == 0) {
                         var currChatty = "";
-                        currChatty = "" + theDbRes[key].user_id
+                        currChatty = "" + theDbRes[key].user_id;
+                        if (theDbRes[key].user_id.includes(global.the_id_op)) {
+                            currChatty = "" + theDbRes[key].my_id;
+                        } else {
+                            currChatty = "" + theDbRes[key].user_id;
+                        }
                         that.setState({ allMyChatties: currChatty });
 
                     } else {
                         var currChatty = "";
-                        currChatty = that.state.allMyChatties + "~" + theDbRes[key].user_id
+                        if (theDbRes[key].user_id.includes(global.the_id_op)) {
+                            currChatty = "" + theDbRes[key].my_id;
+                        } else {
+                            currChatty = "" + theDbRes[key].user_id;
+                        }
+                        currChatty = that.state.allMyChatties + "~" + currChatty;
                         that.setState({ allMyChatties: currChatty });
                     }
                     i_db++;
@@ -131,7 +232,7 @@ class FarmerMessages extends Component {
                 }
 
             }
-        }, 8000);
+        }, 3000);
     }
     showListOfUsers() {
         global.search_param_key = document.getElementById("searchContactsValueParam").value;
@@ -508,6 +609,108 @@ class FarmerMessages extends Component {
         //console.log("How are you doin " + theOtherChatty);
         this.setState({ openedChatWinId: theOtherChatty });
         this.prepareChattiesRender();
+        //------Load Messages--
+        var that = this;
+        setTimeout(function () {
+            var theDbRes = Ironji_messages_conversations.find({ $or: [{ $and: [{ "id_sender": { $eq: that.state.openedChatWinId } }, { "id_reciever": global.the_id_op }] }, { $and: [{ "id_sender": { $eq: global.the_id_op } }, { "id_reciever": that.state.openedChatWinId }] }] }, { sort: { regdate: 1 } }).fetch();
+             //console.log("length", theDbRes.length);
+            var theResults = [];
+
+            that.setState({ chatMessages: theResults });
+
+            var i_db = 0;
+            for (var key in theDbRes) {
+                if (theDbRes.hasOwnProperty(key)) {
+                    //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
+
+                    theResults.push(theDbRes[key]._id + "~" + theDbRes[key].id_sender + "~" + theDbRes[key].id_reciever + "~" + theDbRes[key].regdate + "~" + theDbRes[key].sent_time + "~" + theDbRes[key].receive_time + "~" + theDbRes[key].message_visibility + "~" + theDbRes[key].actual_message);
+
+                    i_db++;
+                }
+            }
+            //----------------
+            that.setState({ chatMessages: theResults });
+            that.renderMessagesFromChats();
+            //-----
+            global.username = "";
+            var po = Users.find({ _id: "" + that.state.openedChatWinId }, { sort: { text: 1 } }).fetch();
+            for (var key in po) {
+                if (po.hasOwnProperty(key)) {
+                    //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
+
+
+                    global.username = po[key].username;
+                    that.setState({ openedUsername: po[key].username });
+                    that.setState({ accountType: po[key].account_type });
+
+
+                }
+            }
+        }, 1400);
+        //-----------
+
+
+    }
+    renderMessagesFromChats() {
+
+        if (this.state.chatMessages.length > 0) {
+            //console.log("-------", global.the_id_op.valueOf());
+            return (this.state.chatMessages.map((el) => (
+                <FarmerMessagesChatties_ChatMessages idUseOf={(el.split("~")[1].includes(global.the_id_op.valueOf())) ? global.the_id_op.valueOf() : el.split("~")[1]} floating={(el.split("~")[1].includes(global.the_id_op.valueOf())) ? "right" : "left"} me={global.the_id_op.valueOf()} messageId={el.split("~")[0]} IdSender={el.split("~")[1]} IdReceiver={el.split("~")[2]} regdate={el.split("~")[3]} sentTime={el.split("~")[4]} recieveTime={el.split("~")[5]} messageVisibility={el.split("~")[6]} actualMessage={el.split("~")[7]} />
+
+            )));
+
+
+        } else {
+            return <div>No Messages!</div>;
+        }
+
+    }
+    sendMessageToChatRoom() {
+        var theData = {
+            "id_sender": global.the_id_op.valueOf(),
+            "id_reciever": this.state.openedChatWinId,
+            "regdate": new Date(),
+            "sent_time": "",
+            "receive_time": "",
+            "actual_message": document.getElementById("thisDataTextMsg").value,
+            "message_visibility": "1",
+        };
+        var that = this;
+        Ironji_messages_conversations.insert(theData, function (error, result) {
+            if (error) {
+                //alert("error:"+error);
+            }
+            if (result) {
+                //alert("Great!");
+                document.getElementById("thisDataTextMsg").value = "";
+                //------Load Messages--
+                var that_0 = that;
+
+                setTimeout(function () {
+                    var theDbRes = Ironji_messages_conversations.find({ $or: [{ $and: [{ "id_sender": { $eq: that.state.openedChatWinId } }, { "id_reciever": global.the_id_op }] }, { $and: [{ "id_sender": { $eq: global.the_id_op } }, { "id_reciever": that.state.openedChatWinId }] }] }, { sort: { regdate: 1 } }).fetch();
+                        //console.log("length", theDbRes.length);
+                    var theResults = [];
+
+                    that_0.setState({ chatMessages: theResults });
+
+                    var i_db = 0;
+                    for (var key in theDbRes) {
+                        if (theDbRes.hasOwnProperty(key)) {
+                            //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
+
+                            theResults.push(theDbRes[key]._id + "~" + theDbRes[key].id_sender + "~" + theDbRes[key].id_reciever + "~" + theDbRes[key].regdate + "~" + theDbRes[key].sent_time + "~" + theDbRes[key].receive_time + "~" + theDbRes[key].message_visibility + "~" + theDbRes[key].actual_message);
+
+                            i_db++;
+                        }
+                    }
+                    //----------------
+                    that_0.setState({ chatMessages: theResults });
+                    that_0.renderMessagesFromChats();
+                }, 3000);
+            }
+        });
+
     }
     render() {
 
@@ -585,48 +788,17 @@ class FarmerMessages extends Component {
                     <div style={{ textAlign: "center", padding: "4px", background: "skyblue", borderRadius: "5px", fontSize: "16px" }}>
                         Chat room
                     </div>
-                    <div><h4>Talking to "Patrick", "Driver":</h4>
+                    <div><h4>Talking to "<span id="chatWindowMessages_person">{this.state.openedUsername}</span>", "{this.state.accountType}"</h4>
                         <div style={{ padding: "5px", height: "320px", borderRadius: "5px", overflowY: "scroll" }}>
-                            <div style={{ width: "100%", marginTop: "10px" }}><div className="modal-content" style={{ float: "right" }}>
-                                <h4>Cedric</h4>
-                                <div style={{ padding: "6px" }}>
-                                    digd gdgib gidnbg nig gdigb gni
-                                </div>
-                                <div style={{ float: "right", boxShadow: "2px 2px #cdcdcd" }}>11:12 pm</div>
-
-                            </div><div style={{ clear: "both" }}></div></div>
-                            <div style={{ width: "100%", marginTop: "10px" }} ><div className="modal-content" style={{ float: "right" }} style={{ float: "left" }}>
-                                <h4>Cedric</h4>
-                                <div style={{ padding: "6px" }}>
-                                    digd gdgib gidnbg nig gdigb gni
-                                </div>
-                                <div style={{ float: "right", boxShadow: "2px 2px #cdcdcd" }}>11:12 pm</div>
-
-                            </div><div style={{ clear: "both" }}></div></div>
-                            <div style={{ width: "100%", marginTop: "10px" }} ><div className="modal-content" style={{ float: "right" }} style={{ float: "right" }}>
-                                <h4>Cedric</h4>
-                                <div style={{ padding: "6px" }}>
-                                    digd gdgib gidnbg nig gdigb gni
-                                </div>
-                                <div style={{ float: "right", boxShadow: "2px 2px #cdcdcd" }}>11:12 pm</div>
-
-                            </div><div style={{ clear: "both" }}></div></div>
-                            <div style={{ width: "100%", marginTop: "10px" }} ><div className="modal-content" style={{ float: "right" }} style={{ float: "right" }}>
-                                <h4>Cedric</h4>
-                                <div style={{ padding: "6px" }}>
-                                    digd gdgib gidnbg nig gdigb gni
-                                </div>
-                                <div style={{ float: "left", boxShadow: "2px 2px #cdcdcd" }}>11:12 pm</div>
-
-                            </div> <div style={{ clear: "both" }}></div></div>
+                            {this.renderMessagesFromChats()}
 
                         </div>
                         <div>
                             <table>
                                 <tbody>
                                 <tr>
-                                    <td><textarea className="form-control" placeholder="Your message here.." style={{ maxHeight: "70px", height: "70px", maxWidth: "350px", width: "350px" }}></textarea></td>
-                                    <td><button className="btn-primary">Send</button></td>
+                                    <td><textarea id="thisDataTextMsg" className="form-control" placeholder="Your message here.." style={{ maxHeight: "70px", height: "70px", maxWidth: "350px", width: "350px" }}></textarea></td>
+                                        <td><button onClick={this.sendMessageToChatRoom.bind(this)} className="btn-primary">Send</button></td>
                                 </tr></tbody>
                             </table>
                         </div>

@@ -14,7 +14,7 @@ import 'rc-time-picker/assets/index.css';
 import { Ironji_messages_my_chatties } from '../../api/ironji_messages_my_chatties';
 
 
-export class DriverMessagesChatties_ChatMessages extends Component {
+export class BuyerMessagesChatties_ChatMessages extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -119,4 +119,4 @@ export default withTracker(() => {
     return {
         tasks: Users.find({}).fetch(),
     };
-})(DriverMessagesChatties_ChatMessages);
+})(BuyerMessagesChatties_ChatMessages);

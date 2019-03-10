@@ -14,17 +14,17 @@ import 'rc-time-picker/assets/index.css';
 import { Ironji_messages_my_chatties } from '../../api/ironji_messages_my_chatties';
 
 
-export class DriverMessagesChatties_ChatMessages extends Component {
+export class TraderMessagesChatties_ChatMessages extends Component {
     constructor(props) {
         super(props);
         this.state = {
             hideCompleted: false,
             thisAvatar: "/images/profile.png",
-            username:""
+            username: ""
         };
     }
     componentDidMount() {
-        
+
         /*if (this.props.ironji_users_image.includes("undefined")) {
             global.avatar = "/images/profile.png";
             this.setState({ thisAvatar: global.avatar });
@@ -38,14 +38,14 @@ export class DriverMessagesChatties_ChatMessages extends Component {
         var that = this;
         setTimeout(function () {
             global.username = "";
-            var po = Users.find({ _id: ""+that.props.idUseOf}, { sort: { text: 1 } }).fetch();
+            var po = Users.find({ _id: "" + that.props.idUseOf }, { sort: { text: 1 } }).fetch();
             for (var key in po) {
                 if (po.hasOwnProperty(key)) {
                     //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
 
-                        global.username = po[key].username;
-                        that.setState({ username: po[key].username });
-                    
+                    global.username = po[key].username;
+                    that.setState({ username: po[key].username });
+
                 }
             }
         });
@@ -98,17 +98,18 @@ export class DriverMessagesChatties_ChatMessages extends Component {
 
     }
 
+
     render() {
         return (<div>
-            <div style={{ width: "100%", marginTop: "10px" }} ><div className="modal-content" style={{ float: this.props.floating,width:"65%" }} >
+            <div style={{ width: "100%", marginTop: "10px" }} ><div className="modal-content" style={{ float: this.props.floating, width: "65%" }} >
                 <h4>{this.state.username}</h4>
                 <div style={{ padding: "6px" }}>
                     {this.props.actualMessage}
-                                </div>
+                </div>
                 <div style={{ float: "left", boxShadow: "2px 2px #cdcdcd" }}>{this.getDateDiff(this.props.regdate)}</div>
 
             </div> <div style={{ clear: "both" }}></div></div>
-           
+
         </div>
         );
     }
@@ -119,4 +120,4 @@ export default withTracker(() => {
     return {
         tasks: Users.find({}).fetch(),
     };
-})(DriverMessagesChatties_ChatMessages);
+})(TraderMessagesChatties_ChatMessages);

@@ -14,7 +14,7 @@ import 'rc-time-picker/assets/index.css';
 import { Ironji_messages_my_chatties } from '../../api/ironji_messages_my_chatties';
 
 
-export class DriverMessagesChatties_ChatMessages extends Component {
+export class FarmerMessagesChatties_ChatMessages extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -58,6 +58,7 @@ export class DriverMessagesChatties_ChatMessages extends Component {
     {
         return (<img className="img-circle" style={{ maxWidth: "70px", maxHeight: "70px" }} src={this.state.thisAvatar} />);
     }*/
+    
     getDateDiff(time1) {
 
         var t1 = new Date(time1);
@@ -97,7 +98,6 @@ export class DriverMessagesChatties_ChatMessages extends Component {
 
 
     }
-
     render() {
         return (<div>
             <div style={{ width: "100%", marginTop: "10px" }} ><div className="modal-content" style={{ float: this.props.floating,width:"65%" }} >
@@ -119,4 +119,4 @@ export default withTracker(() => {
     return {
         tasks: Users.find({}).fetch(),
     };
-})(DriverMessagesChatties_ChatMessages);
+})(FarmerMessagesChatties_ChatMessages);

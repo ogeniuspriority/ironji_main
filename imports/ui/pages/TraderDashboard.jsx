@@ -69,7 +69,7 @@ class TraderDashboard extends Component {
 
         return (<div className="container">
             <div className="theConainer theRightSide">
-                <img src="images/ironji.png" />
+                <img style={{maxWidth: "200px",maxHeight:"200px"}} src="images/ironji.png" />
                 <div className="TrademarkAndName">Ironji<sup>TM</sup></div>
             </div>
             <div>

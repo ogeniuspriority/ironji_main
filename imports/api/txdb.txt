@@ -8,7 +8,7 @@ id,id_deals_creator,regdate,visibility,product_weight,product_volume,pick_up_loc
 
 ironji_messages_mychatties
 ----------------------------------
-id,user_id,regdate
+id,user_id,regdate,my_id
 
 ironji_messages_conversations
 -------------------------------------

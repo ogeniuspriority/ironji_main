@@ -41,6 +41,7 @@ class DriverMessages extends Component {
             accountType: "",
 
 
+
         };
         this.highlightSelectedRow = this.highlightSelectedRow.bind(this);
     }
@@ -49,7 +50,19 @@ class DriverMessages extends Component {
         global.search_query_orient = "All";
         //------------
         global.the_id_op = "";
+        //-----------Gte started-
+        var po = Users.find({ username: "" + sessionStorage.getItem('ironji_account_username') }, { sort: { text: 1 } }).fetch();
+        for (var key in po) {
+            if (po.hasOwnProperty(key)) {
+                //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
 
+                if (po[key].account_type == "driver") {
+                    global.the_id_op = po[key]._id;
+                    console.log("----oopp--", global.the_id_op);
+                    global.avatar_profile = po[key].avatar_profile;
+                }
+            }
+        }
         //-----------Assign the in ids-
         var that = this;
         setTimeout(function () {
@@ -68,7 +81,7 @@ class DriverMessages extends Component {
                 }
             }
 
-            var theDbRes = Ironji_messages_my_chatties.find({ "my_id": global.the_id_op }).fetch();
+            var theDbRes = Ironji_messages_my_chatties.find({ $or: [{ "my_id": global.the_id_op }, { "user_id": global.the_id_op }]}).fetch();
             console.log("length", theDbRes.length);
 
             var i_db = 0;
@@ -78,10 +91,15 @@ class DriverMessages extends Component {
 
                     if (i_db == 0) {
                         var currChatty = "";
-                        currChatty = "" + theDbRes[key].user_id
+                        currChatty = "" + theDbRes[key].user_id;
+                        if (theDbRes[key].user_id.includes(global.the_id_op)) {
+                            currChatty = "" + theDbRes[key].my_id;
+                        } else {
+                            currChatty = "" + theDbRes[key].user_id;
+                        }
                         that.setState({ allMyChatties: currChatty });
                         //-------------The Opened One--
-                        that.setState({ openedChatWinId: theDbRes[key].user_id });
+                        that.setState({ openedChatWinId: currChatty});
                         var that_0 = that;
 
                         global.username = "";
@@ -124,7 +142,13 @@ class DriverMessages extends Component {
 
                     } else {
                         var currChatty = "";
-                        currChatty = that.state.allMyChatties + "~" + theDbRes[key].user_id
+                        currChatty = "" + theDbRes[key].user_id;
+                        if (theDbRes[key].user_id.includes(global.the_id_op)) {
+                            currChatty = "" + theDbRes[key].my_id;
+                        } else {
+                            currChatty = "" + theDbRes[key].user_id;
+                        }
+                        currChatty = that.state.allMyChatties + "~" + currChatty;
                         that.setState({ allMyChatties: currChatty });
                     }
                     i_db++;
@@ -133,7 +157,7 @@ class DriverMessages extends Component {
             //-----------
             
             //---------------
-            var theDbRes = Ironji_messages_conversations.find({ $and: [{ $or: [{ "id_sender": { $eq: that.state.openedChatWinId } }, { "id_reciever": that.state.openedChatWinId }] }, { $or: [{ "id_sender": { $eq: global.the_id_op } }, { "id_reciever": global.the_id_op }] }] }, { sort: { regdate: 1 } }).fetch();
+            var theDbRes = Ironji_messages_conversations.find({ $or: [{ $and: [{ "id_sender": { $eq: that.state.openedChatWinId } }, { "id_reciever": global.the_id_op }] }, { $and: [{ "id_sender": { $eq: global.the_id_op } }, { "id_reciever": that.state.openedChatWinId }] }] }, { sort: { regdate: 1 } }).fetch();
             //console.log("length", theDbRes.length);
             var theResults = [];
 
@@ -183,8 +207,7 @@ class DriverMessages extends Component {
                 }
             }*/
 
-            var theDbRes = Ironji_messages_my_chatties.find({ "my_id": global.the_id_op }).fetch();
-            console.log("length", theDbRes.length);
+            var theDbRes = Ironji_messages_my_chatties.find({ $or: [{ "my_id": global.the_id_op }, { "user_id": global.the_id_op }] }).fetch();
 
             var i_db = 0;
             for (var key in theDbRes) {
@@ -193,12 +216,23 @@ class DriverMessages extends Component {
 
                     if (i_db == 0) {
                         var currChatty = "";
-                        currChatty = "" + theDbRes[key].user_id
+                        currChatty = "" + theDbRes[key].user_id;
+                        if (theDbRes[key].user_id.includes(global.the_id_op)) {
+                            currChatty = "" + theDbRes[key].my_id;
+                        } else {
+                            currChatty = "" + theDbRes[key].user_id;
+                        }
                         that.setState({ allMyChatties: currChatty });
 
                     } else {
                         var currChatty = "";
-                        currChatty = that.state.allMyChatties + "~" + theDbRes[key].user_id
+                        currChatty = "" + theDbRes[key].user_id;
+                        if (theDbRes[key].user_id.includes(global.the_id_op)) {
+                            currChatty = "" + theDbRes[key].my_id;
+                        } else {
+                            currChatty = "" + theDbRes[key].user_id;
+                        }
+                        currChatty = that.state.allMyChatties + "~" + currChatty
                         that.setState({ allMyChatties: currChatty });
                     }
                     i_db++;
@@ -591,7 +625,7 @@ class DriverMessages extends Component {
         var that = this;
         setTimeout(function () {
             var theDbRes = Ironji_messages_conversations.find({ $or: [{ $and: [{ "id_sender": { $eq: that.state.openedChatWinId } }, { "id_reciever": global.the_id_op }] }, { $and: [{ "id_sender": { $eq: global.the_id_op } }, { "id_reciever": that.state.openedChatWinId }] }] }, { sort: { regdate: 1 } }).fetch();
-            //console.log("length", theDbRes.length);
+            console.log("90-----", theDbRes.length);
             var theResults = [];
 
             that.setState({ chatMessages: theResults });
@@ -608,7 +642,6 @@ class DriverMessages extends Component {
             }
             //----------------
             that.setState({ chatMessages: theResults });
-            that.renderMessagesFromChats();
             //-----
             global.username = "";
             var po = Users.find({ _id: "" + that.state.openedChatWinId }, { sort: { text: 1 } }).fetch();
@@ -624,7 +657,12 @@ class DriverMessages extends Component {
 
                 }
             }
-        }, 3400);
+            var that_1 = that;
+            setTimeout(function () {
+                that_1.renderMessagesFromChats();
+            }, 1000);
+            
+        }, 1400);
         //-----------
 
 
