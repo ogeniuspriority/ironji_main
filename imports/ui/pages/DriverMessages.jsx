@@ -51,18 +51,7 @@ class DriverMessages extends Component {
         //------------
         global.the_id_op = "";
         //-----------Gte started-
-        var po = Users.find({ username: "" + sessionStorage.getItem('ironji_account_username') }, { sort: { text: 1 } }).fetch();
-        for (var key in po) {
-            if (po.hasOwnProperty(key)) {
-                //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
-
-                if (po[key].account_type == "driver") {
-                    global.the_id_op = po[key]._id.valueOf() ;
-                    console.log("----oopp--", global.the_id_op);
-                    global.avatar_profile = po[key].avatar_profile;
-                }
-            }
-        }
+        
         //-----------Assign the in ids-
         var that = this;
         setTimeout(function () {
