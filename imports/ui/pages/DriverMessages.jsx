@@ -82,7 +82,7 @@ class DriverMessages extends Component {
             }
 
             var theDbRes = Ironji_messages_my_chatties.find({ $or: [{ "my_id": global.the_id_op }, { "user_id": global.the_id_op }]}).fetch();
-            console.log("length", theDbRes.length);
+            console.log("chATTies", global.the_id_op+"--"+ theDbRes.length);
 
             var i_db = 0;
             for (var key in theDbRes) {
