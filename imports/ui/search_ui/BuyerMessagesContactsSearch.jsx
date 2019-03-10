@@ -56,7 +56,7 @@ export class BuyerMessagesContactsSearch extends Component {
                 //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
 
                 if (po[key].account_type == "buyer") {
-                    global.the_id_op = po[key]._id;
+                    global.the_id_op = po[key]._id.valueOf() ;
                     global.avatar_profile = po[key].avatar_profile;
                 }
             }
