@@ -171,7 +171,7 @@ class ClientMessages extends Component {
             }
             //-----------
             that.prepareChattiesRender();
-        }, 3000);
+        }, 6000);
         //---------------Check for newly activated chatties--
         setInterval(function () {
             global.the_id_op = "";
@@ -233,7 +233,7 @@ class ClientMessages extends Component {
                 }
 
             }
-        }, 3000);
+        }, 8000);
     }
     renderThisAccountAvatar() {
 
@@ -647,7 +647,7 @@ class ClientMessages extends Component {
 
                 }
             }
-        }, 1400);
+        }, 3400);
         //-----------
 
 

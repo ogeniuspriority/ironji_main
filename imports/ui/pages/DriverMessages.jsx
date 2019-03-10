@@ -662,7 +662,7 @@ class DriverMessages extends Component {
                 that_1.renderMessagesFromChats();
             }, 1000);
             
-        }, 1400);
+        }, 3400);
         //-----------
 
 
