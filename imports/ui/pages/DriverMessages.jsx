@@ -51,6 +51,9 @@ class DriverMessages extends Component {
         //------------
         global.the_id_op = "";
         //-----------Gte started-
+        if (sessionStorage.length == 0) {
+            window.open("/", "_self");
+        }
         
         //-----------Assign the in ids-
         var that = this;

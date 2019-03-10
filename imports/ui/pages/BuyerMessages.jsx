@@ -48,6 +48,9 @@ class BuyerMessages extends Component {
         global.search_param_key = "";
         global.search_query_orient = "All";
         //------------
+        if (sessionStorage.length == 0) {
+            window.open("/", "_self");
+        }
         //-----------Assign the in ids-
         var that = this;
         setTimeout(function () {
