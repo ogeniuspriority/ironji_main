@@ -58,7 +58,7 @@ class ClientMessages extends Component {
                     //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
 
                     if (po[key].account_type == "client") {
-                        global.the_id_op = po[key]._id;
+                        global.the_id_op = po[key]._id.valueOf() ;
                         global.avatar_profile = po[key].avatar_profile;
                     }
                 }
@@ -115,7 +115,7 @@ class ClientMessages extends Component {
                             if (theDbRes.hasOwnProperty(key)) {
                                 //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
 
-                                theResults.push(theDbRes[key]._id + "~" + theDbRes[key].id_sender + "~" + theDbRes[key].id_reciever + "~" + theDbRes[key].regdate + "~" + theDbRes[key].sent_time + "~" + theDbRes[key].receive_time + "~" + theDbRes[key].message_visibility + "~" + theDbRes[key].actual_message);
+                                theResults.push(theDbRes[key]._id.valueOf()  + "~" + theDbRes[key].id_sender + "~" + theDbRes[key].id_reciever + "~" + theDbRes[key].regdate + "~" + theDbRes[key].sent_time + "~" + theDbRes[key].receive_time + "~" + theDbRes[key].message_visibility + "~" + theDbRes[key].actual_message);
 
                                 i_db++;
                             }
@@ -148,7 +148,7 @@ class ClientMessages extends Component {
                 if (theDbRes.hasOwnProperty(key)) {
                     //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
 
-                    theResults.push(theDbRes[key]._id + "~" + theDbRes[key].id_sender + "~" + theDbRes[key].id_reciever + "~" + theDbRes[key].regdate + "~" + theDbRes[key].sent_time + "~" + theDbRes[key].receive_time + "~" + theDbRes[key].message_visibility + "~" + theDbRes[key].actual_message);
+                    theResults.push(theDbRes[key]._id.valueOf()  + "~" + theDbRes[key].id_sender + "~" + theDbRes[key].id_reciever + "~" + theDbRes[key].regdate + "~" + theDbRes[key].sent_time + "~" + theDbRes[key].receive_time + "~" + theDbRes[key].message_visibility + "~" + theDbRes[key].actual_message);
 
                     i_db++;
                 }
@@ -182,7 +182,7 @@ class ClientMessages extends Component {
                     //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
 
                     if (po[key].account_type == "client") {
-                        global.the_id_op = po[key]._id;
+                        global.the_id_op = po[key]._id.valueOf() ;
                         global.avatar_profile = po[key].avatar_profile;
                     }
                 }
@@ -245,7 +245,7 @@ class ClientMessages extends Component {
                 //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
 
                 if (po[key].account_type == "client") {
-                    global.the_id_op = po[key]._id;
+                    global.the_id_op = po[key]._id.valueOf() ;
                     global.avatar_profile = po[key].avatar_profile;
                 }
             }
@@ -269,7 +269,7 @@ class ClientMessages extends Component {
                 //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
 
                 if (po[key].account_type == "client") {
-                    global.the_id_op = po[key]._id;
+                    global.the_id_op = po[key]._id.valueOf() ;
                 }
             }
         }
@@ -299,7 +299,7 @@ class ClientMessages extends Component {
             for (var key in theDbRes) {
                 if (theDbRes.hasOwnProperty(key)) {
                     //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
-                    theResults.push("" + theDbRes[key]._id + "~" + theDbRes[key].text + "~" + theDbRes[key].createdAt + "~" + theDbRes[key].account_type + "~" + theDbRes[key].currentLatitude + "~" + theDbRes[key].currentLongitude + "~" + theDbRes[key].accountConfirmed + "~" + theDbRes[key].id_number + "~" + theDbRes[key].surname + "~" + theDbRes[key].lastname + "~" + theDbRes[key].email + "~" + theDbRes[key].platenumber + "~" + theDbRes[key].province + "~" + theDbRes[key].district + "~" + theDbRes[key].sector + "~" + theDbRes[key].username + "~" + theDbRes[key].gender + "~" + theDbRes[key].avatar_profile);
+                    theResults.push("" + theDbRes[key]._id.valueOf()  + "~" + theDbRes[key].text + "~" + theDbRes[key].createdAt + "~" + theDbRes[key].account_type + "~" + theDbRes[key].currentLatitude + "~" + theDbRes[key].currentLongitude + "~" + theDbRes[key].accountConfirmed + "~" + theDbRes[key].id_number + "~" + theDbRes[key].surname + "~" + theDbRes[key].lastname + "~" + theDbRes[key].email + "~" + theDbRes[key].platenumber + "~" + theDbRes[key].province + "~" + theDbRes[key].district + "~" + theDbRes[key].sector + "~" + theDbRes[key].username + "~" + theDbRes[key].gender + "~" + theDbRes[key].avatar_profile);
                     i_db++;
                 }
             }
@@ -319,7 +319,7 @@ class ClientMessages extends Component {
             for (var key in theDbRes) {
                 if (theDbRes.hasOwnProperty(key)) {
                     //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
-                    theResults.push("" + theDbRes[key]._id + "~" + theDbRes[key].text + "~" + theDbRes[key].createdAt + "~" + theDbRes[key].account_type + "~" + theDbRes[key].currentLatitude + "~" + theDbRes[key].currentLongitude + "~" + theDbRes[key].accountConfirmed + "~" + theDbRes[key].id_number + "~" + theDbRes[key].surname + "~" + theDbRes[key].lastname + "~" + theDbRes[key].email + "~" + theDbRes[key].platenumber + "~" + theDbRes[key].province + "~" + theDbRes[key].district + "~" + theDbRes[key].sector + "~" + theDbRes[key].username + "~" + theDbRes[key].gender + "~" + theDbRes[key].avatar_profile);
+                    theResults.push("" + theDbRes[key]._id.valueOf()  + "~" + theDbRes[key].text + "~" + theDbRes[key].createdAt + "~" + theDbRes[key].account_type + "~" + theDbRes[key].currentLatitude + "~" + theDbRes[key].currentLongitude + "~" + theDbRes[key].accountConfirmed + "~" + theDbRes[key].id_number + "~" + theDbRes[key].surname + "~" + theDbRes[key].lastname + "~" + theDbRes[key].email + "~" + theDbRes[key].platenumber + "~" + theDbRes[key].province + "~" + theDbRes[key].district + "~" + theDbRes[key].sector + "~" + theDbRes[key].username + "~" + theDbRes[key].gender + "~" + theDbRes[key].avatar_profile);
                     i_db++;
                 }
             }
@@ -339,7 +339,7 @@ class ClientMessages extends Component {
             for (var key in theDbRes) {
                 if (theDbRes.hasOwnProperty(key)) {
                     //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
-                    theResults.push("" + theDbRes[key]._id + "~" + theDbRes[key].text + "~" + theDbRes[key].createdAt + "~" + theDbRes[key].account_type + "~" + theDbRes[key].currentLatitude + "~" + theDbRes[key].currentLongitude + "~" + theDbRes[key].accountConfirmed + "~" + theDbRes[key].id_number + "~" + theDbRes[key].surname + "~" + theDbRes[key].lastname + "~" + theDbRes[key].email + "~" + theDbRes[key].platenumber + "~" + theDbRes[key].province + "~" + theDbRes[key].district + "~" + theDbRes[key].sector + "~" + theDbRes[key].username + "~" + theDbRes[key].gender + "~" + theDbRes[key].avatar_profile);
+                    theResults.push("" + theDbRes[key]._id.valueOf()  + "~" + theDbRes[key].text + "~" + theDbRes[key].createdAt + "~" + theDbRes[key].account_type + "~" + theDbRes[key].currentLatitude + "~" + theDbRes[key].currentLongitude + "~" + theDbRes[key].accountConfirmed + "~" + theDbRes[key].id_number + "~" + theDbRes[key].surname + "~" + theDbRes[key].lastname + "~" + theDbRes[key].email + "~" + theDbRes[key].platenumber + "~" + theDbRes[key].province + "~" + theDbRes[key].district + "~" + theDbRes[key].sector + "~" + theDbRes[key].username + "~" + theDbRes[key].gender + "~" + theDbRes[key].avatar_profile);
                     i_db++;
                 }
             }
@@ -359,7 +359,7 @@ class ClientMessages extends Component {
             for (var key in theDbRes) {
                 if (theDbRes.hasOwnProperty(key)) {
                     //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
-                    theResults.push("" + theDbRes[key]._id + "~" + theDbRes[key].text + "~" + theDbRes[key].createdAt + "~" + theDbRes[key].account_type + "~" + theDbRes[key].currentLatitude + "~" + theDbRes[key].currentLongitude + "~" + theDbRes[key].accountConfirmed + "~" + theDbRes[key].id_number + "~" + theDbRes[key].surname + "~" + theDbRes[key].lastname + "~" + theDbRes[key].email + "~" + theDbRes[key].platenumber + "~" + theDbRes[key].province + "~" + theDbRes[key].district + "~" + theDbRes[key].sector + "~" + theDbRes[key].username + "~" + theDbRes[key].gender + "~" + theDbRes[key].avatar_profile);
+                    theResults.push("" + theDbRes[key]._id.valueOf()  + "~" + theDbRes[key].text + "~" + theDbRes[key].createdAt + "~" + theDbRes[key].account_type + "~" + theDbRes[key].currentLatitude + "~" + theDbRes[key].currentLongitude + "~" + theDbRes[key].accountConfirmed + "~" + theDbRes[key].id_number + "~" + theDbRes[key].surname + "~" + theDbRes[key].lastname + "~" + theDbRes[key].email + "~" + theDbRes[key].platenumber + "~" + theDbRes[key].province + "~" + theDbRes[key].district + "~" + theDbRes[key].sector + "~" + theDbRes[key].username + "~" + theDbRes[key].gender + "~" + theDbRes[key].avatar_profile);
                     i_db++;
                 }
             }
@@ -378,7 +378,7 @@ class ClientMessages extends Component {
             for (var key in theDbRes) {
                 if (theDbRes.hasOwnProperty(key)) {
                     //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
-                    theResults.push("" + theDbRes[key]._id + "~" + theDbRes[key].text + "~" + theDbRes[key].createdAt + "~" + theDbRes[key].account_type + "~" + theDbRes[key].currentLatitude + "~" + theDbRes[key].currentLongitude + "~" + theDbRes[key].accountConfirmed + "~" + theDbRes[key].id_number + "~" + theDbRes[key].surname + "~" + theDbRes[key].lastname + "~" + theDbRes[key].email + "~" + theDbRes[key].platenumber + "~" + theDbRes[key].province + "~" + theDbRes[key].district + "~" + theDbRes[key].sector + "~" + theDbRes[key].username + "~" + theDbRes[key].gender + "~" + theDbRes[key].avatar_profile);
+                    theResults.push("" + theDbRes[key]._id.valueOf()  + "~" + theDbRes[key].text + "~" + theDbRes[key].createdAt + "~" + theDbRes[key].account_type + "~" + theDbRes[key].currentLatitude + "~" + theDbRes[key].currentLongitude + "~" + theDbRes[key].accountConfirmed + "~" + theDbRes[key].id_number + "~" + theDbRes[key].surname + "~" + theDbRes[key].lastname + "~" + theDbRes[key].email + "~" + theDbRes[key].platenumber + "~" + theDbRes[key].province + "~" + theDbRes[key].district + "~" + theDbRes[key].sector + "~" + theDbRes[key].username + "~" + theDbRes[key].gender + "~" + theDbRes[key].avatar_profile);
                     i_db++;
                 }
             }
@@ -399,7 +399,7 @@ class ClientMessages extends Component {
                 //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
 
                 if (po[key].account_type == "client") {
-                    global.the_id_op = po[key]._id;
+                    global.the_id_op = po[key]._id.valueOf() ;
                 }
             }
         }
@@ -429,7 +429,7 @@ class ClientMessages extends Component {
             for (var key in theDbRes) {
                 if (theDbRes.hasOwnProperty(key)) {
                     //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
-                    theResults.push("" + theDbRes[key]._id + "~" + theDbRes[key].text + "~" + theDbRes[key].createdAt + "~" + theDbRes[key].account_type + "~" + theDbRes[key].currentLatitude + "~" + theDbRes[key].currentLongitude + "~" + theDbRes[key].accountConfirmed + "~" + theDbRes[key].id_number + "~" + theDbRes[key].surname + "~" + theDbRes[key].lastname + "~" + theDbRes[key].email + "~" + theDbRes[key].platenumber + "~" + theDbRes[key].province + "~" + theDbRes[key].district + "~" + theDbRes[key].sector + "~" + theDbRes[key].username + "~" + theDbRes[key].gender + "~" + theDbRes[key].avatar_profile);
+                    theResults.push("" + theDbRes[key]._id.valueOf()  + "~" + theDbRes[key].text + "~" + theDbRes[key].createdAt + "~" + theDbRes[key].account_type + "~" + theDbRes[key].currentLatitude + "~" + theDbRes[key].currentLongitude + "~" + theDbRes[key].accountConfirmed + "~" + theDbRes[key].id_number + "~" + theDbRes[key].surname + "~" + theDbRes[key].lastname + "~" + theDbRes[key].email + "~" + theDbRes[key].platenumber + "~" + theDbRes[key].province + "~" + theDbRes[key].district + "~" + theDbRes[key].sector + "~" + theDbRes[key].username + "~" + theDbRes[key].gender + "~" + theDbRes[key].avatar_profile);
                     i_db++;
                 }
             }
@@ -449,7 +449,7 @@ class ClientMessages extends Component {
             for (var key in theDbRes) {
                 if (theDbRes.hasOwnProperty(key)) {
                     //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
-                    theResults.push("" + theDbRes[key]._id + "~" + theDbRes[key].text + "~" + theDbRes[key].createdAt + "~" + theDbRes[key].account_type + "~" + theDbRes[key].currentLatitude + "~" + theDbRes[key].currentLongitude + "~" + theDbRes[key].accountConfirmed + "~" + theDbRes[key].id_number + "~" + theDbRes[key].surname + "~" + theDbRes[key].lastname + "~" + theDbRes[key].email + "~" + theDbRes[key].platenumber + "~" + theDbRes[key].province + "~" + theDbRes[key].district + "~" + theDbRes[key].sector + "~" + theDbRes[key].username + "~" + theDbRes[key].gender + "~" + theDbRes[key].avatar_profile);
+                    theResults.push("" + theDbRes[key]._id.valueOf()  + "~" + theDbRes[key].text + "~" + theDbRes[key].createdAt + "~" + theDbRes[key].account_type + "~" + theDbRes[key].currentLatitude + "~" + theDbRes[key].currentLongitude + "~" + theDbRes[key].accountConfirmed + "~" + theDbRes[key].id_number + "~" + theDbRes[key].surname + "~" + theDbRes[key].lastname + "~" + theDbRes[key].email + "~" + theDbRes[key].platenumber + "~" + theDbRes[key].province + "~" + theDbRes[key].district + "~" + theDbRes[key].sector + "~" + theDbRes[key].username + "~" + theDbRes[key].gender + "~" + theDbRes[key].avatar_profile);
                     i_db++;
                 }
             }
@@ -469,7 +469,7 @@ class ClientMessages extends Component {
             for (var key in theDbRes) {
                 if (theDbRes.hasOwnProperty(key)) {
                     //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
-                    theResults.push("" + theDbRes[key]._id + "~" + theDbRes[key].text + "~" + theDbRes[key].createdAt + "~" + theDbRes[key].account_type + "~" + theDbRes[key].currentLatitude + "~" + theDbRes[key].currentLongitude + "~" + theDbRes[key].accountConfirmed + "~" + theDbRes[key].id_number + "~" + theDbRes[key].surname + "~" + theDbRes[key].lastname + "~" + theDbRes[key].email + "~" + theDbRes[key].platenumber + "~" + theDbRes[key].province + "~" + theDbRes[key].district + "~" + theDbRes[key].sector + "~" + theDbRes[key].username + "~" + theDbRes[key].gender + "~" + theDbRes[key].avatar_profile);
+                    theResults.push("" + theDbRes[key]._id.valueOf()  + "~" + theDbRes[key].text + "~" + theDbRes[key].createdAt + "~" + theDbRes[key].account_type + "~" + theDbRes[key].currentLatitude + "~" + theDbRes[key].currentLongitude + "~" + theDbRes[key].accountConfirmed + "~" + theDbRes[key].id_number + "~" + theDbRes[key].surname + "~" + theDbRes[key].lastname + "~" + theDbRes[key].email + "~" + theDbRes[key].platenumber + "~" + theDbRes[key].province + "~" + theDbRes[key].district + "~" + theDbRes[key].sector + "~" + theDbRes[key].username + "~" + theDbRes[key].gender + "~" + theDbRes[key].avatar_profile);
                     i_db++;
                 }
             }
@@ -489,7 +489,7 @@ class ClientMessages extends Component {
             for (var key in theDbRes) {
                 if (theDbRes.hasOwnProperty(key)) {
                     //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
-                    theResults.push("" + theDbRes[key]._id + "~" + theDbRes[key].text + "~" + theDbRes[key].createdAt + "~" + theDbRes[key].account_type + "~" + theDbRes[key].currentLatitude + "~" + theDbRes[key].currentLongitude + "~" + theDbRes[key].accountConfirmed + "~" + theDbRes[key].id_number + "~" + theDbRes[key].surname + "~" + theDbRes[key].lastname + "~" + theDbRes[key].email + "~" + theDbRes[key].platenumber + "~" + theDbRes[key].province + "~" + theDbRes[key].district + "~" + theDbRes[key].sector + "~" + theDbRes[key].username + "~" + theDbRes[key].gender + "~" + theDbRes[key].avatar_profile);
+                    theResults.push("" + theDbRes[key]._id.valueOf()  + "~" + theDbRes[key].text + "~" + theDbRes[key].createdAt + "~" + theDbRes[key].account_type + "~" + theDbRes[key].currentLatitude + "~" + theDbRes[key].currentLongitude + "~" + theDbRes[key].accountConfirmed + "~" + theDbRes[key].id_number + "~" + theDbRes[key].surname + "~" + theDbRes[key].lastname + "~" + theDbRes[key].email + "~" + theDbRes[key].platenumber + "~" + theDbRes[key].province + "~" + theDbRes[key].district + "~" + theDbRes[key].sector + "~" + theDbRes[key].username + "~" + theDbRes[key].gender + "~" + theDbRes[key].avatar_profile);
                     i_db++;
                 }
             }
@@ -508,7 +508,7 @@ class ClientMessages extends Component {
             for (var key in theDbRes) {
                 if (theDbRes.hasOwnProperty(key)) {
                     //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
-                    theResults.push("" + theDbRes[key]._id + "~" + theDbRes[key].text + "~" + theDbRes[key].createdAt + "~" + theDbRes[key].account_type + "~" + theDbRes[key].currentLatitude + "~" + theDbRes[key].currentLongitude + "~" + theDbRes[key].accountConfirmed + "~" + theDbRes[key].id_number + "~" + theDbRes[key].surname + "~" + theDbRes[key].lastname + "~" + theDbRes[key].email + "~" + theDbRes[key].platenumber + "~" + theDbRes[key].province + "~" + theDbRes[key].district + "~" + theDbRes[key].sector + "~" + theDbRes[key].username + "~" + theDbRes[key].gender + "~" + theDbRes[key].avatar_profile);
+                    theResults.push("" + theDbRes[key]._id.valueOf()  + "~" + theDbRes[key].text + "~" + theDbRes[key].createdAt + "~" + theDbRes[key].account_type + "~" + theDbRes[key].currentLatitude + "~" + theDbRes[key].currentLongitude + "~" + theDbRes[key].accountConfirmed + "~" + theDbRes[key].id_number + "~" + theDbRes[key].surname + "~" + theDbRes[key].lastname + "~" + theDbRes[key].email + "~" + theDbRes[key].platenumber + "~" + theDbRes[key].province + "~" + theDbRes[key].district + "~" + theDbRes[key].sector + "~" + theDbRes[key].username + "~" + theDbRes[key].gender + "~" + theDbRes[key].avatar_profile);
                     i_db++;
                 }
             }
@@ -556,7 +556,7 @@ class ClientMessages extends Component {
                 //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
 
                 if (po[key].account_type == "client") {
-                    global.the_id_op = po[key]._id;
+                    global.the_id_op = po[key]._id.valueOf() ;
                 }
             }
         }
@@ -582,7 +582,7 @@ class ClientMessages extends Component {
             if (theDbRes.hasOwnProperty(key)) {
                 //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
 
-                theResults.push(theDbRes[key]._id + "~" + theDbRes[key].text + "~" + theDbRes[key].createdAt + "~" + theDbRes[key].account_type + "~" + theDbRes[key].currentLatitude + "~" + theDbRes[key].currentLongitude + "~" + theDbRes[key].accountConfirmed + "~" + theDbRes[key].id_number + "~" + theDbRes[key].surname + "~" + theDbRes[key].lastname + "~" + theDbRes[key].email + "~" + theDbRes[key].platenumber + "~" + theDbRes[key].province + "~" + theDbRes[key].district + "~" + theDbRes[key].sector + "~" + theDbRes[key].username + "~" + theDbRes[key].gender + "~" + theDbRes[key].avatar_profile);
+                theResults.push(theDbRes[key]._id.valueOf()  + "~" + theDbRes[key].text + "~" + theDbRes[key].createdAt + "~" + theDbRes[key].account_type + "~" + theDbRes[key].currentLatitude + "~" + theDbRes[key].currentLongitude + "~" + theDbRes[key].accountConfirmed + "~" + theDbRes[key].id_number + "~" + theDbRes[key].surname + "~" + theDbRes[key].lastname + "~" + theDbRes[key].email + "~" + theDbRes[key].platenumber + "~" + theDbRes[key].province + "~" + theDbRes[key].district + "~" + theDbRes[key].sector + "~" + theDbRes[key].username + "~" + theDbRes[key].gender + "~" + theDbRes[key].avatar_profile);
 
                 i_db++;
             }
@@ -624,7 +624,7 @@ class ClientMessages extends Component {
                 if (theDbRes.hasOwnProperty(key)) {
                     //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
 
-                    theResults.push(theDbRes[key]._id + "~" + theDbRes[key].id_sender + "~" + theDbRes[key].id_reciever + "~" + theDbRes[key].regdate + "~" + theDbRes[key].sent_time + "~" + theDbRes[key].receive_time + "~" + theDbRes[key].message_visibility + "~" + theDbRes[key].actual_message);
+                    theResults.push(theDbRes[key]._id.valueOf()  + "~" + theDbRes[key].id_sender + "~" + theDbRes[key].id_reciever + "~" + theDbRes[key].regdate + "~" + theDbRes[key].sent_time + "~" + theDbRes[key].receive_time + "~" + theDbRes[key].message_visibility + "~" + theDbRes[key].actual_message);
 
                     i_db++;
                 }
@@ -700,7 +700,7 @@ class ClientMessages extends Component {
                         if (theDbRes.hasOwnProperty(key)) {
                             //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
 
-                            theResults.push(theDbRes[key]._id + "~" + theDbRes[key].id_sender + "~" + theDbRes[key].id_reciever + "~" + theDbRes[key].regdate + "~" + theDbRes[key].sent_time + "~" + theDbRes[key].receive_time + "~" + theDbRes[key].message_visibility + "~" + theDbRes[key].actual_message);
+                            theResults.push(theDbRes[key]._id.valueOf()  + "~" + theDbRes[key].id_sender + "~" + theDbRes[key].id_reciever + "~" + theDbRes[key].regdate + "~" + theDbRes[key].sent_time + "~" + theDbRes[key].receive_time + "~" + theDbRes[key].message_visibility + "~" + theDbRes[key].actual_message);
 
                             i_db++;
                         }
