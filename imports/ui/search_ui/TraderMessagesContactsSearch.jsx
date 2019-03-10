@@ -77,7 +77,7 @@ export class TraderMessagesContactsSearch extends Component {
                 console.log("user added");
                 //e.target.style.display = "none";
                 document.getElementById(elemId).style.display = "none";
-                this.click();
+                //this.click();
                 
             }
         });
