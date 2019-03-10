@@ -194,6 +194,7 @@ class DriverMessages extends Component {
                         global.avatar_profile = po[key].avatar_profile;
                     }
                 }
+            }
             
 
             var theDbRes = Ironji_messages_my_chatties.find({ $or: [{ "my_id": global.the_id_op }, { "user_id": global.the_id_op }] }).fetch();
