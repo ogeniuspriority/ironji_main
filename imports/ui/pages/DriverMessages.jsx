@@ -190,7 +190,7 @@ class DriverMessages extends Component {
                 }
             }
             that.prepareChattiesRender();
-        }, 3000);
+        }, 6000);
         //---------------Check for newly activated chatties--
         setInterval(function () {
             /*//global.the_id_op = "";
@@ -251,7 +251,7 @@ class DriverMessages extends Component {
 
             }
 
-        }, 3000);
+        }, 8000);
         //-------find current chat messages--
 
 
