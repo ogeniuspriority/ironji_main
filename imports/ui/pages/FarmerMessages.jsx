@@ -204,9 +204,9 @@ class FarmerMessages extends Component {
                         var currChatty = "";
                         currChatty = "" + theDbRes[key].user_id.valueOf() ;
                         if (theDbRes[key].user_id.includes(global.the_id_op)) {
-                            currChatty = "" + theDbRes[key].my_id.valueOf() ;
+                            currChatty = "" + theDbRes[key].my_id ;
                         } else {
-                            currChatty = "" + theDbRes[key].user_id.valueOf() ;
+                            currChatty = "" + theDbRes[key].user_id;
                         }
                         that.setState({ allMyChatties: currChatty });
 
