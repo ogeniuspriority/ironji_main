@@ -686,6 +686,8 @@ class DriverMessages extends Component {
             setTimeout(function () {
                 that_1.renderMessagesFromChats();
             }, 1000);
+            var objDiv = document.getElementById("messagesChatsQuer");
+            objDiv.scrollTop = objDiv.scrollHeight;
             
         }, 3400);
         //-----------
@@ -764,6 +766,8 @@ class DriverMessages extends Component {
                     //----------------
                     that_0.setState({ chatMessages: theResults });
                     that_0.renderMessagesFromChats();
+                    var objDiv = document.getElementById("messagesChatsQuer");
+                    objDiv.scrollTop = objDiv.scrollHeight;
                 }, 3000);
             }
         });
@@ -849,7 +853,7 @@ class DriverMessages extends Component {
                         Chat room
                     </div>
                     <div><h4>Talking to "<span id="chatWindowMessages_person">{this.state.openedUsername}</span>", "{this.state.accountType}"</h4>
-                        <div style={{ padding: "5px", height: "320px", borderRadius: "5px", overflowY: "scroll" }}>
+                        <div id="messagesChatsQuer" style={{ padding: "5px", height: "320px", borderRadius: "5px", overflowY: "scroll" }}>
 
                             {this.renderMessagesFromChats()}
 

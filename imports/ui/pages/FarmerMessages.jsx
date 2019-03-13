@@ -675,6 +675,8 @@ class FarmerMessages extends Component {
                     global.username = po[key].username;
                     that.setState({ openedUsername: po[key].username });
                     that.setState({ accountType: po[key].account_type });
+                    var objDiv = document.getElementById("messagesChatsQuer");
+                    objDiv.scrollTop = objDiv.scrollHeight; 
 
 
                 }
@@ -740,6 +742,8 @@ class FarmerMessages extends Component {
                     //----------------
                     that_0.setState({ chatMessages: theResults });
                     that_0.renderMessagesFromChats();
+                    var objDiv = document.getElementById("messagesChatsQuer");
+                    objDiv.scrollTop = objDiv.scrollHeight;
                 }, 3000);
             }
         });
@@ -822,7 +826,7 @@ class FarmerMessages extends Component {
                         Chat room
                     </div>
                     <div><h4>Talking to "<span id="chatWindowMessages_person">{this.state.openedUsername}</span>", "{this.state.accountType}"</h4>
-                        <div style={{ padding: "5px", height: "320px", borderRadius: "5px", overflowY: "scroll" }}>
+                        <div id="messagesChatsQuer" style={{ padding: "5px", height: "320px", borderRadius: "5px", overflowY: "scroll" }}>
                             {this.renderMessagesFromChats()}
 
                         </div>
