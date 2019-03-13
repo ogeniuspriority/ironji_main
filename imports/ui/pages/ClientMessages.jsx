@@ -40,7 +40,7 @@ class ClientMessages extends Component {
             chatMessages: [],
             openedUsername: "",
             accountType: "",
-            tempConversationMessages: []
+             tempConversationMessages: []
         };
         this.highlightSelectedRow = this.highlightSelectedRow.bind(this);
     }
@@ -247,8 +247,7 @@ class ClientMessages extends Component {
             var theDbRes = Ironji_messages_conversations.find({ $or: [{ $and: [{ "id_sender": { $eq: that.state.openedChatWinId } }, { "id_reciever": global.the_id_op }] }, { $and: [{ "id_sender": { $eq: global.the_id_op } }, { "id_reciever": that.state.openedChatWinId }] }] }, { sort: { regdate: 1 } }).fetch();
             //console.log("length", theDbRes.length);
             //-----------------
-            var theResults = [];
-            that.setState({ chatMessages: theResults });
+            
             var i_db = 0;
             for (var key in theDbRes) {
                 if (theDbRes.hasOwnProperty(key)) {
@@ -259,13 +258,16 @@ class ClientMessages extends Component {
                     i_db++;
                 }
             }
-            if (that.state.tempConversationMessages.toString() == "") {
+            if (that.state.tempConversationMessages.length == 0) {
                 that.setState({ tempConversationMessages: theResults });
             } else {
-                if (that.state.tempConversationMessages.toString() == that.state.chatMessages.toString()) {
+                if (that.state.tempConversationMessages.length == that.state.chatMessages.length) {
 
                 } else {
+                    var theResults = [];
                     that.setState({ chatMessages: theResults });
+                    that.setState({ chatMessages: theResults });
+                    that.setState({ tempConversationMessages: theResults });
                 }
 
             }
