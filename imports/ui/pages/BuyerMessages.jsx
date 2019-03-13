@@ -40,6 +40,7 @@ class BuyerMessages extends Component {
             chatMessages: [],
             openedUsername: "",
             accountType: "",
+            tempConversationMessages: []
         };
         this.highlightSelectedRow = this.highlightSelectedRow.bind(this);
 
@@ -84,6 +85,7 @@ class BuyerMessages extends Component {
                         } else {
                             currChatty = "" + theDbRes[key].user_id;
                         }
+                        console.log("currChatty " + currChatty);
                         that.setState({ allMyChatties: currChatty });
                         //-------------The Opened One--
                         that.setState({ openedChatWinId: currChatty });
@@ -232,6 +234,33 @@ class BuyerMessages extends Component {
                 } else {
                     that.prepareChattiesRender();
                     that.setState({ ironjiMyChatties_temporary: that.state.ironjiMyChatties });
+                }
+
+            }
+            //-----------------------
+            //-------------
+            var theDbRes = Ironji_messages_conversations.find({ $or: [{ $and: [{ "id_sender": { $eq: that.state.openedChatWinId } }, { "id_reciever": global.the_id_op }] }, { $and: [{ "id_sender": { $eq: global.the_id_op } }, { "id_reciever": that.state.openedChatWinId }] }] }, { sort: { regdate: 1 } }).fetch();
+            //console.log("length", theDbRes.length);
+            //-----------------
+            var theResults = [];
+            that.setState({ chatMessages: theResults });
+            var i_db = 0;
+            for (var key in theDbRes) {
+                if (theDbRes.hasOwnProperty(key)) {
+                    //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
+
+                    theResults.push(theDbRes[key]._id.valueOf() + "~" + theDbRes[key].id_sender + "~" + theDbRes[key].id_reciever + "~" + theDbRes[key].regdate + "~" + theDbRes[key].sent_time + "~" + theDbRes[key].receive_time + "~" + theDbRes[key].message_visibility + "~" + theDbRes[key].actual_message);
+
+                    i_db++;
+                }
+            }
+            if (that.state.tempConversationMessages.toString() == "") {
+                that.setState({ tempConversationMessages: theResults });
+            } else {
+                if (that.state.tempConversationMessages.toString() == that.state.chatMessages.toString()) {
+
+                } else {
+                    that.setState({ chatMessages: theResults });
                 }
 
             }

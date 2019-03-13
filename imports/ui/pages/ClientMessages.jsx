@@ -40,6 +40,7 @@ class ClientMessages extends Component {
             chatMessages: [],
             openedUsername: "",
             accountType: "",
+            tempConversationMessages: []
         };
         this.highlightSelectedRow = this.highlightSelectedRow.bind(this);
     }
@@ -68,7 +69,7 @@ class ClientMessages extends Component {
             }
 
             var theDbRes = Ironji_messages_my_chatties.find({ $or: [{ "my_id": global.the_id_op }, { "user_id": global.the_id_op }] }).fetch();
-            console.log("length", theDbRes.length);
+            console.log("length global id", global.the_id_op);
  
 
             var i_db = 0;
@@ -78,14 +79,19 @@ class ClientMessages extends Component {
 
                     if (i_db == 0) {
                         var currChatty = "";
-                        currChatty = "" + theDbRes[key].user_id;
-                        if (theDbRes[key].user_id.includes(global.the_id_op)) {
-                            currChatty = "" + theDbRes[key].my_id;
+                        var user_id = theDbRes[key].user_id;
+                        var my_id = theDbRes[key].my_id;
+                        console.log("currChatty 0 " + user_id + "--" + my_id);
+                        if (user_id.includes(global.the_id_op)) {
+                            currChatty = "" + my_id;
+                            console.log("currChatty 1" + currChatty);
                         } else {
-                            currChatty = "" + theDbRes[key].user_id;
+                            currChatty = "" + user_id;
+                            console.log("currChatty 2 " + currChatty);
                         }
                         that.setState({ allMyChatties: currChatty });
                         //-------------The Opened One--
+                        console.log("currChatty " + currChatty);
                         that.setState({ openedChatWinId: currChatty });
                         var that_0 = that;
 
@@ -108,7 +114,7 @@ class ClientMessages extends Component {
                         var that_1 = that;
 
                         var theDbRes = Ironji_messages_conversations.find({ $or: [{ $and: [{ "id_sender": { $eq: that.state.openedChatWinId } }, { "id_reciever": global.the_id_op }] }, { $and: [{ "id_sender": { $eq: global.the_id_op } }, { "id_reciever": that.state.openedChatWinId }] }] }, { sort: { regdate: 1 } }).fetch();
-                        //console.log("length", theDbRes.length);
+                        console.log("length-converse", theDbRes.length + "----" + this.state.openedChatWinId);
                         var theResults = [];
 
                         that_1.setState({ chatMessages: theResults });
@@ -233,6 +239,33 @@ class ClientMessages extends Component {
                 } else {
                     that.prepareChattiesRender();
                     that.setState({ ironjiMyChatties_temporary: that.state.ironjiMyChatties });
+                }
+
+            }
+            //----------------
+            //-------------
+            var theDbRes = Ironji_messages_conversations.find({ $or: [{ $and: [{ "id_sender": { $eq: that.state.openedChatWinId } }, { "id_reciever": global.the_id_op }] }, { $and: [{ "id_sender": { $eq: global.the_id_op } }, { "id_reciever": that.state.openedChatWinId }] }] }, { sort: { regdate: 1 } }).fetch();
+            //console.log("length", theDbRes.length);
+            //-----------------
+            var theResults = [];
+            that.setState({ chatMessages: theResults });
+            var i_db = 0;
+            for (var key in theDbRes) {
+                if (theDbRes.hasOwnProperty(key)) {
+                    //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
+
+                    theResults.push(theDbRes[key]._id.valueOf() + "~" + theDbRes[key].id_sender + "~" + theDbRes[key].id_reciever + "~" + theDbRes[key].regdate + "~" + theDbRes[key].sent_time + "~" + theDbRes[key].receive_time + "~" + theDbRes[key].message_visibility + "~" + theDbRes[key].actual_message);
+
+                    i_db++;
+                }
+            }
+            if (that.state.tempConversationMessages.toString() == "") {
+                that.setState({ tempConversationMessages: theResults });
+            } else {
+                if (that.state.tempConversationMessages.toString() == that.state.chatMessages.toString()) {
+
+                } else {
+                    that.setState({ chatMessages: theResults });
                 }
 
             }
