@@ -12,6 +12,7 @@ import TimePicker from 'rc-time-picker';
 import 'rc-time-picker/assets/index.css';
 
 import { Ironji_messages_my_chatties } from '../../api/ironji_messages_my_chatties';
+import { Ironji_messages_conversations } from '../../api/ironji_messages_conversations';
 
 
 export class FarmerMessagesChatties_ChatMessages extends Component {
@@ -44,7 +45,21 @@ export class FarmerMessagesChatties_ChatMessages extends Component {
                     //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
 
                         global.username = po[key].username;
-                        that.setState({ username: po[key].username });
+                    that.setState({ username: po[key].username });
+                    //-----------
+                    var that0 = that;
+                    var theDbRes = Ironji_messages_conversations.find({ $and: [{ "id_sender": { $eq: that.props.IdSender } }, { "id_reciever": global.the_id_op }, { "read": { $ne: "1" } }] }, { sort: { regdate: 1 } }).fetch();
+                    if (theDbRes.length > 0) {
+                        Ironji_messages_conversations.update({ "_id": that0.props.messageId }, {
+                            $set: { read: "1" }
+                        }, function (err, result) {
+                            if (err) {
+                                console.log("Updated no" + that0.props.messageId);
+                            } else {
+                                console.log("Updated" + that0.props.messageId);
+                            }
+                        });
+                    }
                     
                 }
             }
