@@ -12,4 +12,4 @@ id,user_id,regdate,my_id
 
 ironji_messages_conversations
 -------------------------------------
-id,id_sender,id_reciever,regdate,sent_time,receive_time,message_visibility,actual_message
+id,id_sender,id_reciever,regdate,sent_time,receive_time,message_visibility,actual_message,read

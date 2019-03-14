@@ -12,6 +12,7 @@ import TimePicker from 'rc-time-picker';
 import 'rc-time-picker/assets/index.css';
 
 import { Ironji_messages_my_chatties } from '../../api/ironji_messages_my_chatties';
+import { Ironji_messages_conversations } from '../../api/ironji_messages_conversations';
 
 
 export class DriverMessagesChatties extends Component {
@@ -46,7 +47,25 @@ export class DriverMessagesChatties extends Component {
     selectNewChatty() {
         this.props.onSelectChatty(this.props.ironji_users_id);
     }
+    renderNberOfUnreadMessages() {
+        global.the_id_op = "";
+        global.avatar_profile = "";
+        var po = Users.find({ username: "" + sessionStorage.getItem('ironji_account_username') }, { sort: { text: 1 } }).fetch();
+        for (var key in po) {
+            if (po.hasOwnProperty(key)) {
+                //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
 
+                if (po[key].account_type == "driver") {
+                    global.the_id_op = po[key]._id.valueOf();
+                    //console.log("----oopp--ironji_users_id", global.the_id_op);
+                    global.avatar_profile = po[key].avatar_profile;
+                }
+            }
+        }
+        var theDbRes = Ironji_messages_conversations.find({ $and: [{ "id_sender": { $eq: this.props.ironji_users_id } }, { "id_reciever": global.the_id_op }, { "read": { $ne: "1" } }] }, { sort: { regdate: 1 } }).fetch();
+        return (<div>{(theDbRes.length > 0) ? "" + theDbRes.length : ""}</div>);
+
+    }
     render() {
         return (<div>
             <div onClick={this.selectNewChatty.bind(this)} className="modal-content contactsListSd" style={{ width: "auto", marginTop: "5px", display: "" + this.props.data_display, background: "" + this.props.style_display_checking_back_g }}>
@@ -61,7 +80,7 @@ export class DriverMessagesChatties extends Component {
                         </td>
                             <td>
                                 <div>
-                                    <span className="badge" style={{ background: "green", borderRadius: "30px", width: "40px" }}>2</span>
+                                    <span className="badge" style={{ background: "green", borderRadius: "30px", width: "40px" }}>{this.renderNberOfUnreadMessages()}</span>
                                     <div style={{ padding: "5px", boxShadow: "2px 2px #333" }}>
                                         fo9jfsfis sfibs fsnifb
                                                     </div>
