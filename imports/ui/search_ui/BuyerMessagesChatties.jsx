@@ -66,6 +66,36 @@ export class BuyerMessagesChatties extends Component {
         return (<div>{(theDbRes.length > 0) ? "" + theDbRes.length : ""}</div>);
 
     }
+    renderNberOfUnreadMessages_MESSAGE() {
+        global.the_id_op = "";
+        global.avatar_profile = "";
+        var po = Users.find({ username: "" + sessionStorage.getItem('ironji_account_username') }, { sort: { text: 1 } }).fetch();
+        for (var key in po) {
+            if (po.hasOwnProperty(key)) {
+                //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
+
+                if (po[key].account_type == "buyer") {
+                    global.the_id_op = po[key]._id.valueOf();
+                    //console.log("----oopp--ironji_users_id", global.the_id_op);
+                    global.avatar_profile = po[key].avatar_profile;
+                }
+            }
+        }
+        var theDbRes = Ironji_messages_conversations.find({ $and: [{ "id_sender": { $eq: this.props.ironji_users_id } }, { "id_reciever": global.the_id_op }] }, { sort: { regdate: 1 } }).fetch();
+        var n = 0;
+        global.lastmessage = "";
+        for (var key in theDbRes) {
+            if (theDbRes.hasOwnProperty(key)) {
+                //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
+                if (n == (theDbRes.length - 1)) {
+                    global.lastmessage = theDbRes[key].actual_message;
+                }
+                n++;
+            }
+        }
+        return (<div>{global.lastmessage}</div>);
+
+    }
     render() {
         return (<div>
             <div onClick={this.selectNewChatty.bind(this)} className="modal-content contactsListSd" style={{ width: "auto", marginTop: "5px", display: "" + this.props.data_display, background: "" + this.props.style_display_checking_back_g  }}>
@@ -82,7 +112,7 @@ export class BuyerMessagesChatties extends Component {
                                 <div>
                                     <span className="badge" style={{ background: "green", borderRadius: "30px", width: "40px" }}>{this.renderNberOfUnreadMessages()}</span>
                                     <div style={{ padding: "5px", boxShadow: "2px 2px #333" }}>
-                                        fo9jfsfis sfibs fsnifb
+                                        {this.renderNberOfUnreadMessages_MESSAGE()}
                                                     </div>
                                 </div>
                             </td>
