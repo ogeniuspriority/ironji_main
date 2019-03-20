@@ -507,7 +507,31 @@ class ClientMainPage extends Component {
 
 
     }
+    renderDriverScheduleSchedules() {
 
+        global.userna_me = "";
+        //----------
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+        today = yyyy + '-' + mm + '-' + dd;
+        //-------------
+        global.datesearch = new Date().getTime();
+        console.log("search_query" + global.datesearch);//---"date_of_schedule": { $lte: new Date() }
+        return Drivers_schedules.find({ $and: [{ "date_of_schedule": { "$gte": global.datesearch } }, { "visible_active": "1" }] }, { sort: { createdAt: - 1 } }).fetch().map((deal) => (
+            <div style={{ borderBottom: "1px solid green", width: "300px" }}>
+                <p style={{ color: "blue", textDecoration: "underline", display: "none" }}>{Users.find({ _id: deal.client_id }, { sort: { text: 1 } }).fetch().forEach(function (myDoc) { global.userna_me = myDoc.username; })}</p>
+                <div style={{ color: "blue", textDecoration: "underline" }}>{global.userna_me}</div>
+                <div style={{ marginTop: "5px" }}><span >Date of schedule:</span><span className='smallANdCool'>{new Date(deal.date_of_schedule).getFullYear() + '-' + (new Date(deal.date_of_schedule).getMonth() + 1) + '-' + new Date(deal.date_of_schedule).getDate()}</span></div>
+                <div style={{ marginTop: "5px" }}><span>Origin:</span><span className='smallANdCool'>{deal.origin}</span></div>
+                <div style={{ marginTop: "5px" }}><span>Destination:</span><span className='smallANdCool'>{deal.destination}</span></div>
+                <div style={{ marginTop: "5px" }}><span >Time of departure:</span><span className='smallANdCool'>{new Date(parseInt(deal.time_from)).getHours().toString() + ":" + new Date(parseInt(deal.time_to)).getMinutes().toString()}</span></div>
+                <div style={{ marginTop: "5px" }}><span>Time of arrival:</span><span className='smallANdCool'>{new Date(parseInt(deal.time_to)).getHours().toString() + ":" + new Date(parseInt(deal.time_from)).getMinutes().toString()}</span></div>
+               
+            </div>
+        ));
+    }
     panToArcDeTriomphe() {
         var checkOnce = true;
         var that = this;
@@ -633,7 +657,7 @@ class ClientMainPage extends Component {
 
     }
 
-    renderTheClientSchedules() {
+    /*renderTheClientSchedules() {
         global.userna_me = "";
 
         return this.props.theSchedules.map((deal) => (
@@ -651,7 +675,7 @@ class ClientMainPage extends Component {
                 <button className="btn btn-success">Talk to them<br /><span className="minify">Muvugishe</span></button>
             </div>
         ));
-    }
+    }*/
     renderThisAccountAvatar() {
 
         global.the_id_op = "";
@@ -955,7 +979,7 @@ class ClientMainPage extends Component {
                         </div>
                         <div className="modal-body" style={{ height: "340px", overflow: "scroll" }}>
                             <div>
-                                {this.renderTheClientSchedules()}
+                                
                             </div>
 
                         </div>
@@ -1034,8 +1058,8 @@ class ClientMainPage extends Component {
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div className="modal-body">
-                           Schedules
+                        <div className="modal-body" style={{height:"300px",overflowY:"scroll"}}>
+                            {this.renderDriverScheduleSchedules()}
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-dismiss="modal">Close<br /><span className='minify'>Funga</span></button>

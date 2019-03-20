@@ -688,7 +688,7 @@ class DriverMainPage extends Component {
         //-------------
         global.datesearch = new Date().getTime();
         console.log("search_query" + global.datesearch);//---"date_of_schedule": { $lte: new Date() }
-        return Drivers_schedules.find({ $and: [{ "date_of_schedule": { "$gte": global.datesearch } }, { "visible_active": "1" }]}, { sort: { createdAt: - 1 } }).fetch().map((deal) => (
+        return Drivers_schedules.find({ $and: [{ "date_of_schedule": { "$gte": global.datesearch } }, { "visible_active": "1" }, { "client_id": global.the_id_op}]}, { sort: { createdAt: - 1 } }).fetch().map((deal) => (
             <div style={{ borderBottom: "1px solid green", width: "300px" }}>
                 <p style={{ color: "blue", textDecoration: "underline", display: "none" }}>{Users.find({ _id: deal.client_id }, { sort: { text: 1 } }).fetch().forEach(function (myDoc) { global.userna_me = myDoc.username; })}</p>
                 <div style={{ color: "blue", textDecoration: "underline" }}>{global.userna_me}</div>
