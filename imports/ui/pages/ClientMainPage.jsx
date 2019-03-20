@@ -771,9 +771,9 @@ class ClientMainPage extends Component {
                             <tbody>
                                 <tr><td></td><td></td></tr>
                                 <tr><td><button data-toggle="modal" data-dismiss="modal" data-target="#createScheduleModal" className='btn-primary mainPageButton'>Near By Drivers<br /><span className='minify'>Abashoferi bakwegereye</span></button></td><td></td></tr>
-                                <tr><td><button data-toggle="modal" data-dismiss="modal" data-target="#hotDealsModal" className='btn-primary mainPageButton'>Create a hot deal<br /><span className='minify'>Tanga gahunda ishyushye</span></button></td><td></td></tr>
-                                <tr><td><button data-toggle="modal" data-dismiss="modal" data-target="#hotDealsModal" className='btn-primary mainPageButton'>Publish Hot product<br /><span className='minify'>Erekana ibicuruzwa byawe biri kuri poromosiyo</span></button></td><td></td></tr>
-                                <tr><td><button data-toggle="modal" data-dismiss="modal" data-target="#hotDealsModal" className='btn-primary mainPageButton'>Drivers' schedules<br /><span className='minify'>Gahunda z'abashoferi</span></button></td><td></td></tr>
+                                <tr><td><button data-toggle="modal" data-dismiss="modal" data-target="#publishHotDeal" className='btn-primary mainPageButton'>Create a hot deal<br /><span className='minify'>Tanga gahunda ishyushye</span></button></td><td></td></tr>
+                                <tr><td><button data-toggle="modal" data-dismiss="modal" data-target="#publishHotProducts" className='btn-primary mainPageButton'>Publish Hot product<br /><span className='minify'>Erekana ibicuruzwa byawe biri kuri poromosiyo</span></button></td><td></td></tr>
+                                <tr><td><button data-toggle="modal" data-dismiss="modal" data-target="#driverSchedulesForView" className='btn-primary mainPageButton'>Drivers' schedules<br /><span className='minify'>Gahunda z'abashoferi</span></button></td><td></td></tr>
                                 <tr><td><button data-toggle="modal" data-dismiss="modal" className='btn-primary mainPageButton'>I Need Transportation Now<Switch onClick={this.toggleSwitch} on={this.state.switched} /><br /><span className='minify'>Nkeneye Umuntu Untwara Nonaha</span></button></td><td></td></tr>
                             </tbody>
                         </table>
@@ -966,6 +966,24 @@ class ClientMainPage extends Component {
                     </div>
                 </div>
             </div>
+            <div className="modal fade" id="publishHotProducts" role="dialog" aria-labelledby="publishHotProductsModalLabel" aria-hidden="true">
+                <div className="modal-dialog" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLabel">Publish hot product<br /><span className="minify">Amamaza</span></h5>
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div className="modal-body">
+                           Hot product
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Close<br /><span className='minify'>Funga</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div className="modal fade" id="hotDealsModal" role="dialog" aria-labelledby="hotDealsModalModalLabel" aria-hidden="true">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
@@ -982,6 +1000,42 @@ class ClientMainPage extends Component {
 
 
                             </div>
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Close<br /><span className='minify'>Funga</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="modal fade" id="publishHotDeal" role="dialog" aria-labelledby="publishHotDealModalLabel" aria-hidden="true">
+                <div className="modal-dialog" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLabel">Give a Hot Deal<br /><span className="minify">Tanga Gahunda</span></h5>
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div className="modal-body">
+                           HotDeal
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Close<br /><span className='minify'>Funga</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="modal fade" id="driverSchedulesForView" role="dialog" aria-labelledby="driverSchedulesForViewModalLabel" aria-hidden="true">
+                <div className="modal-dialog" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLabel">View Transporters' Schedules<br /><span className="minify">Reba Gahunda Z' Ababkora Transport</span></h5>
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div className="modal-body">
+                           Schedules
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-dismiss="modal">Close<br /><span className='minify'>Funga</span></button>

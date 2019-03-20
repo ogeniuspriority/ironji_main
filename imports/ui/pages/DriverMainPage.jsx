@@ -646,6 +646,25 @@ class DriverMainPage extends Component {
             </div>
         ));
     }
+
+    DeleteThisSchedule(theId,e) {
+        //--visible_active
+        //console.log("eeeee" + theId.toString());
+        //-------------
+        Drivers_schedules.update({ _id: theId }, {
+            $set: { visible_active: "0" }
+        }, function (err, result) {
+            if (err) {
+               
+            } else {
+             
+
+            }
+        });
+
+    }
+
+
     renderMySchedules() {
 
         global.the_id_op = "";
@@ -660,16 +679,25 @@ class DriverMainPage extends Component {
             }
         }
         global.userna_me = "";
-        return Drivers_schedules.find({}, { sort: { createdAt: - 1 } }).fetch().map((deal) => (
+        //----------
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+        today = yyyy + '-' + mm + '-' + dd;
+        //-------------
+        global.datesearch = new Date().getTime();
+        console.log("search_query" + global.datesearch);//---"date_of_schedule": { $lte: new Date() }
+        return Drivers_schedules.find({ $and: [{ "date_of_schedule": { "$gte": global.datesearch } }, { "visible_active": "1" }]}, { sort: { createdAt: - 1 } }).fetch().map((deal) => (
             <div style={{ borderBottom: "1px solid green", width: "300px" }}>
                 <p style={{ color: "blue", textDecoration: "underline", display: "none" }}>{Users.find({ _id: deal.client_id }, { sort: { text: 1 } }).fetch().forEach(function (myDoc) { global.userna_me = myDoc.username; })}</p>
                 <div style={{ color: "blue", textDecoration: "underline" }}>{global.userna_me}</div>
-                <div style={{ marginTop: "5px" }}><span >Date of schedule:</span><span className='smallANdCool'>{deal.date_of_schedule}</span></div>
+                <div style={{ marginTop: "5px" }}><span >Date of schedule:</span><span className='smallANdCool'>{new Date(deal.date_of_schedule).getFullYear() + '-' + (new Date(deal.date_of_schedule).getMonth() + 1) + '-' + new Date(deal.date_of_schedule).getDate()}</span></div>
                 <div style={{ marginTop: "5px" }}><span>Origin:</span><span className='smallANdCool'>{deal.origin}</span></div>
                 <div style={{ marginTop: "5px" }}><span>Destination:</span><span className='smallANdCool'>{deal.destination}</span></div>
                 <div style={{ marginTop: "5px" }}><span >Time of departure:</span><span className='smallANdCool'>{new Date(parseInt(deal.time_from)).getHours().toString() + ":" + new Date(parseInt(deal.time_to)).getMinutes().toString()}</span></div>
                 <div style={{ marginTop: "5px" }}><span>Time of arrival:</span><span className='smallANdCool'>{new Date(parseInt(deal.time_to)).getHours().toString() + ":" + new Date(parseInt(deal.time_from)).getMinutes().toString()}</span></div>
-                <button className="btn btn-success">Delete This<br /><span className="minify">Siba Iyi ngiyi</span></button>
+                <button className="btn btn-success" onClick={this.DeleteThisSchedule.bind(this, deal._id.valueOf())}>Delete This<br /><span className="minify">Siba Iyi ngiyi</span></button>
                 {}
             </div>
         ));
@@ -701,29 +729,36 @@ class DriverMainPage extends Component {
             const curr_date = d.getDate();
             const curr_month = d.getMonth() + 1; //Months are zero based
             const curr_year = d.getFullYear();
-            const the_formatted_date = curr_year + "/" + curr_month + "/" + curr_date;
+            const the_formatted_date = curr_year + "-" + curr_month + "-" + curr_date;
             //----------
             let myDate = the_formatted_date;
-            myDate = myDate.split("/");
-            const newDate = myDate[1] + "/" + myDate[2] + "/" + myDate[0];
+            myDate = myDate.split("-");
+            const newDate = myDate[1] + "-" + myDate[2] + "-" + myDate[0];
             global.date_of_schedule = new Date(newDate).getTime();
+            global.date_of_schedule_new = new Date(the_formatted_date);
             //alert(global.date_of_schedule);
+            var n = d.getTimezoneOffset();
+            const time_zone_shift = n;
             var theData = {
                 "time_to": global.time_to,
                 "createdAt": new Date(),
                 "time_from": global.time_from,
-                "date_of_schedule": the_formatted_date,
+                "date_of_schedule": global.date_of_schedule, 
                 "destination": global.destination,
                 "origin": global.origin,
                 "client_id": global.the_id,
+                "timezone_offset": time_zone_shift,
+                "visible_active":"1"
             };
             Drivers_schedules.insert(theData, function (error, result) {
                 if (error) {
-                    alert("User Not Created");
+                    //alert("Driver Schedule Not Added!");
+                    toastr.error('Error Saving...');
                 }
                 if (result) {
-                    alert("Driver Scheduled Saved!");
-                    window.open("/driverMainPage", "_self");
+                    //alert("Driver Scheduled Saved!");
+                    toastr.success('The process has been saved.', 'Success');
+                   // window.open("/driverMainPage", "_self");
                 }
             });
         } else {
