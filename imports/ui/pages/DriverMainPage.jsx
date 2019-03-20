@@ -750,6 +750,7 @@ class DriverMainPage extends Component {
                 "timezone_offset": time_zone_shift,
                 "visible_active":"1"
             };
+            var that = this;
             Drivers_schedules.insert(theData, function (error, result) {
                 if (error) {
                     //alert("Driver Schedule Not Added!");
@@ -759,6 +760,11 @@ class DriverMainPage extends Component {
                     //alert("Driver Scheduled Saved!");
                     toastr.success('The process has been saved.', 'Success');
                    // window.open("/driverMainPage", "_self");
+                    that.refs.time_to.value = "";
+                    that.refs.time_from.value = "";
+                    that.refs.date_of_schedule.value = "";
+                    that.refs.destination.value = "";
+                    that.refs.origin.value = "";
                 }
             });
         } else {
