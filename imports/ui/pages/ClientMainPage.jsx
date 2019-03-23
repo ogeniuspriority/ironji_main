@@ -28,7 +28,7 @@ import { IronjiAssistantProfile } from '../ironji_custom_features/IronjiAssistan
 
 import { IronjiAssistantProfile_advert_AboutYourBusiness } from '../ironji_custom_features/IronjiAssistantProfile_advert_AboutYourBusiness';
 import { IronjiAssistantProfile_advert_productList } from '../ironji_custom_features/IronjiAssistantProfile_advert_productList';
-
+import DayPickerInput from 'react-day-picker/DayPickerInput';
 
 const ARC_DE_TRIOMPHE_POSITION = {
     lat: 48.873947,
@@ -48,7 +48,7 @@ const KLAB = {
 var marker;
 var historicalOverlay;
 const posTI = ["300px", "300px"];
-
+const FORMAT = 'M/D/YYYY';
 
 
 
@@ -70,6 +70,7 @@ class ClientMainPage extends Component {
             productList: false,
             the_main_page_longitude: "30.059572",
             the_main_page_latitude: "-1.943659",
+            selectedDay: undefined,
         };
 
 
@@ -77,6 +78,7 @@ class ClientMainPage extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.toggleSwitch = this.toggleSwitch.bind(this);
         this.renderThisAccountAvatar = this.renderThisAccountAvatar.bind(this);
+        this.handleDayClick = this.handleDayClick.bind(this);
     }
     showPolyLinePath() {
         var map = new google.maps.Map(document.getElementById('map'), {
@@ -684,6 +686,11 @@ class ClientMainPage extends Component {
             </div>
         ));
     }*/
+    handleDayClick(day) {
+        this.setState({ selectedDay: day });
+        global.date_of_schedule_to_choose = "" + day;
+        //console.log(day);
+    }
     renderThisAccountAvatar() {
 
         global.the_id_op = "";

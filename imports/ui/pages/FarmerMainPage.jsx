@@ -28,7 +28,7 @@ import { IronjiAssistantProfile } from '../ironji_custom_features/IronjiAssistan
 
 import { IronjiAssistantProfile_advert_AboutYourBusiness } from '../ironji_custom_features/IronjiAssistantProfile_advert_AboutYourBusiness';
 import { IronjiAssistantProfile_advert_productList } from '../ironji_custom_features/IronjiAssistantProfile_advert_productList';
-
+import DayPickerInput from 'react-day-picker/DayPickerInput';
 
 const ARC_DE_TRIOMPHE_POSITION = {
     lat: 48.873947,
@@ -48,7 +48,7 @@ const KLAB = {
 var marker;
 var historicalOverlay;
 const posTI = ["300px", "300px"];
-
+const FORMAT = 'M/D/YYYY';
 
 
 
@@ -70,6 +70,7 @@ class FarmerMainPage extends Component {
             productList: false,
             the_main_page_longitude: "30.059572",
             the_main_page_latitude: "-1.943659",
+            selectedDay: undefined,
         };
 
 
@@ -77,6 +78,7 @@ class FarmerMainPage extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.toggleSwitch = this.toggleSwitch.bind(this);
         this.renderThisAccountAvatar = this.renderThisAccountAvatar.bind(this);
+        this.handleDayClick = this.handleDayClick.bind(this);
     }
     showPolyLinePath() {
         var map = new google.maps.Map(document.getElementById('map'), {
@@ -250,6 +252,9 @@ class FarmerMainPage extends Component {
         }
         return TheDta;
     }
+    reRenderTransporterSchedules() {
+        this.renderDriverScheduleSchedules();
+    }
     renderDriverScheduleSchedules() {
 
         global.userna_me = "";
@@ -261,8 +266,17 @@ class FarmerMainPage extends Component {
         today = yyyy + '-' + mm + '-' + dd;
         //-------------
         global.datesearch = new Date().getTime();
-        console.log("search_query" + global.datesearch);//---"date_of_schedule": { $lte: new Date() }
-        return Drivers_schedules.find({ $and: [{ "date_of_schedule": { "$gte": global.datesearch } }, { "visible_active": "1" }] }, { sort: { createdAt: - 1 } }).fetch().map((deal) => (
+       // console.log("search_query" + this.state.selectedDay);//---"date_of_schedule": { $lte: new Date() }
+        //----Searched date-
+        const d = new Date(this.state.selectedDay);
+        const curr_date = d.getDate();
+        const curr_month = d.getMonth() + 1; //Months are zero based
+        const curr_year = d.getFullYear();
+        const the_formatted_date = curr_year + "-" + curr_month + "-" + curr_date;
+
+        global.date_input_for_search = new Date(the_formatted_date).getTime();
+        console.log("search_query" + global.date_input_for_search);
+        return Drivers_schedules.find({ $and: [{ "date_of_schedule": { "$gte": global.datesearch } }, { "visible_active": "1" }, { date_of_schedule: global.date_input_for_search}] }, { sort: { createdAt: - 1 } }).fetch().map((deal) => (
             <div style={{ borderBottom: "1px solid green", width: "300px" }}>
                 <p style={{ color: "blue", textDecoration: "underline", display: "none" }}>{Users.find({ _id: deal.client_id }, { sort: { text: 1 } }).fetch().forEach(function (myDoc) { global.userna_me = myDoc.username; })}</p>
                 <div style={{ color: "blue", textDecoration: "underline" }}>{global.userna_me}</div>
@@ -684,6 +698,11 @@ class FarmerMainPage extends Component {
             </div>
         ));
     }
+    handleDayClick(day) {
+        this.setState({ selectedDay: day });
+        global.date_of_schedule_to_choose = "" + day;
+       console.log("---"+day);
+    }
     renderThisAccountAvatar() {
 
         global.the_id_op = "";
@@ -926,9 +945,14 @@ class FarmerMainPage extends Component {
                     <div className="modal-content">
                         <div className="modal-header">
                             <h5 className="modal-title" id="exampleModalLabel">View Transporters' Schedules<br /><span className="minify">Reba Gahunda Z' Ababkora Transport</span></h5>
-                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                            <button onClick={this.reRenderTransporterSchedules.bind(this)} type="button" className="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
+                        </div>
+                        <div>
+                            <label className="badge">Date:</label> <DayPickerInput selectedDays={this.state.selectedDay} onDayChange={this.handleDayClick} placeholder="YYYY/MM/DD" format={FORMAT} className="form-control" id="date_of_schedule_chosen_time" ref="date_of_schedule_chosen_time" />
+                            <button className="btn-primary">Filter for selected date</button>
+
                         </div>
                         <div className="modal-body" style={{ height: "300px", overflowY: "scroll" }}>
                             {this.renderDriverScheduleSchedules()}
