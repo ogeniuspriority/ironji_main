@@ -84,17 +84,19 @@ class ClientRegister extends Component {
         } else if (!this.refs.checkInfo.checked) {
             alert("Accept that information provided are true !");
         } else {
+            var email_ = "";
             var po = Users.find({ email: global.email }, { sort: { text: 1 } }).fetch();
             for (var key in po) {
                 if (po.hasOwnProperty(key)) {
                     global.the_id_opU = po[key]._id;
                     console.log("email--", po[key].email);
+                    global.email_ = po[key].email;
                     console.log("id--", po[key]._id);
                     console.log("username--", po[key].username);
                 }
             }
 
-            if (po.length != 0) {
+            if (email_.length != 0) {
                 toastr.error("The email is already taken!", 'Status!', { timeOut: 3000 });
             } else {
 
