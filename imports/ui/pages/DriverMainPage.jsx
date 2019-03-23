@@ -664,6 +664,14 @@ class DriverMainPage extends Component {
 
     }
 
+    renderTwoDigitsWork(TheDta) {
+        if (TheDta.length==1) {
+            TheDta = "0"+TheDta;
+        } else {
+
+        }
+        return TheDta;
+    }
 
     renderMySchedules() {
 
@@ -695,8 +703,8 @@ class DriverMainPage extends Component {
                 <div style={{ marginTop: "5px" }}><span >Date of schedule:</span><span className='smallANdCool'>{new Date(deal.date_of_schedule).getFullYear() + '-' + (new Date(deal.date_of_schedule).getMonth() + 1) + '-' + new Date(deal.date_of_schedule).getDate()}</span></div>
                 <div style={{ marginTop: "5px" }}><span>Origin:</span><span className='smallANdCool'>{deal.origin}</span></div>
                 <div style={{ marginTop: "5px" }}><span>Destination:</span><span className='smallANdCool'>{deal.destination}</span></div>
-                <div style={{ marginTop: "5px" }}><span >Time of departure:</span><span className='smallANdCool'>{new Date(parseInt(deal.time_from)).getHours().toString() + ":" + new Date(parseInt(deal.time_to)).getMinutes().toString()}</span></div>
-                <div style={{ marginTop: "5px" }}><span>Time of arrival:</span><span className='smallANdCool'>{new Date(parseInt(deal.time_to)).getHours().toString() + ":" + new Date(parseInt(deal.time_from)).getMinutes().toString()}</span></div>
+                <div style={{ marginTop: "5px" }}><span >Time of departure:</span><span className='smallANdCool'>{this.renderTwoDigitsWork(new Date(parseInt(deal.time_from)).getHours().toString()) + ":" + this.renderTwoDigitsWork(new Date(parseInt(deal.time_to)).getMinutes().toString())}</span></div>
+                <div style={{ marginTop: "5px" }}><span>Time of arrival:</span><span className='smallANdCool'>{this.renderTwoDigitsWork(new Date(parseInt(deal.time_to)).getHours().toString()) + ":" + this.renderTwoDigitsWork(new Date(parseInt(deal.time_from)).getMinutes().toString())}</span></div>
                 <button className="btn btn-success" onClick={this.DeleteThisSchedule.bind(this, deal._id.valueOf())}>Delete This<br /><span className="minify">Siba Iyi ngiyi</span></button>
                 {}
             </div>
@@ -759,7 +767,7 @@ class DriverMainPage extends Component {
                 if (result) {
                     //alert("Driver Scheduled Saved!");
                     toastr.success('The process has been saved.', 'Success');
-                   // window.open("/driverMainPage", "_self");
+                    window.open("/driverMainPage", "_self");
                     that.refs.time_to.value = "";
                     that.refs.time_from.value = "";
                     that.refs.date_of_schedule.value = "";

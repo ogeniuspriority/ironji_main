@@ -242,6 +242,14 @@ class FarmerMainPage extends Component {
             'Error: Your browser doesn\'t support geolocation.');
         infoWindow.open(map);
     }
+    renderTwoDigitsWork(TheDta) {
+        if (TheDta.length == 1) {
+            TheDta = "0" + TheDta;
+        } else {
+
+        }
+        return TheDta;
+    }
     renderDriverScheduleSchedules() {
 
         global.userna_me = "";
@@ -261,8 +269,8 @@ class FarmerMainPage extends Component {
                 <div style={{ marginTop: "5px" }}><span >Date of schedule:</span><span className='smallANdCool'>{new Date(deal.date_of_schedule).getFullYear() + '-' + (new Date(deal.date_of_schedule).getMonth() + 1) + '-' + new Date(deal.date_of_schedule).getDate()}</span></div>
                 <div style={{ marginTop: "5px" }}><span>Origin:</span><span className='smallANdCool'>{deal.origin}</span></div>
                 <div style={{ marginTop: "5px" }}><span>Destination:</span><span className='smallANdCool'>{deal.destination}</span></div>
-                <div style={{ marginTop: "5px" }}><span >Time of departure:</span><span className='smallANdCool'>{new Date(parseInt(deal.time_from)).getHours().toString() + ":" + new Date(parseInt(deal.time_to)).getMinutes().toString()}</span></div>
-                <div style={{ marginTop: "5px" }}><span>Time of arrival:</span><span className='smallANdCool'>{new Date(parseInt(deal.time_to)).getHours().toString() + ":" + new Date(parseInt(deal.time_from)).getMinutes().toString()}</span></div>
+                <div style={{ marginTop: "5px" }}><span >Time of departure:</span><span className='smallANdCool'>{this.renderTwoDigitsWork(new Date(parseInt(deal.time_from)).getHours().toString()) + ":" + this.renderTwoDigitsWork(new Date(parseInt(deal.time_to)).getMinutes().toString())}</span></div>
+                <div style={{ marginTop: "5px" }}><span>Time of arrival:</span><span className='smallANdCool'>{this.renderTwoDigitsWork(new Date(parseInt(deal.time_to)).getHours().toString()) + ":" + this.renderTwoDigitsWork(new Date(parseInt(deal.time_from)).getMinutes().toString())}</span></div>
 
             </div>
         ));
