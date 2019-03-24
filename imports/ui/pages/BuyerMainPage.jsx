@@ -24,6 +24,8 @@ import { ProductSearchType } from '../ironji_custom_features/ProductSearchType';
 import { ViewMapInText } from '../ironji_custom_features/ViewMapInText';
 import { MadeDriverSchedules } from '../ironji_custom_features/MadeDriverSchedules';
 import { ViewHotDealsFromTraders } from '../ironji_custom_features/ViewHotDealsFromTraders';
+import { Ironji_Trader_Live_Location } from '../ironji_custom_features/Ironji_Trader_Live_Location';
+
 const ARC_DE_TRIOMPHE_POSITION = {
     lat: 48.873947,
     lng: 2.295038
@@ -42,6 +44,7 @@ const KLAB = {
 var marker;
 var historicalOverlay;
 const posTI = ["300px", "300px"];
+const FORMAT = 'M/D/YYYY';
 
 
 
@@ -737,6 +740,23 @@ class BuyerMainPage extends Component {
 
                             </tbody>
                         </table>
+                        <div className="modal-body modal-content active" style={{ left: "5%", top: "80%", position: "absolute", width: "500px", display: (this.state.switched) ? "block" : "none" }}>
+                            <div><button onClick={this.toggleSwitch} style={{ float: "right", marginRight: "3%" }} className="btn-danger">X</button></div>
+                            <div style={{ clear: "both" }}></div>
+                            <h3>Advertise my current location:</h3>
+                            <div style={{ marginTop: "30px", padding: "8px" }}>
+                                <Ironji_Trader_Live_Location />
+                            </div>
+                            <div>
+                                <label>Latitude:</label> <input disabled type="text" className="form-control" placeholder="Latitude here" />
+                            </div>
+                            <div>
+                                <label>Longitude:</label> <input disabled type="text" className="form-control" placeholder="Longitude here" />
+                            </div>
+                            <div>
+                                <input type="button" className="btn-success" style={{ padding: "20px" }} value="Publish This Location(1 Hour validity)" />
+                            </div>
+                        </div>
 
                     </div>
 

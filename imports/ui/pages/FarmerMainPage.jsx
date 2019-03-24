@@ -29,6 +29,8 @@ import { IronjiAssistantProfile } from '../ironji_custom_features/IronjiAssistan
 import { IronjiAssistantProfile_advert_AboutYourBusiness } from '../ironji_custom_features/IronjiAssistantProfile_advert_AboutYourBusiness';
 import { IronjiAssistantProfile_advert_productList } from '../ironji_custom_features/IronjiAssistantProfile_advert_productList';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
+import { Ironji_Trader_Live_Location } from '../ironji_custom_features/Ironji_Trader_Live_Location';
+
 
 const ARC_DE_TRIOMPHE_POSITION = {
     lat: 48.873947,
@@ -828,6 +830,23 @@ class FarmerMainPage extends Component {
                                 <tr><td><button data-toggle="modal" data-dismiss="modal" className='btn-primary mainPageButton'>I Need Transportation Now<Switch onClick={this.toggleSwitch} on={this.state.switched} /><br /><span className='minify'>Nkeneye Umuntu Untwara Nonaha</span></button></td><td></td></tr>
                             </tbody>
                         </table>
+                        <div className="modal-body modal-content active" style={{ left: "5%", top: "120%", position: "absolute", width: "500px", display: (this.state.switched) ? "block" : "none" }}>
+                            <div><button onClick={this.toggleSwitch} style={{ float: "right", marginRight: "3%" }} className="btn-danger">X</button></div>
+                            <div style={{ clear: "both" }}></div>
+                            <h3>Advertise my current location:</h3>
+                            <div style={{ marginTop: "30px", padding: "8px" }}>
+                                <Ironji_Trader_Live_Location />
+                            </div>
+                            <div>
+                                <label>Latitude:</label> <input disabled type="text" className="form-control" placeholder="Latitude here" />
+                            </div>
+                            <div>
+                                <label>Longitude:</label> <input disabled type="text" className="form-control" placeholder="Longitude here" />
+                            </div>
+                            <div>
+                                <input type="button" className="btn-success" style={{ padding: "20px" }} value="Publish This Location(1 Hour validity)" />
+                            </div>
+                        </div>
 
                     </div>
 
@@ -945,13 +964,13 @@ class FarmerMainPage extends Component {
                     <div className="modal-content">
                         <div className="modal-header">
                             <h5 className="modal-title" id="exampleModalLabel">View Transporters' Schedules<br /><span className="minify">Reba Gahunda Z' Ababkora Transport</span></h5>
-                            <button onClick={this.reRenderTransporterSchedules.bind(this)} type="button" className="close" data-dismiss="modal" aria-label="Close">
+                            <button  type="button" className="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div>
                             <label className="badge">Date:</label> <DayPickerInput selectedDays={this.state.selectedDay} onDayChange={this.handleDayClick} placeholder="YYYY/MM/DD" format={FORMAT} className="form-control" id="date_of_schedule_chosen_time" ref="date_of_schedule_chosen_time" />
-                            <button className="btn-primary">Filter for selected date</button>
+                            <button onClick={this.reRenderTransporterSchedules.bind(this)} className="btn-primary">Filter for selected date</button>
 
                         </div>
                         <div className="modal-body" style={{ height: "300px", overflowY: "scroll" }}>

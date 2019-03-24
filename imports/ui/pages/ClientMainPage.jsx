@@ -29,6 +29,7 @@ import { IronjiAssistantProfile } from '../ironji_custom_features/IronjiAssistan
 import { IronjiAssistantProfile_advert_AboutYourBusiness } from '../ironji_custom_features/IronjiAssistantProfile_advert_AboutYourBusiness';
 import { IronjiAssistantProfile_advert_productList } from '../ironji_custom_features/IronjiAssistantProfile_advert_productList';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
+import { Ironji_Trader_Live_Location } from '../ironji_custom_features/Ironji_Trader_Live_Location';
 
 const ARC_DE_TRIOMPHE_POSITION = {
     lat: 48.873947,
@@ -71,6 +72,7 @@ class ClientMainPage extends Component {
             the_main_page_longitude: "30.059572",
             the_main_page_latitude: "-1.943659",
             selectedDay: undefined,
+            switched:false,
         };
 
 
@@ -381,7 +383,7 @@ class ClientMainPage extends Component {
         var checkOnce = true;
         var geocoder0_for_main_page;
         var marker_CLICKED_for_main_page;
-       // var placeSearch = this.refs.placeSearch.value;
+        // var placeSearch = this.refs.placeSearch.value;
         var map0_for_main_page = new google.maps.Map(document.getElementById('map'), {
             center: { lat: 1.9433, lng: 30.0596 },
             zoom: 16,
@@ -399,7 +401,7 @@ class ClientMainPage extends Component {
         });
 
         map0_for_main_page.addListener('click', function (event) {
-            
+
             if (marker_CLICKED_for_main_page == null) {
                 var icon_ = {
                     url: "images/locate_me.png", // url
@@ -517,6 +519,9 @@ class ClientMainPage extends Component {
         }
         return TheDta;
     }
+    reRenderTransporterSchedules() {
+        this.renderDriverScheduleSchedules();
+    }
     renderDriverScheduleSchedules() {
 
         global.userna_me = "";
@@ -528,8 +533,17 @@ class ClientMainPage extends Component {
         today = yyyy + '-' + mm + '-' + dd;
         //-------------
         global.datesearch = new Date().getTime();
-        console.log("search_query" + global.datesearch);//---"date_of_schedule": { $lte: new Date() }
-        return Drivers_schedules.find({ $and: [{ "date_of_schedule": { "$gte": global.datesearch } }, { "visible_active": "1" }] }, { sort: { createdAt: - 1 } }).fetch().map((deal) => (
+        // console.log("search_query" + this.state.selectedDay);//---"date_of_schedule": { $lte: new Date() }
+        //----Searched date-
+        const d = new Date(this.state.selectedDay);
+        const curr_date = d.getDate();
+        const curr_month = d.getMonth() + 1; //Months are zero based
+        const curr_year = d.getFullYear();
+        const the_formatted_date = curr_year + "-" + curr_month + "-" + curr_date;
+
+        global.date_input_for_search = new Date(the_formatted_date).getTime();
+        console.log("search_query" + global.date_input_for_search);
+        return Drivers_schedules.find({ $and: [{ "date_of_schedule": { "$gte": global.datesearch } }, { "visible_active": "1" }, { date_of_schedule: global.date_input_for_search }] }, { sort: { createdAt: - 1 } }).fetch().map((deal) => (
             <div style={{ borderBottom: "1px solid green", width: "300px" }}>
                 <p style={{ color: "blue", textDecoration: "underline", display: "none" }}>{Users.find({ _id: deal.client_id }, { sort: { text: 1 } }).fetch().forEach(function (myDoc) { global.userna_me = myDoc.username; })}</p>
                 <div style={{ color: "blue", textDecoration: "underline" }}>{global.userna_me}</div>
@@ -763,7 +777,7 @@ class ClientMainPage extends Component {
                         <label >Adjust radius in  from where you are standing:</label>
                         <span id="valBox">6 km</span>
                         <input className="form-control" type="range" ref="myRange" onChange={this.recordValue.bind(this)} onInput={this.recordValue.bind(this)} min="1" max="41" step="1" id="myRange" value={this.state.value} />
-                        <input style={{display:"none"}} className="btn-success" type="button" value="Apply changes" />
+                        <input style={{ display: "none" }} className="btn-success" type="button" value="Apply changes" />
                     </div>
                     <div className="form-group">
                         <label >Product type:</label>
@@ -783,7 +797,7 @@ class ClientMainPage extends Component {
                 <div className="middleFeature_middle">
                     <button data-toggle="modal" data-target="#mapInTextModal" data-dismiss="modal" className="btn mapInText" style={{ float: "right", color: "red", background: "transparent", border: "1px solid red", borderTopLeftRadius: "5px", display: "none" }}>Map In Text</button>
                     <button style={{ display: "none" }} className="btn btn-info" onClick={this.panToArcDeTriomphe.bind(this)}>Locate Yourself<br /><span className="minify">Reba aho uri</span></button>
-                    
+
                     <button style={{ fontSize: "12px" }} onClick={this.toggleOnlinePresencePop.bind(this)} className="myButton">Adjust your geolocation to allow your visibility on the trading map!</button>
                     <button style={{ fontSize: "12px" }} onClick={this.toggleAboutBusiness.bind(this)} className="myButton">About my business!</button>
                     <button style={{ fontSize: "12px" }} onClick={this.toggleProductList.bind(this)} className="myButton">Products i offer!</button>
@@ -797,12 +811,12 @@ class ClientMainPage extends Component {
                         <IronjiAssistantProfile_advert_productList />
                     </div>
                     <div>
-                        
-                            <div className="form-group" style={{ width: "60%" }}>
-                                <h4 style={{ fontSize: "14px" }}><input type="text" style={{ width: "70%" }} placeholder="Find any place by typing in, adjust the locator by dragging.." className="form-control" ref="pac-input_for_main_page" id="pac-input_for_main_page" /></h4>
-                            </div>
-                         
-                        
+
+                        <div className="form-group" style={{ width: "60%" }}>
+                            <h4 style={{ fontSize: "14px" }}><input type="text" style={{ width: "70%" }} placeholder="Find any place by typing in, adjust the locator by dragging.." className="form-control" ref="pac-input_for_main_page" id="pac-input_for_main_page" /></h4>
+                        </div>
+
+
                     </div>
                     <div ref="map" className="TheMapGuru map" id="map" ref="map">I should be a map!</div>
                     <div>
@@ -816,6 +830,23 @@ class ClientMainPage extends Component {
                                 <tr><td><button data-toggle="modal" data-dismiss="modal" className='btn-primary mainPageButton'>I Need Transportation Now<Switch onClick={this.toggleSwitch} on={this.state.switched} /><br /><span className='minify'>Nkeneye Umuntu Untwara Nonaha</span></button></td><td></td></tr>
                             </tbody>
                         </table>
+                        <div className="modal-body modal-content active" style={{ left: "5%", top: "120%", position: "absolute", width: "500px", display: (this.state.switched)?"block":"none" }}>
+                            <div><button onClick={this.toggleSwitch} style={{ float: "right", marginRight: "3%" }} className="btn-danger">X</button></div>
+                            <div style={{clear:"both"}}></div>
+                            <h3>Advertise my current location:</h3>
+                            <div style={{ marginTop: "30px", padding: "8px" }}>
+                                <Ironji_Trader_Live_Location />
+                            </div>
+                            <div>
+                                <label>Latitude:</label> <input disabled type="text" className="form-control" placeholder="Latitude here" />
+                            </div>
+                            <div>
+                                <label>Longitude:</label> <input disabled type="text" className="form-control" placeholder="Longitude here" />
+                            </div>
+                            <div>
+                                 <input type="button" className="btn-success" style={{padding:"20px"}} value="Publish This Location(1 Hour validity)" />
+                            </div>
+                        </div>
 
                     </div>
 
@@ -949,7 +980,7 @@ class ClientMainPage extends Component {
                             </button>
                         </div>
                         <div className="modal-body">
-                            <div className="container" style={{ height: "300px", overflowY: "scroll", width: "400px",overflowX:"hidden" }}>
+                            <div className="container" style={{ height: "300px", overflowY: "scroll", width: "400px", overflowX: "hidden" }}>
                                 <div style={{ border: "1px solid chocolate", margin: "5px" }}>
                                     <h4>Names : Bizimana Eric</h4>
                                     <p>Nyabugogo, near Modern office</p>
@@ -994,7 +1025,7 @@ class ClientMainPage extends Component {
                         </div>
                         <div className="modal-body" style={{ height: "340px", overflow: "scroll" }}>
                             <div>
-                                
+
                             </div>
 
                         </div>
@@ -1015,7 +1046,7 @@ class ClientMainPage extends Component {
                             </button>
                         </div>
                         <div className="modal-body">
-                           Hot product
+                            Hot product
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-dismiss="modal">Close<br /><span className='minify'>Funga</span></button>
@@ -1056,7 +1087,7 @@ class ClientMainPage extends Component {
                             </button>
                         </div>
                         <div className="modal-body">
-                           HotDeal
+                            HotDeal
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-dismiss="modal">Close<br /><span className='minify'>Funga</span></button>
@@ -1073,7 +1104,12 @@ class ClientMainPage extends Component {
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div className="modal-body" style={{height:"300px",overflowY:"scroll"}}>
+                        <div>
+                            <label className="badge">Date:</label> <DayPickerInput selectedDays={this.state.selectedDay} onDayChange={this.handleDayClick} placeholder="YYYY/MM/DD" format={FORMAT} className="form-control" id="date_of_schedule_chosen_time" ref="date_of_schedule_chosen_time" />
+                            <button onClick={this.reRenderTransporterSchedules.bind(this)} className="btn-primary">Filter for selected date</button>
+
+                        </div>
+                        <div className="modal-body" style={{ height: "300px", overflowY: "scroll" }}>
                             {this.renderDriverScheduleSchedules()}
                         </div>
                         <div className="modal-footer">
