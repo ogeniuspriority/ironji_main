@@ -735,7 +735,7 @@ class BuyerMainPage extends Component {
                         <table className='thebuttons_Driver'>
                             <tbody>
                                 <tr><td></td><td></td></tr>
-                                <tr><td><button data-toggle="modal" data-dismiss="modal" data-target="#createScheduleModal" className='btn-primary mainPageButton'>Get nearby driver.<br /><span className='minify'>Shaka umushoferi ukwegereye.</span></button></td><td></td></tr>
+                                <tr style={{ display: "none" }}><td><button data-toggle="modal" data-dismiss="modal" data-target="#createScheduleModal" className='btn-primary mainPageButton'>Get nearby driver.<br /><span className='minify'>Shaka umushoferi ukwegereye.</span></button></td><td></td></tr>
                                 <tr><td><button data-toggle="modal" data-dismiss="modal" className='btn-primary mainPageButton'>I Need Transportation Now<Switch onClick={this.toggleSwitch} on={this.state.switched} /><br /><span className='minify'>Nkeneye Umuntu Untwara Nonaha</span></button></td><td></td></tr>
 
                             </tbody>
