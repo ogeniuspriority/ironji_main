@@ -114,13 +114,13 @@ export class IronjiAssistantProfile extends Component {
     render() {
 
         return (<div >
-            <div style={{ background: "#EDBB99", borderRadius: "4px", padding: "5px", width: "100%", border: "1px solid #fff", marginLeft: "-15%" }}>
+            <div style={{ background: "#EDBB99", borderRadius: "4px", padding: "5px", width: "60%", border: "1px solid #fff", marginLeft: "-15%" }}>
                 <h4>Make your online presence using either the automatic locator on the right or by typing the location, adjust the location by dragging the marker on either map, confirm the location to save.</h4>
                 <div>
 
                 </div>
                 <div style={{ position: "absolute", marginLeft: "30%", zIndex: 10000 }}><Progress_loader /></div>
-                <div style={{ float: "left", width: "50%" }}>
+                <div style={{ }}>
                     <div>{this.renderThisAccountAvatar()}</div>
                     <IronjiAssistantProfile_advert_map_auto />
                     <div><label className="badge">Latitude:</label><input readOnly id="latitude" type="text" className="form-control" placeholder="Type location name here" /></div>
@@ -128,9 +128,7 @@ export class IronjiAssistantProfile extends Component {
                     <div><button onClick={this.ConfirmThisLocation.bind(this)} className="btn-primary">Confirm this geolocation</button></div>
 
                 </div>
-                <div style={{ float: "left", width: "50%" }}>
-                    <IronjiAssistantProfile_advert_map />
-                </div>
+             
                 <div style={{ clear: "both" }}></div>
             </div>
                
