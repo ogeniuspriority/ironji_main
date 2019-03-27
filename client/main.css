@@ -572,11 +572,42 @@ body {
     font-size: 10pt;
 }
 
-.custom-file-input:hover::before {
+.custom-file-input-hot-product:hover::before {
     border-color: black;
 }
 
-.custom-file-input:active::before {
+.custom-file-input-hot-product:active::before {
+    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+
+.custom-file-input-hot-product::-webkit-file-upload-button {
+    visibility: hidden;
+    display: none;
+}
+
+.custom-file-input-hot-product::before {
+    content: '                  Choose Image From Device                 ';
+    display: inline-block;
+    background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
+    border: 1px solid #999;
+    border-radius: 3px;
+    padding: 5px 8px;
+    outline: none;
+    width: 200px;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    text-shadow: 1px 1px #fff;
+    font-weight: 700;
+    color: chocolate;
+    font-size: 10pt;
+}
+
+.custom-file-input-hot-product:hover::before {
+    border-color: black;
+}
+
+.custom-file-input-hot-product:active::before {
     background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
 }
 

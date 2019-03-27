@@ -72,7 +72,7 @@ class ClientMainPage extends Component {
             the_main_page_longitude: "30.059572",
             the_main_page_latitude: "-1.943659",
             selectedDay: undefined,
-            switched:false,
+            switched: false,
         };
 
 
@@ -81,6 +81,9 @@ class ClientMainPage extends Component {
         this.toggleSwitch = this.toggleSwitch.bind(this);
         this.renderThisAccountAvatar = this.renderThisAccountAvatar.bind(this);
         this.handleDayClick = this.handleDayClick.bind(this);
+        //-----------
+        this.convertImgToBase64URL = this.convertImgToBase64URL.bind(this);
+        this.toDataURL = this.toDataURL.bind(this);
     }
     showPolyLinePath() {
         var map = new google.maps.Map(document.getElementById('map'), {
@@ -730,7 +733,53 @@ class ClientMainPage extends Component {
         global.userna_me = "";
         return (<img className="followLinks" src={url} />);
     }
+    convertImgToBase64URL(url, callback, outputFormat) {
+        var img = new Image();
+        img.crossOrigin = 'Anonymous';
+        img.onload = function () {
+            var canvas = document.createElement('CANVAS'),
+                ctx = canvas.getContext('2d'), dataURL;
+            canvas.height = img.height;
+            canvas.width = img.width;
+            ctx.drawImage(img, 0, 0);
+            dataURL = canvas.toDataURL(outputFormat);
+            callback(dataURL);
+            canvas = null;
+        };
+        img.src = url;
+    }
+    toDataURL(url, callback) {
+        var httpRequest = new XMLHttpRequest();
+        httpRequest.onload = function () {
+            var fileReader = new FileReader();
+            fileReader.onloadend = function () {
+                callback(fileReader.result);
+            }
+            fileReader.readAsDataURL(httpRequest.response);
+        };
+        httpRequest.open('GET', url);
+        httpRequest.responseType = 'blob';
+        httpRequest.send();
+    }
 
+    UploadImageToDom(e) {
+        //alert(e.target.value);       
+        var file = e.target.files[0];
+        var reader = new FileReader();
+
+        reader.addEventListener("load", function () {
+            var img = new Image(1, 1); // width, height values are optional params 
+            img.src = reader.result;
+            console.log("--result" + img.src);
+            document.getElementById("ChosenImageFromeDeViceHotProducts").src = img.src;
+        }, false);
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+
+
+    }
 
     render() {
 
@@ -830,9 +879,9 @@ class ClientMainPage extends Component {
                                 <tr><td><button data-toggle="modal" data-dismiss="modal" className='btn-primary mainPageButton'>I Need Transportation Now<Switch onClick={this.toggleSwitch} on={this.state.switched} /><br /><span className='minify'>Nkeneye Umuntu Untwara Nonaha</span></button></td><td></td></tr>
                             </tbody>
                         </table>
-                        <div className="modal-body modal-content active" style={{ left: "5%", top: "120%", position: "absolute", width: "500px", display: (this.state.switched)?"block":"none" }}>
+                        <div className="modal-body modal-content active" style={{ left: "5%", top: "120%", position: "absolute", width: "500px", display: (this.state.switched) ? "block" : "none" }}>
                             <div><button onClick={this.toggleSwitch} style={{ float: "right", marginRight: "3%" }} className="btn-danger">X</button></div>
-                            <div style={{clear:"both"}}></div>
+                            <div style={{ clear: "both" }}></div>
                             <h3>Advertise my current location:</h3>
                             <div style={{ marginTop: "30px", padding: "8px" }}>
                                 <Ironji_Trader_Live_Location />
@@ -844,7 +893,7 @@ class ClientMainPage extends Component {
                                 <label>Longitude:</label> <input disabled type="text" className="form-control" placeholder="Longitude here" />
                             </div>
                             <div>
-                                 <input type="button" className="btn-success" style={{padding:"20px"}} value="Publish This Location(1 Hour validity)" />
+                                <input type="button" className="btn-success" style={{ padding: "20px" }} value="Publish This Location(1 Hour validity)" />
                             </div>
                         </div>
 
@@ -1046,7 +1095,15 @@ class ClientMainPage extends Component {
                             </button>
                         </div>
                         <div className="modal-body">
-                            Hot product
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td><input onChange={this.UploadImageToDom.bind(this)} type="file" className="custom-file-input-hot-product" /></td>
+                                        <td><img id="ChosenImageFromeDeViceHotProducts" style={{maxWidth:"200px",maxHeight:"200px",padding:"5px",borderRadius:"4px",border:"2px solid #333"}} /></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-dismiss="modal">Close<br /><span className='minify'>Funga</span></button>
