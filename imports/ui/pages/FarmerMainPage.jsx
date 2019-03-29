@@ -73,6 +73,7 @@ class FarmerMainPage extends Component {
             the_main_page_longitude: "30.059572",
             the_main_page_latitude: "-1.943659",
             selectedDay: undefined,
+            filterLocationSearch: "",
         };
 
 
@@ -275,10 +276,21 @@ class FarmerMainPage extends Component {
         const curr_month = d.getMonth() + 1; //Months are zero based
         const curr_year = d.getFullYear();
         const the_formatted_date = curr_year + "-" + curr_month + "-" + curr_date;
-
+        //--------document.getElementById("thePlaceOfSchedules").value
+        //--- { $or: [{ username: searchRegex }, { surname: searchRegex }, { lastname: searchRegex }]
+        global.schedulesSearch = this.state.filterLocationSearch;
+        var searchRegex = "";
+        try {
+            global.schedulesSearch = global.schedulesSearch.replace(/\W/g, "");
+            searchRegex = new RegExp(global.schedulesSearch, "igm");
+            //console.log("searchRegex", searchRegex);
+        } catch (err) {
+            //.log("error", err);
+        }
+        //---------------
         global.date_input_for_search = new Date(the_formatted_date).getTime();
         console.log("search_query" + global.date_input_for_search);
-        return Drivers_schedules.find({ $and: [{ "date_of_schedule": { "$gte": global.datesearch } }, { "visible_active": "1" }, { date_of_schedule: global.date_input_for_search}] }, { sort: { createdAt: - 1 } }).fetch().map((deal) => (
+        return Drivers_schedules.find({ $and: [{ "date_of_schedule": { "$gte": global.datesearch } }, { "visible_active": "1" }, { date_of_schedule: global.date_input_for_search }, { $or: [{ destination: searchRegex }, { origin: searchRegex }]}] }, { sort: { createdAt: - 1 } }).fetch().map((deal) => (
             <div style={{ borderBottom: "1px solid green", width: "300px" }}>
                 <p style={{ color: "blue", textDecoration: "underline", display: "none" }}>{Users.find({ _id: deal.client_id }, { sort: { text: 1 } }).fetch().forEach(function (myDoc) { global.userna_me = myDoc.username; })}</p>
                 <div style={{ color: "blue", textDecoration: "underline" }}>{global.userna_me}</div>
@@ -731,7 +743,11 @@ class FarmerMainPage extends Component {
         return (<img className="followLinks" src={url} />);
     }
 
-
+    ChangeLocationFilterDriver(e) {
+        this.setState({
+            filterLocationSearch: e.target.value,
+        });
+    }
     render() {
 
         return (<div className="container">
@@ -963,7 +979,7 @@ class FarmerMainPage extends Component {
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">View Transporters' Schedules<br /><span className="minify">Reba Gahunda Z' Ababkora Transport</span></h5>
+                            <h5 className="modal-title" id="exampleModalLabel">View Transporters' Schedules<br /><span className="minify">Reba Gahunda Z' Abakora Transport</span></h5>
                             <button  type="button" className="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -972,6 +988,9 @@ class FarmerMainPage extends Component {
                             <label className="badge">Date:</label> <DayPickerInput selectedDays={this.state.selectedDay} onDayChange={this.handleDayClick} placeholder="YYYY/MM/DD" format={FORMAT} className="form-control" id="date_of_schedule_chosen_time" ref="date_of_schedule_chosen_time" />
                             <button onClick={this.reRenderTransporterSchedules.bind(this)} className="btn-primary">Filter for selected date</button>
 
+                        </div>
+                        <div>
+                            <label>Location:</label><input type="text" style={{ width: "70%" }}  onChange={this.ChangeLocationFilterDriver.bind(this)} id="thePlaceOfSchedules" ref="thePlaceOfSchedules" placeholder="A place" className="form-control" />
                         </div>
                         <div className="modal-body" style={{ height: "300px", overflowY: "scroll" }}>
                             {this.renderDriverScheduleSchedules()}
