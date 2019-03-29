@@ -981,7 +981,7 @@ class FarmerMainPage extends Component {
                                         <tr><td></td></tr>
                                         <tr>
                                             <td>About Hot Product:</td>
-                                            <td><textarea className="form-control" style={{ width: "70%" }}></textarea></td>
+                                            <td><textarea className="form-control" style={{ width: "120%", maxWidth: "120%", maxHeight: "200px" }}></textarea></td>
                                         </tr>
                                         <tr >
                                             <td style={{ marginTop: "10px" }}> <div style={{ marginTop: "10px", padding: "20px" }}> <button className="btn-success">Publish hot deal</button></div></td>
@@ -1047,7 +1047,7 @@ class FarmerMainPage extends Component {
                                         <tr><td></td></tr>
                                         <tr>
                                             <td>About Hot Deal:</td>
-                                            <td><textarea className="form-control" style={{ width: "70%" }}></textarea></td>
+                                            <td><textarea className="form-control" style={{ width: "120%", maxWidth: "120%", maxHeight: "200px" }}></textarea></td>
                                         </tr>
                                         <tr >
                                             <td style={{ marginTop: "10px" }}> <div style={{ marginTop: "10px", padding: "20px" }}> <button className="btn-success">Publish hot deal</button></div></td>
