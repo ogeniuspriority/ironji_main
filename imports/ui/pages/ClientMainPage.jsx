@@ -773,7 +773,24 @@ class ClientMainPage extends Component {
         httpRequest.responseType = 'blob';
         httpRequest.send();
     }
+    UploadImageToDom_hot_deal(e) {
+        //alert(e.target.value);       
+        var file = e.target.files[0];
+        var reader = new FileReader();
 
+        reader.addEventListener("load", function () {
+            var img = new Image(1, 1); // width, height values are optional params 
+            img.src = reader.result;
+            console.log("--result" + img.src);
+            document.getElementById("ChosenImageFromeDeViceHotProducts_hot_deal").src = img.src;
+        }, false);
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+
+
+    }
     UploadImageToDom(e) {
         //alert(e.target.value);       
         var file = e.target.files[0];
@@ -1111,15 +1128,32 @@ class ClientMainPage extends Component {
                             </button>
                         </div>
                         <div className="modal-body">
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td></td>
-                                        <td><input onChange={this.UploadImageToDom.bind(this)} type="file" className="custom-file-input-hot-product" /></td>
-                                        <td><img id="ChosenImageFromeDeViceHotProducts" style={{maxWidth:"200px",maxHeight:"200px",padding:"5px",borderRadius:"4px",border:"2px solid #333"}} /></td>
+                            <div style={{ padding: "10px" }}>
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td></td>
+                                            <td><input onChange={this.UploadImageToDom.bind(this)} type="file" className="custom-file-input-hot-product" /></td>
+                                            <td><img id="ChosenImageFromeDeViceHotProducts" style={{ maxWidth: "200px", maxHeight: "200px", padding: "5px", borderRadius: "4px", border: "2px solid #333" }} /></td>
+                                        </tr>
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div style={{ marginTop: "50px", padding: "20px" }}>
+                            <table >
+                                    <tbody>
+                                        <tr>
+                                            <td>About Hot Product:</td>
+                                            <td><textarea className="form-control" style={{ width: "70%" }}></textarea></td>
+                                        </tr>
+                                    <tr><td></td></tr>
+                                    <tr >
+                                        <td style={{ marginTop: "10px" }}> <div style={{ marginTop: "10px", padding: "20px" }}> <button className="btn-success">Publish hot deal</button></div></td>
                                     </tr>
                                 </tbody>
-                            </table>
+                                </table>
+                            </div>
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-dismiss="modal">Close<br /><span className='minify'>Funga</span></button>
@@ -1160,7 +1194,32 @@ class ClientMainPage extends Component {
                             </button>
                         </div>
                         <div className="modal-body">
-                            HotDeal
+                            <div style={{ padding: "10px" }}>
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td></td>
+                                            <td><input onChange={this.UploadImageToDom_hot_deal.bind(this)} type="file" className="custom-file-input-hot-product" /></td>
+                                            <td><img id="ChosenImageFromeDeViceHotProducts_hot_deal" style={{ maxWidth: "200px", maxHeight: "200px", padding: "5px", borderRadius: "4px", border: "2px solid #333" }} /></td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div style={{ marginTop: "50px", padding: "20px" }}>
+                                <table >
+                                    <tbody>
+                                        <tr><td></td></tr>
+                                        <tr>
+                                            <td>About Hot Deal:</td>
+                                            <td><textarea className="form-control" style={{ width: "70%" }}></textarea></td>
+                                        </tr>
+                                        <tr >
+                                            <td style={{ marginTop: "10px" }}> <div style={{ marginTop: "10px", padding: "20px" }}> <button className="btn-success">Publish hot deal</button></div></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-dismiss="modal">Close<br /><span className='minify'>Funga</span></button>

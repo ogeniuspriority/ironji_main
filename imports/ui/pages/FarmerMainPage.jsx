@@ -269,7 +269,7 @@ class FarmerMainPage extends Component {
         today = yyyy + '-' + mm + '-' + dd;
         //-------------
         global.datesearch = new Date().getTime();
-       // console.log("search_query" + this.state.selectedDay);//---"date_of_schedule": { $lte: new Date() }
+        // console.log("search_query" + this.state.selectedDay);//---"date_of_schedule": { $lte: new Date() }
         //----Searched date-
         const d = new Date(this.state.selectedDay);
         const curr_date = d.getDate();
@@ -290,7 +290,7 @@ class FarmerMainPage extends Component {
         //---------------
         global.date_input_for_search = new Date(the_formatted_date).getTime();
         console.log("search_query" + global.date_input_for_search);
-        return Drivers_schedules.find({ $and: [{ "date_of_schedule": { "$gte": global.datesearch } }, { "visible_active": "1" }, { date_of_schedule: global.date_input_for_search }, { $or: [{ destination: searchRegex }, { origin: searchRegex }]}] }, { sort: { createdAt: - 1 } }).fetch().map((deal) => (
+        return Drivers_schedules.find({ $and: [{ "date_of_schedule": { "$gte": global.datesearch } }, { "visible_active": "1" }, { date_of_schedule: global.date_input_for_search }, { $or: [{ destination: searchRegex }, { origin: searchRegex }] }] }, { sort: { createdAt: - 1 } }).fetch().map((deal) => (
             <div style={{ borderBottom: "1px solid green", width: "300px" }}>
                 <p style={{ color: "blue", textDecoration: "underline", display: "none" }}>{Users.find({ _id: deal.client_id }, { sort: { text: 1 } }).fetch().forEach(function (myDoc) { global.userna_me = myDoc.username; })}</p>
                 <div style={{ color: "blue", textDecoration: "underline" }}>{global.userna_me}</div>
@@ -439,7 +439,7 @@ class FarmerMainPage extends Component {
         var checkOnce = true;
         var geocoder0_for_main_page;
         var marker_CLICKED_for_main_page;
-       // var placeSearch = this.refs.placeSearch.value;
+        // var placeSearch = this.refs.placeSearch.value;
         var map0_for_main_page = new google.maps.Map(document.getElementById('map'), {
             center: { lat: 1.9433, lng: 30.0596 },
             zoom: 16,
@@ -457,7 +457,7 @@ class FarmerMainPage extends Component {
         });
 
         map0_for_main_page.addListener('click', function (event) {
-            
+
             if (marker_CLICKED_for_main_page == null) {
                 var icon_ = {
                     url: "images/locate_me.png", // url
@@ -715,7 +715,7 @@ class FarmerMainPage extends Component {
     handleDayClick(day) {
         this.setState({ selectedDay: day });
         global.date_of_schedule_to_choose = "" + day;
-       console.log("---"+day);
+        console.log("---" + day);
     }
     renderThisAccountAvatar() {
 
@@ -747,6 +747,43 @@ class FarmerMainPage extends Component {
         this.setState({
             filterLocationSearch: e.target.value,
         });
+    }
+    //-----
+    UploadImageToDom_hot_deal(e) {
+        //alert(e.target.value);       
+        var file = e.target.files[0];
+        var reader = new FileReader();
+
+        reader.addEventListener("load", function () {
+            var img = new Image(1, 1); // width, height values are optional params 
+            img.src = reader.result;
+            console.log("--result" + img.src);
+            document.getElementById("ChosenImageFromeDeViceHotProducts_hot_deal").src = img.src;
+        }, false);
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+
+
+    }
+    UploadImageToDom(e) {
+        //alert(e.target.value);       
+        var file = e.target.files[0];
+        var reader = new FileReader();
+
+        reader.addEventListener("load", function () {
+            var img = new Image(1, 1); // width, height values are optional params 
+            img.src = reader.result;
+            console.log("--result" + img.src);
+            document.getElementById("ChosenImageFromeDeViceHotProducts").src = img.src;
+        }, false);
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+
+
     }
     render() {
 
@@ -793,7 +830,7 @@ class FarmerMainPage extends Component {
                         <label >Adjust radius in  from where you are standing:</label>
                         <span id="valBox">6 km</span>
                         <input className="form-control" type="range" ref="myRange" onChange={this.recordValue.bind(this)} onInput={this.recordValue.bind(this)} min="1" max="41" step="1" id="myRange" value={this.state.value} />
-                        <input style={{display:"none"}} className="btn-success" type="button" value="Apply changes" />
+                        <input style={{ display: "none" }} className="btn-success" type="button" value="Apply changes" />
                     </div>
                     <div className="form-group">
                         <label >Product type:</label>
@@ -813,7 +850,7 @@ class FarmerMainPage extends Component {
                 <div className="middleFeature_middle">
                     <button data-toggle="modal" data-target="#mapInTextModal" data-dismiss="modal" className="btn mapInText" style={{ float: "right", color: "red", background: "transparent", border: "1px solid red", borderTopLeftRadius: "5px", display: "none" }}>Map In Text</button>
                     <button style={{ display: "none" }} className="btn btn-info" onClick={this.panToArcDeTriomphe.bind(this)}>Locate Yourself<br /><span className="minify">Reba aho uri</span></button>
-                    
+
                     <button style={{ fontSize: "12px" }} onClick={this.toggleOnlinePresencePop.bind(this)} className="myButton">Adjust your geolocation to allow your visibility on the trading map!</button>
                     <button style={{ fontSize: "12px" }} onClick={this.toggleAboutBusiness.bind(this)} className="myButton">About my business!</button>
                     <button style={{ fontSize: "12px" }} onClick={this.toggleProductList.bind(this)} className="myButton">Products i offer!</button>
@@ -827,19 +864,19 @@ class FarmerMainPage extends Component {
                         <IronjiAssistantProfile_advert_productList />
                     </div>
                     <div>
-                        
-                            <div className="form-group" style={{ width: "60%" }}>
-                                <h4 style={{ fontSize: "14px" }}><input type="text" style={{ width: "70%" }} placeholder="Find any place by typing in, adjust the locator by dragging.." className="form-control" ref="pac-input_for_main_page" id="pac-input_for_main_page" /></h4>
-                            </div>
-                         
-                        
+
+                        <div className="form-group" style={{ width: "60%" }}>
+                            <h4 style={{ fontSize: "14px" }}><input type="text" style={{ width: "70%" }} placeholder="Find any place by typing in, adjust the locator by dragging.." className="form-control" ref="pac-input_for_main_page" id="pac-input_for_main_page" /></h4>
+                        </div>
+
+
                     </div>
                     <div ref="map" className="TheMapGuru map" id="map" ref="map">I should be a map!</div>
                     <div>
                         <table className='thebuttons_Driver'>
                             <tbody>
                                 <tr><td></td><td></td></tr>
-                                <tr style={{display:"none"}}><td><button data-toggle="modal" data-dismiss="modal" data-target="#createScheduleModal" className='btn-primary mainPageButton'>Near By Drivers<br /><span className='minify'>Abashoferi bakwegereye</span></button></td><td></td></tr>
+                                <tr style={{ display: "none" }}><td><button data-toggle="modal" data-dismiss="modal" data-target="#createScheduleModal" className='btn-primary mainPageButton'>Near By Drivers<br /><span className='minify'>Abashoferi bakwegereye</span></button></td><td></td></tr>
                                 <tr><td><button data-toggle="modal" data-dismiss="modal" data-target="#publishHotDeal" className='btn-primary mainPageButton'>Create a hot deal<br /><span className='minify'>Tanga gahunda ishyushye</span></button></td><td></td></tr>
                                 <tr><td><button data-toggle="modal" data-dismiss="modal" data-target="#publishHotProducts" className='btn-primary mainPageButton'>Publish Hot product<br /><span className='minify'>Erekana ibicuruzwa byawe biri kuri poromosiyo</span></button></td><td></td></tr>
                                 <tr><td><button data-toggle="modal" data-dismiss="modal" data-target="#driverSchedulesForView" className='btn-primary mainPageButton'>Drivers' schedules<br /><span className='minify'>Gahunda z'abashoferi</span></button></td><td></td></tr>
@@ -926,7 +963,32 @@ class FarmerMainPage extends Component {
                             </button>
                         </div>
                         <div className="modal-body">
-                            Hot product
+                            <div style={{ padding: "10px" }}>
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td></td>
+                                            <td><input onChange={this.UploadImageToDom.bind(this)} type="file" className="custom-file-input-hot-product" /></td>
+                                            <td><img id="ChosenImageFromeDeViceHotProducts" style={{ maxWidth: "200px", maxHeight: "200px", padding: "5px", borderRadius: "4px", border: "2px solid #333" }} /></td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div style={{ marginTop: "50px", padding: "20px" }}>
+                                <table >
+                                    <tbody>
+                                        <tr><td></td></tr>
+                                        <tr>
+                                            <td>About Hot Product:</td>
+                                            <td><textarea className="form-control" style={{ width: "70%" }}></textarea></td>
+                                        </tr>
+                                        <tr >
+                                            <td style={{ marginTop: "10px" }}> <div style={{ marginTop: "10px", padding: "20px" }}> <button className="btn-success">Publish hot deal</button></div></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-dismiss="modal">Close<br /><span className='minify'>Funga</span></button>
@@ -967,7 +1029,32 @@ class FarmerMainPage extends Component {
                             </button>
                         </div>
                         <div className="modal-body">
-                            HotDeal
+                            <div style={{ padding: "10px" }}>
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td></td>
+                                            <td><input onChange={this.UploadImageToDom_hot_deal.bind(this)} type="file" className="custom-file-input-hot-product" /></td>
+                                            <td><img id="ChosenImageFromeDeViceHotProducts_hot_deal" style={{ maxWidth: "200px", maxHeight: "200px", padding: "5px", borderRadius: "4px", border: "2px solid #333" }} /></td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div style={{ marginTop: "50px", padding: "20px" }}>
+                                <table >
+                                    <tbody>
+                                        <tr><td></td></tr>
+                                        <tr>
+                                            <td>About Hot Deal:</td>
+                                            <td><textarea className="form-control" style={{ width: "70%" }}></textarea></td>
+                                        </tr>
+                                        <tr >
+                                            <td style={{ marginTop: "10px" }}> <div style={{ marginTop: "10px", padding: "20px" }}> <button className="btn-success">Publish hot deal</button></div></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-dismiss="modal">Close<br /><span className='minify'>Funga</span></button>
@@ -980,7 +1067,7 @@ class FarmerMainPage extends Component {
                     <div className="modal-content">
                         <div className="modal-header">
                             <h5 className="modal-title" id="exampleModalLabel">View Transporters' Schedules<br /><span className="minify">Reba Gahunda Z' Abakora Transport</span></h5>
-                            <button  type="button" className="close" data-dismiss="modal" aria-label="Close">
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -990,7 +1077,7 @@ class FarmerMainPage extends Component {
 
                         </div>
                         <div>
-                            <label>Location:</label><input type="text" style={{ width: "70%" }}  onChange={this.ChangeLocationFilterDriver.bind(this)} id="thePlaceOfSchedules" ref="thePlaceOfSchedules" placeholder="A place" className="form-control" />
+                            <label>Location:</label><input type="text" style={{ width: "70%" }} onChange={this.ChangeLocationFilterDriver.bind(this)} id="thePlaceOfSchedules" ref="thePlaceOfSchedules" placeholder="A place" className="form-control" />
                         </div>
                         <div className="modal-body" style={{ height: "300px", overflowY: "scroll" }}>
                             {this.renderDriverScheduleSchedules()}
@@ -1081,7 +1168,7 @@ class FarmerMainPage extends Component {
                             </button>
                         </div>
                         <div className="modal-body">
-                            <div className="container" style={{ height: "300px", overflowY: "scroll", width: "400px",overflowX:"hidden" }}>
+                            <div className="container" style={{ height: "300px", overflowY: "scroll", width: "400px", overflowX: "hidden" }}>
                                 <div style={{ border: "1px solid chocolate", margin: "5px" }}>
                                     <h4>Names : Bizimana Eric</h4>
                                     <p>Nyabugogo, near Modern office</p>
