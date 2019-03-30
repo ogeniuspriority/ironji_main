@@ -694,7 +694,7 @@ class DriverMainPage extends Component {
         var yyyy = today.getFullYear();
         today = yyyy + '-' + mm + '-' + dd;
         //-------------
-        global.datesearch = new Date().getTime();
+        global.datesearch = new Date(today).getTime() - 1000 * 60 * 60 * 24;
         console.log("search_query" + global.datesearch);//---"date_of_schedule": { $lte: new Date() }
         return Drivers_schedules.find({ $and: [{ "date_of_schedule": { "$gte": global.datesearch } }, { "visible_active": "1" }, { "client_id": global.the_id_op}]}, { sort: { createdAt: - 1 } }).fetch().map((deal) => (
             <div style={{ borderBottom: "1px solid green", width: "300px" }}>

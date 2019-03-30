@@ -536,7 +536,7 @@ class ClientMainPage extends Component {
         var yyyy = today.getFullYear();
         today = yyyy + '-' + mm + '-' + dd;
         //-------------
-        global.datesearch = new Date().getTime();
+        global.datesearch = new Date(today).getTime() - 1000 * 60 * 60 * 24;
         // console.log("search_query" + this.state.selectedDay);//---"date_of_schedule": { $lte: new Date() }
         //----Searched date-
         const d = new Date(this.state.selectedDay);
