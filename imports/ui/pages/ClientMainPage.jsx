@@ -814,6 +814,61 @@ class ClientMainPage extends Component {
             filterLocationSearch: e.target.value,
         });
     }
+    publishMyHotProduct() {
+        global.the_id_op = "";
+        global.avatar_profile = "";
+        global.accountType = "";
+        var po = Users.find({ username: "" + sessionStorage.getItem('ironji_account_username') }, { sort: { text: 1 } }).fetch();
+        for (var key in po) {
+            if (po.hasOwnProperty(key)) {
+                //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
+
+                if (po[key].account_type == "client") {
+                    global.the_id_op = po[key]._id;
+                    global.avatar_profile = po[key].avatar_profile;
+                    global.accountType = "client";
+                }
+            }
+        }
+        //------AboutHotProducts--ChosenImageFromeDeViceHotProducts
+        if (global.the_id_op != "") {
+            if (document.getElementById("ChosenImageFromeDeViceHotProducts").src == "") {
+                toastr.error('Choose an advert image!', 'Error');
+            } else if (document.getElementById("AboutHotProducts").value == "") {
+                toastr.error('Give brief info about hot products!', 'Error');
+            } else {
+
+                console.log("900ikkkk--" + global.the_id_op);
+                toastr.success('Saving...', 'Success');
+
+                fetch('https://map.ogeniuspriority.com/map_scripts/publish_hot_products_to_community.php',
+                    {
+                        mode: 'cors',
+                        method: 'POST',
+                        body: JSON.stringify({
+                            ChosenImageFromeDeViceHotProducts: document.getElementById("ChosenImageFromeDeViceHotProducts").src,
+                            AboutHotProducts: document.getElementById("AboutHotProducts").value,
+                            user_id: global.the_id_op,
+                            account_type: global.accountType,
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(resData => {
+                        TheTradersData = JSON.parse(JSON.stringify(resData));
+                        var theMarkersOfTraders = TheTradersData["theMarkersOfTraders"];
+                        //---------------loop through location---
+                        if (theMarkersOfTraders.includes("JobDoneCyuma")) {
+                            document.getElementById("ChosenImageFromeDeViceHotProducts").src = "";
+                            document.getElementById("AboutHotProducts").value = "";
+                            toastr.success('Hot Product Published!', 'Success');
+                        }
+
+
+                    });
+            }
+
+        }
+    }
     render() {
 
         return (<div className="container">
@@ -1149,7 +1204,7 @@ class ClientMainPage extends Component {
                                         </tr>
                                     <tr><td></td></tr>
                                     <tr >
-                                        <td style={{ marginTop: "10px" }}> <div style={{ marginTop: "10px", padding: "20px" }}> <button className="btn-success">Publish hot deal</button></div></td>
+                                            <td style={{ marginTop: "10px" }}> <div style={{ marginTop: "10px", padding: "20px" }}> <button className="btn-success" onClick={this.publishMyHotProduct.bind(this)} >Publish hot deal</button></div></td>
                                     </tr>
                                 </tbody>
                                 </table>
