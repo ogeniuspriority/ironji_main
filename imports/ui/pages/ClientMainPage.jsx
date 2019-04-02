@@ -869,6 +869,63 @@ class ClientMainPage extends Component {
 
         }
     }
+    publishMyHotDeal() {
+        global.the_id_op = "";
+        global.avatar_profile = "";
+        global.accountType = "";
+        var po = Users.find({ username: "" + sessionStorage.getItem('ironji_account_username') }, { sort: { text: 1 } }).fetch();
+        for (var key in po) {
+            if (po.hasOwnProperty(key)) {
+                //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
+
+                if (po[key].account_type == "client") {
+                    global.the_id_op = po[key]._id;
+                    global.avatar_profile = po[key].avatar_profile;
+                    global.accountType = "client";
+                }
+            }
+        }
+        //------AboutHotProducts--ChosenImageFromeDeViceHotProducts
+        if (global.the_id_op != "") {
+            if (document.getElementById("ChosenImageFromeDeViceHotProducts_hot_deal").src == "") {
+                toastr.error('Choose an advert image!', 'Error');
+            } else if (document.getElementById("AboutHotDeal").value == "") {
+                toastr.error('Give brief info about hot products!', 'Error');
+            } else {
+
+                console.log("900ikkkk--" + global.the_id_op);
+                toastr.success('Saving...', 'Success');
+
+                fetch('https://map.ogeniuspriority.com/map_scripts/publish_hot_deals_to_community.php',
+                    {
+                        mode: 'cors',
+                        method: 'POST',
+                        body: JSON.stringify({
+                            ChosenImageFromeDeViceHotProducts: document.getElementById("ChosenImageFromeDeViceHotProducts_hot_deal").src,
+                            AboutHotProducts: document.getElementById("AboutHotDeal").value,
+                            user_id: global.the_id_op,
+                            account_type: global.accountType,
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(resData => {
+                        TheTradersData = JSON.parse(JSON.stringify(resData));
+                        var theMarkersOfTraders = TheTradersData["theMarkersOfTraders"];
+                        //---------------loop through location---
+                        if (theMarkersOfTraders.includes("JobDoneCyuma")) {
+                            document.getElementById("ChosenImageFromeDeViceHotProducts_hot_deal").src = "";
+                            document.getElementById("AboutHotDeal").value = "";
+                            toastr.success('Hot Deal Published!', 'Success');
+                        } else {
+                            toastr.error('Error occurred!', 'Error');
+                        }
+
+
+                    });
+            }
+
+        }
+    }
     render() {
 
         return (<div className="container">
@@ -1267,10 +1324,10 @@ class ClientMainPage extends Component {
                                         <tr><td></td></tr>
                                         <tr>
                                             <td>About Hot Deal:</td>
-                                            <td><textarea className="form-control" style={{ width:"120%",maxWidth: "120%",maxHeight:"200px"}}></textarea></td>
+                                            <td><textarea id="AboutHotDeal" className="form-control" style={{ width:"120%",maxWidth: "120%",maxHeight:"200px"}}></textarea></td>
                                         </tr>
                                         <tr >
-                                            <td style={{ marginTop: "10px" }}> <div style={{ marginTop: "10px", padding: "20px" }}> <button className="btn-success">Publish hot deal</button></div></td>
+                                            <td style={{ marginTop: "10px" }}> <div style={{ marginTop: "10px", padding: "20px" }}> <button onClick={this.publishMyHotDeal.bind(this)} className="btn-success">Publish hot deal</button></div></td>
                                         </tr>
                                     </tbody>
                                 </table>
