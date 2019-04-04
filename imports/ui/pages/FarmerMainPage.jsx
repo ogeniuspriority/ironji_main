@@ -30,6 +30,8 @@ import { IronjiAssistantProfile_advert_AboutYourBusiness } from '../ironji_custo
 import { IronjiAssistantProfile_advert_productList } from '../ironji_custom_features/IronjiAssistantProfile_advert_productList';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import { Ironji_Trader_Live_Location } from '../ironji_custom_features/Ironji_Trader_Live_Location';
+//----------
+import { Hot_products_in_radius } from '../hot_deals_and_products/Hot_products_in_radius';
 
 
 const ARC_DE_TRIOMPHE_POSITION = {
@@ -74,6 +76,8 @@ class FarmerMainPage extends Component {
             the_main_page_latitude: "-1.943659",
             selectedDay: undefined,
             filterLocationSearch: "",
+            hot_products_render: [],
+            hot_products_render_temp: []
         };
 
 
@@ -562,9 +566,88 @@ class FarmerMainPage extends Component {
             });
             map0_for_main_page.fitBounds(bounds_for_main_page);
         });
+        //------------------
+        var that = this;
+        setInterval(function () {
+            that.find_hot_products_to_render();
+        }, 10000);
 
 
 
+
+    }
+    find_hot_products_to_render() {
+        //alert("From Ironji");
+        //toastr.success('Loading...', '', { timeOut: 5000 });
+        //document.getElementById("fromDatabase").innerHTML = "Loading...";
+        global.the_id = "";
+
+        var po = Users.find({ username: sessionStorage.getItem('ironji_account_username') }, { sort: { text: 1 } }).fetch();
+        for (var key in po) {
+            if (po.hasOwnProperty(key)) {
+                //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
+
+                if (po[key].account_type == "driver") {
+                    global.the_id = po[key]._id;
+                }
+            }
+        }
+        fetch('https://map.ogeniuspriority.com/map_scripts/publish_hot_products_to_community_render_for_view.php?user_id=' + global.the_id + "&latitude=" + this.state.the_main_page_latitude + "&longitude=" + this.state.the_main_page_longitude + "&value=" + this.state.value)
+            .then(response => response.json())
+            .then(resData => {
+                TheTradersData = JSON.parse(JSON.stringify(resData));
+                var theMarkersOfTraders = TheTradersData["theMarkersOfTraders"];
+                //document.getElementById("MyBusinessData").innerHTML = theMarkersOfTraders;
+                var theResults = [];
+
+
+                var i_db = 0;
+                for (var key in theMarkersOfTraders) {
+                    if (theMarkersOfTraders.hasOwnProperty(key)) {
+                        theResults.push(theMarkersOfTraders[key].ironji_trade_hot_products_id + "~" + theMarkersOfTraders[key].ironji_trade_hot_products_user_id + "~" + theMarkersOfTraders[key].ironji_trade_hot_products_account_type + "~" + theMarkersOfTraders[key].ironji_trade_hot_products_regtime + "~" + theMarkersOfTraders[key].ironji_trade_hot_products_about_hot_deal + "~" + theMarkersOfTraders[key].ironji_trade_hot_products_image_src + "~" + theMarkersOfTraders[key].ironji_trade_hot_products_active);
+                        i_db++;
+                        console.log("IN");
+
+                        //console.log("IN " +theMarkersOfTraders[key].ironji_trade_hot_products_id + "~" + theMarkersOfTraders[key].ironji_trade_hot_products_user_id + "~" + theMarkersOfTraders[key].ironji_trade_hot_products_account_type + "~" + theMarkersOfTraders[key].ironji_trade_hot_products_regdate + "~" + theMarkersOfTraders[key].ironji_trade_hot_products_img_src + "~" + theMarkersOfTraders[key].ironji_trade_hot_products_about + "~" + theMarkersOfTraders[key].ironji_trade_hot_deals_active);
+                    }
+                }
+                //---------------- hot_products_render_temp
+                //console.log("IN");
+                if (this.state.hot_products_render_temp.length > 0) {
+                    //-------------
+
+                    if (JSON.stringify(this.state.hot_products_render_temp).length == JSON.stringify(this.state.hot_products_render).length) {
+                        console.log("No Update");
+                    } else {
+                        this.setState({ hot_products_render_temp: theResults });
+                        this.setState({ hot_products_render: theResults });
+                    }
+                } else {
+                    console.log("First");
+                    this.setState({ hot_products_render_temp: theResults });
+                    this.setState({ hot_products_render: theResults });
+
+                }
+
+
+
+            });
+
+
+    }
+    find_hot_products_to_render_RENDER() {
+        //--------------------
+        if (this.state.hot_products_render.length > 0) {
+
+            return (this.state.hot_products_render.map((el) => (
+
+                <Hot_products_in_radius prod_0={el.split("~")[0]} prod_1={el.split("~")[1]} prod_2={el.split("~")[2]} prod_3={el.split("~")[3]} prod_4={el.split("~")[4]} prod_5={el.split("~")[5]}></Hot_products_in_radius >
+
+            )));
+
+        } else {
+            return <div>No Data!</div>;
+        }
 
     }
 
@@ -832,6 +915,8 @@ class FarmerMainPage extends Component {
                             document.getElementById("ChosenImageFromeDeViceHotProducts").src = "";
                             document.getElementById("AboutHotProducts").value = "";
                             toastr.success('Hot Product Published!', 'Success');
+                        } else {
+                            toastr.error('' + theMarkersOfTraders, 'Error');
                         }
 
 
@@ -1018,7 +1103,7 @@ class FarmerMainPage extends Component {
                 </div>
                 <div className="middleFeature_right">
                     <h2>Hot products</h2>
-                    <ViewHotProducts class="middleFeature_right" />
+                    <div>{this.find_hot_products_to_render_RENDER()}</div>  
 
 
                 </div>
