@@ -325,7 +325,7 @@ class DriverMainPage extends Component {
                         theResults.push(theMarkersOfTraders[key].ironji_trade_hot_products_id + "~" + theMarkersOfTraders[key].ironji_trade_hot_products_user_id + "~" + theMarkersOfTraders[key].ironji_trade_hot_products_account_type + "~" + theMarkersOfTraders[key].ironji_trade_hot_products_regtime + "~" + theMarkersOfTraders[key].ironji_trade_hot_products_about_hot_deal + "~" + theMarkersOfTraders[key].ironji_trade_hot_products_image_src + "~" + theMarkersOfTraders[key].ironji_trade_hot_products_active);
                         i_db++;
                         console.log("IN");
-                        
+
                         //console.log("IN " +theMarkersOfTraders[key].ironji_trade_hot_products_id + "~" + theMarkersOfTraders[key].ironji_trade_hot_products_user_id + "~" + theMarkersOfTraders[key].ironji_trade_hot_products_account_type + "~" + theMarkersOfTraders[key].ironji_trade_hot_products_regdate + "~" + theMarkersOfTraders[key].ironji_trade_hot_products_img_src + "~" + theMarkersOfTraders[key].ironji_trade_hot_products_about + "~" + theMarkersOfTraders[key].ironji_trade_hot_deals_active);
                     }
                 }
@@ -333,7 +333,7 @@ class DriverMainPage extends Component {
                 //console.log("IN");
                 if (this.state.hot_products_render_temp.length > 0) {
                     //-------------
-                    
+
                     if (JSON.stringify(this.state.hot_products_render_temp).length == JSON.stringify(this.state.hot_products_render).length) {
                         console.log("No Update");
                     } else {
@@ -346,16 +346,16 @@ class DriverMainPage extends Component {
                     this.setState({ hot_products_render: theResults });
 
                 }
-                
-               
+
+
 
             });
-        
+
 
     }
     find_hot_products_to_render_RENDER() {
         //--------------------
-        if (this.state.hot_products_render.length>0) {
+        if (this.state.hot_products_render.length > 0) {
 
             return (this.state.hot_products_render.map((el) => (
 
@@ -390,10 +390,7 @@ class DriverMainPage extends Component {
                                       
                     //-----------------
                                     
-
-
                 }
-
                 //console.log("latitude:" + pos.lat + "longitude:" + pos.lng);
                 var that = this;
                 // Call getCurrentPosition with success and failure callbacks
@@ -411,7 +408,6 @@ class DriverMainPage extends Component {
                 };
                 //--------------------------
                 var TheTradersData = "";
-
                 fetch('https://map.ogeniuspriority.com/ironji_traders_geolocations.php')
                     .then(response => response.json())
                     .then(resData => {
@@ -428,11 +424,8 @@ class DriverMainPage extends Component {
                                 //console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
                                 //------------Display the markers--
                                 setTimeout(function () {
-
                                     var infowindow = new google.maps.InfoWindow();
-
                                     var idEvent = theMarkersOfTraders[iterator].markers_on_map_id;
-
                                     marker = new google.maps.Marker({
                                         position: new google.maps.LatLng(theMarkersOfTraders[iterator].markers_on_map_lat, theMarkersOfTraders[iterator].markers_on_map_lng),
                                         icon: icon,
@@ -441,7 +434,6 @@ class DriverMainPage extends Component {
                                         title: "" + theMarkersOfTraders[iterator].place_name,
                                         map: this.map
                                     });
-
                                     //-------------Locate myself--
                                     if (checkOnce) {
                                         var icon_ = {
@@ -469,20 +461,13 @@ class DriverMainPage extends Component {
                                             infowindow.open(map, marker);
                                         };
                                     })(marker, descr, infowindow));
-
-
-
                                     marker.setMap(that.map);
                                     iterator++;
                                 }, (i + 1) * 300);
                                 i++;
                             }
                         }
-
                     });
-
-
-
                 var locations = [
                     ['Restaurent Cocobin', - 1.950079, 30.091251, 4],
                     ['Klab Rwanda', - 1.944676, 30.089745, 5],
@@ -491,7 +476,6 @@ class DriverMainPage extends Component {
                     ['People Club', - 1.947762, 30.092957, 1]
                 ];
                 for (i = 0; i < locations.length; i++) {
-
                 }
             }, function () {
                 //handleLocationError(true, infoWindow, map.getCenter());
@@ -631,7 +615,7 @@ class DriverMainPage extends Component {
         var that = this;
         setInterval(function () {
             that.find_hot_products_to_render();
-        },10000);
+        }, 10000);
 
 
 
@@ -777,7 +761,7 @@ class DriverMainPage extends Component {
         ));
     }
 
-    DeleteThisSchedule(theId,e) {
+    DeleteThisSchedule(theId, e) {
         //--visible_active
         //console.log("eeeee" + theId.toString());
         //-------------
@@ -785,9 +769,9 @@ class DriverMainPage extends Component {
             $set: { visible_active: "0" }
         }, function (err, result) {
             if (err) {
-               
+
             } else {
-             
+
 
             }
         });
@@ -795,8 +779,8 @@ class DriverMainPage extends Component {
     }
 
     renderTwoDigitsWork(TheDta) {
-        if (TheDta.length==1) {
-            TheDta = "0"+TheDta;
+        if (TheDta.length == 1) {
+            TheDta = "0" + TheDta;
         } else {
 
         }
@@ -826,7 +810,7 @@ class DriverMainPage extends Component {
         //-------------
         global.datesearch = new Date(today).getTime() - 1000 * 60 * 60 * 24;
         console.log("search_query" + global.datesearch);//---"date_of_schedule": { $lte: new Date() }
-        return Drivers_schedules.find({ $and: [{ "date_of_schedule": { "$gte": global.datesearch } }, { "visible_active": "1" }, { "client_id": global.the_id_op}]}, { sort: { createdAt: - 1 } }).fetch().map((deal) => (
+        return Drivers_schedules.find({ $and: [{ "date_of_schedule": { "$gte": global.datesearch } }, { "visible_active": "1" }, { "client_id": global.the_id_op }] }, { sort: { createdAt: - 1 } }).fetch().map((deal) => (
             <div style={{ borderBottom: "1px solid green", width: "300px" }}>
                 <p style={{ color: "blue", textDecoration: "underline", display: "none" }}>{Users.find({ _id: deal.client_id }, { sort: { text: 1 } }).fetch().forEach(function (myDoc) { global.userna_me = myDoc.username; })}</p>
                 <div style={{ color: "blue", textDecoration: "underline" }}>{global.userna_me}</div>
@@ -881,12 +865,12 @@ class DriverMainPage extends Component {
                 "time_to": global.time_to,
                 "createdAt": new Date(),
                 "time_from": global.time_from,
-                "date_of_schedule": global.date_of_schedule, 
+                "date_of_schedule": global.date_of_schedule,
                 "destination": global.destination,
                 "origin": global.origin,
                 "client_id": global.the_id,
                 "timezone_offset": time_zone_shift,
-                "visible_active":"1"
+                "visible_active": "1"
             };
             var that = this;
             Drivers_schedules.insert(theData, function (error, result) {
@@ -955,7 +939,7 @@ class DriverMainPage extends Component {
                         </tbody>
                     </table>
                 </div>
-                
+
 
                 <div className="container">
                     <div className="theTopMenus">
@@ -1005,12 +989,12 @@ class DriverMainPage extends Component {
                 <div className="middleFeature_left"><div className="middleFeature_left_in">
                     <ViewProductsInRadius mylatitude={this.state.the_main_page_latitude} mylongitude={this.state.the_main_page_longitude} />
 
-                 </div>
+                </div>
                 </div>
                 <div className="middleFeature_middle">
-                    <button data-toggle="modal" data-target="#mapInTextModal" data-dismiss="modal" className="btn mapInText" style={{ float: "right", color: "red", background: "transparent", border: "1px solid red", borderTopLeftRadius: "5px",display:"none" }}>Map In Text</button>
+                    <button data-toggle="modal" data-target="#mapInTextModal" data-dismiss="modal" className="btn mapInText" style={{ float: "right", color: "red", background: "transparent", border: "1px solid red", borderTopLeftRadius: "5px", display: "none" }}>Map In Text</button>
                     <button style={{ display: "none" }} className="btn btn-info" onClick={this.panToArcDeTriomphe.bind(this)}>Locate Yourself<br /><span className="minify">Reba aho uri</span></button>
-                   
+
                     <div>
 
                         <div className="form-group" style={{ width: "60%" }}>
@@ -1024,7 +1008,7 @@ class DriverMainPage extends Component {
                         <table className='thebuttons_Driver'>
                             <tbody>
                                 <tr><td></td><td></td></tr>
-                                <tr style={{display:"none"}}><td ><button data-toggle="modal" data-dismiss="modal" className='btn-primary mainPageButton'>See Nearby Traders<br /><span className='minify'>Abacuruzi  bakwegereye</span></button></td><td></td></tr>
+                                <tr style={{ display: "none" }}><td ><button data-toggle="modal" data-dismiss="modal" className='btn-primary mainPageButton'>See Nearby Traders<br /><span className='minify'>Abacuruzi  bakwegereye</span></button></td><td></td></tr>
                                 <tr><td><button data-toggle="modal" data-dismiss="modal" className='btn-primary mainPageButton'>I'm Available<Switch onClick={this.toggleSwitch} on={this.state.switched} /><br /><span className='minify'>Ndi gukora</span></button></td><td></td></tr>
                                 <tr><td><button data-toggle="modal" data-dismiss="modal" data-target="#createScheduleModal" className='btn-primary mainPageButton'>Create Schedule<br /><span className='minify'>Tanga Gahunda Zawe</span></button></td><td></td></tr>
                                 <tr><td><button data-toggle="modal" data-dismiss="modal" data-target="#hotDealsModal" className='btn-primary mainPageButton'>Hot Deals<br /><span className='minify'>Dilo zishyushye</span></button></td><td></td></tr>
@@ -1036,8 +1020,8 @@ class DriverMainPage extends Component {
 
                 </div>
                 <div className="middleFeature_right">
-                    <h2>Hot products</h2>                    
-                    <div>{this.find_hot_products_to_render_RENDER()}</div>                 
+                    <h2>Hot products</h2>
+                    <div>{this.find_hot_products_to_render_RENDER()}</div>
 
                 </div>
             </div>
@@ -1201,9 +1185,9 @@ class DriverMainPage extends Component {
                                     </div>
                                     <div className="col-sm" style={{ width: "23%", float: "left", borderLeft: "1px solid black" }}>
                                         <h4>My Schedules<br /><span className="minify">Gahunda zanjye</span></h4>
-                                        <div style={{ overflowY: "scroll", height: "350px",overflowX:"hidden" }}>
+                                        <div style={{ overflowY: "scroll", height: "350px", overflowX: "hidden" }}>
                                             <MadeDriverSchedules thedata={this.renderMySchedules()} />
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -1246,7 +1230,7 @@ class DriverMainPage extends Component {
                         </div>
                         <div className="modal-body">
                             <div className="container" style={{ height: "300px", overflowY: "scroll", width: "400px" }}>
-                              <ViewMapInText  />
+                                <ViewMapInText />
                             </div>
                         </div>
                         <div className="modal-footer">
@@ -1266,9 +1250,9 @@ class DriverMainPage extends Component {
                             </button>
                         </div>
                         <div className="modal-body">
-                            <div className="container" style={{ overflowY: "scroll",overflowX:"hidden", height: "350px", width: "350px" }}>
+                            <div className="container" style={{ overflowY: "scroll", overflowX: "hidden", height: "350px", width: "350px" }}>
                                 <div>
-                                    <ViewHotDealsFromTraders datain={this.renderTheHotDeals()} />                                  
+                                    <ViewHotDealsFromTraders datain={this.renderTheHotDeals()} />
 
                                 </div>
                             </div>
@@ -1341,4 +1325,3 @@ export default withTracker(() => {
         MySchedules: Drivers_schedules.find({ client_id: global.the_id_op }, { sort: { createdAt: - 1 } }).fetch(),
     };
 })(DriverMainPage);
-

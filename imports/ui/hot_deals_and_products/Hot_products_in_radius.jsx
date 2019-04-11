@@ -40,12 +40,12 @@ export class Hot_products_in_radius extends Component {
    
     render() {
         return (<div>
-            <div  className="modal-content" style={{ width: "120%",height:"auto", marginTop: "5px" }}>
+            <div  className="modal-content" style={{ width: "140%",height:"auto", marginTop: "5px" }}>
                 <table>
                     <tbody>
                         <tr>
                             <td><img src={this.props.prod_5} style={{width:"80px",maxWidth:"80px",padding:"2px"}} /></td>
-                            <td><div style={{padding: "5px", borderBottom: "2px solid #cdcdcd", boxShadow: "2px 2px #000" }}>{this.props.prod_4}</div>
+                            <td><div style={{padding: "5px" }}>{this.props.prod_4}</div>
                             </td>
                         </tr>
                         <tr>

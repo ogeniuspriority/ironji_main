@@ -235,13 +235,10 @@ class BuyerMainPage extends Component {
                     lat: position.coords.latitude,
                     lng: position.coords.longitude
                 };
-
                 if (accuracy < 50) {
                     navigator.geolocation.clearWatch(watchID);
                     watchID = null;
                 }
-
-
                 //console.log("latitude:" + pos.lat + "longitude:" + pos.lng);
                 var that = this;
                 // Call getCurrentPosition with success and failure callbacks
@@ -259,7 +256,6 @@ class BuyerMainPage extends Component {
                 };
                 //--------------------------
                 var TheTradersData = "";
-
                 fetch('https://map.ogeniuspriority.com/ironji_traders_geolocations.php')
                     .then(response => response.json())
                     .then(resData => {
@@ -276,11 +272,8 @@ class BuyerMainPage extends Component {
                                 console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
                                 //------------Display the markers--
                                 setTimeout(function () {
-
                                     var infowindow = new google.maps.InfoWindow();
-
                                     var idEvent = theMarkersOfTraders[iterator].markers_on_map_id;
-
                                     marker = new google.maps.Marker({
                                         position: new google.maps.LatLng(theMarkersOfTraders[iterator].markers_on_map_lat, theMarkersOfTraders[iterator].markers_on_map_lng),
                                         icon: icon,
@@ -289,7 +282,6 @@ class BuyerMainPage extends Component {
                                         title: "" + theMarkersOfTraders[iterator].place_name,
                                         map: this.map
                                     });
-
                                     //-------------Locate myself--
                                     if (checkOnce) {
                                         var icon_ = {
@@ -317,20 +309,13 @@ class BuyerMainPage extends Component {
                                             infowindow.open(map, marker);
                                         };
                                     })(marker, descr, infowindow));
-
-
-
                                     marker.setMap(that.map);
                                     iterator++;
                                 }, (i + 1) * 300);
                                 i++;
                             }
                         }
-
                     });
-
-
-
                 var locations = [
                     ['Restaurent Cocobin', - 1.950079, 30.091251, 4],
                     ['Klab Rwanda', - 1.944676, 30.089745, 5],
@@ -339,7 +324,6 @@ class BuyerMainPage extends Component {
                     ['People Club', - 1.947762, 30.092957, 1]
                 ];
                 for (i = 0; i < locations.length; i++) {
-
                 }
             }, function () {
                 //handleLocationError(true, infoWindow, map.getCenter());
@@ -802,9 +786,9 @@ class BuyerMainPage extends Component {
                     </div>
                 </div>
                 <div className="middleFeature_middle">
-                    <button data-toggle="modal" data-target="#mapInTextModal" data-dismiss="modal" className="btn mapInText" style={{ float: "right", color: "red", background: "transparent", border: "1px solid red", borderTopLeftRadius: "5px",display:"none" }}>Map In Text</button>
+                    <button data-toggle="modal" data-target="#mapInTextModal" data-dismiss="modal" className="btn mapInText" style={{ float: "right", color: "red", background: "transparent", border: "1px solid red", borderTopLeftRadius: "5px", display: "none" }}>Map In Text</button>
                     <button style={{ display: "none" }} className="btn btn-info" onClick={this.panToArcDeTriomphe.bind(this)}>Locate Yourself<br /><span className="minify">Reba aho uri</span></button>
-                    
+
                     <div>
 
                         <div className="form-group" style={{ width: "60%" }}>
@@ -1109,4 +1093,3 @@ export default withTracker(() => {
         theSchedules: Drivers_schedules.find({}, { sort: { createdAt: -1 } }).fetch(),
     };
 })(BuyerMainPage);
-

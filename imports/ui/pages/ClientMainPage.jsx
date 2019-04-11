@@ -276,7 +276,6 @@ class ClientMainPage extends Component {
                     navigator.geolocation.clearWatch(watchID);
                     watchID = null;
                 }
-
                 //console.log("latitude:" + pos.lat + "longitude:" + pos.lng);
                 var that = this;
                 // Call getCurrentPosition with success and failure callbacks
@@ -294,7 +293,6 @@ class ClientMainPage extends Component {
                 };
                 //--------------------------
                 var TheTradersData = "";
-
                 fetch('https://map.ogeniuspriority.com/ironji_traders_geolocations.php')
                     .then(response => response.json())
                     .then(resData => {
@@ -311,11 +309,8 @@ class ClientMainPage extends Component {
                                 console.log("" + theMarkersOfTraders[key].markers_on_map_lat + "--" + theMarkersOfTraders[key].markers_on_map_lng);
                                 //------------Display the markers--
                                 setTimeout(function () {
-
                                     var infowindow = new google.maps.InfoWindow();
-
                                     var idEvent = theMarkersOfTraders[iterator].markers_on_map_id;
-
                                     marker = new google.maps.Marker({
                                         position: new google.maps.LatLng(theMarkersOfTraders[iterator].markers_on_map_lat, theMarkersOfTraders[iterator].markers_on_map_lng),
                                         icon: icon,
@@ -324,7 +319,6 @@ class ClientMainPage extends Component {
                                         title: "" + theMarkersOfTraders[iterator].place_name,
                                         map: this.map
                                     });
-
                                     //-------------Locate myself--
                                     if (checkOnce) {
                                         var icon_ = {
@@ -352,20 +346,13 @@ class ClientMainPage extends Component {
                                             infowindow.open(map, marker);
                                         };
                                     })(marker, descr, infowindow));
-
-
-
                                     marker.setMap(that.map);
                                     iterator++;
                                 }, (i + 1) * 300);
                                 i++;
                             }
                         }
-
                     });
-
-
-
                 var locations = [
                     ['Restaurent Cocobin', - 1.950079, 30.091251, 4],
                     ['Klab Rwanda', - 1.944676, 30.089745, 5],
@@ -374,7 +361,6 @@ class ClientMainPage extends Component {
                     ['People Club', - 1.947762, 30.092957, 1]
                 ];
                 for (i = 0; i < locations.length; i++) {
-
                 }
             }, function () {
                 //handleLocationError(true, infoWindow, map.getCenter());
@@ -1132,7 +1118,7 @@ class ClientMainPage extends Component {
                 </div>
                 <div className="middleFeature_right">
                     <h2>Hot products</h2>
-                    <div>{this.find_hot_products_to_render_RENDER()}</div>  
+                    <div>{this.find_hot_products_to_render_RENDER()}</div>
 
 
                 </div>
@@ -1333,22 +1319,22 @@ class ClientMainPage extends Component {
                                             <td><input onChange={this.UploadImageToDom.bind(this)} type="file" className="custom-file-input-hot-product" /></td>
                                             <td><img id="ChosenImageFromeDeViceHotProducts" style={{ maxWidth: "200px", maxHeight: "200px", padding: "5px", borderRadius: "4px", border: "2px solid #333" }} /></td>
                                         </tr>
-                                        
+
                                     </tbody>
                                 </table>
                             </div>
                             <div style={{ marginTop: "50px", padding: "20px" }}>
-                            <table >
+                                <table >
                                     <tbody>
                                         <tr>
                                             <td>About Hot Product:</td>
                                             <td><textarea id="AboutHotProducts" className="form-control" style={{ width: "120%", maxWidth: "120%", maxHeight: "200px" }}></textarea></td>
                                         </tr>
-                                    <tr><td></td></tr>
-                                    <tr >
+                                        <tr><td></td></tr>
+                                        <tr >
                                             <td style={{ marginTop: "10px" }}> <div style={{ marginTop: "10px", padding: "20px" }}> <button className="btn-success" onClick={this.publishMyHotProduct.bind(this)} >Publish hot deal</button></div></td>
-                                    </tr>
-                                </tbody>
+                                        </tr>
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -1409,7 +1395,7 @@ class ClientMainPage extends Component {
                                         <tr><td></td></tr>
                                         <tr>
                                             <td>About Hot Deal:</td>
-                                            <td><textarea id="AboutHotDeal" className="form-control" style={{ width:"120%",maxWidth: "120%",maxHeight:"200px"}}></textarea></td>
+                                            <td><textarea id="AboutHotDeal" className="form-control" style={{ width: "120%", maxWidth: "120%", maxHeight: "200px" }}></textarea></td>
                                         </tr>
                                         <tr >
                                             <td style={{ marginTop: "10px" }}> <div style={{ marginTop: "10px", padding: "20px" }}> <button onClick={this.publishMyHotDeal.bind(this)} className="btn-success">Publish hot deal</button></div></td>
@@ -1439,7 +1425,7 @@ class ClientMainPage extends Component {
 
                         </div>
                         <div>
-                            <label>Location:</label><input style={{width:"70%"}} type="text" onChange={this.ChangeLocationFilterDriver.bind(this)} ref="thePlaceOfSchedules" id="thePlaceOfSchedules" placeholder="A place" className="form-control" />
+                            <label>Location:</label><input style={{ width: "70%" }} type="text" onChange={this.ChangeLocationFilterDriver.bind(this)} ref="thePlaceOfSchedules" id="thePlaceOfSchedules" placeholder="A place" className="form-control" />
                         </div>
                         <div className="modal-body" style={{ height: "300px", overflowY: "scroll" }}>
                             {this.renderDriverScheduleSchedules()}
@@ -1509,4 +1495,3 @@ export default withTracker(() => {
         theSchedules: Drivers_schedules.find({}, { sort: { createdAt: -1 } }).fetch(),
     };
 })(ClientMainPage);
-
