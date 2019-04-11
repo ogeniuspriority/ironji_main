@@ -40,7 +40,7 @@ export class Hot_products_in_radius extends Component {
    
     render() {
         return (<div>
-            <div  className="modal-content" style={{ width: "140%",height:"auto", marginTop: "5px" }}>
+            <div  className="modal-content" style={{ width: "130%",height:"auto", marginTop: "5px" }}>
                 <table>
                     <tbody>
                         <tr>
