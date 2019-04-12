@@ -9,8 +9,8 @@ import moment from 'react-moment';
 import 'moment-timezone';
 import 'react-datepicker/dist/react-datepicker.css';
 import TimePicker from 'rc-time-picker';
-import 'rc-time-picker/assets/index.css';
-
+import 'rc-time-picker/assets/index.css'; 
+import { Home_visit_links } from './Home_visit_links';
 
 class Home extends Component {
     constructor(props) {
@@ -387,13 +387,8 @@ class Home extends Component {
             </div>
             <div className="container pull-right">
                 <div className="row pull-right theLinkdss">
-                    <div className="col theTextDown">Follow us and like us on<br /><span className="minify">Dukurikire undadukunde kuri</span></div>
-                    <div className="col"><a href="#"><img className="followLinks" src="images/facebook.png" /></a></div>
-                    <div className="col"><a href="#"><img className="followLinks" src="images/instagram.png" /></a></div>
-                    <div className="col"><a href="#"><img className="followLinks" src="images/linkedin.png" /></a></div>
-                    <div className="col"><a href="#"><img className="followLinks" src="images/snapchat.png" /></a></div>
-                    <div className="col"><a href="#"><img className="followLinks" src="images/twitter.png" /></a></div>
-                </div>
+                    <Home_visit_links />
+                  </div>
             </div>
 
 

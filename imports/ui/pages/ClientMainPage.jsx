@@ -32,6 +32,7 @@ import DayPickerInput from 'react-day-picker/DayPickerInput';
 import { Ironji_Trader_Live_Location } from '../ironji_custom_features/Ironji_Trader_Live_Location';
 //----------
 import { Hot_products_in_radius } from '../hot_deals_and_products/Hot_products_in_radius';
+import { Home_visit_links } from './Home_visit_links';
 
 const ARC_DE_TRIOMPHE_POSITION = {
     lat: 48.873947,
@@ -964,7 +965,7 @@ class ClientMainPage extends Component {
                 toastr.error('Give brief info about hot products!', 'Error');
             } else {
 
-                console.log("900ikkkk--" + global.the_id_op);
+                //console.log("900ikkkk--" + global.the_id_op);
                 toastr.success('Saving...', 'Success');
 
                 fetch('https://map.ogeniuspriority.com/map_scripts/publish_hot_deals_to_community.php',
@@ -1474,13 +1475,7 @@ class ClientMainPage extends Component {
             </div>
             <div className="container pull-right">
                 <div className="row pull-right theLinkdss">
-                    <div className="col theTextDown">Follow us and like us on<br /><span className="minify">Dukurikire undadukunde kuri</span></div>
-                    <div className="col"><a href="#"><img className="followLinks" src="images/facebook.png" /></a></div>
-                    <div className="col"><a href="#"><img className="followLinks" src="images/instagram.png" /></a></div>
-                    <div className="col"><a href="#"><img className="followLinks" src="images/linkedin.png" /></a></div>
-                    <div className="col"><a href="#"><img className="followLinks" src="images/snapchat.png" /></a></div>
-                    <div className="col"><a href="#"><img className="followLinks" src="images/twitter.png" /></a></div>
-                </div>
+                    <Home_visit_links /> </div>
             </div>
 
 
