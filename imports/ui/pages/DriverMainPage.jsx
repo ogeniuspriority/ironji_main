@@ -25,7 +25,8 @@ import { ViewMapInText } from '../ironji_custom_features/ViewMapInText';
 import { MadeDriverSchedules } from '../ironji_custom_features/MadeDriverSchedules';
 import { ViewHotDealsFromTraders } from '../ironji_custom_features/ViewHotDealsFromTraders';
 //----------
-import { Hot_products_in_radius } from '../hot_deals_and_products/Hot_products_in_radius';
+import { Hot_products_in_radius } from '../hot_deals_and_products/Hot_products_in_radius'; 
+import { Hot_deals_in_radius } from '../hot_deals_and_products/Hot_deals_in_radius';
 import { Home_visit_links } from './Home_visit_links';
 
 //import {TrackerReact} from 'ultimatejs:tracker-react';
@@ -71,7 +72,9 @@ class DriverMainPage extends Component {
             the_main_page_latitude: "-1.943659",
             hot_products_render: [],
             hot_products_render_temp: [],
-            hot_products_render_temp: []
+
+            hot_deals_render: [],
+            hot_deals_render_temp: []
 
         };
 
@@ -369,6 +372,81 @@ class DriverMainPage extends Component {
         }
 
     }
+    //---------Hot deals---
+    find_hot_deals_to_render() {
+        //alert("From Ironji");
+        //toastr.success('Loading...', '', { timeOut: 5000 });
+        //document.getElementById("fromDatabase").innerHTML = "Loading...";
+        global.the_id = "";
+
+        var po = Users.find({ username: sessionStorage.getItem('ironji_account_username') }, { sort: { text: 1 } }).fetch();
+        for (var key in po) {
+            if (po.hasOwnProperty(key)) {
+                //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
+
+                if (po[key].account_type == "driver") {
+                    global.the_id = po[key]._id;
+                }
+            }
+        }
+        fetch('https://map.ogeniuspriority.com/map_scripts/publish_hot_deals_to_community_render_for_view.php?user_id=' + global.the_id + "&latitude=" + this.state.the_main_page_latitude + "&longitude=" + this.state.the_main_page_longitude + "&value=" + this.state.value)
+            .then(response => response.json())
+            .then(resData => {
+                TheTradersData = JSON.parse(JSON.stringify(resData));
+                var theMarkersOfTraders = TheTradersData["theMarkersOfTraders"];
+                //document.getElementById("MyBusinessData").innerHTML = theMarkersOfTraders;
+                var theResults = [];
+
+
+                var i_db = 0;
+                for (var key in theMarkersOfTraders) {
+                    if (theMarkersOfTraders.hasOwnProperty(key)) {
+                        theResults.push(theMarkersOfTraders[key].ironji_trade_hot_products_id + "~" + theMarkersOfTraders[key].ironji_trade_hot_products_user_id + "~" + theMarkersOfTraders[key].ironji_trade_hot_products_account_type + "~" + theMarkersOfTraders[key].ironji_trade_hot_products_regdate + "~" + theMarkersOfTraders[key].ironji_trade_hot_products_about + "~" + theMarkersOfTraders[key].ironji_trade_hot_products_img_src + "~" + theMarkersOfTraders[key].ironji_trade_hot_deals_active);
+                        i_db++;
+                        console.log("IN");
+
+                        //console.log("IN " +theMarkersOfTraders[key].ironji_trade_hot_products_id + "~" + theMarkersOfTraders[key].ironji_trade_hot_products_user_id + "~" + theMarkersOfTraders[key].ironji_trade_hot_products_account_type + "~" + theMarkersOfTraders[key].ironji_trade_hot_products_regdate + "~" + theMarkersOfTraders[key].ironji_trade_hot_products_img_src + "~" + theMarkersOfTraders[key].ironji_trade_hot_products_about + "~" + theMarkersOfTraders[key].ironji_trade_hot_deals_active);
+                    }
+                }
+                //---------------- hot_products_render_temp
+                //console.log("IN");
+                if (this.state.hot_deals_render_temp.length > 0) {
+                    //-------------
+
+                    if (JSON.stringify(this.state.hot_deals_render_temp).length == JSON.stringify(this.state.hot_deals_render).length) {
+                        console.log("No Update");
+                    } else {
+                        this.setState({ hot_deals_render_temp: theResults });
+                        this.setState({ hot_deals_render: theResults });
+                    }
+                } else {
+                    console.log("First");
+                    this.setState({ hot_deals_render_temp: theResults });
+                    this.setState({ hot_deals_render: theResults });
+
+                }
+
+
+
+            });
+
+
+    }
+    find_hot_deals_to_render_RENDER() {
+        //--------------------
+        if (this.state.hot_deals_render.length > 0) {
+
+            return (this.state.hot_deals_render.map((el) => (
+
+                <Hot_deals_in_radius prod_0={el.split("~")[0]} prod_1={el.split("~")[1]} prod_2={el.split("~")[2]} prod_3={el.split("~")[3]} prod_4={el.split("~")[4]} prod_5={el.split("~")[5]}></Hot_deals_in_radius >
+
+            )));
+
+        } else {
+            return <div>No Data!</div>;
+        }
+
+    }
 
     componentDidMount() {
 
@@ -616,6 +694,7 @@ class DriverMainPage extends Component {
         var that = this;
         setInterval(function () {
             that.find_hot_products_to_render();
+            that.find_hot_deals_to_render();
         }, 10000);
 
 
@@ -1013,7 +1092,7 @@ class DriverMainPage extends Component {
                                 <tr><td><button data-toggle="modal" data-dismiss="modal" className='btn-primary mainPageButton'>I'm Available<Switch onClick={this.toggleSwitch} on={this.state.switched} /><br /><span className='minify'>Ndi gukora</span></button></td><td></td></tr>
                                 <tr><td><button data-toggle="modal" data-dismiss="modal" data-target="#createScheduleModal" className='btn-primary mainPageButton'>Create Schedule<br /><span className='minify'>Tanga Gahunda Zawe</span></button></td><td></td></tr>
                                 <tr><td><button data-toggle="modal" data-dismiss="modal" data-target="#hotDealsModal" className='btn-primary mainPageButton'>Hot Deals<br /><span className='minify'>Dilo zishyushye</span></button></td><td></td></tr>
-                                <tr><td><button data-toggle="modal" data-dismiss="modal" className='btn-primary mainPageButton'>People waiting for transportation<br /><span className='minify'>Abantu bategereje uwabatwara</span></button></td><td></td></tr>
+                                <tr><td><button data-toggle="modal" data-dismiss="modal" data-target="#peopleWhoNeedTransportation"  className='btn-primary mainPageButton'>People waiting for transportation<br /><span className='minify'>Abantu bategereje uwabatwara</span></button></td><td></td></tr>
                             </tbody>
                         </table>
 
@@ -1245,7 +1324,7 @@ class DriverMainPage extends Component {
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">Hot Deals<br /><span className="minify">Reba abakeneye ababatwara byihutirwa</span></h5>
+                            <h5 className="modal-title" id="exampleModalLabel">Hot Deals<br /><span className="minify">Reba ibintu byinshi byo gutwara</span></h5>
                             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -1253,10 +1332,29 @@ class DriverMainPage extends Component {
                         <div className="modal-body">
                             <div className="container" style={{ overflowY: "scroll", overflowX: "hidden", height: "350px", width: "350px" }}>
                                 <div>
-                                    <ViewHotDealsFromTraders datain={this.renderTheHotDeals()} />
+                                    {this.find_hot_deals_to_render_RENDER()}
 
                                 </div>
                             </div>
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Close<br /><span className='minify'>Funga</span></button>
+                            <button type="button" className="btn btn-primary">Save<br /><span className='minify'>Byemeze</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="modal fade" id="peopleWhoNeedTransportation" role="dialog" aria-labelledby="hotDealsModalModalLabel" aria-hidden="true">
+                <div className="modal-dialog" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLabel">People who need immediate transportation<br /><span className="minify">Reba abakeneye ababatwara byihutirwa</span></h5>
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div className="modal-body">
+                            sfs fsufvs fusvf sfubvs 
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-dismiss="modal">Close<br /><span className='minify'>Funga</span></button>
