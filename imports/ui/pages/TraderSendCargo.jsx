@@ -29,6 +29,9 @@ class TraderSendCargo extends Component {
         super(props);
     }
     componentDidMount() {
+        if (sessionStorage.length == 0) {
+            window.open("/", "_self");
+        }
         document.getElementById("tabWin0").style.display = "block";
         document.getElementById("tabWin1").style.display = "none";
         document.getElementById("tabWin2").style.display = "none";
