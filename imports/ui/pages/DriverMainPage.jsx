@@ -335,6 +335,7 @@ class DriverMainPage extends Component {
                 }
                 //---------------- hot_products_render_temp
                 //console.log("IN");
+                this.setState({ hot_products_render_temp: theResults });
                 if (this.state.hot_products_render_temp.length > 0) {
                     //-------------
 
@@ -409,6 +410,7 @@ class DriverMainPage extends Component {
                     }
                 }
                 //---------------- hot_products_render_temp
+                this.setState({ hot_deals_render_temp: theResults });
                 //console.log("IN");
                 if (this.state.hot_deals_render_temp.length > 0) {
                     //-------------

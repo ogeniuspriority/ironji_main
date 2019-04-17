@@ -507,6 +507,7 @@ class BuyerMainPage extends Component {
                     }
                 }
                 //---------------- hot_products_render_temp
+                this.setState({ hot_products_render_temp: theResults });
                 //console.log("IN");
                 if (this.state.hot_products_render_temp.length > 0) {
                     //-------------

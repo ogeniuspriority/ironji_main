@@ -522,7 +522,7 @@ class ClientMainPage extends Component {
             if (po.hasOwnProperty(key)) {
                 //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
 
-                if (po[key].account_type == "driver") {
+                if (po[key].account_type == "client") {
                     global.the_id = po[key]._id;
                 }
             }
@@ -547,7 +547,8 @@ class ClientMainPage extends Component {
                     }
                 }
                 //---------------- hot_products_render_temp
-                //console.log("IN");
+                console.log("IN" + 'https://map.ogeniuspriority.com/map_scripts/publish_hot_products_to_community_render_for_view.php?user_id=' + global.the_id + "&latitude=" + this.state.the_main_page_latitude + "&longitude=" + this.state.the_main_page_longitude + "&value=" + this.state.value);
+                this.setState({ hot_products_render_temp: theResults });
                 if (this.state.hot_products_render_temp.length > 0) {
                     //-------------
 

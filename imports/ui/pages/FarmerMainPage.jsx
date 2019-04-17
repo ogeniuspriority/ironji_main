@@ -24,10 +24,10 @@ import { ProductSearchType } from '../ironji_custom_features/ProductSearchType';
 import { ViewMapInText } from '../ironji_custom_features/ViewMapInText';
 import { MadeDriverSchedules } from '../ironji_custom_features/MadeDriverSchedules';
 import { ViewHotDealsFromTraders } from '../ironji_custom_features/ViewHotDealsFromTraders';
-import { IronjiAssistantProfile } from '../ironji_custom_features/IronjiAssistantProfile';
+import { IronjiAssistantProfileForFarmers } from '../ironji_custom_features/IronjiAssistantProfileForFarmers';
 
-import { IronjiAssistantProfile_advert_AboutYourBusiness } from '../ironji_custom_features/IronjiAssistantProfile_advert_AboutYourBusiness';
-import { IronjiAssistantProfile_advert_productList } from '../ironji_custom_features/IronjiAssistantProfile_advert_productList';
+import { IronjiAssistantProfile_advert_AboutYourBusinessForFarmers } from '../ironji_custom_features/IronjiAssistantProfile_advert_AboutYourBusinessForFarmers';
+import { IronjiAssistantProfile_advert_productListForFarmers } from '../ironji_custom_features/IronjiAssistantProfile_advert_productListForFarmers';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import { Ironji_Trader_Live_Location } from '../ironji_custom_features/Ironji_Trader_Live_Location';
 //----------
@@ -575,7 +575,7 @@ class FarmerMainPage extends Component {
             if (po.hasOwnProperty(key)) {
                 //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
 
-                if (po[key].account_type == "driver") {
+                if (po[key].account_type == "farmer") {
                     global.the_id = po[key]._id;
                 }
             }
@@ -601,6 +601,9 @@ class FarmerMainPage extends Component {
                 }
                 //---------------- hot_products_render_temp
                 //console.log("IN");
+                console.log("IN" + 'https://map.ogeniuspriority.com/map_scripts/publish_hot_products_to_community_render_for_view.php?user_id=' + global.the_id + "&latitude=" + this.state.the_main_page_latitude + "&longitude=" + this.state.the_main_page_longitude + "&value=" + this.state.value);
+
+                this.setState({ hot_products_render_temp: theResults });
                 if (this.state.hot_products_render_temp.length > 0) {
                     //-------------
 
@@ -1040,13 +1043,13 @@ class FarmerMainPage extends Component {
                     <button style={{ fontSize: "12px" }} onClick={this.toggleAboutBusiness.bind(this)} className="myButton">About my business!</button>
                     <button style={{ fontSize: "12px" }} onClick={this.toggleProductList.bind(this)} className="myButton">Products i offer!</button>
                     <div className={(this.state.putYourSelfOnTheMap) ? "popInvis_inverse" : "popInvis"}>
-                        <IronjiAssistantProfile />
+                        <IronjiAssistantProfileForFarmers />
                     </div>
                     <div className={(this.state.aboutBusiness) ? "popInvis_inverse" : "popInvis"}>
-                        <IronjiAssistantProfile_advert_AboutYourBusiness />
+                        <IronjiAssistantProfile_advert_AboutYourBusinessForFarmers />
                     </div>
                     <div className={(this.state.productList) ? "popInvis_inverse" : "popInvis"}>
-                        <IronjiAssistantProfile_advert_productList />
+                        <IronjiAssistantProfile_advert_productListForFarmers />
                     </div>
                     <div>
 
