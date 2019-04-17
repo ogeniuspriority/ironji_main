@@ -76,6 +76,7 @@ export class IronjiAssistantProfile_advert_map_auto extends Component {
                 //marker_CLICKED.setMap(that0.map0);
             } else {
                 marker_CLICKED.setPosition(event.latLng);
+
             }
                 //-------------
             console.log("Map clicked!" + event.latLng);

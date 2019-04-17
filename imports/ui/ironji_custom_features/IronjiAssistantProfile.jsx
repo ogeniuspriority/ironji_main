@@ -39,6 +39,19 @@ export class IronjiAssistantProfile extends Component {
             document.getElementById("longitude").value != "") {
             toastr.success('Saving coordinates...', 'Thank you!', { timeOut: 1000 });
 
+            global.the_id_op = "";
+            global.avatar_profile = "";
+            var po = Users.find({ username: "" + sessionStorage.getItem('ironji_account_username') }, { sort: { text: 1 } }).fetch();
+            for (var key in po) {
+                if (po.hasOwnProperty(key)) {
+                    //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
+
+                    //if (po[key].account_type == "farmer") {
+                        global.the_id_op = po[key]._id;
+                        global.avatar_profile = po[key].avatar_profile;
+                    //}
+                }
+            }
 
             fetch('https://map.ogeniuspriority.com/map_scripts/confirm_the_location.php?id=' + global.the_id_op + "&lat=" + document.getElementById("latitude").value + "&long=" + document.getElementById("longitude").value)
                 .then(response => response.json())
@@ -105,9 +118,11 @@ export class IronjiAssistantProfile extends Component {
                 global.latitude = theMarkersOfTraders.split("-cyuma-")[0];
                 global.longitude = theMarkersOfTraders.split("-cyuma-")[1];
                 //---------------
-                document.getElementById("latitude").value = global.latitude;
-                document.getElementById("longitude").value = global.longitude;
-            });
+                //document.getElementById("latitude").value = global.latitude;
+                //document.getElementById("longitude").value = global.longitude;
+                //------------
+                document.getElementById("savedLocation").innerHTML = global.latitude + " , " + global.longitude;
+             });
         return (<div></div>);
     }
    
@@ -123,6 +138,9 @@ export class IronjiAssistantProfile extends Component {
                 <div style={{ }}>
                     <div>{this.renderThisAccountAvatar()}</div>
                     <IronjiAssistantProfile_advert_map_auto />
+                    <div style={{padding:"10px"}}>
+                        <label id="savedLocation"></label>
+                    </div>
                     <div><label className="badge">Latitude:</label><input readOnly id="latitude" type="text" className="form-control" placeholder="Type location name here" /></div>
                     <div><label className="badge">Longitude:</label><input readOnly id="longitude" type="text" className="form-control" placeholder="Type location name here" /></div>
                     <div><button onClick={this.ConfirmThisLocation.bind(this)} className="btn-primary">Confirm this geolocation</button></div>
