@@ -29,7 +29,7 @@ import { IronjiAssistantProfileForFarmers } from '../ironji_custom_features/Iron
 import { IronjiAssistantProfile_advert_AboutYourBusinessForFarmers } from '../ironji_custom_features/IronjiAssistantProfile_advert_AboutYourBusinessForFarmers';
 import { IronjiAssistantProfile_advert_productListForFarmers } from '../ironji_custom_features/IronjiAssistantProfile_advert_productListForFarmers';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
-import { Ironji_Trader_Live_Location } from '../ironji_custom_features/Ironji_Trader_Live_Location';
+import { Ironji_Trader_Live_LocationFarmer } from '../ironji_custom_features/Ironji_Trader_Live_LocationFarmer';
 //----------
 import { Hot_products_in_radius } from '../hot_deals_and_products/Hot_products_in_radius';
 import { Home_visit_links } from './Home_visit_links';
@@ -1074,13 +1074,13 @@ class FarmerMainPage extends Component {
                             <div style={{ clear: "both" }}></div>
                             <h3>Advertise my current location:</h3>
                             <div style={{ marginTop: "30px", padding: "8px" }}>
-                                <Ironji_Trader_Live_Location />
+                                <Ironji_Trader_Live_LocationFarmer />
                             </div>
                             <div>
-                                <label>Latitude:</label> <input disabled type="text" className="form-control" placeholder="Latitude here" />
+                                <label>Latitude:</label> <input disabled type="text" id="needTransportLatitude" className="form-control" placeholder="Latitude here" />
                             </div>
                             <div>
-                                <label>Longitude:</label> <input disabled type="text" className="form-control" placeholder="Longitude here" />
+                                <label>Longitude:</label> <input disabled type="text" id="needTransportLongitude" className="form-control" placeholder="Longitude here" />
                             </div>
                             <div>
                                 <input type="button" className="btn-success" style={{ padding: "20px" }} value="Publish This Location(1 Hour validity)" />

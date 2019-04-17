@@ -24,7 +24,7 @@ import { ProductSearchType } from '../ironji_custom_features/ProductSearchType';
 import { ViewMapInText } from '../ironji_custom_features/ViewMapInText';
 import { MadeDriverSchedules } from '../ironji_custom_features/MadeDriverSchedules';
 import { ViewHotDealsFromTraders } from '../ironji_custom_features/ViewHotDealsFromTraders';
-import { Ironji_Trader_Live_Location } from '../ironji_custom_features/Ironji_Trader_Live_Location';
+import { Ironji_Trader_Live_LocationBuyer } from '../ironji_custom_features/Ironji_Trader_Live_LocationBuyer';
 //----------
 import { Hot_products_in_radius } from '../hot_deals_and_products/Hot_products_in_radius';
 import { Home_visit_links } from './Home_visit_links';
@@ -814,7 +814,7 @@ class BuyerMainPage extends Component {
                             <div style={{ clear: "both" }}></div>
                             <h3>Advertise my current location:</h3>
                             <div style={{ marginTop: "30px", padding: "8px" }}>
-                                <Ironji_Trader_Live_Location />
+                                <Ironji_Trader_Live_LocationBuyer />
                             </div>
                             <div>
                                 <label>Latitude:</label> <input disabled type="text" className="form-control" placeholder="Latitude here" />

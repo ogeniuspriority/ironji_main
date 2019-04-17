@@ -1105,10 +1105,10 @@ class ClientMainPage extends Component {
                                 <Ironji_Trader_Live_Location />
                             </div>
                             <div>
-                                <label>Latitude:</label> <input disabled type="text" className="form-control" placeholder="Latitude here" />
+                                <label>Latitude:</label> <input disabled type="text" id="needTransportLatitude" className="form-control" placeholder="Latitude here" />
                             </div>
                             <div>
-                                <label>Longitude:</label> <input disabled type="text" className="form-control" placeholder="Longitude here" />
+                                <label>Longitude:</label> <input disabled type="text" id="needTransportLongitude" className="form-control" placeholder="Longitude here" />
                             </div>
                             <div>
                                 <input type="button" className="btn-success" style={{ padding: "20px" }} value="Publish This Location(1 Hour validity)" />

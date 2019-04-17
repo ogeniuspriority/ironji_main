@@ -20,7 +20,7 @@ import "react-toggle-switch/dist/css/switch.min.css";
 
 
 
-export class Ironji_Trader_Live_Location extends Component {
+export class Ironji_Trader_Live_LocationFarmer extends Component {
     constructor(props) {
         super(props);
 
@@ -174,5 +174,5 @@ export default withTracker(() => {
         tasks: Users.find({}).fetch(),
         theSchedules: Drivers_schedules.find({}, { sort: { createdAt: -1 } }).fetch(),
     };
-})(Ironji_Trader_Live_Location);
+})(Ironji_Trader_Live_LocationFarmer);
 

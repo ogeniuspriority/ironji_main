@@ -137,6 +137,10 @@ export class IronjiAssistantProfile_advert_map_auto extends Component {
                 //markers[0].setAnimation(google.maps.Animation.BOUNCE);
                 //document.getElementById("latitude").value = pos.lat();
                 //document.getElementById("longitude").value = pos.lng();
+                //---the_main_page_longitude: place_for_main_page.geometry.location.lng(),
+               // the_main_page_latitude: place_for_main_page.geometry.location.lat()
+                document.getElementById("latitude").value = place.geometry.location.lat();
+                document.getElementById("longitude").value = place.geometry.location.lng();
                 if (place.geometry.viewport) {
                     // Only geocodes have viewport.
                     bounds.union(place.geometry.viewport);
