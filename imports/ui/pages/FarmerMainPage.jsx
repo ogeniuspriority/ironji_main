@@ -575,7 +575,7 @@ class FarmerMainPage extends Component {
             if (po.hasOwnProperty(key)) {
                 //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
 
-                if (po[key].account_type == "farmer") {
+                if (po[key].account_type == "client") {
                     global.the_id = po[key]._id;
                 }
             }
@@ -600,9 +600,7 @@ class FarmerMainPage extends Component {
                     }
                 }
                 //---------------- hot_products_render_temp
-                //console.log("IN");
                 console.log("IN" + 'https://map.ogeniuspriority.com/map_scripts/publish_hot_products_to_community_render_for_view.php?user_id=' + global.the_id + "&latitude=" + this.state.the_main_page_latitude + "&longitude=" + this.state.the_main_page_longitude + "&value=" + this.state.value);
-
                 this.setState({ hot_products_render_temp: theResults });
                 if (this.state.hot_products_render_temp.length > 0) {
                     //-------------
@@ -767,7 +765,7 @@ class FarmerMainPage extends Component {
 
     }
 
-    renderTheClientSchedules() {
+    /*renderTheClientSchedules() {
         global.userna_me = "";
 
         return this.props.theSchedules.map((deal) => (
@@ -785,7 +783,7 @@ class FarmerMainPage extends Component {
                 <button className="btn btn-success">Talk to them<br /><span className="minify">Muvugishe</span></button>
             </div>
         ));
-    }
+    }*/
     handleDayClick(day) {
         this.setState({ selectedDay: day });
         global.date_of_schedule_to_choose = "" + day;
@@ -1401,7 +1399,7 @@ class FarmerMainPage extends Component {
                         </div>
                         <div className="modal-body" style={{ height: "340px", overflow: "scroll" }}>
                             <div>
-                                {this.renderTheClientSchedules()}
+                                {}
                             </div>
 
                         </div>
