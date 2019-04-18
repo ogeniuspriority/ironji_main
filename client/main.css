@@ -912,3 +912,15 @@ body {
     background: chocolate;
     cursor: pointer;
 }
+
+.pac-container {
+    z-index: 100000 !important;
+}
+#peopleWhoNeedTransportation.modal.fade.in {
+    visibility: visible;
+}
+
+#peopleWhoNeedTransportation.modal.fade {
+    display: block;
+    visibility: hidden;
+}

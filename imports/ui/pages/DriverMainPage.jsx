@@ -28,6 +28,7 @@ import { ViewHotDealsFromTraders } from '../ironji_custom_features/ViewHotDealsF
 import { Hot_products_in_radius } from '../hot_deals_and_products/Hot_products_in_radius'; 
 import { Hot_deals_in_radius } from '../hot_deals_and_products/Hot_deals_in_radius';
 import { Home_visit_links } from './Home_visit_links';
+import { DriverScannerMoney } from '../ironji_custom_features/DriverScannerMoney';
 
 //import {TrackerReact} from 'ultimatejs:tracker-react';
 const ARC_DE_TRIOMPHE_POSITION = {
@@ -1346,7 +1347,7 @@ class DriverMainPage extends Component {
                     </div>
                 </div>
             </div>
-            <div className="modal fade" id="peopleWhoNeedTransportation" role="dialog" aria-labelledby="hotDealsModalModalLabel" aria-hidden="true">
+            <div className="modal fade" style={{zIndex:1200}} id="peopleWhoNeedTransportation" role="dialog" aria-labelledby="hotDealsModalModalLabel" aria-hidden="true">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -1355,12 +1356,12 @@ class DriverMainPage extends Component {
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div className="modal-body">
-                            sfs fsufvs fusvf sfubvs 
+                        <div className="modal-body" style={{ zIndex: 1200 }}>
+                            <DriverScannerMoney />
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-dismiss="modal">Close<br /><span className='minify'>Funga</span></button>
-                            <button type="button" className="btn btn-primary">Save<br /><span className='minify'>Byemeze</span></button>
+                            <button type="button" style={{display:"none"}} className="btn btn-primary">Save<br /><span className='minify'>Byemeze</span></button>
                         </div>
                     </div>
                 </div>

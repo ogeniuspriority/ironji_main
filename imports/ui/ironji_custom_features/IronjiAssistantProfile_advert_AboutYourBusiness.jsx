@@ -37,6 +37,19 @@ export class IronjiAssistantProfile_advert_AboutYourBusiness extends Component {
     saveTheInfoAboutMyBusiness() {
         //--demo-editor rdw-editor-main
         //alert(document.getElementsByClassName('rdw-editor-main')[0].innerHTML);
+        global.the_id_op = "";
+        global.avatar_profile = "";
+        var po = Users.find({ username: "" + sessionStorage.getItem('ironji_account_username') }, { sort: { text: 1 } }).fetch();
+        for (var key in po) {
+            if (po.hasOwnProperty(key)) {
+                //console.log(key + " -> " + po[key]._id+"--"+ po[key].username+"--"+ po[key].account_type);
+
+                //if (po[key].account_type == "farmer") {
+                global.the_id_op = po[key]._id;
+                global.avatar_profile = po[key].avatar_profile;
+                //}
+            }
+        }
         var theInfoBusiness = document.getElementsByClassName('rdw-editor-main')[0].innerHTML;
         toastr.success('Saving my business information...', 'Thank you!', { timeOut: 1000 });
         fetch('https://map.ogeniuspriority.com/map_scripts/save_business_information.php?id=' + global.the_id_op + "&theInfoBusiness=" + theInfoBusiness)
