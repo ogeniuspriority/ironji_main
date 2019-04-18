@@ -680,7 +680,7 @@ class BuyerMainPage extends Component {
 
     }
 
-    renderTheClientSchedules() {
+/*renderTheClientSchedules() {
         global.userna_me = "";
 
         return this.props.theSchedules.map((deal) => (
@@ -698,7 +698,7 @@ class BuyerMainPage extends Component {
                 <button className="btn btn-success">Talk to them<br /><span className="minify">Muvugishe</span></button>
             </div>
         ));
-    }
+    }*/
 
     renderThisAccountAvatar() {
 
@@ -817,10 +817,10 @@ class BuyerMainPage extends Component {
                                 <Ironji_Trader_Live_LocationBuyer />
                             </div>
                             <div>
-                                <label>Latitude:</label> <input disabled type="text" className="form-control" placeholder="Latitude here" />
+                                <label>Latitude:</label> <input disabled type="text" id="needTransportLatitude" className="form-control" placeholder="Latitude here" />
                             </div>
                             <div>
-                                <label>Longitude:</label> <input disabled type="text" className="form-control" placeholder="Longitude here" />
+                                <label>Longitude:</label> <input disabled type="text" id="needTransportLongitude" className="form-control" placeholder="Longitude here" />
                             </div>
                             <div>
                                 <input type="button" className="btn-success" style={{ padding: "20px" }} value="Publish This Location(1 Hour validity)" />
@@ -832,7 +832,7 @@ class BuyerMainPage extends Component {
                 </div>
                 <div className="middleFeature_right">
                     <h2>Hot products</h2>
-                    <ViewHotProducts class="middleFeature_right" />
+                    <div>{this.find_hot_products_to_render_RENDER()}</div>
                 </div>
             </div>
 
@@ -1002,7 +1002,7 @@ class BuyerMainPage extends Component {
                         </div>
                         <div className="modal-body" style={{ height: "340px", overflow: "scroll" }}>
                             <div>
-                                {this.renderTheClientSchedules()}
+                                {}
                             </div>
 
                         </div>
