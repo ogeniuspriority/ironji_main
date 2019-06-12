@@ -3,6 +3,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Ironji</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <link href="css/small-business.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
@@ -25,6 +29,29 @@
             document.getElementById("thePopDataInfo").innerHTML = "";
 
         }
+        //----
+        window.onload = function () {
+            //alert();
+            this.setTimeout(function () {
+                var inputs = document.getElementsByTagName("input");
+                var selects = document.getElementsByTagName("select");
+                var buttons = document.getElementsByTagName("button");
+                
+                //------
+                
+                for (i = 0; i < inputs.length; i++) {
+                    inputs[i].style.fontSize = "15px";
+                }
+                for (i = 0; i < selects.length; i++) {
+                    selects[i].style.fontSize = "15px";
+                }
+                for (i = 0; i < buttons.length; i++) {
+                    buttons[i].style.fontSize = "15px";
+                }
+                
+            }, 3000);
+            
+        };
 
 
     </script>

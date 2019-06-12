@@ -463,10 +463,10 @@ class TraderSendCargo extends Component {
                                 <table className="table table_ghh">
                                     <tbody>
                                         <tr><td><a href={'/fq_asked'}><img className="followLinks" src="images/question.png" /><br /><span>FAQs</span></a></td>
-                                            <td><a href={'/tradermessages'}><img className="followLinks" src="images/message.png" /><br /><span>Messages</span></a></td>
-                                            <td><a href={'/traderprofile'}>{this.renderThisAccountAvatar()}<br /><span>Hi, {sessionStorage.getItem('ironji_account_username')}</span></a></td>
-                                            <td><a href={'/traderDashboard'}><img className="followLinks" src="images/dashboard.jpg" /><br /><span>Dashboard</span></a></td>
-                                            <td><a href={'/traderMainPage'}><img className="followLinks" src="images/home.png" /><br /><span>Home</span></a></td>
+                                            <td><a href={'/Clientmessages'}><img className="followLinks" src="images/message.png" /><br /><span>Messages</span></a></td>
+                                            <td><a href={'/Clientprofile'}>{this.renderThisAccountAvatar()}<br /><span>Hi, {sessionStorage.getItem('ironji_account_username')}</span></a></td>
+                                            <td><a href={'/TraderDashboard'}><img className="followLinks" src="images/dashboard.jpg" /><br /><span>Dashboard</span></a></td>
+                                            <td><a href={'/clientMainPage'}><img className="followLinks" src="images/home.png" /><br /><span>Home</span></a></td>
                                             <td><a href={'/TraderSendCargo'}><img className="followLinks" src="images/user_send_cargo.jpg" /><br /><span>Send your cargo</span></a></td></tr>
                                     </tbody>
                                 </table>

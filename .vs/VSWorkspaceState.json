@@ -1,11 +1,12 @@
 {
   "ExpandedNodes": [
     "",
+    "\\client",
     "\\imports",
-    "\\imports\\ui",
-    "\\imports\\ui\\containers",
-    "\\imports\\ui\\pages"
+    "\\imports\\startup",
+    "\\imports\\startup\\server",
+    "\\server"
   ],
-  "SelectedNode": "\\imports\\ui\\pages\\FarmerMainPage.jsx",
+  "SelectedNode": "\\imports\\startup\\server\\main.js",
   "PreviewInSolutionExplorer": false
 }

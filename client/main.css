@@ -69,6 +69,7 @@ body {
     margin-top: 15px;
     margin: auto;
     width: 150px;
+    font-size:16px;
 }
 
 .alreadyAccount {
@@ -923,4 +924,62 @@ body {
 #peopleWhoNeedTransportation.modal.fade {
     display: block;
     visibility: hidden;
+}
+input[type="text"] {
+    font-size: 16px;
+}
+input, select, textarea {
+    font-size: 16px;
+}
+select {
+    font-size: 16px;
+}
+.form-control .input-sm {
+    font-size: 16px;
+}
+button {
+    font-size: 16px;
+}
+.productChoiceWhenAdding {
+    font-size: 16px;
+}
+.form-control {
+    font-size: 16px;
+}
+div {
+    display: block;
+    margin-top: 15px;
+    margin-left: 10px;
+}
+.btn {
+    font-size: 16px;
+}
+@media screen and (min-width: 800px) {
+
+    .teamMember {
+        float: left;
+        margin: 8px;
+        padding: 5px;
+        border-radius: 8px;
+        background: #ffffff;
+        width: 40%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    body {
+      overflow-x:hidden;
+      margin:auto;
+      width:100%;
+    }
+    .teamMember {
+        margin: 8px;
+        overflow-x: hidden;
+        padding: 5px;
+        border-radius: 8px;
+        background: #ffffff;
+        width: 100%;
+    }
+    
+    
 }

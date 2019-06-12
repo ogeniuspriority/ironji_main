@@ -44,16 +44,18 @@ import DriverCarryCargo from '../pages/DriverCarryCargo.jsx';
 import FarmerCarryCargo from '../pages/FarmerCarryCargo.jsx';
 import BuyerCarryCargo from '../pages/BuyerCarryCargo.jsx';
 import TraderCarryCargo from '../pages/TraderCarryCargo.jsx';
+import business_page_home from '../pages/business_page_home.jsx';
 
 
 export default class MainLayout extends React.Component {
   render() {
     return (
-      <Router>
-        <div>
-          <Header />
+        <Router>
+            <div  style={{ fontSize: "15px",margin:"20px",borderTop:"1px solid orange",borderRadius:"5px" }}>
+          
             <Switch>
-              <Route exact path='/' component={Home} />
+                    <Route exact path='/' component={Home} />
+                    <Route exact path='/BusinessProfile' component={business_page_home} />
               <Route path = '/about' component={About} />
               <Route path = '/clientMainPage' component={ClientMainPage} />
               <Route path = '/clientRegister' component={ClientRegister} />
@@ -91,7 +93,7 @@ export default class MainLayout extends React.Component {
                     <Route path='/tradermessages' component={tradermessages} />
               <Route component={NotFound} />
             </Switch>
-            <Footer />
+            
         </div>
       </Router>
     );

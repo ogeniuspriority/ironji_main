@@ -6,7 +6,7 @@ import LoginButtons from './LoginButtons.jsx';
 export default class Header extends React.Component {
   render() {
     return (
-        <header className='Header'>
+        <header className='container'>
             <nav className="navbar navbar-expand-lg"></nav>
       </header>
     );
