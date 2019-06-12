@@ -58,7 +58,7 @@ class business_page_home extends Component {
                                 <a className="nav-link" href="/Team">About The Team</a>
                             </li>
                             <li class="nav-item">
-                                <a className="nav-link" href="/">Use the web protype</a>
+                                <a className="nav-link" href="/">Use the web prototype</a>
                             </li>
                         </ul>
                     </div>
