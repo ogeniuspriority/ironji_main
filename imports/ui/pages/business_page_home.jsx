@@ -78,7 +78,12 @@ class business_page_home extends Component {
                              Make Goods Available using
       Cheap and Reliable
          Transportation.
-                            <h5>Now working on an app for both drivers and shipment services' seekers, comming soon...</h5>
+                            <h5>Our android app is now available on google play 
+                            <div>
+                              <a target="_blank" href="https://play.google.com/store/apps/details?id=com.ironji.ironjiapp">Ironji App</a>
+                              </div>
+                              <div>Ship your cargo, Transport Cargo using Ironji</div>
+                            </h5>
 
 </p>
                         
