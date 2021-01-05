@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/ogeniuspriority/ironji_main.git",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "axios-fileupload": "0.0.1",
     "base64-img": "^1.0.4",
     "bootstrap": "^4.1.3",
