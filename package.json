@@ -42,7 +42,7 @@
     "react-datepicker": "^1.7.0",
     "react-day-picker": "^7.2.4",
     "react-dom": "^15.6.2",
-    "react-draft-wysiwyg": "^1.12.13",
+    "react-draft-wysiwyg": "^1.14.6",
     "react-geolocated": "^2.4.0",
     "react-jsx": "^1.0.0",
     "react-loading": "^2.0.3",
