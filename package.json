@@ -31,7 +31,7 @@
     "indexof": "0.0.1",
     "meteor-node-stubs": "^0.4.1",
     "moment": "^2.22.2",
-    "moment-timezone": "^0.5.21",
+    "moment-timezone": "^0.5.35",
     "password-hash": "^1.2.2",
     "rc-time-picker": "^3.3.1",
     "react": "^15.6.2",
